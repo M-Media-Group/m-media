@@ -6,7 +6,7 @@
         <h2>We make websites and handle your marketing.</h2>
     </div>
     <div class="action-section container">
-        <img src="images/devices2.svg" style="max-height:150px;" class="mb-5">
+        <img src="images/devices2.svg" style="max-height:150px;min-height: 80px;" class="mb-5">
         <p>Founded in 2018 by alumni of the International University of Monaco and based in the South of France; we design websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see. Some social media managers will tell you need to post wacky posts to stand out, while SEO “experts” will tell you that you have to include popular keywords that you want to target, and then milk them to death. We don’t believe in any of that.</p>
         <p>Our philosophy stems from the idea that if the customer is happy, they will organically grow your business with you. They’ll share their experiences on a range of rating platforms, and they’ll rave about your company on social media accounts. Our job is to make your customers have an effortless, pleasant, and unobtrusive experience with your brand on the French Riviera.</p>
         <div class="flex" style="flex-wrap: wrap;">
@@ -22,7 +22,7 @@
         <h2>You'll see who your customers really are.</h2>
     </div>
     <div class="action-section container">
-        <img src="images/data.svg" style="max-height:150px;" class="mb-5">
+        <img src="images/data.svg" style="max-height:150px;min-height: 80px;" class="mb-5">
         <p>We're a data driven web development and marketing company. We won’t make your text pink and your titles in Comic Sans because ‘design’. We’ll make it pink and Comic Sans because the data shows us that that's what converts your potential customers into paying ones.</p>
         <p>We measure this by setting up advanced web analytics systems and continuously A/B testing your website and Instagram profiles to see what elements speak best to your target market. Speaking of, in our years of experience, pink text and Comic Sans fonts have never proven successful - so stay clear of those when you’re designing some marketing pieces!</p>
         <div class="flex">

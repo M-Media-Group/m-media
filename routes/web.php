@@ -55,7 +55,7 @@ Route::get('/notifications', function () {
     return view('notifications');
 })->middleware('auth');
 
-Auth::routes(['verify' => true]);
+Auth::routes(['register' => false, 'verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 

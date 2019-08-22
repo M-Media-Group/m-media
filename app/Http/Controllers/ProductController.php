@@ -196,6 +196,7 @@ Choose a plan that best suites your business needs. Want something different? Co
 
 ### Basic
 €147 per month. Includes:
+- Instagram profile key-metrics analysis
 - 2 posts per week
 - Hashtags
 - Images provided by you
@@ -203,6 +204,7 @@ Choose a plan that best suites your business needs. Want something different? Co
 ### Pro
 €559 per month. Includes:
 - Up to €100 in Instagram paid marketing
+- Instagram profile key-metrics analysis
 - 3 posts per week
 - Hashtags
 - Images or videos provided by you and stock
@@ -212,6 +214,7 @@ Choose a plan that best suites your business needs. Want something different? Co
 €893 per month. Includes:
 - Free monthly photography and vidography sessions
 - Up to €100 in Instagram paid marketing
+- Instagram profile key-metrics analysis
 - 3-5 posts per week
 - Hashtags
 - Images or videos provided by us and you
@@ -219,7 +222,7 @@ Choose a plan that best suites your business needs. Want something different? Co
 
 ## No obligations.
 
-As with all of our monthly subscriptions, you can cancel this service at any time you wish, even after you've used it for only a month!
+As with all of our monthly subscriptions, you can cancel this service at any time you wish, even if you've used it for only a month!
 ",
             'image' => array(
                 'url' => '/images/polaroid.svg',

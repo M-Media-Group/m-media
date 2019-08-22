@@ -1,4 +1,5 @@
 @extends('layouts.clean')
+@section('title', "Print Media Solutions")
 
 @section('above_container')
     <a class="header-section d-block text-center" style="background:#246EBA;" href="/business-cards">

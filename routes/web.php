@@ -13,6 +13,28 @@
 
 //Route::get('/', 'PostController@index');
 
+Route::get('/print-media', function () {
+    return view('print');
+});
+
+Route::get('/instagram', function () {
+    return view('instagram');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/web-development', 'ProductController@webdev');
+
+Route::get('/instagram-engagement', 'ProductController@engagement');
+
+Route::get('/instagram-content-management', 'ProductController@contentCreation');
+
+Route::get('/product-packaging', 'ProductController@packaging');
+
+Route::get('/automation-bot', 'ProductController@bot');
+
 Route::get('/privacy-policy', function () {
     return view('privacy');
 });
@@ -50,15 +72,15 @@ Route::resource('roles', 'RoleController');
 Route::resource('incidents', 'IncidentController');
 
 Route::get('{slug?}', function () {
-    //http://feeds.bbci.co.uk/news/world/rss.xml
-    $feed = Feeds::make(array(
-        'https://www.reddit.com/r/breakingnews/.rss', 'https://www.reddit.com/r/news/.rss', 'http://feeds.bbci.co.uk/news/world/rss.xml', 'https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en',
-    ));
-    $data = array(
-        'title' => $feed->get_title(),
-        'permalink' => $feed->get_permalink(),
-        'items' => $feed->get_items(),
-    );
+    // //http://feeds.bbci.co.uk/news/world/rss.xml
+    // $feed = Feeds::make(array(
+    //     'https://www.reddit.com/r/breakingnews/.rss', 'https://www.reddit.com/r/news/.rss', 'http://feeds.bbci.co.uk/news/world/rss.xml', 'https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en',
+    // ));
+    // $data = array(
+    //     'title' => $feed->get_title(),
+    //     'permalink' => $feed->get_permalink(),
+    //     'items' => $feed->get_items(),
+    // );
 
-    return View::make('map', $data);
+    return View::make('welcome');
 });

@@ -1,14 +1,14 @@
-@extends('layouts.clean')
+@extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('title', "Log in to ".config('app.name'))
 @section('meta_description', "Log in to comment, post articles, and interact with the community at ".config('app.name')."!")
 
-@section('content')
-<div>
-    <div class="card bg-dark text-white">
-        <div class="card-header">{{ __('Login') }}</div>
+@section('above_container')
+<div style="padding-top:15rem;">
+    <div class="action-section container mt-5">
+        <div>{{ __('Login') }}</div>
 
-        <div class="card-body">
+        <div class="mt-5">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -54,12 +54,12 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="button button-primary">
                             {{ __('Login') }}
                         </button>
 
                         @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <a class="btn" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif
@@ -67,9 +67,12 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer text-muted text-center">
+        {{-- <div class="card-footer text-muted text-center">
             <a href="/register">Don't have an account? Sign up!</a>
-        </div>
+        </div> --}}
     </div>
+</div>
+<div class="header-section" style="background:#2565aa;">
+    <h2>Don't have an account? <a href="mailto:contact@mmediagroup.fr">Contact us</a>!</h2>
 </div>
 @endsection

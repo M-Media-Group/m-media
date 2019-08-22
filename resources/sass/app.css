@@ -1,0 +1,278 @@
+html
+{
+    background: #f3f3f3;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/** {
+    -webkit-transition: all .25s;
+    transition: all .25s;
+}*/
+
+body
+{
+    /*min-height: 100vh;*/
+}
+
+.header-section
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 13rem 10%;
+
+    animation-name: example2;
+    animation-duration: .45s;
+    animation-timing-function: ease-in-out;
+
+    color: #fff;
+    background: #eb4647;
+}
+
+a.header-section:hover {
+    color:#fff;
+}
+
+h1 {
+    -webkit-transition: all 0s;
+            transition: all 0s;
+    animation-name: example2;
+    animation-duration: .55s;
+    animation-timing-function: ease-in-out;
+}
+.header-section h1
+{
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.3rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    margin-bottom: .5rem;
+
+    /*    color: #4a4a4a;
+*/
+}
+h2, p, .button {
+    -webkit-transition: all 0s;
+            transition: all 0s;
+    animation-name: example2;
+    animation-duration: .65s;
+    animation-timing-function: ease-in-out;
+}
+.header-section h2
+{
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.3rem;
+    letter-spacing: 0;
+
+    /*    color: #4a4a4a;
+*/
+}
+
+@keyframes example
+{
+    from
+    {
+        transform: translateY(50rem);
+        opacity: 0;
+    }
+    to
+    {
+    }
+}
+
+@keyframes example2
+{
+    from
+    {
+        transform: translateX(-5rem);
+        opacity: 0;
+    }
+    to
+    {
+    }
+}
+
+.action-section
+{
+    margin-top: -5rem;
+    padding: 3.7rem;
+    max-width: 700px;
+
+    animation-name: example;
+    animation-duration: .55s;
+    animation-timing-function: ease-in-out;
+
+    border-radius: 2rem 2rem 0 0;
+    background: #fff;
+    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, .15);
+}
+
+.button
+{
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+
+    text-align: center;
+    letter-spacing: 0;
+
+    color: #4a4a4a;
+}
+
+input,
+textarea
+{
+    width: 100%;
+}
+
+.leaflet-container
+{
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    z-index: 10;
+}
+
+.leaflet-bar
+{
+    background: #fff;
+}
+
+.no-margin
+{
+    margin: 0;
+}
+
+
+.flex
+{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+
+    align-items: center;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.page-title
+{
+    font-size: 1.7rem;
+    font-weight: 500;
+
+    display: block;
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.menu-text
+{
+    font-size: 1.7rem;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    color: #fff;
+}
+
+.logo-container
+{
+    padding: 1.5rem;
+
+    -webkit-transition: all .25s;
+            transition: all .25s;
+
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, .15);
+        cursor: pointer;
+    pointer-events: initial;
+}
+.logo-container:hover
+{
+    border-radius: 25%;
+    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, .25);
+}
+.logo-container > img
+{
+    display: block;
+}
+.leaflet-bottom
+{
+    bottom: 7rem;
+}
+
+
+/*Next*/
+.leaflet-control-geocoder
+{
+    z-index: 99;
+}
+.leaflet-bottom.leaflet-left {
+    bottom: 5rem;
+}
+
+.dynamic-images {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+.dynamic-images > img {
+    position: absolute;
+}
+
+.dropdown {
+  position: relative;
+/*  display: inline-block;
+*/}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 237px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 6rem;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #eb4647; color:#fff;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+p > img {
+    max-height: 200px;
+}
+
+img {
+    max-width: 100%;
+}
+
+main img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    main img {
+        display: block;
+        margin: initial;
+    }
+}
+
+.card li {
+    list-style: none;
+}

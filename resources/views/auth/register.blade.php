@@ -3,16 +3,22 @@
 @section('title', "Register to ".config('app.name'))
 @section('meta_description', "Register to comment, post articles, and interact with the community at ".config('app.name')."!")
 
-@section('content')
+@section('above_container')
+<div class="header-section" style="background:#2565aa;">
+    <h2>Don't have an account? <a href="mailto:contact@mmediagroup.fr">Contact us</a>!</h2>
+</div>
+@endsection
+
+{{-- @section('content')
 @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div>
 
             <div class="card bg-dark text-white">
@@ -34,34 +40,6 @@
                                 @endif
                             </div>
                         </div>
-
-{{--                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}">
-
-                                @if ($errors->has('surname'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('surname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> --}}
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -98,17 +76,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="exampleFormControlFile1" class="col-md-4 col-form-label text-md-right">Avatar</label>
-                            <div class="col-md-6">
-                                <input type="file" class="form-control-file" name="avatar" id="exampleFormControlFile1">
-                                @if ($errors->has('avatar'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> --}}
+
                         <div class="row">
                             <p class="col-md-6 offset-md-4">By registering you understand the <a href="/privacy-policy">privacy policy</a> and agree to the <a href="terms-and-conditions">terms and conditions</a>.</p>
                         </div>
@@ -125,6 +93,6 @@
                     <a href="/login">Already have an account? Log in!</a>
                 </div>
             </div>
-
 </div>
-@endsection
+
+@endsection --}}

@@ -1,17 +1,17 @@
-@extends('layouts.clean')
+@extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('content')
-<div>
-    <div class="card bg-dark text-white">
-        <div class="card-header">{{ __('Reset Password') }}</div>
+@section('above_container')
+<div style="padding-top:15rem;">
+    <div class="action-section container mt-5">
+        <div>{{ __('Reset password') }}</div>
 
-        <div class="card-body">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
 
+        <div class="mt-5">
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
@@ -31,13 +31,16 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="button button-primary">
                             {{ __('Send Password Reset Link') }}
                         </button>
                     </div>
                 </div>
             </form>
         </div>
+        {{-- <div class="card-footer text-muted text-center">
+            <a href="/register">Don't have an account? Sign up!</a>
+        </div> --}}
     </div>
 </div>
 @endsection

@@ -1,13 +1,13 @@
 @extends('layouts.app')
+@section('title', "About M Media")
 
 @section('content')
-<h1>About {{ config('app.name') }}</h1>
 
-<p>This app is in beta testing and some information may be inaccurate. Help us by reporting incidents and spreading the word to your friends!</p>
-<p>{{ config('app.name') }} keeps your data safe by encrypting sensitive passwords, not revealing personal data, and testing the security of your password through a database that lists millions of breached passwords: <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>.</p>
-<hr class="bg-dark"/>
-<p>This is an open source project. Feel free to contribute to the development on <a href="https://github.com/mwargan/IncidentReport">GitHub</a>.</p>
-<p>You may report incidents via this website (web interface) or via the API endpoints - available on request. You may develop automated tools that mark incidents at given locations based on real-world data triggers.</p>
+<img src="/images/logo.svg"  style="max-height:200px;" class="mb-5">
+<h1>{{ config('app.name') }}</h1>
+
+<p>{{ config('app.name') }} was founded by an Alumni student of the International University of Monaco, Michał Wargan, and works in the South of France; we design websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see.</p>
+<p>M Media creates automations and lead channels for boring, repetitive, and unnecessarily expensive marketing objectives and business administration tasks!</p>
 <hr class="bg-dark"/>
 <p>More info coming soon.</p>
 

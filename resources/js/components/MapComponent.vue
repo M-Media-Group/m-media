@@ -1,16 +1,16 @@
 <template>
     <div>
-      <l-map :zoom="zoom" :center="center" style="width: 100%; height: 71vh;" @contextmenu="addMarker" ref="map">
+      <l-map :zoom="zoom" :center="center" style="width: 100%; height: 61vh;" @contextmenu="addMarker" ref="map">
           <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-locatecontrol/>
-
-        <l-marker-cluster>
-          <l-marker v-for="incident in incidents" :lat-lng="[incident.x, incident.y]" :key="incident.id+'marker'">
+<!--           <l-locatecontrol/>
+ -->
+<!--         <l-marker-cluster>
+ -->          <l-marker v-for="incident in incidents" :lat-lng="[incident.x, incident.y]" :key="incident.id+'marker'">
             <l-icon :icon-url="incident.category.icon" :icon-size="[20, 20]" :icon-anchor="[10, 10]"/>
             <l-popup @ready="openPopup"><b>{{incident.category.name}} reported in the area.</b><br/>Last report: <span class='timestamp' :datetime="incident.updated_at">{{ incident.updated_at }}</span>.<br/></l-popup>
           </l-marker>
-        </l-marker-cluster>
-    </l-map>
+<!--         </l-marker-cluster>
+ -->    </l-map>
     </div>
 </template>
 <script>

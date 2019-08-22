@@ -13,7 +13,10 @@ const mix = require('laravel-mix');
 
 mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'axios', 'bootstrap', 'jquery', 'leaflet']);
 mix.sass('resources/sass/app.scss', 'public/css').styles([
-    'node_modules/leaflet/dist/leaflet.css'
+    'resources/sass/normalize.css',
+    'node_modules/leaflet/dist/leaflet.css',
+    'resources/sass/skeleton.css',
+    'resources/sass/app.css'
 ], 'public/css/all.css');
 
 mix.browserSync('https://mmedia:7890');

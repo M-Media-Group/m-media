@@ -1,6 +1,6 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700,900&display=swap');
 
 // Variables
 @import 'variables';
@@ -11,8 +11,8 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 .navbar-laravel {
-  background-color: #202325;
-  color: #fff;
+  //background-color: #202325;
+  //color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -62,8 +62,8 @@ a.text-muted, p.text-muted, small.text-muted {
 }
 
 body, , .navbar-nav > li > .dropdown-menu, .navbar-nav > li > .dropdown-menu > .dropdown-item {
-	background-color: #202325;
-	color: #fff;
+	//background-color: #202325;
+	//color: #fff;
 }
 
 // .leafelt-control a, .leaflet-bar a, .leaflet-bar a:hover, .leaflet-bar-part, .leaflet-control-geocoder-icon, .leaflet-control-fullscreen-button {
@@ -88,4 +88,8 @@ span.fa {
     img{
         position: absolute;
     }
+}
+.footer {
+	background-color: $blue;
+	color:#fff !important;
 }

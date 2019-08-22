@@ -6,6 +6,18 @@
 </head>
 
 <body>
+    <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "{{config('app.name')}}",
+     "url" : "{{config('app.url')}}",
+     "sameAs" : [
+       "https://www.facebook.com/{{config('blog.facebook_page_username')}}",
+       "{{config('blog.instagram_url')}}"
+       ]
+    }
+    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('blog.google_tag_id') }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -29,7 +41,7 @@
                     @endif
                     @if(!Auth::check())
                     <hr>
-                    <p>Already a client? <a href="/register">Log in</a>.</p>
+                    <p>Already a client? <a href="/login">Log in</a>.</p>
                     @endif
                     @show
                 </div>
@@ -40,9 +52,9 @@
         </div>
         <div class="footer d-flex justify-content-around">
             <small>
-                <a href="/about" class="text-white">About</a>
-                <a href="/privacy-policy" class="text-white">Privacy policy</a>
-                <a href="/terms-and-conditions" class="text-white">Terms and conditions</a>
+                <a href="/about" class="text-white" title="About {{config('app.name')}}">About</a>
+                <a href="/privacy-policy" class="text-white" title="Privacy policy">Privacy policy</a>
+                <a href="/terms-and-conditions" class="text-white" title="Terms and conditions">Terms and conditions</a>
             </small>
         </div>
     </div>

@@ -4,6 +4,18 @@
      @include('components.head')
 </head>
 <body style="background-image: url('{{$background_image ?? ''}}')">
+    <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "{{config('app.name')}}",
+     "url" : "{{config('app.url')}}",
+     "sameAs" : [
+       "https://www.facebook.com/{{config('blog.facebook_page_username')}}",
+       "{{config('blog.instagram_url')}}"
+       ]
+    }
+    </script>
      <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('blog.google_tag_id') }}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

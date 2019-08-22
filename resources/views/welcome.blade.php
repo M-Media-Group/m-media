@@ -2,13 +2,13 @@
 
 @section('above_container')
     <div class="header-section">
-        <h1>Hi 👋! We're M Media.</h1>
+        <h1>Hi 👋! We're {{config('app.name')}}.</h1>
         <h2>We make websites and handle your marketing.</h2>
     </div>
     <div class="action-section container">
         <img src="images/devices2.svg" style="max-height:150px;" class="mb-5">
         <p>Founded in 2018 by alumni of the International University of Monaco and based in the South of France; we design websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see. Some social media managers will tell you need to post wacky posts to stand out, while SEO “experts” will tell you that you have to include popular keywords that you want to target, and then milk them to death. We don’t believe in any of that.</p>
-        <p>Our philosophy stems from the idea that if the customer is happy, they will organically grow your business with you. They’ll share their experiences on a range of rating platforms, and they’ll rave about your company on social media accounts. Our job is to make your customers have an effortless, pleasant, and unobtrusive experience with your brand.</p>
+        <p>Our philosophy stems from the idea that if the customer is happy, they will organically grow your business with you. They’ll share their experiences on a range of rating platforms, and they’ll rave about your company on social media accounts. Our job is to make your customers have an effortless, pleasant, and unobtrusive experience with your brand on the French Riviera.</p>
         <div class="flex" style="flex-wrap: wrap;">
             <!-- <a class="button button-secondary">Website development</a>
             <a class="button button-secondary">Social media management</a> -->
@@ -23,8 +23,8 @@
     </div>
     <div class="action-section container">
         <img src="images/data.svg" style="max-height:150px;" class="mb-5">
-        <p>We're a data driven company. We won’t make your text pink and your titles in Comic Sans because ‘design’. We’ll make it pink and Comic Sans because the data shows us that that's what converts your potential customers into paying ones.</p>
-        <p>We measure this by setting up advanced analytics systems and continuously A/B testing your website to see what design elements speak the most to your target market. Speaking of, in our years of experience, pink text and Comic Sans fonts have never proven successful - so stay clear of those when you’re designing some marketing pieces!</p>
+        <p>We're a data driven web development and marketing company. We won’t make your text pink and your titles in Comic Sans because ‘design’. We’ll make it pink and Comic Sans because the data shows us that that's what converts your potential customers into paying ones.</p>
+        <p>We measure this by setting up advanced web analytics systems and continuously A/B testing your website and Instagram profiles to see what elements speak best to your target market. Speaking of, in our years of experience, pink text and Comic Sans fonts have never proven successful - so stay clear of those when you’re designing some marketing pieces!</p>
         <div class="flex">
             <!-- <a class="button button-secondary">Web analytics</a>
             <a class="button button-secondary">Social media analytics</a> -->
@@ -49,15 +49,15 @@
     </div>
     <div class="header-section" style="background:#246EBA;background-image: url('images/background.jpg')">
         <h1>Let's build.</h1>
-        <h2>Unlock your brand to the world!</h2>
+        <h2>Market your brand to the world!</h2>
         <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Contact us</a>
     </div>
     <div class="header-section" style="background:#2565aa;">
         @if( config('blog.facebook_page_username'))
-            <p>Facebook: <a href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
+            <p>Facebook: <a target="_BLANK" href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
         @endif
         @if( config('blog.instagram_username'))
-            <p>Instagram: <a href="{{config('blog.instagram_url')}}">{{config('blog.instagram_username')}}</a></p>
+            <p>Instagram: <a target="_BLANK" href="{{config('blog.instagram_url')}}">{{config('blog.instagram_username')}}</a></p>
         @endif
         <p name="siren" content="telephone=no">Siren: 848 356 804</p>
     </div>

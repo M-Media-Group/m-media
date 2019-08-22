@@ -13,25 +13,25 @@
 
 //Route::get('/', 'PostController@index');
 
-Route::get('/print-media', function () {
-    return view('print');
-});
+// Route::get('/print-media', function () {
+//     return view('print');
+// });
 
 Route::get('/instagram', function () {
     return view('instagram');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
-Route::get('/web-development', 'ProductController@webdev');
+#Route::get('/web-development', 'ProductController@webdev');
 
 Route::get('/instagram-engagement', 'ProductController@engagement');
 
 Route::get('/instagram-content-management', 'ProductController@contentCreation');
 
-Route::get('/product-packaging', 'ProductController@packaging');
+#Route::get('/product-packaging', 'ProductController@packaging');
 
 Route::get('/automation-bot', 'ProductController@bot');
 

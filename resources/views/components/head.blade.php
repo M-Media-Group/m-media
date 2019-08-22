@@ -7,7 +7,7 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<meta name="keywords" content="{{ config('app.name') }},@yield('meta_keywords')">
+<meta name="keywords" content="{{ config('app.name') }},{{ config('blog.country_name') }},{{ config('blog.area_name') }},@yield('meta_keywords')">
 <meta name="description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera.')">
 <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 <meta name="robots" content="index,follow">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="@yield('meta_fb_type', 'website')">
 <meta property="og:title" content="@yield('title', config('app.name'))">
 <meta property="og:image" content="@yield('meta_image', config('app.url').config('blog.logo_url'))">
-<meta property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle your marketing on the French Riviera.')">
+<meta property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera.')">
 <meta property="og:site_name" content="{{ config('app.name') }}">
 <meta property="og:locale" content="{{ app()->getLocale() }}">
 <meta property="article:author" content="@yield('meta_author')">

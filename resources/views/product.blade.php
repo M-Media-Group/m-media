@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', $title)
+@section('meta_image', $image['url'])
 
 @section('sidebar')
 	<h2 class="text-muted">{{$price[0]['text']}}</h2>

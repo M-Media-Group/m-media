@@ -6,23 +6,6 @@
 </head>
 
 <body>
-    <script type="application/ld+json">
-    {
-      "@context" : "http://schema.org",
-      "@type" : "Organization",
-      "name" : "{{config('app.name')}}",
-     "url" : "{{config('app.url')}}",
-     "sameAs" : [
-       "https://www.facebook.com/{{config('blog.facebook_page_username')}}",
-       "{{config('blog.instagram_url')}}",
-       "https://github.com/M-Media-Group",
-       "https://twitter.com/MMediaFr",
-       "https://opencollective.com/m-media",
-       "https://www.linkedin.com/company/m-media-group",
-       "https://www.youtube.com/channel/UCXvMLmK312CfJOg8PrIhFvA"
-       ]
-    }
-    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('blog.google_tag_id') }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->

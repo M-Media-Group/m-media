@@ -9,7 +9,7 @@
 		    "background_color": "#f3f3f3",
 		    "theme_color": "#eb4647",
 		    "icons": [{
-		      "src": "{{ config('app.url').config('blog.logo_url') }}",
+		      "src": "{{ config('app.url').config('blog.favicon_url') }}",
 		      "sizes": "256x256",
 		      "type": "image/png"
 		    }]

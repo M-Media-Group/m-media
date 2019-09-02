@@ -12,7 +12,12 @@
      "url" : "{{config('app.url')}}",
      "sameAs" : [
        "https://www.facebook.com/{{config('blog.facebook_page_username')}}",
-       "{{config('blog.instagram_url')}}"
+       "{{config('blog.instagram_url')}}",
+       "https://github.com/M-Media-Group",
+       "https://twitter.com/MMediaFr",
+       "https://opencollective.com/m-media",
+       "https://www.linkedin.com/company/m-media-group",
+       "https://www.youtube.com/channel/UCXvMLmK312CfJOg8PrIhFvA"
        ]
     }
     </script>

@@ -16,6 +16,34 @@
 @endsection
 
 @section('content')
+
+<script type="application/ld+json">
+	{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{$title}}",
+  "image": [
+    "{{$image['url']}}"
+   ],
+  "description": "{{$text}}",
+  "brand": {
+    "@type": "Thing",
+    "name": "{{config('app.name')}}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{url()->full()}}",
+    "priceCurrency": "{{$price[0]['currency']['ISO']}}",
+    "price": "{{$price[0]['value']}}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "M Media"
+    }
+  }
+}
+</script>
 <img src="{{$image['url']}}" style="max-height:200px; min-height: 100px;" class="mb-5">
 <h1>{{$title}}</h1>
 

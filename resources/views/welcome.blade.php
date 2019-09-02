@@ -69,7 +69,7 @@
         <h2>Market your brand to the world!</h2>
         <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Contact us</a>
     </div>
-    <div class="header-section" style="background:#2565aa;">
+    <div class="header-section" style="background:#031926">
         @if( config('blog.facebook_page_username'))
             <p>Facebook: <a target="_BLANK" href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
         @endif

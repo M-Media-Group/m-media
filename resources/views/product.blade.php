@@ -45,7 +45,7 @@
   }
 }
 </script>
-<img src="{{$image['url']}}" style="max-height:200px; min-height: 100px;" class="mb-5">
+<img src="{{$image['url']}}" style="max-height:200px; min-height: 100px;" alt="{{$title}}" class="mb-5">
 <h1>{{$title}}</h1>
 
 @markdown($text)

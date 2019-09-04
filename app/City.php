@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IncidentView extends Model
+class City extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,8 +12,13 @@ class IncidentView extends Model
      * @var array
      */
     protected $fillable = [
-        'incident_id',
-        'user_id',
-        'ip',
+        'name',
+        'country_id',
+        'is_servicable',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
 }

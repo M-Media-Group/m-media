@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Incident extends Model
+class Address extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,10 +14,13 @@ class Incident extends Model
      * @var array
      */
     protected $fillable = [
-        'redirect_to',
-        'category_id',
-        'user_id',
+        'address',
+        'postal_code',
         'location',
+        'city_id',
+        'is_public',
+        'user_id',
+        'notes',
     ];
     // protected $appends = ['location'];
 
@@ -34,21 +37,16 @@ class Incident extends Model
             $builder->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y, category_id, user_id, created_at, updated_at'));
         });
 
-        // static::addGlobalScope('recent', function (Builder $builder) {
-        //     $builder->where('updated_at', '>',
-        //         Carbon::now()->subMinutes(59)->toDateTimeString()
-        //     );
-        // });
     }
 
-    public function views()
+    public function user()
     {
-        return $this->hasMany('App\IncidentView');
+        return $this->belongsTo('App\User');
     }
 
-    public function category()
+    public function city()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\City');
     }
     // public function getLocationAttribute()
     // {

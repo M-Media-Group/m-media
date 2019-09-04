@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncidentsTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateIncidentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('incidents', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->point('location');
-            $table->unsignedInteger('category_id');
+            $table->string('name')->unique()->nullable();
+            $table->string('url')->unique();
+            $table->string('extension')->nullable();
+            $table->string('type')->nullable();
+            $table->string('mimeType')->nullable();
+            $table->integer('size')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->boolean('is_public')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->spatialIndex('location');
         });
     }
 
@@ -33,6 +37,6 @@ class CreateIncidentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incidents');
+        Schema::dropIfExists('files');
     }
 }

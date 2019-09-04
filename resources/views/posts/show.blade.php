@@ -2,7 +2,7 @@
 
 @section('title', $post->title)
 @section('meta_description', $post->excerpt)
-@section('meta_author', config('app.url').'/users/'.$post->user->username)
+@section('meta_author', config('app.url').'/users/'.$post->user->name)
 @section('meta_fb_type', 'article')
 @section('meta_image', $post->header_image)
 
@@ -33,18 +33,18 @@
             },
             "accountablePerson": {
                 "@type": "Person",
-                "name": "{{$post->user->username}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->username}}"
+                "name": "{{$post->user->name}}",
+                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
             },
             "author": {
                 "@type": "Person",
-                "name": "{{$post->user->username}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->username}}"
+                "name": "{{$post->user->name}}",
+                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
             },
             "creator": {
                 "@type": "Person",
-                "name": "{{$post->user->username}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->username}}"
+                "name": "{{$post->user->name}}",
+                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
             },
             "publisher": {
                 "@type": "Organization",
@@ -111,7 +111,7 @@
         </p>
         <hr>
     @endcan
-    <p><a href="/users/{{$post->user->username}}"><img class="rounded img-thumbnail mr-1" src="{{$post->user->avatar}}" height="45" width="45" alt="{{$post->user->username}}" title="{{$post->user->username}}">{{$post->user->username}}</a></p>
+    <p><a href="/users/{{$post->user->id}}"><img class="rounded img-thumbnail mr-1" src="{{$post->user->avatar}}" height="45" width="45" alt="{{$post->user->name}}" title="{{$post->user->name}}">{{$post->user->name}}</a></p>
     <p class="mb-0">Last updated {{ $post->updated_at->diffForHumans() }}</p>
     @if ($post->published_at)
         <small>Published {{ $post->published_at->diffForHumans() }}</small>

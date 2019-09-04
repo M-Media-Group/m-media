@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasRoles;
+    use HasApiTokens, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'surname', 'email', 'password', 'avatar',
+        'name', 'surname', 'email', 'password', 'phone_id', 'avatar_file_id', 'shipping_address_id', 'billing_address_id',
     ];
 
     /**
@@ -29,32 +30,42 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function posts()
+    public function phones()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Phone');
     }
 
-    public function seenPosts()
+    public function files()
     {
-        return $this->belongsToMany('App\Post', 'post_views');
+        return $this->hasMany('App\File');
     }
 
-    public function postViews()
+    public function avatar()
     {
-        //Issue with column names in laravel 5.7 see: https://github.com/laravel/framework/issues/17918
-        return $this->hasManyThrough('App\PostView', 'App\Post', 'user_id', 'post_id', 'id', 'id');
+        return $this->hasOne('App\File', 'avatar_file_id');
     }
 
-    public function postViewsExcludingSelf()
+    public function primaryPhone()
     {
-        //Must use whereRaw prob because issue with column in laravel 5.7 names see: https://github.com/laravel/framework/issues/17918
-        return $this->hasManyThrough('App\PostView', 'App\Post', 'user_id', 'post_id', 'id', 'id')->whereRaw('posts.user_id != post_views.user_id');
+        return $this->hasOne('App\Phone');
     }
 
-    public function seenCategories()
-    {
-        return $this->belongsToMany('App\Category', 'category_views');
-    }
+    // public function seenPosts()
+    // {
+    //     return $this->belongsToMany('App\Post', 'post_views');
+    // }
+
+    // public function postViews()
+    // {
+    //     //Issue with column names in laravel 5.7 see: https://github.com/laravel/framework/issues/17918
+    //     return $this->hasManyThrough('App\PostView', 'App\Post', 'user_id', 'post_id', 'id', 'id');
+    // }
+
+    // public function postViewsExcludingSelf()
+    // {
+    //     //Must use whereRaw prob because issue with column in laravel 5.7 names see: https://github.com/laravel/framework/issues/17918
+    //     return $this->hasManyThrough('App\PostView', 'App\Post', 'user_id', 'post_id', 'id', 'id')->whereRaw('posts.user_id != post_views.user_id');
+    // }
 
     public function isSuperAdmin()
     {

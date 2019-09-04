@@ -18,10 +18,6 @@
 	  @method('PATCH')
 
 	  <div class="form-group">
-		<label for="exampleFormControlInput1">Username</label>
-		<input type="text" class="form-control" id="exampleFormControlInput1" name="username" placeholder="Username" value="{{$user->username}}" required>
-	  </div>
-	  <div class="form-group">
 		<label for="exampleFormControlInput2">Name</label>
 		<input type="text" class="form-control" id="exampleFormControlInput2" name="name" placeholder="Username" value="{{$user->name}}" required>
 	  </div>

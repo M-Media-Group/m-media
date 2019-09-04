@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryView extends Model
+class PhoneLog extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,8 +12,14 @@ class CategoryView extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id',
-        'user_id',
-        'ip',
+        'phone_id',
+        'type',
+        'notes',
+        'ended_at',
     ];
+
+    public function phone()
+    {
+        return $this->belongsTo('App\Phone');
+    }
 }

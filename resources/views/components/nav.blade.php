@@ -26,7 +26,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->username }} <span class="caret"></span>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -43,7 +43,7 @@
                                     {{ __('Create roles') }}
                                 </a>
                             @endcan
-                            <a class="dropdown-item" href="/users/{{ Auth::user()->username }}/edit">
+                            <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">
                                     {{ __('Account settings') }}
                                 </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"

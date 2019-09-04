@@ -54,9 +54,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+    public function show($id)
     {
-        return view('users.show', ['user' => User::where('username', $username)->with('posts')->firstOrFail()]);
+        return view('users.show', ['user' => User::where('id', $id)->with('posts')->firstOrFail()]);
 
     }
 
@@ -66,9 +66,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($username)
+    public function edit($id)
     {
-        $user = User::where('username', urldecode($username))->firstOrFail();
+        $user = User::where('id', urldecode($id))->firstOrFail();
         $this->authorize('update', $user);
         $roles = Role::get();
         return view('users.edit', compact('user', 'roles'));
@@ -85,7 +85,6 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:users,username,' . $user->id, 'min:3'],
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
@@ -93,7 +92,6 @@ class UserController extends Controller
 
         $user->update(
             [
-                'username' => $request->input('username'),
                 'name' => $request->input('name'),
                 'surname' => $request->input('surname'),
                 'email' => $request->input('email'),
@@ -109,7 +107,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/' . urlencode($request->input('username')));
+        return redirect('/users/' . urlencode($request->input('id')));
 
     }
 

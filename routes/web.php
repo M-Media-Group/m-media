@@ -27,6 +27,8 @@ Route::get('/instagram', function () {
 
 #Route::get('/web-development', 'ProductController@webdev');
 
+#Route::resource('/phone', 'PhoneLogController');
+
 Route::get('/instagram-engagement', 'ProductController@engagement');
 
 Route::get('/instagram-content-management', 'ProductController@contentCreation');

@@ -17,8 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('categories', 'CategoryController@index');
+#Route::get('categories', 'CategoryController@index');
 
-Route::resource('users', 'UserController');
+#Route::resource('users', 'UserController');
 
-Route::apiResource('incidents', 'IncidentController');
+#Route::apiResource('incidents', 'IncidentController');
+
+Route::apiResource('phone-logs', 'PhoneLogController')->middleware('client');

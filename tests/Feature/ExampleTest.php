@@ -193,7 +193,7 @@ class ExampleTest extends TestCase
     public function testSeeSingleUserTest()
     {
         $user = \App\User::firstOrFail();
-        $response = $this->get('/users/' . $user->username);
+        $response = $this->get('/users/' . $user->id);
 
         $response->assertStatus(200);
         $response->assertSeeText(config('app.name'));

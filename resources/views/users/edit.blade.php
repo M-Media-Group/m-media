@@ -11,7 +11,7 @@
 
 @section('content')
 		<div class="alert alert-info text-muted">
-	         Some settings, like your name, can not be modified by you.
+	         Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
 	    </div>
 	@if ($errors->any())
 	    <div class="alert alert-danger">
@@ -64,7 +64,7 @@
 
 	<h2>Payment methods</h2>
 	@if($user->stripe_id)
-    <table style="width:100%;">
+    <table style="width:100%;margin-bottom: 0;">
     	    @foreach ($pmethod as $method)
 	        <tr>
 	            <td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
@@ -73,8 +73,9 @@
 	        </tr>
 	        @endforeach
 	</table>
+	<p class="mb-5"><a href="/users/{{$user->id}}/invoices">View your invoices</a></p>
 	@else
-		<div class="alert alert-info text-muted">
+		<div class="alert text-muted">
 	         You haven't set up a payment method yet. When you subscribe to an M Media service, you'll receive an invoice where you will be able to add a payment method.
 	    </div>
 	@endif
@@ -92,7 +93,7 @@
 	    @endforeach
 	</table>
 	@else
-		<div class="alert alert-info text-muted">
+		<div class="alert text-muted">
 	         There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
 	    </div>
 	@endif
@@ -112,7 +113,7 @@
 	    @endforeach
 	</table>
 	@else
-		<div class="alert alert-info text-muted">
+		<div class="alert text-muted">
 	         There's currently no call history to show. When you make a phone call to M Media (+33 4 86 06 08 59), it will show up here.
 	    </div>
 	@endif

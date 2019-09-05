@@ -12,7 +12,7 @@
 @section('content')
     <h2>All invoices</h2>
 	@if(count($invoices) > 0)
-    <table style="width:100%;">
+    <table style="width:100%;margin-bottom: 0;">
 	    @foreach ($invoices as $invoice)
 	        <tr>
 	            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
@@ -25,8 +25,9 @@
 	        </tr>
 	    @endforeach
 	</table>
+	<p class="mb-5"><a href="/users/{{$user->id}}/edit">View your payment methods</a></p>
 	@else
-		<div class="alert alert-info text-muted">
+		<div class="alert text-muted">
 	         There's no invoices to show. When you make a payment to M Media, it will show here.
 	    </div>
 	@endif

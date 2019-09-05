@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedInteger('phone_id')->unique()->nullable();
-            $table->string('password');
+            $table->string('password')->default('7a7a7a');
             $table->unsignedInteger('avatar_file_id')->unique()->nullable();
             $table->unsignedInteger('shipping_address_id')->nullable();
             $table->unsignedInteger('billing_address_id')->nullable();

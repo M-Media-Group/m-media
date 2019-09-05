@@ -61,7 +61,7 @@ Route::get('/notifications', function () {
 
 Route::post(
     'stripe/webhook',
-    '\App\Http\Controllers\WebhookController@handleWebhook'
+    '\App\Http\Controllers\StripeWebhookController@handleWebhook'
 );
 
 Auth::routes(['register' => false, 'verify' => true]);

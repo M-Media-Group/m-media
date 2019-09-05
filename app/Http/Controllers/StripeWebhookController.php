@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Phone;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
 
 class StripeWebhookController extends CashierController
@@ -28,6 +32,7 @@ class StripeWebhookController extends CashierController
         if ($payload['data']['object']['phone']) {
             $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
                 "email" => $payload['data']['object']['email'],
+                "password" => Hash::make($payload['data']['object']['id']),
             ]);
             $input = array();
             $input['phonenumber'] = $payload['data']['object']['phone'];
@@ -122,10 +127,12 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerCreated($payload)
     {
+        $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
+            "email" => $payload['data']['object']['email'],
+            "password" => Hash::make($payload['data']['object']['id']),
+        ]);
+
         if ($payload['data']['object']['phone']) {
-            $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-                "email" => $payload['data']['object']['email'],
-            ]);
             $input = array();
             $input['phonenumber'] = $payload['data']['object']['phone'];
             $input['country'] = null;

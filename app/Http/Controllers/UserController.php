@@ -70,7 +70,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones')->firstOrFail();
+        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country')->firstOrFail();
         $this->authorize('update', $user);
 
         $pmethod = [];

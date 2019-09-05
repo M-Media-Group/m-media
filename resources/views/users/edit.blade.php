@@ -70,6 +70,7 @@
 	            <td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
 	            <td class="text-muted">**** {{ $method->card->last4 }}</td>
 	            <td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
+	            <td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
 	        </tr>
 	        @endforeach
 	</table>
@@ -85,10 +86,10 @@
     <table style="width:100%;">
 	    @foreach ($user->phones as $phone)
 	        <tr>
+		        <td>{{ $phone->country->iso }}</td>
 	            <td>{{ $phone->number }}</td>
-	            @if($user->primaryPhone->id == $phone->id)
-	            <td>Primary phone number</td>
-	            @endif
+	           	<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : null !!}</td>
+	            <td>{{$user->primaryPhone->id == $phone->id ? 'Primary phone number' : null}}</td>
 	        </tr>
 	    @endforeach
 	</table>

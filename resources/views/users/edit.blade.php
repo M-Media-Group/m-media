@@ -65,7 +65,7 @@
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
     <h2>Call logs to {{$user->primaryPhone->number}}</h2>
     <table style="width:100%;">
-	    @foreach ($user->primaryPhone['logs'] as $call)
+	    @foreach ($user->primaryPhone['logs']->reverse() as $call)
 	        <tr>
 	            <td>{{ $call->created_at->diffForHumans() }}</td>
 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>

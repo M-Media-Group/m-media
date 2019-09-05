@@ -68,8 +68,8 @@ Auth::routes(['register' => false, 'verify' => true]);
 
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => 'Your Company',
-        'product' => 'Your Product',
+        'vendor' => 'M Media',
+        'product' => 'M Media Goods and Services',
     ]);
 })->middleware('auth');
 //Route::get('/home', 'HomeController@index')->name('home');

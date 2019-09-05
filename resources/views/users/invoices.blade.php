@@ -15,7 +15,14 @@
 	    @foreach ($invoices as $invoice)
 	        <tr>
 	            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
-	            <td>{{ $invoice->total() }}</td>
+	            <td>
+	            	@foreach ($invoice->subscriptions() as $subscription)
+{{-- 	            	{{$subscription->description}}
+ --}}	            	<?php dd($subscription);?>
+
+	            	@endforeach
+
+	            </td>
 	            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
 	        </tr>
 	    @endforeach

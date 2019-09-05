@@ -24,6 +24,7 @@ class CreateBotsTable extends Migration
             $table->string('georegion')->nullable();
             $table->string('type')->nullable();
             $table->boolean('is_active')->default(0);
+            $table->boolean('is_servicable')->default(1);
             $table->timestamp('last_contact_at')->useCurrent();
             $table->timestamps();
 

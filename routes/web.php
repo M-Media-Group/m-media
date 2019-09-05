@@ -85,6 +85,7 @@ Route::get('users/{id}/invoices', 'UserController@invoices')->middleware('auth')
 #Route::post('me/apply/reporter', 'UserController@applyForReporter');
 
 Route::resource('roles', 'RoleController')->middleware('auth');
+Route::apiResource('bots', 'BotController')->middleware('auth');
 
 #Route::resource('incidents', 'IncidentController');
 

@@ -40,7 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bots()
     {
-        return $this->hasMany('App\Bot');
+        return $this->hasMany('App\Bot')->where('type', '00:23:00:00:00:01:00:00:04:30:FF:FF:00:01:00:00');
     }
 
     public function files()

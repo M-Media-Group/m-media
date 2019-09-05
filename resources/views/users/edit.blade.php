@@ -81,6 +81,29 @@
 	    </div>
 	@endif
 
+    <h2>M Media Bots</h2>
+	@if($user->bots && count($user->bots) > 0)
+    <table style="width:100%;">
+	    @foreach ($user->bots->reverse() as $bot)
+	        <tr>
+	            <td>{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
+	            <td>{{ $bot->alias }}</td>
+	            <td>{{ $bot->georegion }}</td>
+	            <td>{{ $bot->last_contact_at->diffForHumans() }}</td>
+{{-- 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
+	            <td class="text-muted">{{ $call->notes ? $call->notes : 'No notes were taken for this call.' }}</td>
+	       		@if(Auth::user()->can('edit phone logs'))
+	            	<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
+	       		@endif --}}
+	        </tr>
+	    @endforeach
+	</table>
+	@else
+		<div class="alert text-muted">
+	         There's currently no bots associated to your account. When you buy an M Media Marketing Automation Bot, it will show up here.
+	    </div>
+	@endif
+
     <h2>Phone numbers</h2>
 	@if($user->phones && count($user->phones) > 0)
     <table style="width:100%;">

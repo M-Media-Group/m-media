@@ -22,6 +22,7 @@ class Bot extends Model
         'georegion',
         'type',
         'is_active',
+        'is_servicable',
         'last_contact_at',
 
     ];

@@ -11,6 +11,7 @@ class BotController extends Controller
 
     public function index(Request $request)
     {
+        SyncBots::dispatchNow();
         return Bot::get();
     }
 

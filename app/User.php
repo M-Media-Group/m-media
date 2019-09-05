@@ -41,7 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
     #Locked to actual device, not stuff like SSH or VNC devices
     public function bots()
     {
-        return $this->hasMany('App\Bot')->where('type', '00:23:00:00:00:01:00:00:04:30:FF:FF:00:01:00:00');
+        return $this->hasMany('App\Bot')->where('type', '00:23:00:00:00:01:00:00:04:30:FF:FF:00:01:00:00')->orWhere('service_title', 'Bulk Service');
     }
 
     public function files()

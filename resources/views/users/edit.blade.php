@@ -86,7 +86,7 @@
     <table style="width:100%;">
 	    @foreach ($user->bots->reverse() as $bot)
 	        <tr>
-	            <td>{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
+	            <td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
 	            <td>{{ $bot->alias }}</td>
 	            <td>{{ $bot->georegion }}</td>
 	            <td>{{ $bot->last_contact_at->diffForHumans() }}</td>

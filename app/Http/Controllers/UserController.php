@@ -84,6 +84,26 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function invoices($id)
+    {
+        $user = User::where('id', urldecode($id))->firstOrFail();
+        $this->authorize('update', $user);
+
+        $invoices = [];
+        if ($user->stripe_id) {
+            $invoices = $user->invoices();
+        }
+
+        #return $user;
+        return view('users.invoices', compact('user', 'invoices'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

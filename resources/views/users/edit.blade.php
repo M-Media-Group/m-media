@@ -2,8 +2,17 @@
 
 @section('title', 'Edit a user')
 
+@section('above_container')
+    <div class="header-section" style="background:#246EBA;">
+        <h1>Account settings</h1>
+        <h2>{{$user->name}} {{$user->surname}}</h2>
+    </div>
+@endsection
+
 @section('content')
-	<h1>{{$user->name}} {{$user->surname}}</h1>
+		<div class="alert alert-info text-muted">
+	         Some settings, like your name, can not be modified by you.
+	    </div>
 	@if ($errors->any())
 	    <div class="alert alert-danger">
 	        <ul>
@@ -50,20 +59,8 @@
     @endif
    	<button type="submit" class="button button-primary">Save</button>
 	</form>
-	@if(count($invoices) > 0)
-    <h2>Invoices</h2>
-    <table style="width:100%;">
-	    @foreach ($invoices as $invoice)
-	        <tr>
-	            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
-	            <td>{{ $invoice->total() }}</td>
-	            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
-	        </tr>
-	    @endforeach
-	</table>
-	@endif
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
-    <h2>Call logs to {{$user->primaryPhone->number}}</h2>
+    <h2>Calls to M Media from {{$user->primaryPhone->number}}</h2>
     <table style="width:100%;">
 	    @foreach ($user->primaryPhone['logs']->reverse() as $call)
 	        <tr>

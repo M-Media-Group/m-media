@@ -22,7 +22,10 @@
                     @endcan
                     <a href="/users/{{ Auth::user()->id }}/edit">
                             {{ __('Account settings') }}
-                        </a>
+                    </a>
+                    <a href="/users/{{ Auth::user()->id }}/invoices">
+                            {{ __('Invoices') }}
+                    </a>
                     <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();

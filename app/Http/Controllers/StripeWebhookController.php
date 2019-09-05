@@ -12,7 +12,62 @@ class StripeWebhookController extends CashierController
      * @param  array  $payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handleInvoicePaymentSucceeded($payload)
+    public function handleInvoicePaymentActionRequired($payload)
+    {
+        // Handle The Event
+    }
+
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleCustomerUpdated($payload)
+    {
+        // Handle The Event
+    }
+
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleCustomerDeleted($payload)
+    {
+        // Handle The Event
+    }
+
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleCustomerCreated($payload)
+    {
+        // Handle The Event
+    }
+
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleCustomerSubscriptionUpdated($payload)
+    {
+        // Handle The Event
+    }
+
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleCustomerSubscriptionDeleted($payload)
     {
         // Handle The Event
     }

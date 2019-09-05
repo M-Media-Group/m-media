@@ -98,6 +98,7 @@ class StripeWebhookController extends CashierController
                 ]
             );
         } else {
+            $phone = (object) [];
             $phone->id = null;
         }
         $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [

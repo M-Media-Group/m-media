@@ -59,6 +59,40 @@
     @endif
    	<button type="submit" class="button button-primary">Save</button>
 	</form>
+
+	<h2>Payment methods</h2>
+	@if($user->card_brand)
+    <table style="width:100%;">
+	        <tr>
+	            <td>Card</td>
+	            <td>{{ $user->card_brand }}</td>
+	            <td class="text-muted">**** {{ $user->card_last_four }}</td>
+	        </tr>
+	</table>
+	@else
+		<div class="alert alert-info text-muted">
+	         You haven't set up a payment method yet. When you subscribe to an M Media service, you'll receive an invoice where you will be able to add a payment method.
+	    </div>
+	@endif
+
+    <h2>Phone numbers</h2>
+	@if($user->phones && count($user->phones) > 0)
+    <table style="width:100%;">
+	    @foreach ($user->phones as $phone)
+	        <tr>
+	            <td>{{ $phone->number }}</td>
+	            @if($user->primaryPhone->id == $phone->id)
+	            <td>Primary phone number</td>
+	            @endif
+	        </tr>
+	    @endforeach
+	</table>
+	@else
+		<div class="alert alert-info text-muted">
+	         There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+	    </div>
+	@endif
+
     <h2>Calls to M Media</h2>
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
     <table style="width:100%;">

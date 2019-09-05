@@ -59,8 +59,8 @@
     @endif
    	<button type="submit" class="button button-primary">Save</button>
 	</form>
+    <h2>Calls to M Media</h2>
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
-    <h2>Calls to M Media from {{$user->primaryPhone->number}}</h2>
     <table style="width:100%;">
 	    @foreach ($user->primaryPhone['logs']->reverse() as $call)
 	        <tr>
@@ -73,6 +73,10 @@
 	        </tr>
 	    @endforeach
 	</table>
+	@else
+		<div class="alert alert-info text-muted">
+	         There's currently no call history to show. When you make a phone call to M Media (+33 4 86 06 08 59), it will show up here.
+	    </div>
 	@endif
 
 @endsection

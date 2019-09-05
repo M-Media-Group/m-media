@@ -24,6 +24,10 @@
 	        </tr>
 	    @endforeach
 	</table>
+	@else
+		<div class="alert alert-info text-muted">
+	         There's no invoices to show.
+	    </div>
 	@endif
 
 @endsection

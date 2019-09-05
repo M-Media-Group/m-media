@@ -36,15 +36,15 @@ class SyncBots implements ShouldQueue
             'Content-Type' => 'application/json',
             'AccessToken' => 'key',
             'Authorization' => 'Bearer token',
-            'developerkey' => 'MUVEN0JENTctRjgzNi00RDQ2LUFDMEQtNUMxRUNFNzczMjk5',
+            'developerkey' => config('blog.remoteit.developerkey'),
         ];
         $client = new Client([
             'headers' => $headers,
         ]);
 
         $response = $client->request('POST', 'https://api.remot3.it/apv/v27/user/login', [RequestOptions::JSON => [
-            "username" => 'contact@mmediagroup.fr',
-            "password" => 'sm2-dv-sda-x',
+            "username" => config('blog.remoteit.username'),
+            "password" => config('blog.remoteit.password'),
         ]]);
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
@@ -56,7 +56,7 @@ class SyncBots implements ShouldQueue
             'Content-Type' => 'application/json',
             'token' => $obj->token,
             'Authorization' => 'Bearer token',
-            'developerkey' => 'MUVEN0JENTctRjgzNi00RDQ2LUFDMEQtNUMxRUNFNzczMjk5',
+            'developerkey' => config('blog.remoteit.developerkey'),
         ];
         $client = new Client([
             'headers' => $headers,

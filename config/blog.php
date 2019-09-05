@@ -26,4 +26,11 @@ return [
 
     //Country for Terms and Coonditions
     'country_name' => env('APP_COUNTRY_NAME', 'France'),
+
+    //Remote IT settings
+    'remoteit' => [
+        'username' => env('REMOTEIT_EMAIL', null),
+        'password' => env('REMOTEIT_PASSWORD', null),
+        'developerkey' => env('REMOTEIT_KEY', null),
+    ],
 ];

@@ -102,7 +102,7 @@ class StripeWebhookController extends CashierController
         }
         $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [
             "email" => $payload['data']['object']['email'],
-            "phone" => $phone->id,
+            "phone_id" => $phone->id,
         ]);
 
         return response('Webhook Handled', 200);
@@ -199,9 +199,9 @@ class StripeWebhookController extends CashierController
         } else {
             $phone->id = null;
         }
-        $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [
+        $user->update(['stripe_id' => $payload['data']['object']['id'],
             "email" => $payload['data']['object']['email'],
-            "phone" => $phone->id,
+            "phone_id" => $phone->id,
         ]);
 
         return response('Webhook Handled', 200);

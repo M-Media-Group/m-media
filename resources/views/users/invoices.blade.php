@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+    <h2>All invoices</h2>
 	@if(count($invoices) > 0)
     <table style="width:100%;">
 	    @foreach ($invoices as $invoice)
@@ -26,7 +27,7 @@
 	</table>
 	@else
 		<div class="alert alert-info text-muted">
-	         There's no invoices to show.
+	         There's no invoices to show. When you make a payment to M Media, it will show here.
 	    </div>
 	@endif
 

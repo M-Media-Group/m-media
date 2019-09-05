@@ -26,15 +26,17 @@
 	  @csrf
 	  @method('PATCH')
 	@if(Auth::user()->can('edit user name'))
+		<h2>Personal details</h2>
 	  <div class="form-group">
 		<label for="exampleFormControlInput2">Name</label>
 		<input type="text" class="form-control" id="exampleFormControlInput2" name="name" placeholder="Username" value="{{$user->name}}" required>
 	  </div>
-	  	  <div class="form-group">
+	  <div class="form-group mb-5">
 		<label for="exampleFormControlInput3">Surname</label>
 		<input type="text" class="form-control" id="exampleFormControlInput3" name="surname" placeholder="Username" value="{{$user->surname}}" required>
 	  </div>
 	@endif
+		<h2>Email address</h2>
 	  <div class="form-group">
 		<label for="exampleFormControlInput4">Email <span class="small">({{ $user->email_verified_at ? 'Your email was verified on '. $user->email_verified_at->toFormattedDateString() : 'Your email has not been verified' }})</span></label>
 		<input type="text" class="form-control" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
@@ -57,7 +59,7 @@
         @endforeach
     </div>
     @endif
-   	<button type="submit" class="button button-primary">Save</button>
+   	<button type="submit" class="button button-primary" style="position: fixed;bottom: 3rem;right: 5rem;z-index: 999;">Save</button>
 	</form>
 
 	<h2>Payment methods</h2>

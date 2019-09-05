@@ -63,13 +63,15 @@
 	</form>
 
 	<h2>Payment methods</h2>
-	@if($user->card_brand)
+	@if($user->stripe_id)
     <table style="width:100%;">
+    	    @foreach ($pmethod as $method)
 	        <tr>
-	            <td>Card</td>
-	            <td>{{ $user->card_brand }}</td>
-	            <td class="text-muted">**** {{ $user->card_last_four }}</td>
+	            <td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
+	            <td class="text-muted">**** {{ $method->card->last4 }}</td>
+	            <td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
 	        </tr>
+	        @endforeach
 	</table>
 	@else
 		<div class="alert alert-info text-muted">

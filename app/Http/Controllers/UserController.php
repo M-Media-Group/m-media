@@ -73,14 +73,14 @@ class UserController extends Controller
         $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones')->firstOrFail();
         $this->authorize('update', $user);
 
-        $invoices = [];
+        $pmethod = [];
         if ($user->stripe_id) {
-            $invoices = $user->invoices();
+            $pmethod = $user->paymentMethods();
         }
         $roles = Role::get();
 
         #return $user;
-        return view('users.edit', compact('user', 'roles', 'invoices'));
+        return view('users.edit', compact('user', 'roles', 'pmethod'));
     }
 
     /**

@@ -1,12 +1,12 @@
-@extends('layouts.clean')
+@extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('content')
-<div>
+@section('above_container')
+<div style="padding-top:15rem;">
 
-            <div class="card bg-dark text-white">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div class="action-section container mt-5">
+                <div>{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
+                <div class="mt-5">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -50,7 +50,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="button button-primary">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>

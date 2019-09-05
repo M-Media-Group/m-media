@@ -41,6 +41,7 @@ class PhoneLogController extends Controller
         $input['phonenumber'] = $request->input('number');
         $input['country'] = ($request->input('country')) ? $request->input('country') : null;
         $input['callType'] = ($request->input('type')) ? $request->input('type') : 'INBOUND';
+        $input['callNotes'] = ($request->input('notes')) ? $request->input('notes') : null;
         $input['language'] = (isset($request['language']) && $request['language'] != '') ? $request['language'] : 'en';
         $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
 
@@ -100,9 +101,9 @@ class PhoneLogController extends Controller
                 'user_id' => null,
                 'is_public' => 0,
             ]
-        )->load('defaultForUser');
+        )->load('defaultForUser', 'user');
         $phone->country = $country;
-        PhoneLog::create(['phone_id' => $phone->id, 'type' => $input['callType']]);
+        PhoneLog::create(['phone_id' => $phone->id, 'type' => $input['callNotes'], 'type' => $input['callType']]);
         $phone->logs = PhoneLog::where('phone_id', $phone->id)->get();
 
         return $phone;

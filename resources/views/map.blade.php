@@ -31,7 +31,7 @@
     @endforeach
 </div>
 </div>
-{{-- <button class="btn btn-primary mb-3" onclick="mymap.locate({setView: true, maxZoom: 18, watch: false});">Find my location on the map</button> --}}
+{{-- <button class="button button-primary mb-3" onclick="mymap.locate({setView: true, maxZoom: 18, watch: false});">Find my location on the map</button> --}}
 
 @endsection
 @section('footer_scripts')

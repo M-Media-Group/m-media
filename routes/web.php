@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,9 +47,9 @@ Route::get('/terms-and-conditions', function () {
     return view('toc');
 });
 
-Route::get('/apply', function () {
-    return view('write');
-})->middleware('auth');
+// Route::get('/apply', function () {
+//     return view('write');
+// })->middleware('auth');
 
 Route::get('/about', function () {
     return view('about');
@@ -57,21 +59,32 @@ Route::get('/notifications', function () {
     return view('notifications');
 })->middleware('auth');
 
+Route::post(
+    'stripe/webhook',
+    '\App\Http\Controllers\WebhookController@handleWebhook'
+);
+
 Auth::routes(['register' => false, 'verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
+    return $request->user()->downloadInvoice($invoiceId, [
+        'vendor' => 'Your Company',
+        'product' => 'Your Product',
+    ]);
+})->middleware('auth');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::resource('posts', 'PostController');
 
-Route::resource('categories', 'CategoryController');
+#Route::resource('categories', 'CategoryController');
 
-Route::resource('users', 'UserController');
+Route::resource('users', 'UserController')->middleware('auth');
 
-Route::post('me/apply/reporter', 'UserController@applyForReporter');
+#Route::post('me/apply/reporter', 'UserController@applyForReporter');
 
-Route::resource('roles', 'RoleController');
+Route::resource('roles', 'RoleController')->middleware('auth');
 
-Route::resource('incidents', 'IncidentController');
+#Route::resource('incidents', 'IncidentController');
 
 Route::get('{slug?}', function () {
     // //http://feeds.bbci.co.uk/news/world/rss.xml

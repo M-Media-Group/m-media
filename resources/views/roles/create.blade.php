@@ -29,7 +29,7 @@
 			</div>
         @endforeach
     </div>
-	  <button type="submit" class="btn btn-primary">Publish</button>
+	  <button type="submit" class="button button-primary">Publish</button>
 	</form>
 
 @endsection

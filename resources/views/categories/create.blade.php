@@ -24,7 +24,7 @@
 	    <label for="exampleFormControlFile1">Icon (please proccess with <a href="https://jpeg.io" target="_BLANK">jpeg.io</a>)</label>
 	    <input type="file" class="form-control-file" name="icon" id="exampleFormControlFile1" required>
 	  </div>
-	  <button type="submit" class="btn btn-primary">Publish</button>
+	  <button type="submit" class="button button-primary">Publish</button>
 	</form>
 
 @endsection

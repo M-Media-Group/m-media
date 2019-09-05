@@ -56,7 +56,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('users.show', ['user' => User::where('id', $id)->with('posts')->firstOrFail()]);
+        $user = User::where('id', $id)->firstOrFail();
+        $invoices = $user->invoices();
+        return view('users.show', ['user' => $user, 'invoices' => $invoices]);
 
     }
 
@@ -68,10 +70,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', urldecode($id))->firstOrFail();
+        $user = User::where('id', urldecode($id))->with('primaryPhone.logs')->firstOrFail();
         $this->authorize('update', $user);
+
+        $invoices = [];
+        if ($user->stripe_id) {
+            $invoices = $user->invoices();
+        }
         $roles = Role::get();
-        return view('users.edit', compact('user', 'roles'));
+
+        #return $user;
+        return view('users.edit', compact('user', 'roles', 'invoices'));
     }
 
     /**
@@ -85,18 +94,11 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'surname' => ['sometimes', 'required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
-
-        $user->update(
-            [
-                'name' => $request->input('name'),
-                'surname' => $request->input('surname'),
-                'email' => $request->input('email'),
-            ]
-        );
+        $user->update($validatedData);
 
         if ($request->user()->can('manage user roles')) {
             $roles = $request->input('roles');
@@ -107,7 +109,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/' . urlencode($request->input('id')));
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
 
     }
 

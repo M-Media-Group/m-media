@@ -30,7 +30,7 @@
 			</div>
         @endforeach
     </div>
-	  <button type="submit" class="btn btn-primary">Save</button>
+	  <button type="submit" class="button button-primary">Save</button>
 	  <hr>
 	</form>
 

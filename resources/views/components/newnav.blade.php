@@ -8,7 +8,32 @@
 {{--              <a href="/web-development">Web Development</a>
            <a href="/print-media">Print Media</a>
  --}}            <hr class="mb-0 mt-0">
-            <a href="/login">Login</a>
+                @guest
+                    <a href="/login">Login</a>
+                @else
+
+                    @can('manage roles')
+                        <a href="/roles">
+                            {{ __('Manage roles') }}
+                        </a>
+                        <a href="/roles/create">
+                            {{ __('Create roles') }}
+                        </a>
+                    @endcan
+                    <a href="/users/{{ Auth::user()->id }}/edit">
+                            {{ __('Account settings') }}
+                        </a>
+                    <hr class="mb-0 mt-0">
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
         </div>
     </div>
 </nav>

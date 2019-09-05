@@ -6,7 +6,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Write for {{config('app.name')}}</h5>
                     <p class="card-text">Want to contribute articles to {{config('app.name')}}?</p>
-                    <a href="/write" class="btn btn-primary">Start writing</a>
+                    <a href="/write" class="button button-primary">Start writing</a>
                   </div>
                 </div>
             @endif

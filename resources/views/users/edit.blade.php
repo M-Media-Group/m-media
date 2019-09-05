@@ -27,7 +27,7 @@
 	  </div>
 	@endif
 	  <div class="form-group">
-		<label for="exampleFormControlInput4">Email <span class="small">({{ $user->email_verified_at ? 'Your current email was verified on '. $user->email_verified_at->toFormattedDateString() : 'Your email has not been verified' }})</span></label>
+		<label for="exampleFormControlInput4">Email <span class="small">({{ $user->email_verified_at ? 'Your email was verified on '. $user->email_verified_at->toFormattedDateString() : 'Your email has not been verified' }})</span></label>
 		<input type="text" class="form-control" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
 	  </div>
 
@@ -67,9 +67,12 @@
     <table style="width:100%;">
 	    @foreach ($user->primaryPhone['logs'] as $call)
 	        <tr>
-	            <td>{{ $call->created_at->toFormattedDateString() }}</td>
+	            <td>{{ $call->created_at->diffForHumans() }}</td>
 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
 	            <td class="text-muted">{{ $call->notes ? $call->notes : 'No notes were taken for this call.' }}</td>
+	       		@if(Auth::user()->can('edit phone logs'))
+	            	<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
+	       		@endif
 	        </tr>
 	    @endforeach
 	</table>

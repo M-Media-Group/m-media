@@ -24,3 +24,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 #Route::apiResource('incidents', 'IncidentController');
 
 Route::apiResource('phone-logs', 'PhoneLogController')->middleware('client');
+
+Route::apiResource('bots', 'BotController');

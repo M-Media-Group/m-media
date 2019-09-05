@@ -38,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Phone');
     }
 
+    public function bots()
+    {
+        return $this->hasMany('App\Bot');
+    }
+
     public function files()
     {
         return $this->hasMany('App\File');

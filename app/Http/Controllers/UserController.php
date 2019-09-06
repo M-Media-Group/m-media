@@ -74,13 +74,15 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         $pmethod = [];
+        $subscriptions = [];
         if ($user->stripe_id) {
             $pmethod = $user->paymentMethods();
+            $subscriptions = $user->asStripeCustomer()->subscriptions;
         }
         $roles = Role::get();
 
         #return $user;
-        return view('users.edit', compact('user', 'roles', 'pmethod'));
+        return view('users.edit', compact('user', 'roles', 'pmethod', 'subscriptions'));
     }
 
     /**

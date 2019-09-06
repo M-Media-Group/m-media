@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <h2>All invoices</h2>
+    <h2 class="mt-5 mb-0">All invoices</h2>
 	@if(count($invoices) > 0)
     <table style="width:100%;margin-bottom: 0;">
 	     <tr>

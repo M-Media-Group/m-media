@@ -26,7 +26,7 @@
 	  @csrf
 	  @method('PATCH')
 	@if(Auth::user()->can('edit user name'))
-		<h2>Personal details</h2>
+		<h2 class="mt-5 mb-0">Personal details</h2>
 	  <div class="form-group">
 		<label for="exampleFormControlInput2">Name</label>
 		<input type="text" class="form-control" id="exampleFormControlInput2" name="name" placeholder="Username" value="{{$user->name}}" required>
@@ -36,14 +36,14 @@
 		<input type="text" class="form-control" id="exampleFormControlInput3" name="surname" placeholder="Username" value="{{$user->surname}}" required>
 	  </div>
 	@endif
-		<h2>Email address</h2>
+		<h2 class="mt-5 mb-0">Email address</h2>
 	  <div class="form-group">
 		<label for="exampleFormControlInput4">Email <span class="small">({{ $user->email_verified_at ? 'Your email was verified on '. $user->email_verified_at->toFormattedDateString() : 'Your email has not been verified' }})</span></label>
 		<input type="text" class="form-control" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
 	  </div>
 
     @if(Auth::user()->can('manage user roles') && count($roles) > 0)
-    <h2>User roles</h2>
+    <h2 class="mt-5 mb-0">User roles</h2>
 	<div class='form-group'>
         @foreach ($roles as $role)
             <div class="form-check">
@@ -62,14 +62,14 @@
    	<button type="submit" class="button button-primary" style="position: fixed;bottom: 3rem;right: 5rem;z-index: 999;">Save</button>
 	</form>
 
-	<h2>Payment methods</h2>
+	<h2 class="mt-5 mb-0">Payment methods</h2>
 	@if($user->stripe_id)
     <table style="width:100%;margin-bottom: 0;">
     	<tr>
 		   <th>Brand</th>
 		   <th>Last four</th>
 		   <th>Expires</th>
-		   <th>Card notes</th>
+		   <th>Notes</th>
 		</tr>
     	    @foreach ($pmethod as $method)
 	        <tr>
@@ -87,7 +87,30 @@
 	    </div>
 	@endif
 
-    <h2>M Media Bots</h2>
+	<h2 class="mt-5 mb-0">Subscriptions</h2>
+	@if($subscriptions && count($subscriptions->data) > 0)
+    <table style="width:100%;">
+    	<tr>
+    		<th>Status</th>
+		   <th>ID</th>
+		   <th>Plan</th>
+		</tr>
+	    @foreach ($subscriptions->data as $subscription)
+	        <tr>
+	           	<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
+	            <td>{{ $subscription->id }}</td>
+	            <td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
+
+	        </tr>
+	    @endforeach
+	</table>
+	@else
+		<div class="alert text-muted">
+	         You haven't subscribed to an M Media service yet. When you do, it will show up here.
+	    </div>
+	@endif
+
+    <h2 class="mt-5 mb-0">M Media Bots</h2>
 	@if($user->bots && count($user->bots) > 0)
     <table style="width:100%;">
     		<tr>
@@ -116,14 +139,14 @@
 	    </div>
 	@endif
 
-    <h2>Phone numbers</h2>
+    <h2 class="mt-5 mb-0">Phone numbers</h2>
 	@if($user->phones && count($user->phones) > 0)
     <table style="width:100%;">
     	<tr>
 		   <th>Phone country</th>
 		   <th>Number</th>
 		   <th>Privacy alerts</th>
-		   <th>Number notes</th>
+		   <th>Notes</th>
 		</tr>
 	    @foreach ($user->phones as $phone)
 	        <tr>
@@ -140,7 +163,7 @@
 	    </div>
 	@endif
 
-    <h2>Calls to M Media</h2>
+    <h2 class="mt-5 mb-0">Calls to M Media</h2>
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
     <table style="width:100%;">
     	<tr>
@@ -152,7 +175,7 @@
 	        <tr>
 	            <td>{{ $call->created_at->diffForHumans() }}</td>
 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
-	            <td class="text-muted">{{ $call->notes ? $call->notes : 'No notes were taken for this call.' }}</td>
+	            <td class="text-muted">{{ $call->notes ? $call->notes : null }}</td>
 	       		@if(Auth::user()->can('edit phone logs'))
 	            	<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
 	       		@endif

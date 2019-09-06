@@ -39,7 +39,7 @@
 					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? null : 'Offline' }}</td>
 					<td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? null : 'Do not service' }} </td>
 					<td>{!! $bot->user ? '<a href="/users/'.$bot->user->id.'">'.$bot->user->name."</a>" : 'No owner' !!}</td>
-					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'danger' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
 {{-- 					<td><a href="/bots/{{ $bot->id }}/edit">Edit</a></td>
  --}}				</tr>
 			@endforeach

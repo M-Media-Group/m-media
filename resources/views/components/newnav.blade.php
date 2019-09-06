@@ -16,6 +16,11 @@
                             {{ __('Users') }}
                         </a>
                     @endcan
+                    @can('index', App\Bot::class)
+                        <a href="/bots">
+                            {{ __('Bots') }}
+                        </a>
+                    @endcan
                     @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}

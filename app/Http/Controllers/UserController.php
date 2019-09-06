@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country', 'bots')->firstOrFail();
+        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country')->firstOrFail();
         $this->authorize('update', $user);
 
         $pmethod = [];
@@ -86,6 +86,21 @@ class UserController extends Controller
 
         #return $user;
         return view('users.edit', compact('user', 'roles', 'pmethod', 'subscriptions'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function myBots(Request $request)
+    {
+        $user = $request->user()->load('bots');
+        $this->authorize('update', $user);
+
+        #return $user;
+        return view('users.myBots', compact('user'));
     }
 
     /**

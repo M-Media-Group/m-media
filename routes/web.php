@@ -80,6 +80,8 @@ Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
 
 Route::resource('users', 'UserController')->middleware('auth');
 
+Route::get('my-bots', 'UserController@myBots');
+
 Route::get('users/{id}/invoices', 'UserController@invoices')->middleware('auth');
 
 #Route::post('me/apply/reporter', 'UserController@applyForReporter');

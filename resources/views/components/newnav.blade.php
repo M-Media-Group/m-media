@@ -29,6 +29,9 @@
                             {{ __('Create roles') }}
                         </a>
                     @endcan
+                    <a href="/my-bots">
+                            {{ __('My bots') }}
+                    </a>
                     <a href="/users/{{ Auth::user()->id }}/edit">
                             {{ __('Account settings') }}
                     </a>

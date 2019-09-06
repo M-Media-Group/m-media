@@ -107,6 +107,19 @@ h2, p, .button {
     border-radius: 2rem 2rem 0 0;
     background: #fff;
     box-shadow: 0 0 5rem 0 rgba(0, 0, 0, .15);
+    -webkit-transition: all .15s;
+    transition: all .15s;
+}
+
+.action-section-hover:hover
+{
+    text-decoration: none;
+    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, .25);
+}
+
+.round-all-round
+{
+        border-radius: 2rem;
 }
 
 .button

@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //     ->everyMinute();
         $schedule->command('telescope:prune')->daily();
-        $schedule->job(new SyncBots)->everyMinute()->between('9:00', '23:00')->runInBackground()->emailOutputTo(config('blog.remoteit.username'))->emailOutputOnFailure(config('blog.remoteit.username'));
+        $schedule->job(new SyncBots)->everyMinute()->between('9:00', '23:00')->runInBackground()->emailOutputOnFailure(config('blog.remoteit.username'));
     }
 
     /**

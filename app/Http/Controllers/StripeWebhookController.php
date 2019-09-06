@@ -101,12 +101,25 @@ class StripeWebhookController extends CashierController
             $phone = (object) [];
             $phone->id = null;
         }
+
+        #Check for default card
+        if ($payload['data']['object']['default_source']) {
+            $default_card = collect($payload['data']['object']['sources']['data'])->keyBy('id')[$payload['data']['object']['default_source']]['card'];
+        } else {
+            $default_card = [];
+            $default_card['brand'] = null;
+            $default_card['last4'] = null;
+        }
+
         $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [
             "email" => $payload['data']['object']['email'],
             "phone_id" => $phone->id,
+            "card_brand" => $default_card['brand'],
+            "card_last_four" => $default_card['last4'],
         ]);
-
-        return response('Webhook Handled', 200);
+        #$payload['data']['default_source'];
+        #return;
+        return response($user, 200);
     }
 
     /**

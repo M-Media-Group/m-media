@@ -25,7 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('index', User::class);
-        $users = User::with('primaryPhone')->get();
+        $users = User::with('primaryPhone')->withCount('bots')->get();
         return view('users.index', compact('users'));
     }
 

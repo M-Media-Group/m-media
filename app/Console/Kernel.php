@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\SyncBots;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //     ->everyMinute();
         $schedule->command('telescope:prune')->everyMinute();
+        $schedule->job(new SyncBots)->twiceDaily(1, 13);
     }
 
     /**

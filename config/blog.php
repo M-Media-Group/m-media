@@ -22,7 +22,7 @@ return [
     'fb_app_id' => env('FB_APP_ID', null),
 
     //A role that can not be deleted and always has all rights
-    'super_admin_id' => env('APP_SUPER_ADMIN_ID', 1),
+    'super_admin_id' => env('APP_SUPER_ADMIN_ID', 2),
 
     //Country for Terms and Coonditions
     'country_name' => env('APP_COUNTRY_NAME', 'France'),

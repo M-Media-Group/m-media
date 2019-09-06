@@ -36,6 +36,9 @@ class BotPolicy
      */
     public function show(User $user, Bot $bot)
     {
+        if ($bot->user) {
+            return $user->id === $bot->user->id;
+        }
         return false;
     }
 
@@ -69,9 +72,9 @@ class BotPolicy
      * @param  \App\Bot  $bot
      * @return mixed
      */
-    public function connect(User $user, Bot $bot)
+    public function connectToBot(User $user, Bot $bot)
     {
-        return false;
+        return $user->can('connect to bots');
     }
 
     /**
@@ -83,7 +86,7 @@ class BotPolicy
      */
     public function delete(User $user, Bot $bot)
     {
-        return false;
+        return $user->can('manage bots');
     }
 
     /**

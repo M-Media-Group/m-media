@@ -106,7 +106,7 @@ class BotController extends Controller
     public function connect(Request $request, $id)
     {
         $bot = Bot::findOrFail($id);
-        $this->authorize('connect', $bot);
+        $this->authorize("connectToBot", $bot);
         try {
             $headers = [
                 'Content-Type' => 'application/json',

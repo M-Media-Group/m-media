@@ -2,12 +2,15 @@
 
 @section('above_container')
     <div class="header-section" style="background:#246EBA;">
-        <h1>{{str_replace ("_", " ", $bot->alias)}}</h1>
+        <h1>{{str_replace (["_", "-"], " ", $bot->alias)}}</h1>
         <h2>Marketing Automation Bot</h2>
     </div>
 @endsection
 
 @section('content')
+    <div class="alert alert-info text-muted">
+         Data relating to your bot is sensitive, so make sure to keep it secret.
+    </div>
     <h2 class="mt-5 mb-0">Bot data</h2>
 <div class="table-responsive table-hover">
         <table class="table mb-0">
@@ -50,7 +53,7 @@
                 </tr>
                 <tr>
                     <th>Last contact</th>
-                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : null }}">{{ $bot->last_contact_at->diffForHumans() }}</td>
                 </tr>
             </tbody>
         </table>

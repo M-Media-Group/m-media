@@ -18,7 +18,7 @@
 			    </div>
 			    <div class="col-md-8">
 			      <div class="card-body">
-			        <h5 class="card-title">{{str_replace ("_", " ", $bot->alias)}}</h5>
+			        <h5 class="card-title">{{str_replace (["_", "-"], " ", $bot->alias)}}</h5>
 			        <p class="card-text">This bot has last reported its location in {{ $bot->georegion }}, and is {{ $bot->is_servicable  ? 'serviceable' : 'not serviceable' }} by M Media.</p>
 			        <p class="card-text"><small class="text-muted"><span class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</span> · Last contacted {{ $bot->last_contact_at->diffForHumans() }}</small></p>
 			      </div>

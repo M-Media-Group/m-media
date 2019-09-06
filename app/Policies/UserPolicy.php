@@ -22,9 +22,21 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function index(User $user)
     {
-        return true;
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function show(User $user, User $model)
+    {
+        return $user->id === $model->id;
     }
 
     /**
@@ -83,6 +95,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        return $user->id === $model->id;
+        return false;
     }
 }

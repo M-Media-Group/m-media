@@ -1,21 +1,37 @@
-@extends('layouts.app')
+@extends('layouts.clean')
 
 @section('title', 'Users')
 
 @section('content')
-	<h1>Posts</h1>
-	@foreach($posts->sortByDesc('views_count') as $post)
-		<a href="/posts/{{$post->slug}}" title="{{ $post->title }}">
-		    <img src="{{$post->header_image}}" class="rounded img-thumbnail mb-2" alt="{{ $post->title }}" >
-		    <h2>{{ $post->title }}</h2>
-		    <p class="text-muted">{{ $post->excerpt }}</p>
-		    <p class="text-muted">
-		    	@foreach($post->categories as $category)
-			        <a href="/categories/{{$category->slug}}"><img class="rounded img-thumbnail mr-1" height="30" width="30" src="{{$category->icon}}" alt="{{$category->name}}">{{$category->name}}</a>
-			    @endforeach
-		    </p>
-		    <hr>
-		</a>
-    @endforeach
-    {{$posts->links()}}
+<h1 class="mt-5 mb-0">Users</h1>
+	@if($users && count($users) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+			<thead>
+				<tr>
+				   <th>ID</th>
+				   <th>Name</th>
+				   <th>Surname</th>
+				   <th>Email</th>
+				   <th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach ($users as $user)
+				<tr>
+					<td>{{ $user->id }}</td>
+					<td>{{ $user->name }}</td>
+					<td>{{ $user->surname }}</td>
+					<td>{{ $user->email }}</td>
+					<td><a href="/users/{{ $user->id }}">Edit</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+		</div>
+	@endif
 @endsection

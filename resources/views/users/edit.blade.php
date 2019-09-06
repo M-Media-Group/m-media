@@ -163,7 +163,7 @@
 		<table class="table mb-0">
 			<thead>
 				<tr>
-				   <th>Phone country</th>
+				   <th>Country</th>
 				   <th>Number</th>
 				   <th>Privacy alerts</th>
 				   <th>Notes</th>

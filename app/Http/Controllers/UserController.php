@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified')->except(['index', 'show', 'applyForReporter']);
+        $this->middleware('verified')->except(['applyForReporter']);
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +24,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::get();
+        $this->authorize('index', User::class);
+        $users = User::get();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -57,6 +59,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->firstOrFail();
+        $this->authorize('show', $user);
         $invoices = $user->invoices();
         return view('users.show', ['user' => $user, 'invoices' => $invoices]);
 
@@ -94,7 +97,7 @@ class UserController extends Controller
     public function invoices($id)
     {
         $user = User::where('id', urldecode($id))->firstOrFail();
-        $this->authorize('update', $user);
+        $this->authorize('show', $user);
 
         $invoices = [];
         if ($user->stripe_id) {
@@ -132,28 +135,6 @@ class UserController extends Controller
         }
 
         return redirect('/users/' . urlencode($request->user()->id) . '/edit');
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function applyForReporter(Request $request)
-    {
-
-        $user = $request->user();
-
-        $this->authorize('update', $user);
-
-        $user->assignRole('reporter');
-
-        $user->revokePermissionTo('apply to report');
-
-        return redirect('/');
 
     }
 

@@ -16,7 +16,7 @@
 			<a class="action-section card mb-5 mt-5 round-all-round action-section-hover" href="#">
 			  <div class="row no-gutters">
 			    <div class="col-md-4 p-5">
-			      <img src="/images/pi-top.png" class="card-img" alt="M Media Marketing Bot">
+			      <img src="/images/pi-top.png" class="card-img" style="max-height: 200px;object-fit: scale-down;" alt="M Media Marketing Bot">
 			    </div>
 			    <div class="col-md-8">
 			      <div class="card-body">

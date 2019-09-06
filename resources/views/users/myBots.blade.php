@@ -31,5 +31,14 @@
 	         There's currently no bots associated with your account. When you buy an M Media Marketing Automation Bot, it will show up here. Please note it may take up to a week for newly purchased bots to show up. Need help? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
 	    </div>
 	@endif
-	<p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
-@endsection
+	<hr>
+	<a class="action-section card mb-5 mt-5 round-all-round action-section-hover text-center" href="/automation-bot">
+	      <img src="/images/pi-top.png" class="card-img-top" style="max-height: 200px;object-fit: scale-down;" alt="M Media Marketing Bot">
+
+	      <div class="card-body">
+	        <h5 class="card-title">Order a new bot!</h5>
+	        <p class="card-text">Order a new Marketing Automation Bot from M Media loaded with custom-coded automations and scripts to make your business marketing life easier, faster, and cheaper.</p>
+	      </div>
+	</a>
+{{-- 	<p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
+ --}}@endsection

@@ -19,7 +19,7 @@
 				   <th>last_internal_ip</th>
 
 				   <th>Active</th>
-				   <th>Servicable</th>
+				   <th>Serviceable</th>
 				   <th>User</th>
 				   <th>Last contact</th>
 				   <th>Edit</th>

@@ -1,0 +1,58 @@
+@extends('layouts.clean')
+
+@section('title', 'A locals guide to '.config('blog.area_name'))
+@section('meta_description', "Read about visiting ".config('blog.area_name')." in the South of France (French Riviera), things to do, sights to see, and places to visit within - all from a locals perspective!")
+
+@section('above_container')
+	<div class="header-section" style="background:#246EBA;">
+		<h1>Bots</h1>
+		<h2>M Media bots</h2>
+	</div>
+<div class="m-3">
+<h2 class="mt-5 mb-0">All devices</h2>
+	@if($bots && count($bots) > 0)
+	<div class="table-responsive table-hover">
+		<table class="table mb-0">
+			<thead>
+				<tr>
+				   <th>ID</th>
+				   <th>Alias</th>
+				   <th>Address</th>
+				   <th>last_ip</th>
+				   <th>last_internal_ip</th>
+				   <th>Service title</th>
+				   <th>Georegion</th>
+				   <th>Active</th>
+				   <th>Servicable</th>
+				   <th>User</th>
+				   <th>Last contact</th>
+				   <th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach ($bots->sortByDesc('last_internal_ip') as $bot)
+				<tr>
+					<td>{{ $bot->id }}</td>
+					<td>{{ $bot->alias }}</td>
+					<td>{{ $bot->address }}</td>
+					<td>{{ $bot->last_ip }}</td>
+					<td>{{ $bot->last_internal_ip }}</td>
+					<td>{{ $bot->service_title }}</td>
+					<td>{{ $bot->georegion }}</td>
+					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? null : 'Offline' }}</td>
+					<td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? null : 'Do not service' }} </td>
+					<td>{!! $bot->user ? '<a href="/users/'.$bot->user->id.'">'.$bot->user->name."</a>" : 'No owner' !!}</td>
+					<td>{{ $bot->last_contact_at->diffForHumans() }}</td>
+					<td><a href="/bots/{{ $bot->id }}/edit">Edit</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+		</div>
+	@endif
+</div>
+@endsection

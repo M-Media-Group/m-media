@@ -8,11 +8,22 @@ use Illuminate\Http\Request;
 
 class BotController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('verified');
+    }
 
     public function index(Request $request)
     {
-        SyncBots::dispatchNow();
-        return Bot::get();
+        //SyncBots::dispatchNow();
+        $this->authorize('index', Bot::class);
+        $bots = Bot::with('user')->get();
+        return view('bots.index', compact('bots'));
     }
 
     /**
@@ -33,6 +44,7 @@ class BotController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Bot::class);
         return SyncBots::dispatchNow();
     }
 
@@ -74,7 +86,7 @@ class BotController extends Controller
             'ended_at' => 'nullable',
         ]);
 
-        $PhoneLog->update($request->only('notes', 'ended_at'));
+        //$PhoneLog->update($request->only('notes', 'ended_at'));
         return $PhoneLog;
 
     }

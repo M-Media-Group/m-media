@@ -137,7 +137,7 @@
 			<tbody>
 			@foreach ($user->bots->reverse() as $bot)
 				<tr>
-					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }} {!! $bot->is_servicable ? null : 'This bot can not be serviced by M Media' !!}</td>
+					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }} {!! $bot->is_servicable ? null : '- This bot can not be serviced by M Media' !!}</td>
 					<td>{{ $bot->alias }}</td>
 					<td>{{ $bot->georegion }}</td>
 					<td>{{ $bot->last_contact_at->diffForHumans() }}</td>

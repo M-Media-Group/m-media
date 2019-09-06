@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/apply';
+    protected $redirectTo = '/my-bots';
 
     /**
      * Create a new controller instance.

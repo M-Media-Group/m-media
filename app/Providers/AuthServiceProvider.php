@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Post' => 'App\Policies\PostPolicy',
         'App\Category' => 'App\Policies\CategoryPolicy',
         'App\User' => 'App\Policies\UserPolicy',
+        'App\Bot' => 'App\Policies\BotPolicy',
         'Spatie\Permission\Models\Role' => 'App\Policies\RolePolicy',
 
     ];

@@ -1,7 +1,5 @@
 @extends('layouts.clean')
 
-@section('title', 'Edit a user')
-
 @section('above_container')
     <div class="header-section" style="background:#246EBA;">
         <h1>My bots</h1>
@@ -13,7 +11,7 @@
     <h2 class="mt-5 mb-0">All bots</h2>
 	@if(count($user->bots->where('service_title', 'Bulk Service')) > 0)
 	    @foreach ($user->bots->where('service_title', 'Bulk Service') as $bot)
-			<a class="action-section card mb-5 mt-5 round-all-round action-section-hover" href="#">
+			<a class="action-section card mb-5 mt-5 round-all-round action-section-hover" href="/bots/{{$bot->id}}">
 			  <div class="row no-gutters">
 			    <div class="col-md-4 p-5">
 			      <img src="/images/pi-top.png" class="card-img" style="max-height: 200px;object-fit: scale-down;" alt="M Media Marketing Bot">

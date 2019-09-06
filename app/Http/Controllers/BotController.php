@@ -56,7 +56,10 @@ class BotController extends Controller
      */
     public function show($id)
     {
-        //
+        $bot = Bot::where('id', $id)->firstOrFail();
+        $this->authorize('show', $bot);
+        return view('bots.show', ['bot' => $bot]);
+
     }
 
     /**

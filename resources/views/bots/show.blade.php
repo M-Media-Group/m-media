@@ -1,146 +1,59 @@
-@extends('layouts.app')
-
-@section('title', $post->title)
-@section('meta_description', $post->excerpt)
-@section('meta_author', config('app.url').'/users/'.$post->user->name)
-@section('meta_fb_type', 'article')
-@section('meta_image', $post->header_image)
-
-
-@section('header_scripts')
-    <meta property="og:updated_time" content="{{$post->updated_at}}" />
-    <meta property="article:published_time" content="{{$post->updated_at}}" />
-    <meta property="article:modified_time" content="{{$post->updated_at}}" />
-    <meta property="article:section" content="@if (isset($post->categories[0])) {{$post->categories[0]->name}} @endif" />
-
-    <script type="application/ld+json">
-        {
-            "@context":"http://schema.org",
-            "@type": "BlogPosting",
-            "image": "{{$post->header_image}}",
-            "url": "{{url()->full()}}",
-            "headline": "{{$post->title}}",
-            "dateCreated": "{{$post->created_at}}",
-            "datePublished": "{{$post->published_at}}",
-            "dateModified": "{{$post->updated_at}}",
-            "inLanguage": "en-FR",
-            "isFamilyFriendly": "true",
-            "copyrightYear": "{{ now()->year }}",
-            "copyrightHolder": "",
-            "contentLocation": {
-                "@type": "Place",
-                "name": "{{config('blog.area_name')}}, France"
-            },
-            "accountablePerson": {
-                "@type": "Person",
-                "name": "{{$post->user->name}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "{{$post->user->name}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
-            },
-            "creator": {
-                "@type": "Person",
-                "name": "{{$post->user->name}}",
-                "url": "{{ config('app.url') }}/users/{{$post->user->id}}"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "{{ config('app.name') }}",
-                "url": "{{ config('app.url') }}",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{config('blog.logo_url') }}",
-                    "width":"60",
-                    "height":"60"
-                }
-            },
-            "mainEntityOfPage": "True",
-            "keywords": [
-            @foreach($post->categories as $category)
-                "{{$category->name}}",
-            @endforeach
-                "{{ config('app.name') }}"
-            ],
-            "genre":["Travel",
-            @foreach($post->categories as $category)
-                "{{$category->name}}",
-                "Explore"
-            @endforeach
-            ],
-            "articleSection": "Uncategorized posts",
-            "articleBody": "{{ $post->body_markdown }}"
-        }
-    </script>
-@endsection
-
-@section('left_sidebar')
-
-@endsection
-
-@section('sidebar')
-    @can('update', $post)
-        <p>
-            {{$post->views_count}} post views
-        </p>
-        @if(Auth::check() && Auth::user()->isSuperAdmin())
-            <small>
-                {{$post->rank}} rank score
-            </small>
-        @endif
-            <hr>
-        <p>
-            <a href="/posts/{{$post->slug}}/edit">
-                {{ __('Edit post') }}
-            </a>
-        </p>
-        <hr>
-    @endcan
-    @can('delete', $post)
-        <p>
-            <form id="delete-form" action="/posts/{{$post->id}}" method="POST" style="display: none;">
-                @csrf
-                @method('DELETE')
-            </form>
-            <a href="/posts/{{$post->id}}"
-               onclick="event.preventDefault();if (confirm('Are you sure?')) { document.getElementById('delete-form').submit() };">
-                {{ __('Delete post') }}
-            </a>
-        </p>
-        <hr>
-    @endcan
-    <p><a href="/users/{{$post->user->id}}"><img class="rounded img-thumbnail mr-1" src="{{$post->user->avatar}}" height="45" width="45" alt="{{$post->user->name}}" title="{{$post->user->name}}">{{$post->user->name}}</a></p>
-    <p class="mb-0">Last updated {{ $post->updated_at->diffForHumans() }}</p>
-    @if ($post->published_at)
-        <small>Published {{ $post->published_at->diffForHumans() }}</small>
-    @endif
-
-    <hr>
-    @foreach($post->categories as $category)
-        <a href="/categories/{{$category->slug}}"><img class="rounded img-thumbnail mr-1" height="30" width="30" src="{{$category->icon}}"  title="{{$category->name}}" alt="{{$category->name}}">{{$category->name}}</a>
-    @endforeach
-    <hr>
-    @parent
-@endsection
+@extends('layouts.clean')
 
 @section('above_container')
-
-        <img src="{{$post->header_image}}" title="{{$post->title}}" style="height: 63vh;object-fit:cover;width:100%;" alt="{{ $post->title }}">
-
+    <div class="header-section" style="background:#246EBA;">
+        <h1>{{str_replace ("_", " ", $bot->alias)}}</h1>
+        <h2>Marketing Automation Bot</h2>
+    </div>
 @endsection
 
 @section('content')
-    <article>
-        <h1 class="mb-4">{{ $post->title }}</h1>
-        @if ($post->published_at)
-            <div class="text-justify">
-                @markdown{{ $post->body_markdown }}
-                @endmarkdown
-            </div>
-        @else
-            <p>Stay tuned! This post is not yet published.</p>
-        @endif
-    </article>
+    <h2 class="mt-5 mb-0">Bot data</h2>
+<div class="table-responsive table-hover">
+        <table class="table mb-0">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ $bot->id }}</td>
+                </tr>
+                <tr>
+                    <th>Alias</th>
+                    <td>{{ $bot->alias }}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{ $bot->address }}</td>
+                </tr>
+                <tr>
+                    <th>Last IP</th>
+                    <td>{{ $bot->last_ip }}</td>
+                </tr>
+                <tr>
+                    <th>Last internal IP</th>
+                    <td>{{ $bot->last_internal_ip }}</td>
+                </tr>
+                <tr>
+                    <th>Service title</th>
+                    <td>{{ $bot->service_title }}</td>
+                </tr>
+                <tr>
+                    <th>Georegion</th>
+                    <td>{{ $bot->georegion }}</td>
+                </tr>
+                <tr>
+                    <th>Active</th>
+                    <td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
+                </tr>
+                <tr>
+                    <th>Serviceable</th>
+                    <td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
+                </tr>
+                <tr>
+                    <th>Last contact</th>
+                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
 @endsection

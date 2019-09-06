@@ -13,7 +13,13 @@
     <h2>All invoices</h2>
 	@if(count($invoices) > 0)
     <table style="width:100%;margin-bottom: 0;">
+	     <tr>
+		   <th>Date</th>
+		   <th>Description</th>
+		   <th>Download</th>
+		 </tr>
 	    @foreach ($invoices as $invoice)
+
 	        <tr>
 	            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
 	            <td>

@@ -65,6 +65,12 @@
 	<h2>Payment methods</h2>
 	@if($user->stripe_id)
     <table style="width:100%;margin-bottom: 0;">
+    	<tr>
+		   <th>Brand</th>
+		   <th>Last four</th>
+		   <th>Expires</th>
+		   <th>Card notes</th>
+		</tr>
     	    @foreach ($pmethod as $method)
 	        <tr>
 	            <td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
@@ -84,6 +90,12 @@
     <h2>M Media Bots</h2>
 	@if($user->bots && count($user->bots) > 0)
     <table style="width:100%;">
+    		<tr>
+			   <th>Status</th>
+			   <th>Alias</th>
+			   <th>Geolocation</th>
+			   <th>Last contact</th>
+			</tr>
 	    @foreach ($user->bots->reverse() as $bot)
 	        <tr>
 	            <td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
@@ -107,6 +119,12 @@
     <h2>Phone numbers</h2>
 	@if($user->phones && count($user->phones) > 0)
     <table style="width:100%;">
+    	<tr>
+		   <th>Phone country</th>
+		   <th>Number</th>
+		   <th>Privacy alerts</th>
+		   <th>Number notes</th>
+		</tr>
 	    @foreach ($user->phones as $phone)
 	        <tr>
 		        <td>{{ $phone->country->iso }}</td>
@@ -125,6 +143,11 @@
     <h2>Calls to M Media</h2>
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
     <table style="width:100%;">
+    	<tr>
+		   <th>Call started</th>
+		   <th>Direction</th>
+		   <th>Notes</th>
+		</tr>
 	    @foreach ($user->primaryPhone['logs']->reverse() as $call)
 	        <tr>
 	            <td>{{ $call->created_at->diffForHumans() }}</td>

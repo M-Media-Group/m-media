@@ -60,8 +60,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->with('primaryPhone')->firstOrFail();
         $this->authorize('show', $user);
-        $invoices = $user->invoices();
-        return view('users.show', ['user' => $user, 'invoices' => $invoices]);
+        return view('users.show', ['user' => $user]);
 
     }
 

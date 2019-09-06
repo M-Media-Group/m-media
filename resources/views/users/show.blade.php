@@ -33,12 +33,14 @@
 	            </tr>
 	            <tr>
 	                <th>Email verified</th>
-	                <td>{{ $user->email_verified_at->diffForHumans() }}</td>
+	                <td>{{ $user->email_verified_at ? $user->email_verified_at->diffForHumans() : "Email not verified" }}</td>
 	            </tr>
-	            <tr>
-	                <th>Phone</th>
-	                <td><a href="tel:{{ $user->primaryPhone->e164 }}">{{ $user->primaryPhone->number }}</a></td>
-	            </tr>
+	            @if($user->primaryPhone)
+		            <tr>
+		                <th>Phone</th>
+		                <td><a href="tel:{{ $user->primaryPhone->e164 }}">{{ $user->primaryPhone->number }}</a></td>
+		            </tr>
+	            @endif
 	            <tr>
 	                <th>Last seen</th>
 	                <td>{{ $user->seen_at->diffForHumans() }}</td>

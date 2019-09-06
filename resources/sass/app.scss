@@ -96,3 +96,8 @@ span.fa {
 .form-control {
 	font-size: initial;
 }
+
+.table thead th {
+	border-top: none;
+	border-bottom: none;
+}

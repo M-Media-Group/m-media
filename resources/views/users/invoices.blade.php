@@ -12,25 +12,31 @@
 @section('content')
     <h2 class="mt-5 mb-0">All invoices</h2>
 	@if(count($invoices) > 0)
-    <table style="width:100%;margin-bottom: 0;">
-	     <tr>
-		   <th>Date</th>
-		   <th>Description</th>
-		   <th>Download</th>
-		 </tr>
-	    @foreach ($invoices as $invoice)
+    <div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+			     <tr>
+				   <th>Date</th>
+				   <th>Description</th>
+				   <th>Download</th>
+				 </tr>
+				</thead>
+				<tbody>
+			    @foreach ($invoices as $invoice)
 
-	        <tr>
-	            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
-	            <td>
-	            	@foreach ($invoice->subscriptions() as $subscription)
-	            		{{$subscription->description}}
-	            	@endforeach
-	            </td>
-	            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
-	        </tr>
-	    @endforeach
-	</table>
+			        <tr>
+			            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
+			            <td>
+			            	@foreach ($invoice->subscriptions() as $subscription)
+			            		{{$subscription->description}}
+			            	@endforeach
+			            </td>
+			            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
+			        </tr>
+			    @endforeach
+			</tbody>
+			</table>
+		</div>
 	<p class="mb-5"><a href="/users/{{$user->id}}/edit">View your payment methods</a></p>
 	@else
 		<div class="alert text-muted">

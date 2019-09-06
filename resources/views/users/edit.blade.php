@@ -3,24 +3,24 @@
 @section('title', 'Edit a user')
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
-        <h1>Account settings</h1>
-        <h2>{{$user->name}} {{$user->surname}}</h2>
-    </div>
+	<div class="header-section" style="background:#246EBA;">
+		<h1>Account settings</h1>
+		<h2>{{$user->name}} {{$user->surname}}</h2>
+	</div>
 @endsection
 
 @section('content')
 		<div class="alert alert-info text-muted">
-	         Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
-	    </div>
+			 Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
+		</div>
 	@if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
 	@endif
 	<form action="/users/{{$user->id}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	  @csrf
@@ -42,150 +42,180 @@
 		<input type="text" class="form-control" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
 	  </div>
 
-    @if(Auth::user()->can('manage user roles') && count($roles) > 0)
-    <h2 class="mt-5 mb-0">User roles</h2>
+	@if(Auth::user()->can('manage user roles') && count($roles) > 0)
+	<h2 class="mt-5 mb-0">User roles</h2>
 	<div class='form-group'>
-        @foreach ($roles as $role)
-            <div class="form-check">
+		@foreach ($roles as $role)
+			<div class="form-check">
 			  <input class="form-check-input" type="checkbox" value="{{$role->id}}" @if (in_array($role->name, $user->getRoleNames()->toArray())) checked="checked" @endif id="defaultCheck1{{$role->name}}" name="roles[]">
 			  <label class="form-check-label" for="defaultCheck1{{$role->name}}">
-			    {{$role->name}}<small><ul>
-			    	@foreach ($role->permissions as $permission)
-			    	<li>{{$permission->name}}</li>
-			    	@endforeach
-			    </ul></small>
+				{{$role->name}}<small><ul>
+					@foreach ($role->permissions as $permission)
+					<li>{{$permission->name}}</li>
+					@endforeach
+				</ul></small>
 			  </label>
 			</div>
-        @endforeach
-    </div>
-    @endif
-   	<button type="submit" class="button button-primary" style="position: fixed;bottom: 3rem;right: 5rem;z-index: 999;">Save</button>
+		@endforeach
+	</div>
+	@endif
+	<button type="submit" class="button button-primary" style="position: fixed;bottom: 3rem;right: 5rem;z-index: 999;">Save</button>
 	</form>
 
 	<h2 class="mt-5 mb-0">Payment methods</h2>
 	@if($user->stripe_id)
-    <table style="width:100%;margin-bottom: 0;">
-    	<tr>
-		   <th>Brand</th>
-		   <th>Last four</th>
-		   <th>Expires</th>
-		   <th>Notes</th>
-		</tr>
-    	    @foreach ($pmethod as $method)
-	        <tr>
-	            <td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
-	            <td class="text-muted">**** {{ $method->card->last4 }}</td>
-	            <td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
-	            <td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
-	        </tr>
-	        @endforeach
-	</table>
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>Brand</th>
+					   <th>Last four</th>
+					   <th>Expires</th>
+					   <th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+				@foreach ($pmethod as $method)
+				<tr>
+					<td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
+					<td class="text-muted">**** {{ $method->card->last4 }}</td>
+					<td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
+					<td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
+				</tr>
+				@endforeach
+				</tbody>
+		</table>
+	</div>
 	@else
 		<div class="alert text-muted">
-	         You haven't set up a payment method yet. When you subscribe to an M Media service, you'll receive an invoice where you will be able to add a payment method.
-	    </div>
+			 You haven't set up a payment method yet. When you subscribe to an M Media service, you'll receive an invoice where you will be able to add a payment method.
+		</div>
 	@endif
 
 	<h2 class="mt-5 mb-0">Subscriptions</h2>
 	@if($subscriptions && count($subscriptions->data) > 0)
-    <table style="width:100%;margin-bottom: 0;">
-    	<tr>
-    		<th>Status</th>
-		   <th>ID</th>
-		   <th>Plan</th>
-		</tr>
-	    @foreach ($subscriptions->data as $subscription)
-	        <tr>
-	           	<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
-	            <td>{{ $subscription->id }}</td>
-	            <td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+						<th>Status</th>
+					   <th>ID</th>
+					   <th>Plan</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($subscriptions->data as $subscription)
+				<tr>
+					<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
+					<td>{{ $subscription->id }}</td>
+					<td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
 
-	        </tr>
-	    @endforeach
-	</table>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
 	<p class="mb-5"><a href="/users/{{$user->id}}/invoices">View your invoices</a></p>
 	@else
 		<div class="alert text-muted">
-	         You have no active subscription to an M Media service yet. When you do, it will show up here.
-	    </div>
+			 You have no active subscription to an M Media service yet. When you do, it will show up here.
+		</div>
 	@endif
 
-    <h2 class="mt-5 mb-0">M Media Bots</h2>
+	<h2 class="mt-5 mb-0">M Media Bots</h2>
 	@if($user->bots && count($user->bots) > 0)
-    <table style="width:100%;">
-    		<tr>
-			   <th>Status</th>
-			   <th>Alias</th>
-			   <th>Geolocation</th>
-			   <th>Last contact</th>
-			</tr>
-	    @foreach ($user->bots->reverse() as $bot)
-	        <tr>
-	            <td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
-	            <td>{{ $bot->alias }}</td>
-	            <td>{{ $bot->georegion }}</td>
-	            <td>{{ $bot->last_contact_at->diffForHumans() }}</td>
-{{-- 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
-	            <td class="text-muted">{{ $call->notes ? $call->notes : 'No notes were taken for this call.' }}</td>
-	       		@if(Auth::user()->can('edit phone logs'))
-	            	<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
-	       		@endif --}}
-	        </tr>
-	    @endforeach
-	</table>
+	<div class="table-responsive">
+		<table class="table mb-0">
+			<thead>
+				<tr>
+				   <th>Status</th>
+				   <th>Alias</th>
+				   <th>Geolocation</th>
+				   <th>Last contact</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach ($user->bots->reverse() as $bot)
+				<tr>
+					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
+					<td>{{ $bot->alias }}</td>
+					<td>{{ $bot->georegion }}</td>
+					<td>{{ $bot->last_contact_at->diffForHumans() }}</td>
+	{{-- 	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
+					<td class="text-muted">{{ $call->notes ? $call->notes : 'No notes were taken for this call.' }}</td>
+					@if(Auth::user()->can('edit phone logs'))
+						<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
+					@endif --}}
+				</tr>
+			@endforeach
+		</tbody>
+		</table>
+	</div>
 	@else
 		<div class="alert text-muted">
-	         There's currently no bots associated to your account. When you buy an M Media Marketing Automation Bot, it will show up here.
-	    </div>
+			 There's currently no bots associated to your account. When you buy an M Media Marketing Automation Bot, it will show up here.
+		</div>
 	@endif
 
-    <h2 class="mt-5 mb-0">Phone numbers</h2>
+	<h2 class="mt-5 mb-0">Phone numbers</h2>
 	@if($user->phones && count($user->phones) > 0)
-    <table style="width:100%;">
-    	<tr>
-		   <th>Phone country</th>
-		   <th>Number</th>
-		   <th>Privacy alerts</th>
-		   <th>Notes</th>
-		</tr>
-	    @foreach ($user->phones as $phone)
-	        <tr>
-		        <td>{{ $phone->country->iso }}</td>
-	            <td>{{ $phone->number }}</td>
-	           	<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : null !!}</td>
-	            <td>{{$user->primaryPhone->id == $phone->id ? 'Primary phone number' : null}}</td>
-	        </tr>
-	    @endforeach
-	</table>
+	<div class="table-responsive">
+		<table class="table mb-0">
+			<thead>
+				<tr>
+				   <th>Phone country</th>
+				   <th>Number</th>
+				   <th>Privacy alerts</th>
+				   <th>Notes</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach ($user->phones as $phone)
+				<tr>
+					<td>{{ $phone->country->iso }}</td>
+					<td>{{ $phone->number }}</td>
+					<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : null !!}</td>
+					<td>{{$user->primaryPhone->id == $phone->id ? 'Primary phone number' : null}}</td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
 	@else
 		<div class="alert text-muted">
-	         There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
-	    </div>
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+		</div>
 	@endif
 
-    <h2 class="mt-5 mb-0">Calls to M Media</h2>
+	<h2 class="mt-5 mb-0">Calls to M Media</h2>
 	@if($user->primaryPhone && count($user->primaryPhone['logs']) > 0)
-    <table style="width:100%;">
-    	<tr>
-		   <th>Call started</th>
-		   <th>Direction</th>
-		   <th>Notes</th>
-		</tr>
-	    @foreach ($user->primaryPhone['logs']->reverse() as $call)
-	        <tr>
-	            <td>{{ $call->created_at->diffForHumans() }}</td>
-	            <td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
-	            <td class="text-muted">{{ $call->notes ? $call->notes : null }}</td>
-	       		@if(Auth::user()->can('edit phone logs'))
-	            	<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
-	       		@endif
-	        </tr>
-	    @endforeach
-	</table>
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>Call started</th>
+					   <th>Direction</th>
+					   <th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($user->primaryPhone['logs']->reverse() as $call)
+				<tr>
+					<td>{{ $call->created_at->diffForHumans() }}</td>
+					<td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
+					<td class="text-muted">{{ $call->notes ? $call->notes : null }}</td>
+					@if(Auth::user()->can('edit phone logs'))
+						<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>
+					@endif
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
 	@else
 		<div class="alert text-muted">
-	         There's currently no call history to show. When you make a phone call to M Media (+33 4 86 06 08 59), it will show up here.
-	    </div>
+			 There's currently no call history to show. When you make a phone call to M Media (+33 4 86 06 08 59), it will show up here.
+		</div>
 	@endif
 
 @endsection

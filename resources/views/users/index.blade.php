@@ -10,7 +10,7 @@
 <div class="m-3">
 <h2 class="mt-5 mb-0">All users</h2>
 	@if($users && count($users) > 0)
-	<div class="table-responsive">
+	<div class="table-responsive table-hover">
 		<table class="table mb-0">
 			<thead>
 				<tr>
@@ -30,8 +30,8 @@
 					<td>{{ $user->id }}</td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->surname }}</td>
-					<td class="{{ $user->email_verified_at  ? null : 'text-primary' }}">{{$user->email}}{{ $user->email_verified_at  ? null : ' (Unverified)' }}</td>
-					<td class="{{ $user->primaryPhone ? null : 'text-primary' }}">{{ $user->primaryPhone ? $user->primaryPhone->e164 : 'No primary number' }}</td>
+					<td><a class="{{ $user->email_verified_at  ? null : 'text-primary' }}" href="mailto:{{$user->email}}">{{$user->email}}{{ $user->email_verified_at  ? null : ' (Unverified)' }}</a></td>
+					<td class="{{ $user->primaryPhone ? null : 'text-primary' }}"><a {!! $user->primaryPhone ? 'href="tel:'.$user->primaryPhone->e164.'"' : null !!}>{{ $user->primaryPhone ? $user->primaryPhone->e164 : 'No primary number' }}</a></td>
 					<td class="{{ $user->stripe_id  ? null : 'text-primary' }}">{{ $user->stripe_id  ? $user->stripe_id : 'No Stripe ID' }}</td>
 					<td class="text-{{ now()->diffInDays( $user->seen_at ) > 30  ? 'primary' : 'muted'}}">{{ $user->seen_at->diffForHumans() }}</td>
 					<td><a href="/users/{{ $user->id }}/edit">Edit</a></td>

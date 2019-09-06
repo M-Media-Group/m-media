@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password', 'phone_id', 'avatar_file_id', 'shipping_address_id', 'billing_address_id', 'stripe_id', 'card_brand', 'card_last_four',
+        'name', 'surname', 'email', 'password', 'phone_id', 'avatar_file_id', 'seen_at', 'shipping_address_id', 'billing_address_id', 'stripe_id', 'card_brand', 'card_last_four',
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected $dates = ['email_verified_at'];
+    protected $dates = ['email_verified_at', 'seen_at'];
 
     public function phones()
     {

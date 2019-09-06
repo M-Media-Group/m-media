@@ -32,11 +32,11 @@
                     <a href="/my-bots">
                             {{ __('My bots') }}
                     </a>
-                    <a href="/users/{{ Auth::user()->id }}/edit">
-                            {{ __('Account settings') }}
-                    </a>
                     <a href="/users/{{ Auth::user()->id }}/invoices">
                             {{ __('Invoices') }}
+                    </a>
+                    <a href="/users/{{ Auth::user()->id }}/edit">
+                            {{ __('Account settings') }}
                     </a>
                     <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"

@@ -51,6 +51,12 @@
                     <th>Serviceable</th>
                     <td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
                 </tr>
+                @if($bot->user)
+                    <tr>
+                        <th>Owned by</th>
+                        <td><a href="/users/{{ $bot->user->id }}">{{ $bot->user->name }}</a></td>
+                    </tr>
+                @endif
                 <tr>
                     <th>Last contact</th>
                     <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : null }}">{{ $bot->last_contact_at->diffForHumans() }}</td>

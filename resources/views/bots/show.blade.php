@@ -60,7 +60,7 @@
     </div>
     <p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
         @if (Auth::user()->can('connect', App\Bot::class))
-            @if($bot->is_active)
+            @if($bot->is_active == 1)
                 <a class="button button-primary" href="/bots/{{$bot->id}}/connect">
                     {{ __('Connect') }}
                 </a>

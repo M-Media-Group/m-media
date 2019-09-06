@@ -2,8 +2,15 @@
 
 @section('title', 'Users')
 
+@section('above_container')
+	<div class="header-section" style="background:#246EBA;">
+		<h1>Users</h1>
+		<h2>M Media customers</h2>
+	</div>
+@endsection
+
 @section('content')
-<h1 class="mt-5 mb-0">Users</h1>
+<h2 class="mt-5 mb-0">All users</h2>
 	@if($users && count($users) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -23,7 +30,7 @@
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->surname }}</td>
 					<td>{{ $user->email }}</td>
-					<td><a href="/users/{{ $user->id }}">Edit</a></td>
+					<td><a href="/users/{{ $user->id }}/edit">Edit</a></td>
 				</tr>
 			@endforeach
 			</tbody>

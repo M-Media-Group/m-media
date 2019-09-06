@@ -165,7 +165,7 @@
 				<tr>
 				   <th>Country</th>
 				   <th>Number</th>
-				   <th>Privacy alerts</th>
+				   <th>Public</th>
 				   <th>Notes</th>
 				</tr>
 			</thead>
@@ -174,7 +174,7 @@
 				<tr>
 					<td>{{ $phone->country->iso }}</td>
 					<td>{{ $phone->number }}</td>
-					<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : null !!}</td>
+					<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : 'No' !!}</td>
 					<td>{{$user->primaryPhone->id == $phone->id ? 'Primary phone number' : null}}</td>
 				</tr>
 			@endforeach

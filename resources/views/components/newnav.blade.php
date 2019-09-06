@@ -11,7 +11,11 @@
                 @guest
                     <a href="/login">Login</a>
                 @else
-
+                    @can('index', App\User::class)
+                        <a href="/users">
+                            {{ __('Users') }}
+                        </a>
+                    @endcan
                     @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}

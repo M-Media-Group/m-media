@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach ($bots->where('service_title', 'Bulk Service')->sortByDesc('last_internal_ip') as $bot)
+			@foreach ($bots->where('service_title', 'Bulk Service')->sortByDesc('last_contact_at') as $bot)
 				<tr>
 
 					<td>{{ $bot->id }}</td>

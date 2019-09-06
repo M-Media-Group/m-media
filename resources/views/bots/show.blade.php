@@ -59,9 +59,19 @@
         </table>
     </div>
     <p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
-    @can('connect', App\Bot::class)
-        <a class="button button-primary" href="/bots/{{$bot->id}}/connect">
-            {{ __('Connect') }}
-        </a>
-    @endcan
+        @if (Auth::user()->can('connect', App\Bot::class))
+            @if($bot->is_active)
+                <a class="button button-primary" href="/bots/{{$bot->id}}/connect">
+                    {{ __('Connect') }}
+                </a>
+            @else
+            <a class="button button-primary" href="mailto:{{$bot->user->email}}?subject=You'll Need to Restart Your Bot&body=Hello! It looks like your bot is currently not connected to our servers. Please disconnect the power from your bot, wait 10 seconds, and reconnect the power. Then, kindly reply to this email when you have done so. Thanks!">
+                {{ __('Contact customer') }}
+            </a>
+            @endif
+        @else
+            <a class="button button-primary" href="mailto:m@mmediagroup.fr">
+                {{ __('Get help') }}
+            </a>
+        @endif
 @endsection

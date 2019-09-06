@@ -28,7 +28,7 @@
 	    @endforeach
 	@else
 		<div class="alert text-muted">
-	         There's currently no bots associated with your account. When you buy an M Media Marketing Automation Bot, it will show up here. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
+	         There's currently no bots associated with your account. When you buy an M Media Marketing Automation Bot, it will show up here. Please note it may take up to a week for newly purchased bots to show up. Need help? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
 	    </div>
 	@endif
 	<p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>

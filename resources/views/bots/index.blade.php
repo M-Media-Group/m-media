@@ -17,31 +17,30 @@
 				   <th>Address</th>
 				   <th>last_ip</th>
 				   <th>last_internal_ip</th>
-{{-- 				   <th>Service title</th>
- --}}				   <th>Georegion</th>
+
 				   <th>Active</th>
 				   <th>Servicable</th>
 				   <th>User</th>
 				   <th>Last contact</th>
-{{-- 				   <th>Edit</th>
- --}}				</tr>
+				   <th>Edit</th>
+				</tr>
 			</thead>
 			<tbody>
 			@foreach ($bots->where('service_title', 'Bulk Service')->sortByDesc('last_internal_ip') as $bot)
 				<tr>
+
 					<td>{{ $bot->id }}</td>
 					<td>{{ $bot->alias }}</td>
 					<td>{{ $bot->address }}</td>
 					<td>{{ $bot->last_ip }}</td>
 					<td>{{ $bot->last_internal_ip }}</td>
-{{-- 					<td>{{ $bot->service_title }}</td>
- --}}					<td>{{ $bot->georegion }}</td>
+
 					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? null : 'Offline' }}</td>
 					<td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? null : 'Do not service' }} </td>
 					<td>{!! $bot->user ? '<a href="/users/'.$bot->user->id.'">'.$bot->user->name."</a>" : 'No owner' !!}</td>
 					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
-{{-- 					<td><a href="/bots/{{ $bot->id }}/edit">Edit</a></td>
- --}}				</tr>
+					<td><a href="/bots/{{ $bot->id }}">View</a></td>
+				</tr>
 			@endforeach
 			</tbody>
 		</table>

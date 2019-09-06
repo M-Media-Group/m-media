@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Bot;
 use App\Jobs\SyncBots;
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 
 class BotController extends Controller
@@ -91,6 +93,63 @@ class BotController extends Controller
 
         //$PhoneLog->update($request->only('notes', 'ended_at'));
         return $PhoneLog;
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function connect(Request $request, $id)
+    {
+        $bot = Bot::findOrFail($id);
+        $this->authorize('connect', $bot);
+        try {
+            $headers = [
+                'Content-Type' => 'application/json',
+                'AccessToken' => 'key',
+                'Authorization' => 'Bearer token',
+                'developerkey' => config('blog.remoteit.developerkey'),
+            ];
+            $client = new Client([
+                'headers' => $headers,
+            ]);
+
+            $response = $client->request('POST', 'https://api.remot3.it/apv/v27/user/login', [RequestOptions::JSON => [
+                "username" => config('blog.remoteit.username'),
+                "password" => config('blog.remoteit.password'),
+            ]]);
+            $statusCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
+
+            $obj = json_decode($body);
+
+            ## Get devices
+            $headers = [
+                'Content-Type' => 'application/json',
+                'token' => $obj->token,
+                'Authorization' => 'Bearer token',
+                'developerkey' => config('blog.remoteit.developerkey'),
+            ];
+            $client = new Client([
+                'headers' => $headers,
+            ]);
+
+            $response = $client->request('POST', 'https://api.remot3.it/apv/v27/device/connect', [RequestOptions::JSON => [
+                "deviceaddress" => $bot->address,
+                "wait" => true,
+            ]]);
+            $statusCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
+
+            $obj = json_decode($body);
+            return "ssh -l pi " . $obj->connection->proxyserver . " -p " . $obj->connection->proxyport;
+        } catch (Exception $e) {
+            return $e;
+        }
 
     }
 

@@ -59,4 +59,9 @@
         </table>
     </div>
     <p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
+    @can('connect', App\Bot::class)
+        <a class="button button-primary" href="/bots/{{$bot->id}}/connect">
+            {{ __('Connect') }}
+        </a>
+    @endcan
 @endsection

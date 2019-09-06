@@ -32,57 +32,61 @@ class SyncBots implements ShouldQueue
      */
     public function handle()
     {
-        $headers = [
-            'Content-Type' => 'application/json',
-            'AccessToken' => 'key',
-            'Authorization' => 'Bearer token',
-            'developerkey' => config('blog.remoteit.developerkey'),
-        ];
-        $client = new Client([
-            'headers' => $headers,
-        ]);
+        try {
+            $headers = [
+                'Content-Type' => 'application/json',
+                'AccessToken' => 'key',
+                'Authorization' => 'Bearer token',
+                'developerkey' => config('blog.remoteit.developerkey'),
+            ];
+            $client = new Client([
+                'headers' => $headers,
+            ]);
 
-        $response = $client->request('POST', 'https://api.remot3.it/apv/v27/user/login', [RequestOptions::JSON => [
-            "username" => config('blog.remoteit.username'),
-            "password" => config('blog.remoteit.password'),
-        ]]);
-        $statusCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
+            $response = $client->request('POST', 'https://api.remot3.it/apv/v27/user/login', [RequestOptions::JSON => [
+                "username" => config('blog.remoteit.username'),
+                "password" => config('blog.remoteit.password'),
+            ]]);
+            $statusCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
 
-        $obj = json_decode($body);
+            $obj = json_decode($body);
 
-        ## Get devices
-        $headers = [
-            'Content-Type' => 'application/json',
-            'token' => $obj->token,
-            'Authorization' => 'Bearer token',
-            'developerkey' => config('blog.remoteit.developerkey'),
-        ];
-        $client = new Client([
-            'headers' => $headers,
-        ]);
+            ## Get devices
+            $headers = [
+                'Content-Type' => 'application/json',
+                'token' => $obj->token,
+                'Authorization' => 'Bearer token',
+                'developerkey' => config('blog.remoteit.developerkey'),
+            ];
+            $client = new Client([
+                'headers' => $headers,
+            ]);
 
-        $response = $client->request('GET', 'https://api.remot3.it/apv/v27/device/list/all');
-        $statusCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
+            $response = $client->request('GET', 'https://api.remot3.it/apv/v27/device/list/all');
+            $statusCode = $response->getStatusCode();
+            $body = $response->getBody()->getContents();
 
-        $obj = json_decode($body);
+            $obj = json_decode($body);
 
-        foreach ($obj->devices as $device) {
-            $country = Bot::updateOrCreate(
-                ['address' => $device->deviceaddress],
-                [
-                    'alias' => $device->devicealias,
-                    'last_ip' => $device->devicelastip,
-                    'last_internal_ip' => $device->lastinternalip,
-                    'service_title' => $device->servicetitle,
-                    'georegion' => $device->georegion,
-                    'type' => $device->devicetype,
-                    'is_active' => $device->devicestate == 'active' ? 1 : 0,
-                    'last_contact_at' => date("Y-m-d H:i:s", strtotime($device->lastcontacted)),
-                ]
-            );
+            foreach ($obj->devices as $device) {
+                $country = Bot::updateOrCreate(
+                    ['address' => $device->deviceaddress],
+                    [
+                        'alias' => $device->devicealias,
+                        'last_ip' => $device->devicelastip,
+                        'last_internal_ip' => $device->lastinternalip,
+                        'service_title' => $device->servicetitle,
+                        'georegion' => $device->georegion,
+                        'type' => $device->devicetype,
+                        'is_active' => $device->devicestate == 'active' ? 1 : 0,
+                        'last_contact_at' => date("Y-m-d H:i:s", strtotime($device->lastcontacted)),
+                    ]
+                );
+            }
+            return $body;
+        } catch (Exception $e) {
+            return $e;
         }
-        return $body;
     }
 }

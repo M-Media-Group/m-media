@@ -80,7 +80,6 @@
 	        </tr>
 	        @endforeach
 	</table>
-	<p class="mb-5"><a href="/users/{{$user->id}}/invoices">View your invoices</a></p>
 	@else
 		<div class="alert text-muted">
 	         You haven't set up a payment method yet. When you subscribe to an M Media service, you'll receive an invoice where you will be able to add a payment method.
@@ -89,7 +88,7 @@
 
 	<h2 class="mt-5 mb-0">Subscriptions</h2>
 	@if($subscriptions && count($subscriptions->data) > 0)
-    <table style="width:100%;">
+    <table style="width:100%;margin-bottom: 0;">
     	<tr>
     		<th>Status</th>
 		   <th>ID</th>
@@ -104,9 +103,10 @@
 	        </tr>
 	    @endforeach
 	</table>
+	<p class="mb-5"><a href="/users/{{$user->id}}/invoices">View your invoices</a></p>
 	@else
 		<div class="alert text-muted">
-	         You haven't subscribed to an M Media service yet. When you do, it will show up here.
+	         You have no active subscription to an M Media service yet. When you do, it will show up here.
 	    </div>
 	@endif
 

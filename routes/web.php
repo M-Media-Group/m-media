@@ -23,6 +23,10 @@ Route::get('/instagram', function () {
     return view('instagram');
 });
 
+Route::get('/mail', function () {
+    return new App\Mail\BotOffline();
+});
+
 // Route::get('/contact', function () {
 //     return view('contact');
 // });

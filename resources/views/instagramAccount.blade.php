@@ -147,6 +147,10 @@
                     <th>Verified</th>
                     <td class="text-{{ $data->private  ? 'muted' : 'muted' }}">{{ $data->private  ? 'Yes' : 'No' }}</td>
                 </tr>
+                <tr>
+                    <th>Last scraped</th>
+                    <td>{{ now()->diffForHumans() }}</td>
+                </tr>
                 <th>Qualifies for M Media services</th>
                     <td class="text-{{ $data->followers > 100  ? 'muted' : 'primary' }}">{{ $data->followers > 100 ? 'Yes' : 'Not enough followers to service' }}</td>
                 </tr>

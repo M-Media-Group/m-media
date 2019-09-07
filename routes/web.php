@@ -80,7 +80,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/instagram-account-debugger', function () {
     return view('instagramAccountSelector');
 })->middleware('auth');
-Route::get('/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('auth');
+Route::get('/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('auth', 'throttle:15,1');
 
 //Route::resource('posts', 'PostController');
 

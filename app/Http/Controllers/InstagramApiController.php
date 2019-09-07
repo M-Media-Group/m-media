@@ -670,6 +670,7 @@ class InstagramApiController extends Controller
         $data = json_decode(json_encode($data));
         $hashtags = [];
         $locations = [];
+        $users = [];
         $postLikes = [];
         $postComments = [];
         $data->videos = 0;
@@ -692,6 +693,16 @@ class InstagramApiController extends Controller
                     $hashtags[] .= $match;
                 }
             }
+
+            preg_match_all('/@(\w+)/', $media->caption, $matchesForUsers);
+
+            /* Add all matches to array */
+            foreach ($matchesForUsers[1] as $match) {
+                if (!in_array($match, $users)) {
+                    $users[] .= $match;
+                }
+            }
+
             $postLikes[] .= $media->likes;
             $postComments[] .= $media->comments;
 
@@ -705,10 +716,10 @@ class InstagramApiController extends Controller
             }
         }
         $a = array_filter($postLikes);
-        $data->avgPostLikes = array_sum($a) / count($a);
+        $data->avgPostLikes = $a ? array_sum($a) / count($a) : 0;
         $a = array_filter($postComments);
-        $data->avgPostComments = array_sum($a) / count($a);
-        return view('instagramAccount', compact('data', 'hashtags', 'locations'));
+        $data->avgPostComments = $a ? array_sum($a) / count($a) : 0;
+        return view('instagramAccount', compact('data', 'hashtags', 'locations', 'users'));
         return response()->json($data);
     }
 

@@ -8,6 +8,12 @@
 @endsection
 
 @section('content')
+    @if(!$bot->is_active && $bot->is_servicable)
+    <div class="alert alert-danger text-muted">
+         <p>This bot lost contact to our servers {{ $bot->last_contact_at->diffForHumans() }}. Please unplug the power from the bot, wait 10 seconds, and reconnect the power.</p>
+         It may take up to an hour for the status to update on our website.
+    </div>
+    @endif
     <div class="alert alert-info text-muted">
          Data relating to your bot is sensitive, so make sure to keep it secret.
     </div>

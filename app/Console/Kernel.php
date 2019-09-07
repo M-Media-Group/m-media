@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //     ->everyMinute();
         $schedule->command('telescope:prune')->daily();
-        $schedule->job(new SyncBots)->hourly()->between('9:00', '23:00')->runInBackground();
+        $schedule->job(new SyncBots)->hourly()->between('7:00', '23:00')->runInBackground();
     }
 
     /**

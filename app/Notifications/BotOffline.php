@@ -3,9 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class BotOffline extends Notification
 {
@@ -41,9 +40,9 @@ class BotOffline extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**
@@ -55,7 +54,9 @@ class BotOffline extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'title' => "Your bot is offline",
+            'message' => "Restart your bot to connect it again.",
+            'action' => url(config('app.url')),
         ];
     }
 }

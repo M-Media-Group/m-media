@@ -119,7 +119,7 @@ h2, p, .button {
 
 .round-all-round
 {
-        border-radius: 2rem;
+        border-radius: 2rem !important;
 }
 
 .button

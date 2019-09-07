@@ -10,6 +10,22 @@
 @endsection
 
 @section('content')
+
+    @if(!$user->email_verified_at)
+	    <div class="alert alert-danger text-muted">
+	         Please verify your email address for full access to your account.
+	         @if(Auth::user()->id == $user->id)
+	         	If you did not receive the email, <a href="/email/resend">click here to request another</a>.
+	         @endif
+	    </div>
+    @endif
+
+    @if(!$user->primaryPhone)
+	    <div class="alert alert-danger text-muted">
+	         Please contact us to add your phone number and get full access to your M Media services.
+	    </div>
+    @endif
+
 	<h2 class="mt-5 mb-0">Customer data</h2>
 
 	<div class="table-responsive table-hover">

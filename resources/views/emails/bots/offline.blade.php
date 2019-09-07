@@ -9,7 +9,7 @@ Your bot has lost connection to our servers. Please follow the steps below to st
 2. After all the lights go off, wait at least 10 seconds
 3. Plug the bot back into power, and make sure the lights come on
 
-Please note it may take up to two hours for the status to update on our website.
+Please note it may take up to two hours for the status to show 'Online' on our website.
 
 @component('mail::button', ['url' => '/my-bots'])
 See Bot Status

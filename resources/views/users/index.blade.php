@@ -44,7 +44,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+			 There's currently no users to display.
 		</div>
 	@endif
 </div>

@@ -10,9 +10,6 @@
 @endsection
 
 @section('content')
-		<div class="alert alert-info text-muted">
-			 Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
-		</div>
 	@if ($errors->any())
 		<div class="alert alert-danger">
 			<ul>
@@ -22,6 +19,23 @@
 			</ul>
 		</div>
 	@endif
+    @if(!$user->email_verified_at)
+	    <div class="alert alert-danger text-muted">
+	         Please verify your email address for full access to your account.
+	         @if(Auth::user()->id == $user->id)
+	         	If you did not receive the email, <a href="/email/resend">click here to request another</a>.
+	         @endif
+	    </div>
+    @endif
+
+    @if(!$user->primaryPhone)
+	    <div class="alert alert-danger text-muted">
+	         Please contact us to add your phone number and get full access to your M Media services.
+	    </div>
+    @endif
+		<div class="alert alert-info text-muted">
+			 Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:m@mmediagroup.fr">Contact us!</a>
+		</div>
 	<form action="/users/{{$user->id}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	  @csrf
 	  @method('PATCH')

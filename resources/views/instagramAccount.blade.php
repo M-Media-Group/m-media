@@ -138,7 +138,7 @@
                     <th>Verified</th>
                     <td class="text-{{ $data->private  ? 'muted' : 'muted' }}">{{ $data->private  ? 'Yes' : 'No' }}</td>
                 </tr>
-                <th>Serviceable by M Media</th>
+                <th>Qualifies for M Media services</th>
                     <td class="text-{{ $data->followers > 100  ? 'muted' : 'primary' }}">{{ $data->followers > 100 ? 'Yes' : 'Not enough followers to service' }}</td>
                 </tr>
             </tbody>
@@ -152,7 +152,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no hashtags that you used in the most recent posts that we can show.
+             There's currently no hashtags that you used in the most recent posts that we can show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on Instagrams help page</a>.
         </div>
     @endif
 
@@ -163,7 +163,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no tagged locations from the most recent posts.
+             There's currently no tagged locations from the most recent posts. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
         </div>
     @endif
 
@@ -174,7 +174,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no other accounts tagged in the most recent posts.
+             There's currently no other accounts tagged in the most recent posts. <a target="_BLANK" href="https://help.instagram.com/627963287377328">Learn more on the Instagram help page</a>.
         </div>
     @endif
 
@@ -200,7 +200,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's no recent posts to show.
+             There's no recent posts to show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
         </div>
     @endif
 @endsection

@@ -17,7 +17,7 @@ class InstagramApiController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware(['verified', 'optimizeImages'])->except(['index']);
     }
 
     public function index(Request $request, $username)

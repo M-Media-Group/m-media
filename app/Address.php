@@ -34,7 +34,7 @@ class Address extends Model
         parent::boot();
 
         static::addGlobalScope('area', function (Builder $builder) {
-            $builder->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y, category_id, user_id, created_at, updated_at'));
+            $builder->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y, user_id, created_at, updated_at'));
         });
 
     }

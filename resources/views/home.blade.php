@@ -1,52 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.clean')
 
-@section('left_sidebar')
-@if(Auth::user()->can('apply to report') && Auth::user()->hasVerifiedEmail())
-                <div class="card text-center mb-3 mt-3">
-                  <div class="card-body">
-                    <h5 class="card-title">Write for {{config('app.name')}}</h5>
-                    <p class="card-text">Want to contribute articles to {{config('app.name')}}?</p>
-                    <a href="/write" class="button button-primary">Start writing</a>
-                  </div>
-                </div>
-            @endif
- @foreach($categories as $category)
-    <hr>
-    <a href="/categories/{{$category->slug}}">
-        <img class="rounded img-thumbnail mr-1" height="25" width="25" src="{{$category->icon}}" alt="{{$category->name}}">{{ $category->name }}
-    </a>
- @endforeach
+@section('above_container')
+    <div class="header-section" style="background:#246EBA;">
+        <h1>Dashboard</h1>
+        <h2>{{Auth::user()->name}} {{Auth::user()->surname}}</h2>
+    </div>
 @endsection
 
 @section('content')
-
-            <div class="card mb-3 mt-3">
-                <div class="card-header">Hey {{Auth::user()->name}}!</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    Here your most recently viewed posts will show.
-                    @if(Auth::user()->hasVerifiedEmail() == false)
-                        <strong>Please verify your email address.</strong>
-                    @endif
-                </div>
-            </div>
-        @foreach($posts as $post)
-        <a href="/posts/{{$post->slug}}" title="{{ $post->title }}">
-            <img src="{{$post->header_image}}" class="rounded img-thumbnail mb-2" alt="{{ $post->title }}" >
-            <h2>{{ $post->title }}</h2>
-            <p class="text-muted">{{ $post->excerpt }}</p>
-            <p class="text-muted">
-                @foreach($post->categories as $category)
-                    <a href="/categories/{{$category->slug}}"><img class="rounded img-thumbnail mr-1" height="30" width="30" src="{{$category->icon}}" alt="{{$category->name}}">{{$category->name}}</a>
-                @endforeach
-            </p>
-            <hr>
+    <h2 class="mt-5 mb-0">Home</h2>
+    <div class="card-columns">
+        <a class="action-section card mb-5 mt-5 round-all-round text-center text-white bg-primary" href="/users/{{Auth::id()}}/invoices">
+              <div class="card-body">
+                <h5 class="card-title">Manage invoices</h5>
+              </div>
         </a>
-    @endforeach
-
-@endsection
+        <a class="action-section card mb-5 mt-5 round-all-round text-center" href="/my-bots">
+              <div class="card-body">
+                <h5 class="card-title">Manage bots</h5>
+              </div>
+        </a>
+        <a class="action-section card mb-5 mt-5 round-all-round text-center text-white bg-danger" href="/users/{{Auth::id()}}/edit">
+              <div class="card-body">
+                <h5 class="card-title">Account settings</h5>
+              </div>
+        </a>
+        </div>
+{{--    <p class="mb-5"><a href="/automation-bot">Learn more about the Marketing Automation Bot</a></p>
+ --}}@endsection

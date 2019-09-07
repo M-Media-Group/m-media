@@ -38,7 +38,7 @@
 
     @if(!$hashtags || count($hashtags) < 10)
         <p class="mb-0 text-muted">To aid your posts exposure:</p>
-        <p class="mb-0">- In your recent posts, you've used {{count($hashtags)}} unique hashtags. Use more and a wider variety of them on each post to gain more exposure</p>
+        <p class="mb-0">- In your recent posts, you've used {{count($hashtags)}} unique hashtags. Use at least 10 and a wider variety of them on each post to gain more exposure</p>
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a></p>
     @endif
 
@@ -49,16 +49,20 @@
     @endif
 
     @if(!($data->avgPostLikes) || ($data->avgPostLikes/$data->followers) * 100 <= 5)
-    <p class="mb-0 text-muted">To improve engagement health:</p>
-    <p class="mb-0">- Use higher quality media posts that resonate better with your audience</p>
-    <p class="mb-0">- Update the hashtags you use to hashtags that are more relevant to your users</p>
-    <p class="mb-0">- Your last post was {{ \Carbon\Carbon::parse($data->medias[0]->date->date)->diffForHumans()}}. Try altering your posting frequency and schedule for better engagement results</p>
-    <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a></p>
+        <p class="mb-0 text-muted">To improve engagement health:</p>
+        <p class="mb-0">- Use higher quality media posts that resonate better with your audience</p>
+        <p class="mb-0">- Update the hashtags you use to hashtags that are more relevant to your users</p>
+        @if($data->medias)
+            <p class="mb-0">- Your last post was {{ \Carbon\Carbon::parse($data->medias[0]->date->date)->diffForHumans()}}. Try altering your posting frequency and schedule for better engagement results</p>
+        @else
+            <p class="mb-0">- Your have not posted a post yet. Post your first picture or video for better engagement results</p>
+        @endif
+        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a></p>
     @endif
 
     @if(!$data->externalUrl)
     <p class="mb-0 text-muted">To help get more people to your website:</p>
-    <p>- Include an external URL, or a link to your website, on your Instagram profile</p>
+    <p>- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
     @endif
 
     @if($data->followers <= 100)
@@ -152,7 +156,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no hashtags that you used in the most recent posts that we can show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on Instagrams help page</a>.
+             There's currently no hashtags that you used in the most recent posts that we can show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
         </div>
     @endif
 

@@ -1,7 +1,7 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('title', "Log in to ".config('app.name'))
-@section('meta_description', "Log in to comment, post articles, and interact with the community at ".config('app.name')."!")
+@section('title', "Instagram data debugger")
+@section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
 <div style="padding-top:15rem;">
@@ -16,7 +16,7 @@
                     <label for="username" class="col-md-4 col-form-label text-md-right">Instagram {{ __('username') }}</label>
 
                     <div class="col-md-6">
-                        <input id="username" type="text" class="form-control" name="username" required autofocus>
+                        <input id="username" type="text" placeholder="@username" class="form-control" name="username" required autofocus>
                     </div>
                 </div>
 

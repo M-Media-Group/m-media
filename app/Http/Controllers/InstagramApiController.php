@@ -671,6 +671,8 @@ class InstagramApiController extends Controller
         $hashtags = [];
         $locations = [];
         $users = [];
+        $biography_hashtags = [];
+        $biography_users = [];
         $postLikes = [];
         $postComments = [];
         $data->videos = 0;
@@ -681,6 +683,25 @@ class InstagramApiController extends Controller
         $minMedias = 3;
         $data->avgPostLikes = 0;
         $data->avgPostComments = 0;
+
+        /* Match hashtags in profile */
+        preg_match_all('/#(\w+)/', $data->biography, $matchesForHashtagsInCaption);
+
+        /* Add all matches to array */
+        foreach ($matchesForHashtagsInCaption[1] as $match) {
+            if (!in_array($match, $biography_hashtags)) {
+                $biography_hashtags[] .= $match;
+            }
+        }
+
+        preg_match_all('/@(\w+)/', $data->biography, $matchesForUsersInCaption);
+
+        /* Add all matches to array */
+        foreach ($matchesForUsersInCaption[1] as $match) {
+            if (!in_array($match, $biography_users)) {
+                $biography_users[] .= $match;
+            }
+        }
 
         foreach ($data->medias as $media) {
             //$hashtags[] .= $media['caption'];
@@ -719,6 +740,11 @@ class InstagramApiController extends Controller
         $data->avgPostLikes = $a ? array_sum($a) / count($a) : 0;
         $a = array_filter($postComments);
         $data->avgPostComments = $a ? array_sum($a) / count($a) : 0;
+
+        #combine arrays from caption data and post data
+        $users = array_unique(array_merge($users, $biography_users));
+        $hashtags = array_unique(array_merge($hashtags, $biography_hashtags));
+
         return view('instagramAccount', compact('data', 'hashtags', 'locations', 'users'));
         return response()->json($data);
     }

@@ -79,8 +79,8 @@ Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/instagram-account-debugger', function () {
     return view('instagramAccountSelector');
-})->middleware('auth');
-Route::get('/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('auth', 'throttle:15,1');
+});
+Route::get('/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('throttle:10,1');
 
 //Route::resource('posts', 'PostController');
 

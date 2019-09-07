@@ -190,7 +190,7 @@
     <h2 class="mt-5 mb-0">Recent posts</h2>
     @if($data->medias)
     @foreach($data->medias as $media)
-            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" href="#">
+            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" href="{{$media->link}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="{{$media->displaySrc}}" class="card-img" style="object-fit: scale-down;" alt="M Media Marketing Bot">

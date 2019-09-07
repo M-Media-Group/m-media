@@ -9,7 +9,7 @@
         <div>{{ __('Instagram account debugger') }}</div>
 
         <div class="mt-5">
-            <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/instagram-account-debugger/' + document.getElementById('username').value; return false;">
+            <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-debugger/' + document.getElementById('username').value; return false;">
                 @csrf
 
                 <div class="form-group row">

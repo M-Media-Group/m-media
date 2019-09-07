@@ -39,7 +39,7 @@
                             {{ __('Account settings') }}
                     </a>
                     <hr class="mb-0 mt-0">
-                    <a href="/instagram-account-debugger">
+                    <a href="/tools/instagram-account-debugger">
                             {{ __('Instagram account debugger') }}
                     </a>
                     <hr class="mb-0 mt-0">

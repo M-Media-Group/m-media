@@ -39,6 +39,10 @@
                             {{ __('Account settings') }}
                     </a>
                     <hr class="mb-0 mt-0">
+                    <a href="/instagram-account-debugger">
+                            {{ __('Instagram account debugger') }}
+                    </a>
+                    <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

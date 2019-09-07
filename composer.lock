@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54967d4df312abb845f204abacded885",
+    "content-hash": "ce528a1d39fb34dd4396565d9032ad67",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2273,6 +2273,66 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "pgrimaud/instagram-user-feed",
+            "version": "5.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pgrimaud/instagram-user-feed.git",
+                "reference": "28e124f18671a8f888c3266bafeb5dc815a93a6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pgrimaud/instagram-user-feed/zipball/28e124f18671a8f888c3266bafeb5dc815a93a6b",
+                "reference": "28e124f18671a8f888c3266bafeb5dc815a93a6b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.4",
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Instagram\\": "src/Instagram/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre Grimaud",
+                    "email": "grimaud.pierre@gmail.com"
+                },
+                {
+                    "name": "Charles Salvan",
+                    "email": "charles.salvan@hotmail.fr"
+                },
+                {
+                    "name": "Tim Bond",
+                    "email": "cookieguru@gmail.com"
+                }
+            ],
+            "description": "Easily fetch any user's Instagram feed without OAuth for PHP",
+            "homepage": "https://github.com/pgrimaud/instagram-user-feed",
+            "keywords": [
+                "api",
+                "feed",
+                "instagram",
+                "php",
+                "sdk",
+                "social"
+            ],
+            "time": "2019-09-02T08:56:25+00:00"
         },
         {
             "name": "phenx/php-font-lib",

@@ -1,6 +1,6 @@
 <nav class="flex" style="position: fixed; left:2rem; right:2rem; top:2rem;z-index: 999;">
     <div class=" flex flex-center dropdown" style="width:initial;">
-        <a href="/" class="logo-container"><img src="/images/logo.png" height="35" alt="M Media logo"></a>
+        <a href="#" class="logo-container"><img src="/images/logo.png" height="35" alt="M Media logo"></a>
         <div class="dropdown-content" style="max-height: 80vh;overflow-y: scroll;">
             <a href="/">Home</a>
             <a href="/automation-bot">Marketing Automation Bot</a>

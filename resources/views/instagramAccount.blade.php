@@ -21,12 +21,14 @@
 
     @if(!$data->biography)
         <p class="mb-0 text-muted">To improve your account info:</p>
-        <p>- Set a biography, or description, on your Instagram profile</p>
+        <p class="mb-0">- Set a biography, or description, on your Instagram profile</p>
+        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 
     @if($data->private)
-    <p class="mb-0 text-muted">To help your account reach more people:</p>
-    <p>- Make your account public by switching off 'Private Account' in your Instagram settings</p>
+        <p class="mb-0 text-muted">To help your account reach more people:</p>
+        <p class="mb-0">- Make your account public by switching off 'Private Account' in your Instagram settings</p>
+        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 
     @if(!$locations)
@@ -67,7 +69,8 @@
 
     @if(!$data->externalUrl)
     <p class="mb-0 text-muted">To help get more people to your website:</p>
-    <p>- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
+    <p class="mb-0">- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
+    <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 
     @if($data->followers <= 100 || $data->mediaCount < 3)

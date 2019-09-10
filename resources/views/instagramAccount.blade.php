@@ -163,7 +163,7 @@
                 </tr>
                 <tr>
                     <th>Verified</th>
-                    <td class="text-{{ $data->private  ? 'muted' : 'muted' }}">{{ $data->private  ? 'Yes' : 'No' }}</td>
+                    <td class="text-{{ $data->verified  ? 'muted' : 'muted' }}">{{ $data->verified  ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
                     <th>Last scraped</th>

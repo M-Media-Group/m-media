@@ -50,9 +50,9 @@ class WebsiteDebuggerController extends Controller
                 foreach ($meta->attributes as $attr) {
                     $name = $attr->nodeName;
                     $value = $attr->nodeValue;
-                    echo "Attribute '$name' :: '$value'<br />";
+                    #echo "Attribute '$name' :: '$value'<br />";
                 }
-                echo "<br />";
+                #echo "<br />";
             }
 
             foreach ($html->getElementsByTagName('img') as $meta) {

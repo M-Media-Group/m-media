@@ -16,7 +16,7 @@
                     <label for="username" class="col-md-4 col-form-label text-md-right">Instagram {{ __('username') }}</label>
 
                     <div class="col-md-6">
-                        <input id="username" type="text" placeholder="@username" class="form-control" name="username" required autofocus>
+                        <input id="username" type="text" autocomplete="off" minlength="1" maxlength="31" placeholder="@username" class="form-control" name="username" required autofocus>
                     </div>
                 </div>
 

@@ -22,7 +22,7 @@ class BotController extends Controller
 
     public function index(Request $request)
     {
-        //SyncBots::dispatchNow();
+        SyncBots::dispatchNow();
         $this->authorize('index', Bot::class);
         $bots = Bot::with('user')->get();
         return view('bots.index', compact('bots'));

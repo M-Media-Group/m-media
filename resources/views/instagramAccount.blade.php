@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-debugger/' + document.getElementById('username').value; return false;">
+{{--     <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-debugger/' + document.getElementById('username').value; return false;">
         @csrf
 
         <div class="form-group row">
@@ -26,12 +26,12 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
     <div class="alert alert-info text-muted">
          This tool is in beta testing and some data may not be accurate.</a>
     </div>
     <h2 class="mt-5 mb-0">Account suggestions</h2>
-    <p>M Media suggests the following actions to your account to improve your Instagram account performance.</p>
+    <p>M Media suggests the following actions to your account to improve your Instagram performance.</p>
 
     @if(!$data->biography)
         <p class="mb-0 text-muted">To improve your account info:</p>
@@ -48,25 +48,25 @@
     @if(!$locations)
         <p class="mb-0 text-muted">To help your posts reach more people:</p>
         <p class="mb-0">- Tag locations on your Instagram posts</p>
-        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a> to implement this solution automatically</p>
+        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
     @if(!$data->mediaCount || $data->mediaCount < 10)
         <p class="mb-0 text-muted">To grow your account:</p>
         <p class="mb-0">- You currently have {{$data->mediaCount}} posts on your profile. Consider adding more posts to grow your account</p>
-        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a> to implement this solution automatically</p>
+        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
     @if(!$hashtags || count($hashtags) < 10)
         <p class="mb-0 text-muted">To aid your posts exposure:</p>
         <p class="mb-0">- In your recent posts, you've used {{count($hashtags)}} unique hashtags. Use at least 10 and a wider variety of them on each post to gain more exposure</p>
-        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a> to implement this solution automatically</p>
+        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
     @if(!($data->followers) || $data->followers/$data->following <= 3)
     <p class="mb-0 text-muted">To improve your follower to following ratio:</p>
     <p class="mb-0">- Unfollow more people</p>
-    <p>- Subscribe to our <a href="/instagram-engagement">Instagram Engagement solutions</a> to implement this solution automatically</p>
+    <p>- Subscribe to our <a href="/instagram-engagement">Instagram Engagement service</a> to implement this solution automatically</p>
     @endif
 
     @if(!($data->avgPostLikes) || ($data->avgPostLikes/$data->followers) * 100 <= 5)
@@ -78,13 +78,13 @@
         @else
             <p class="mb-0">- Your have not posted a post yet. Post your first picture or video for better engagement results</p>
         @endif
-        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management solutions</a> to implement this solution automatically</p>
+        <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
     @if(!$data->externalUrl)
     <p class="mb-0 text-muted">To help get more people to your website:</p>
     <p class="mb-0">- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
-    <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+    <p>- Subscribe to any <a href="/instagram">M Media Instagram service</a> and we'll do this for you</p>
     @endif
 
     @if($data->followers <= 100 || $data->mediaCount < 3)

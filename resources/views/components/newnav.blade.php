@@ -42,6 +42,9 @@
                     <a href="/tools/instagram-account-debugger">
                             {{ __('Instagram account debugger') }}
                     </a>
+  {{--                   <a href="/tools/website-debugger">
+                            {{ __('Website debugger') }}
+                    </a> --}}
                     <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();

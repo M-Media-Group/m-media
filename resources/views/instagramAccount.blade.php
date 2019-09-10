@@ -13,6 +13,20 @@
 @endsection
 
 @section('content')
+    <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-debugger/' + document.getElementById('username').value; return false;">
+        @csrf
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                <input id="username" type="text" placeholder="@username" class="form-control" name="username" required autofocus>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="button button-primary">
+                    {{ __('Debug') }}
+                </button>
+            </div>
+        </div>
+    </form>
     <div class="alert alert-info text-muted">
          This tool is in beta testing and some data may not be accurate.</a>
     </div>

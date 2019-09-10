@@ -82,6 +82,8 @@ Route::get('/tools/instagram-account-debugger', function () {
 });
 Route::get('/tools/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('throttle:10,1');
 
+Route::get('/tools/website-debugger/{username}', 'WebsiteDebuggerController@index')->middleware('throttle:10,1');
+
 //Route::resource('posts', 'PostController');
 
 #Route::resource('categories', 'CategoryController');

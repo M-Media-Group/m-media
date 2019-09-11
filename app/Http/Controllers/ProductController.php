@@ -68,7 +68,7 @@ Your bot is incredibly powerful thanks to all the inputs it has available. We us
 ## Want to return it? We'll buy it back.
 Whether you're upgrading to a newer version of the bot or have switched systems completely and no longer need your current one, we'll buy it back from you for 50% of the price you paid, assuming it's in good condition and nothing is missing.",
             'image' => array(
-                'url' => '/images/pi-top.png',
+                'url' => '/images/pi-hand2.png',
             ),
         );
 

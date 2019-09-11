@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <th>Serviceable</th>
-                    <td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
+                    <td class="text-{{ $bot->is_servicable  ? 'muted' : 'primary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
                 </tr>
                 @if($bot->user)
                     <tr>

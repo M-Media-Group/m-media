@@ -91,7 +91,7 @@
 				<tbody>
 				@foreach ($pmethod as $method)
 				<tr>
-					<td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
+					<td>{{ $method->card->brand }} {{ $method->card->funding }} card</td>
 					<td class="text-muted">**** {{ $method->card->last4 }}</td>
 					<td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
 					<td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>

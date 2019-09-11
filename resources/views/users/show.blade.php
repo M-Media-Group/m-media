@@ -22,7 +22,7 @@
 
     @if(!$user->primaryPhone)
 	    <div class="alert alert-danger text-muted">
-	         Please contact us to add your phone number and get full access to your M Media services.
+	         Please <a href="mailto:m@mmediagroup.fr">contact us</a> to add your phone number and get full access to your M Media services.
 	    </div>
     @endif
 

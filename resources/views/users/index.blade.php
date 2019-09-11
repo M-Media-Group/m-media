@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach ($users->sortByDesc('last_seen') as $user)
+			@foreach ($users->sortByDesc('seen_at') as $user)
 				<tr>
 					<td>{{ $user->id }}</td>
 					<td>{{ $user->name }}</td>

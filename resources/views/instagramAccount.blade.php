@@ -65,7 +65,7 @@
 
     @if(!($data->followers) || $data->followers/$data->following <= 3)
     <p class="mb-0 text-muted">To improve your follower to following ratio:</p>
-    <p class="mb-0">- Unfollow more people</p>
+    <p class="mb-0">- Unfollow more people so that you have at least 3 followers for every person you follow</p>
     <p>- Subscribe to our <a href="/instagram-engagement">Instagram Engagement service</a> to implement this solution automatically</p>
     @endif
 
@@ -151,11 +151,11 @@
                 </tr>
                 <tr>
                     <th>Follower to following ratio health</th>
-                    <td class="text-{{ $data->followers/$data->following > 3  ? 'muted' : 'primary' }}">{{ $data->followers/$data->following > 3 ? 'Healthy' : 'Degraded' }}</td>
+                    <td class="text-{{ $data->followers/$data->following > 3  ? 'muted' : 'primary' }}">{{ $data->followers/$data->following > 3 ? 'Healthy' : 'Degraded' }} ({{round($data->followers/$data->following, 1)}} followers per following)</td>
                 </tr>
                 <tr>
                     <th>Engagement health</th>
-                    <td class="text-{{ ($data->avgPostLikes/$data->followers)*100 > 5  ? 'muted' : 'primary' }}">{{ ($data->avgPostLikes/$data->followers)*100 > 5 ? 'Healthy' : 'Degraded' }}</td>
+                    <td class="text-{{ ($data->avgPostLikes/$data->followers)*100 > 5  ? 'muted' : 'primary' }}">{{ ($data->avgPostLikes/$data->followers)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($data->avgPostLikes/$data->followers)*100, 1)}}%)</td>
                 </tr>
                 <tr>
                     <th>Private</th>

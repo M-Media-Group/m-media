@@ -57,7 +57,7 @@
             <tbody>
                 <tr>
                     <th>URL</th>
-                    <td><a target="_BLANK" href="{{ urlencode($parsed_url['path']) }}">{{ urlencode($parsed_url['path']) }}</a></td>
+                    <td><a target="_BLANK" rel="noopener noreferrer" href="{{ urlencode($parsed_url['path']) }}">{{ urlencode($parsed_url['path']) }}</a></td>
                 </tr>
                 <tr>
                     <th>Title</th>
@@ -108,7 +108,7 @@
     <h2 class="mt-5 mb-0">Pictures</h2>
     @if($images)
     @foreach($images as $media)
-            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" href="{{$media['src']}}">
+            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media['src']}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="{{$media['src']}}" class="card-img" style="object-fit: scale-down;" alt="{{$media['alt']}}">
@@ -130,7 +130,7 @@
     <h2 class="mt-5 mb-0">Links</h2>
     @if($links)
     @foreach($links as $link)
-            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" href="{{$link['src']}}">
+            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$link['src']}}">
               <div class="row no-gutters">
                 <div class="col-md-12">
                   <div class="card-body">

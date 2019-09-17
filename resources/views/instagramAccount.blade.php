@@ -181,40 +181,40 @@
     <h2 class="mt-5 mb-0">Recent hashtags</h2>
     @if($hashtags)
     @foreach($hashtags as $hashtag)
-        <a target="_BLANK" href="https://www.instagram.com/explore/tags/{{$hashtag}}">#{{$hashtag}}</a>
+        <a target="_BLANK" rel="noopener noreferrer" href="https://www.instagram.com/explore/tags/{{$hashtag}}">#{{$hashtag}}</a>
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no hashtags that you used in the most recent posts that we can show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
+             There's currently no hashtags that you used in the most recent posts that we can show. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
         </div>
     @endif
 
     <h2 class="mt-5 mb-0">Recent locations</h2>
     @if($locations)
     @foreach($locations as $location)
-        <a target="_BLANK" href="https://www.instagram.com/explore/locations/{{$location['id']}}">📍{{$location['name']}} </a>
+        <a target="_BLANK" rel="noopener noreferrer" href="https://www.instagram.com/explore/locations/{{$location['id']}}">📍{{$location['name']}} </a>
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no tagged locations from the most recent posts. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
+             There's currently no tagged locations from the most recent posts. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn more on the Instagram help page</a>.
         </div>
     @endif
 
     <h2 class="mt-5 mb-0">Recently mentioned accounts</h2>
     @if($users)
     @foreach($users as $user)
-        <a target="_BLANK" href="https://instagram.com/{{$user}}">{{"@".$user}}</a>
+        <a target="_BLANK" rel="noopener noreferrer" href="https://instagram.com/{{$user}}">{{"@".$user}}</a>
     @endforeach
     @else
         <div class="alert text-muted">
-             There's currently no other accounts tagged in the most recent posts. <a target="_BLANK" href="https://help.instagram.com/627963287377328">Learn more on the Instagram help page</a>.
+             There's currently no other accounts tagged in the most recent posts. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/627963287377328">Learn more on the Instagram help page</a>.
         </div>
     @endif
 
     <h2 class="mt-5 mb-0">Recent posts</h2>
     @if($data->medias)
     @foreach($data->medias as $media)
-            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" href="{{$media->link}}">
+            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media->link}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="{{$media->displaySrc}}" class="card-img" style="object-fit: scale-down;" alt="M Media Marketing Bot">
@@ -233,7 +233,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's no recent posts to show. <a target="_BLANK" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
+             There's no recent posts to show. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
         </div>
     @endif
 @endsection

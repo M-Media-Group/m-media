@@ -25,7 +25,7 @@
 <meta property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera.')">
 <meta property="og:site_name" content="{{ config('app.name') }}">
 <meta property="og:locale" content="{{ app()->getLocale() }}">
-<meta property="article:author" content="@yield('meta_author')">
+<meta property="article:author" content="@yield('meta_author', config('app.name'))">
 <meta property='article:publisher' content='{{ config('app.url') }}' />
 
 <meta name="twitter:card" content="summary">
@@ -35,6 +35,14 @@
 <meta name="twitter:title" content="@yield('title', config('app.name'))">
 <meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle your marketing on the French Riviera.')">
 <meta name="twitter:image" content="@yield('meta_image', config('blog.logo_url'))">
+
+<meta name="theme-color" content="#eb4647">
+
+<meta name="geo.region" content="FR">
+<meta name="geo.placename" content="French Riviera">
+
+{{-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'; font-src 'https://fonts.googleapis.com';
+			 img-src 'self' https://i.imgur.com; object-src 'none'; script-src 'self'; style-src 'self'"> --}}
 
 <link rel="icon" href="{{ config('blog.favicon_url') }}">
 
@@ -47,7 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <!-- Fonts -->
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700,900&display=swap" rel="stylesheet" type="text/css">
 
 <!-- Styles -->

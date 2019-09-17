@@ -71,10 +71,10 @@
     </div>
     <div class="header-section" style="background:#031926">
         @if( config('blog.facebook_page_username'))
-            <p>Facebook: <a target="_BLANK" href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
+            <p>Facebook: <a target="_BLANK" rel="noopener noreferrer" href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
         @endif
         @if( config('blog.instagram_username'))
-            <p>Instagram: <a target="_BLANK" href="{{config('blog.instagram_url')}}">{{config('blog.instagram_username')}}</a></p>
+            <p>Instagram: <a target="_BLANK" rel="noopener noreferrer" href="{{config('blog.instagram_url')}}">{{config('blog.instagram_username')}}</a></p>
         @endif
         <p name="siren" content="telephone=no">Siren: 848 356 804</p>
     </div>

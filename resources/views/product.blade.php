@@ -11,7 +11,7 @@
     <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Contact us</a>
     @if (isset($actions))
     @foreach($actions as $action)
-        <a class="button button-secondary" target="_BLANK" href="{{$action['url']}}">{{$action['text']}}</a>
+        <a class="button button-secondary" target="_BLANK" rel="noopener noreferrer" href="{{$action['url']}}">{{$action['text']}}</a>
     @endforeach
     @endif
 @endsection

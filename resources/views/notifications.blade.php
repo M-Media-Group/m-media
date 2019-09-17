@@ -15,12 +15,9 @@
 			<a href="{{isset($notification->data['action']) ? $notification->data['action'] : "#" }}" class="list-group-item list-group-item-action action-section round-all-round mt-5">
 			    <div class="d-flex w-100 justify-content-between">
 			      <h5 class="mb-1">{{$notification->data['title']}}</h5>
-			      <small class="text-muted">{{$notification->created_at->diffForHumans()}}</small>
 			    </div>
 			    <p class="mb-1">{{$notification->data['message']}}</p>
-				    @if($notification->unread())
-						<small class="text-primary">New</small>
-					@endif
+						<small class="text-{{$notification->unread() ? 'primary' : 'muted'}}">{{$notification->created_at->diffForHumans()}}</small>
 {{-- 			    <small class="text-muted">{{$notification->type}}</small>
  --}}			 </a>
 			{{$notification->markAsRead()}}

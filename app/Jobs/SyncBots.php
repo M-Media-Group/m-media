@@ -3,6 +3,8 @@
 namespace App\Jobs;
 
 use App\Bot;
+use App\Notifications\BotOffline;
+use App\Notifications\BotOnline;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Bus\Queueable;
@@ -70,7 +72,8 @@ class SyncBots implements ShouldQueue
             $obj = json_decode($body);
 
             foreach ($obj->devices as $device) {
-                $country = Bot::updateOrCreate(
+                $bot = Bot::where('address', '=', $device->deviceaddress)->with('user')->first();
+                $updated_bot = Bot::updateOrCreate(
                     ['address' => $device->deviceaddress],
                     [
                         'alias' => $device->devicealias,
@@ -83,6 +86,13 @@ class SyncBots implements ShouldQueue
                         'last_contact_at' => date("Y-m-d H:i:s", strtotime($device->lastcontacted)),
                     ]
                 );
+                if (isset($bot) && $bot->is_active == 0 && $updated_bot->is_active == 1) {
+                    #bot online notification
+                    $bot->user->notify(new BotOnline($updated_bot));
+                } elseif (isset($bot) && isset($bot->user) && $bot->is_active == 1 && $updated_bot->is_active == 0) {
+                    #bot offline notification
+                    $bot->user->notify(new BotOffline($updated_bot));
+                }
             }
             return $body;
         } catch (Exception $e) {

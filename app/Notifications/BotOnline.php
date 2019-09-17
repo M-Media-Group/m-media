@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BotOffline extends Notification
+class BotOnline extends Notification
 {
     use Queueable;
 
@@ -54,8 +54,8 @@ class BotOffline extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => "Your bot lost connection to the internet",
-            'message' => "It looks like your bot is currently not connected to our servers. Please disconnect the power from your bot, wait 10 seconds, and reconnect the power.",
+            'title' => "Your bot is online",
+            'message' => "Your bot has reconnected to our servers! Check the status of your bot on the 'My bots' page.",
             'action' => url(config('app.url') . "/my-bots"),
         ];
     }

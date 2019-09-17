@@ -12,14 +12,17 @@
 @if(count(Auth::user()->notifications) > 0)
 	<div class="list-group">
 		@foreach(Auth::user()->notifications as $notification)
-			<a href="{{$notification->action}}" class="list-group-item list-group-item-action action-section round-all-round mt-5 mb-5">
+			<a href="{{isset($notification->data['action']) ? $notification->data['action'] : "#" }}" class="list-group-item list-group-item-action action-section round-all-round mt-5">
 			    <div class="d-flex w-100 justify-content-between">
-			      <h5 class="mb-1">{{$notification->title}}</h5>
+			      <h5 class="mb-1">{{$notification->data['title']}}</h5>
 			      <small class="text-muted">{{$notification->created_at->diffForHumans()}}</small>
 			    </div>
-			    <p class="mb-1">{{$notification->message}}</p>
-			    <small class="text-muted">{{$notification->type}}</small>
-			 </a>
+			    <p class="mb-1">{{$notification->data['message']}}</p>
+				    @if($notification->unread())
+						<small class="text-primary">New</small>
+					@endif
+{{-- 			    <small class="text-muted">{{$notification->type}}</small>
+ --}}			 </a>
 			{{$notification->markAsRead()}}
 		@endforeach
 	</div>
@@ -28,4 +31,5 @@
 		 There's currently no notifications to show. When we send you a notification, it will show up here.
 	</div>
 @endif
+<div class="mt-5"></div>
 @endsection

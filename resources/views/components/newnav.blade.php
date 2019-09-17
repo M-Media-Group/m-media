@@ -29,6 +29,12 @@
                             {{ __('Create roles') }}
                         </a>
                     @endcan
+                    <a href="/notifications">
+                            {{ __('Notifications') }}
+                            @if(Auth::user()->unreadNotifications->count())
+                            <span class="text-primary">({{Auth::user()->unreadNotifications->count()}})</span>
+                            @endif
+                    </a>
                     <a href="/my-bots">
                             {{ __('My bots') }}
                     </a>

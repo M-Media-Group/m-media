@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Notifications\CallbackRequested;
 use App\Phone;
 use App\PhoneLog;
 use Illuminate\Http\Request;
@@ -141,7 +142,7 @@ class PhoneLogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $PhoneLog = PhoneLog::findOrFail($id);
+        $PhoneLog = PhoneLog::with('phone.defaultForUser')->findOrFail($id);
 
         $request->validate([
             'notes' => 'nullable',
@@ -149,6 +150,10 @@ class PhoneLogController extends Controller
         ]);
 
         $PhoneLog->update($request->only('notes', 'ended_at'));
+
+        if (isset($PhoneLog->phone->defaultForUser) && $request->input('notes') == 'Customer requested a callback.') {
+            $PhoneLog->phone->user->notify(new CallbackRequested($PhoneLog));
+        }
         return $PhoneLog;
 
     }

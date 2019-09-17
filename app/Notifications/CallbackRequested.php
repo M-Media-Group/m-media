@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BotOffline extends Notification
+class CallbackRequested extends Notification
 {
     use Queueable;
 
@@ -54,9 +54,9 @@ class BotOffline extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => "Your bot is offline",
-            'message' => "Restart your bot to connect it again.",
-            'action' => url(config('app.url') . "/my-bots"),
+            'title' => "You have requested a callback",
+            'message' => "We will call you back as soon as we can!",
+            //'action' => url(config('app.url') . "/my-bots"),
         ];
     }
 }

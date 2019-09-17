@@ -27,21 +27,23 @@
             </div>
         </div>
     </form> --}}
-    <div class="alert alert-info text-muted">
-         This tool is in beta testing and some data may not be accurate.</a>
+    @if($data->private)
+    <div class="alert alert-danger text-muted">
+         Your Instagram account is private so we couldn't get all the information we need to debug your account.
     </div>
+    @endif
     <h2 class="mt-5 mb-0">Account suggestions</h2>
     <p>M Media suggests the following actions to your account to improve your Instagram performance.</p>
+
+    @if($data->private)
+        <p class="mb-0 text-muted">To help M Media debug your account and reach more people:</p>
+        <p class="mb-0">- Make your account public by switching off 'Private Account' in your Instagram settings</p>
+        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+    @endif
 
     @if(!$data->biography)
         <p class="mb-0 text-muted">To improve your account info:</p>
         <p class="mb-0">- Set a biography, or description, on your Instagram profile</p>
-        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
-    @endif
-
-    @if($data->private)
-        <p class="mb-0 text-muted">To help your account reach more people:</p>
-        <p class="mb-0">- Make your account public by switching off 'Private Account' in your Instagram settings</p>
         <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 

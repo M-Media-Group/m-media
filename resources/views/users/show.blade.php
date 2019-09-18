@@ -22,7 +22,7 @@
 
     @if(!$user->primaryPhone)
 	    <div class="alert alert-danger text-muted">
-	         Please <a href="mailto:m@mmediagroup.fr">contact us</a> to add your phone number and get full access to your M Media services.
+	         Please <a href="mailto:contact@mmediagroup.fr">contact us</a> to add your phone number and get full access to your M Media services.
 	    </div>
     @endif
 
@@ -69,7 +69,7 @@
 	        </tbody>
 	    </table>
 	</div>
-	<p class="mb-5"><a href="mailto:m@mmediagroup.fr">Incorrect data? Contact us!</a></p>
+	<p class="mb-5"><a href="mailto:contact@mmediagroup.fr">Incorrect data? Contact us!</a></p>
     @can('update', $user)
         <a class="button button-primary" href="/users/{{$user->id}}/edit">
             {{ __('Edit') }}

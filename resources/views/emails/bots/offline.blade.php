@@ -1,7 +1,7 @@
 @component('mail::message')
 # Your bot is offline
 
-Your bot has lost connection to our servers. Please follow the steps below to start getting your bot back online.
+Your bot has lost connection to our servers. Follow the steps below to start getting your bot back online.
 
 ## To get your bot online
 
@@ -15,9 +15,9 @@ Please note it may take up to two hours for the status to show 'Online' on our w
 See Bot Status
 @endcomponent
 
-## If you have changed something at home
+## If you have changed something about your internet
 
-If you've changed your WiFi name or password, changed where the bot is located, or have otherwise updated something in your local network, please send us an email.
+If you've changed your WiFi name or password, changed where the bot or wireless router is located, or have otherwise updated something in your local network, please [send us an email](mailto:{{config('mail.reply_to.address')}}).
 
 ## If the status online doesn't update even after you've followed the steps above
 

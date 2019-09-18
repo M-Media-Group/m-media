@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send') }} {{ __('email') }}</label>
+                    <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send as email') }}</label>
                     <div class="col-md-6">
                         <input id="sendemail" type="checkbox" autocomplete="off" placeholder="send_email" class="form-control" name="send_email">
                     </div>

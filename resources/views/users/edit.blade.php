@@ -124,7 +124,17 @@
 					<td>{{ $subscription->id }}</td>
 					@if(isset($subscription->plan))
 						<td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
+					@else
+					<td>
+						@foreach ($subscription->items->data as $item)
+							{{ $item->plan->amount/100 }} EUR / {{ $item->plan->interval }}
+							@if(!$loop->last)
+						    	+
+						    @endif
+						@endforeach
+					</td>
 					@endif
+
 				</tr>
 			@endforeach
 			</tbody>

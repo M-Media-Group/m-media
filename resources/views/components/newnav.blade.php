@@ -11,24 +11,6 @@
                 @guest
                     <a href="/login">Login</a>
                 @else
-                    @can('index', App\User::class)
-                        <a href="/users">
-                            {{ __('Users') }}
-                        </a>
-                    @endcan
-                    @can('index', App\Bot::class)
-                        <a href="/bots">
-                            {{ __('Bots') }}
-                        </a>
-                    @endcan
-                    @can('manage roles')
-                        <a href="/roles">
-                            {{ __('Manage roles') }}
-                        </a>
-                        <a href="/roles/create">
-                            {{ __('Create roles') }}
-                        </a>
-                    @endcan
                     <a href="/notifications">
                             {{ __('Notifications') }}
                             @if(Auth::user()->unreadNotifications->count())
@@ -52,6 +34,24 @@
                             {{ __('Website debugger') }}
                     </a> --}}
                     <hr class="mb-0 mt-0">
+                    @can('index', App\User::class)
+                        <a href="/users">
+                            {{ __('Users') }}
+                        </a>
+                    @endcan
+                    @can('index', App\Bot::class)
+                        <a href="/bots">
+                            {{ __('Bots') }}
+                        </a>
+                    @endcan
+                    @can('manage roles')
+                        <a href="/roles">
+                            {{ __('Manage roles') }}
+                        </a>
+                        <a href="/roles/create">
+                            {{ __('Create roles') }}
+                        </a>
+                    @endcan
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

@@ -90,6 +90,8 @@ Route::get('/tools/website-debugger/{username}', 'WebsiteDebuggerController@inde
 
 Route::resource('users', 'UserController')->middleware('auth');
 
+Route::resource('custom-notifications', 'CutomNotificationController')->middleware('auth');
+
 Route::get('my-bots', 'UserController@myBots')->middleware('auth');
 
 Route::get('users/{id}/invoices', 'UserController@invoices')->middleware('auth');

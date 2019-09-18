@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.') @lang('Email us: ') <a href="{{config('mail.reply_to.address')}}">{{config('mail.reply_to.address')}}</a>
         @endcomponent
     @endslot
 @endcomponent

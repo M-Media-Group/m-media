@@ -52,6 +52,11 @@
                             {{ __('Create roles') }}
                         </a>
                     @endcan
+                    @can('create custom notifications')
+                        <a href="/custom-notifcations/create">
+                            {{ __('Notify users') }}
+                        </a>
+                    @endcan
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

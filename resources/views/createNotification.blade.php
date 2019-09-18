@@ -26,7 +26,7 @@
                 <div class="form-group row">
                     <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
                     <div class="col-md-6">
-                        <input id="title" type="text" autocomplete="off" minlength="1" maxlength="31" placeholder="Title" class="form-control" name="title" required autofocus>
+                        <input id="title" type="text" autocomplete="off" minlength="1" maxlength="78" placeholder="Title" class="form-control" name="title" required autofocus>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                 <div class="form-group row">
                     <label for="action" class="col-md-4 col-form-label text-md-right">{{ __('Action') }} {{ __('URL') }}</label>
                     <div class="col-md-6">
-                        <input id="action" type="url" autocomplete="off" placeholder="Action" class="form-control" name="action">
+                        <input id="action" type="text" autocomplete="off" placeholder="Action" class="form-control" name="action">
                     </div>
                 </div>
 

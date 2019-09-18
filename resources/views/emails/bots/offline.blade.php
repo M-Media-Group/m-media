@@ -21,7 +21,7 @@ If you've changed your WiFi name or password, changed where the bot is located, 
 
 ## If the status online doesn't update even after you've followed the steps above
 
-It may take up to two hours for the status to update on our website, but if the status doesn't change to 'Online', try the steps above once more. If after a day the status still doesn't change, please [email](mailto:contact@mmediagroup.fr) or [call](tel:+33 4 86 06 08 59) us.
+It may take up to two hours for the status to update on our website, but if the status doesn't change to 'Online', try the steps above once more. If after a day the status still doesn't change, please [email](mailto:{{config('mail.reply_to.address')}}) or [call](tel:+33486060859) us.
 
 Thanks,<br>
 {{ config('app.name') }}

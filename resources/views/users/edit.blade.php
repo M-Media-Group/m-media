@@ -122,8 +122,9 @@
 				<tr>
 					<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
 					<td>{{ $subscription->id }}</td>
-					<td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
-
+					@if(isset($subscription->plan))
+						<td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
+					@endif
 				</tr>
 			@endforeach
 			</tbody>

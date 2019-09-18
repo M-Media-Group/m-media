@@ -86,10 +86,10 @@ class SyncBots implements ShouldQueue
                         'last_contact_at' => date("Y-m-d H:i:s", strtotime($device->lastcontacted)),
                     ]
                 );
-                if (isset($bot) && $bot->is_active == 0 && $updated_bot->is_active == 1) {
+                if (isset($bot) && $bot->is_active == 0 && $updated_bot->is_active == 1 && $bot->is_servicable) {
                     #bot online notification
                     $bot->user->notify(new BotOnline($updated_bot));
-                } elseif (isset($bot) && isset($bot->user) && $bot->is_active == 1 && $updated_bot->is_active == 0) {
+                } elseif (isset($bot) && isset($bot->user) && $bot->is_active == 1 && $updated_bot->is_active == 0 && $bot->is_servicable) {
                     #bot offline notification
                     $bot->user->notify(new BotOffline($updated_bot));
                 }

@@ -65,7 +65,7 @@
                 @endif
                 <tr>
                     <th>Last contact</th>
-                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : null }}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 3  ? 'primary' : 'muted' }}">{{ $bot->last_contact_at->diffForHumans() }}</td>
                 </tr>
             </tbody>
         </table>

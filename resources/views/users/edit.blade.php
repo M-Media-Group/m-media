@@ -91,7 +91,7 @@
 				<tbody>
 				@foreach ($pmethod as $method)
 				<tr>
-					<td>{{ $method->card->brand }} {{ $method->card->funding }} card</td>
+					<td>{{ ucfirst($method->card->brand) }} {{ $method->card->funding }} card</td>
 					<td class="text-muted">**** {{ $method->card->last4 }}</td>
 					<td>{{ $method->card->exp_month }}/{{ $method->card->exp_year }}</td>
 					<td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
@@ -194,7 +194,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no call history to show. When you make a phone call to M Media (+33 4 86 06 08 59), it will show up here.
+			 There's currently no call history to show. When you make a phone call to M Media (<a href="tel:+33 4 86 06 08 59">+33 4 86 06 08 59</a>), it will show up here.
 		</div>
 	@endif
 

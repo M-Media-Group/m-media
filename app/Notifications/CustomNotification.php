@@ -30,7 +30,7 @@ class CustomNotification extends Notification
      */
     public function via($notifiable)
     {
-        return isset($this->data['send_email']) ? ['mail', 'database'] : ['database'];
+        return isset($this->data['send_email']) ? ['mail'] : ['database'];
     }
 
     /**
@@ -46,6 +46,10 @@ class CustomNotification extends Notification
             ->greeting($this->data['title'])
             ->line($this->data['message'])
             ->action($this->data['action_text'], url($this->data['action']));
+
+        return (new MailMessage)->view(
+            'emails.name', ['invoice' => $this->invoice]
+        );
     }
 
     /**

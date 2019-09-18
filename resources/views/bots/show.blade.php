@@ -77,8 +77,8 @@
                     {{ __('Connect') }}
                 </a>
             @elseif($bot->user)
-            <a class="button button-primary" href="mailto:{{$bot->user->email}}?subject=You'll Need to Restart Your Bot&body=Hello! It looks like your bot is currently not connected to our servers. Please disconnect the power from your bot, wait 10 seconds, and reconnect the power. Then, kindly reply to this email when you have done so. You can check the status of your bots online, on https://mmediagroup.fr/my-bots. Thanks!">
-                {{ __('Contact customer') }}
+            <a class="button button-primary" href="/bots/{{$bot->id}}/contact-user">
+                {{ __('Email customer') }}
             </a>
             @endif
         @else

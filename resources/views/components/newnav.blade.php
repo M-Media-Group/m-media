@@ -53,7 +53,7 @@
                         </a>
                     @endcan
                     @can('create custom notifications')
-                        <a href="/custom-notifcations/create">
+                        <a href="/custom-notifications/create">
                             {{ __('Notify users') }}
                         </a>
                     @endcan

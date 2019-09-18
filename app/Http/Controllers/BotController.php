@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Bot;
 use App\Jobs\SyncBots;
+use App\Mail\BotOffline;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BotController extends Controller
 {
@@ -151,6 +153,23 @@ class BotController extends Controller
             return $e;
         }
 
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function contactUser(Request $request, $id)
+    {
+        $bot = Bot::findOrFail($id);
+        $this->authorize("connectToBot", $bot);
+        if (isset($bot->user)) {
+            Mail::to($bot->user->email)->send(new BotOffline($bot));
+            return "Sent email to " . $bot->user->email;
+        }
+        return "No user associated";
     }
 
     /**

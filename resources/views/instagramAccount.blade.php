@@ -100,6 +100,10 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
+                    <th>ID</th>
+                    <td>{{ $account->id }}</td>
+                </tr>
+                <tr>
                     <th>Instagram ID</th>
                     <td>{{ $data->id }}</td>
                 </tr>

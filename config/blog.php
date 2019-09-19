@@ -33,4 +33,9 @@ return [
         'password' => env('REMOTEIT_PASSWORD', null),
         'developerkey' => env('REMOTEIT_KEY', null),
     ],
+
+    //Buffer settings
+    'buffer' => [
+        'access_token' => env('BUFFER_ACCESS_TOKEN', null),
+    ],
 ];

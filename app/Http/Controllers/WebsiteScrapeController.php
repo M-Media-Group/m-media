@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class WebsiteDebuggerController extends Controller
+class WebsiteScrapeController extends Controller
 {
     /**
      * Instantiate a new controller instance.

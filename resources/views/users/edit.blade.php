@@ -208,4 +208,30 @@
 		</div>
 	@endif
 
+	<h2 class="mt-5 mb-0">Instagram profiles</h2>
+	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>ID</th>
+					   <th>Username</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($user->instagramAccounts as $account)
+				<tr>
+					<td>{{ $account->id }}</td>
+					<td><a href="/tools/instagram-account-debugger/{{ $account->username }}">{{ $account->username }}</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no Instagram profiles associated with your account.
+		</div>
+	@endif
+
 @endsection

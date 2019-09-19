@@ -80,9 +80,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/tools/instagram-account-debugger', function () {
     return view('instagramAccountSelector');
 });
-Route::get('/tools/instagram-account-debugger/{username}', 'InstagramApiController@index')->middleware('throttle:10,1');
+Route::get('/tools/instagram-account-debugger/{username}', 'InstagramScrapeController@index')->middleware('throttle:10,1');
 
-Route::get('/tools/website-debugger/{username}', 'WebsiteDebuggerController@index')->middleware('throttle:10,1');
+Route::get('/tools/website-debugger/{username}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 
 //Route::resource('posts', 'PostController');
 
@@ -91,6 +91,8 @@ Route::get('/tools/website-debugger/{username}', 'WebsiteDebuggerController@inde
 Route::resource('users', 'UserController')->middleware('auth');
 
 Route::resource('custom-notifications', 'CutomNotificationController')->middleware('auth');
+
+Route::resource('instagram-accounts', 'InstagramAccountController')->middleware('auth');
 
 Route::get('my-bots', 'UserController@myBots')->middleware('auth');
 

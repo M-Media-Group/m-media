@@ -38,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Phone');
     }
 
+    public function instagramAccounts()
+    {
+        return $this->hasMany('App\InstagramAccount');
+    }
+
     #Locked to actual device, not stuff like SSH or VNC devices
     public function bots()
     {

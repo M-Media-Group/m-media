@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Bot;
-use App\Jobs\SyncBots;
+use App\InstagramAccount;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 
-class InstagramApiController extends Controller
+class InstagramScrapeController extends Controller
 {
     /**
      * Instantiate a new controller instance.
@@ -745,7 +745,13 @@ class InstagramApiController extends Controller
         $users = array_unique(array_merge($users, $biography_users));
         $hashtags = array_unique(array_merge($hashtags, $biography_hashtags));
 
-        return view('instagramAccount', compact('data', 'hashtags', 'locations', 'users'));
+        $account = InstagramAccount::updateOrCreate(
+            ['username' => $data->userName],
+            ['instagram_id' => $data->id]
+            //['is_scrapeable' => $data->private ? 0 : 1]
+        );
+
+        return view('instagramAccount', compact('data', 'hashtags', 'locations', 'users', 'account'));
         return response()->json($data);
     }
 
@@ -768,7 +774,7 @@ class InstagramApiController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Bot::class);
-        return SyncBots::dispatchNow();
+        //return SyncBots::dispatchNow();
     }
 
     /**

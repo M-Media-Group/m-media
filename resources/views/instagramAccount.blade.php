@@ -207,7 +207,7 @@
     <h2 class="mt-5 mb-0">Recently mentioned accounts</h2>
     @if($users)
     @foreach($users as $user)
-        <a target="_BLANK" rel="noopener noreferrer" href="https://instagram.com/{{$user}}">{{"@".$user}}</a>
+        <a href="/tools/instagram-account-debugger/{{$user}}">{{"@".$user}}</a>
     @endforeach
     @else
         <div class="alert text-muted">

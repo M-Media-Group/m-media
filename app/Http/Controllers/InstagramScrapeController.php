@@ -694,12 +694,15 @@ class InstagramScrapeController extends Controller
             }
         }
 
-        preg_match_all('/@(\w+)/', $data->biography, $matchesForUsersInCaption);
+        preg_match_all('/@([\w, \.]+)/', $data->biography, $matchesForUsersInCaption);
 
         /* Add all matches to array */
         foreach ($matchesForUsersInCaption[1] as $match) {
             if (!in_array($match, $biography_users)) {
                 $biography_users[] .= $match;
+                // InstagramAccount::firstOrCreate(
+                //     ['username' => $match]
+                // );
             }
         }
 
@@ -715,11 +718,14 @@ class InstagramScrapeController extends Controller
                 }
             }
 
-            preg_match_all('/@(\w+)/', $media->caption, $matchesForUsers);
+            preg_match_all('/@([\w, \.]+)/', $media->caption, $matchesForUsers);
 
             /* Add all matches to array */
             foreach ($matchesForUsers[1] as $match) {
                 if (!in_array($match, $users)) {
+                    // InstagramAccount::firstOrCreate(
+                    //     ['username' => $match]
+                    // );
                     $users[] .= $match;
                 }
             }

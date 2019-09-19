@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/my-bots';
+    protected $redirectTo = '/notifications';
 
     /**
      * Create a new controller instance.

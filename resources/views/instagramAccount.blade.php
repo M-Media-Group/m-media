@@ -125,7 +125,7 @@
                 </tr> --}}
                 <tr>
                     <th>External URL</th>
-                    <td><a href="/tools/website-debugger/{{urlencode($data->externalUrl)}}">{{ $data->externalUrl }}</a></td>
+                    <td><a href="/tools/website-debugger/{{isset($data->externalUrl) ? parse_url($data->externalUrl)['host'] : $data->externalUrl}}">{{ $data->externalUrl }}</a></td>
                 </tr>
                 <tr>
                     <th>Media count</th>

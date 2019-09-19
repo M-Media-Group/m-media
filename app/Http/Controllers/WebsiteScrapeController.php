@@ -40,6 +40,7 @@ class WebsiteScrapeController extends Controller
             $images = [];
             $links = [];
             $scripts = [];
+            $emails = [];
             $h1s = [];
             $title = null;
             $description = null;

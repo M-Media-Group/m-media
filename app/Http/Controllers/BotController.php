@@ -166,7 +166,7 @@ class BotController extends Controller
         $bot = Bot::findOrFail($id);
         $this->authorize("connectToBot", $bot);
         if (isset($bot->user)) {
-            return new BotOffline($bot);
+            //return new BotOffline($bot);
             Mail::to($bot->user->email)->queue(new BotOffline($bot));
             return "Sent email to " . $bot->user->email;
         }

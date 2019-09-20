@@ -34,7 +34,7 @@
         <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 
-    @if(!isset($locations) || !$locations)
+    @if(isset($locations) && !$locations)
         <p class="mb-0 text-muted">To help your posts reach more people:</p>
         <p class="mb-0">- Tag locations on your Instagram posts</p>
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
@@ -233,6 +233,37 @@
         </div>
     @endif
 @else
+<h2 class="mt-5 mb-0">History</h2>
+    @if(isset($account->scrapes) && $account->scrapes)
+        <div class="table-responsive table-hover">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                       <th>Date</th>
+                       <th>Medias</th>
+                       <th>Followers</th>
+                       <th>Following</th>
+                       <th>Engagement health</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($account->scrapes->reverse() as $scrape)
+                    <tr>
+                        <td>{{ $scrape->created_at->isoFormat('ll') }}</td>
+                        <td>{{ $scrape->media_count }}</td>
+                        <td>{{ $scrape->followers_count }}</td>
+                        <td>{{ $scrape->following_count }}</td>
+                        <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    @else
+        <div class="alert text-muted">
+             There's no recent posts to show. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
+        </div>
+    @endif
     <div class="alert text-muted">
          In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="mailto:contact@mmediagroup.fr">contact us</a>.
     </div>

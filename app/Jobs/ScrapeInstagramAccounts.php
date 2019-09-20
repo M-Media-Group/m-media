@@ -32,8 +32,10 @@ class ScrapeInstagramAccounts implements ShouldQueue
     public function handle()
     {
         $accounts = InstagramAccount::where('is_scrapeable', 1)->get();
+        $iteration = 0;
         foreach ($accounts as $account) {
-            ScrapeInstagramAccount::dispatch($account->username);
+            $iteration++;
+            ScrapeInstagramAccount::dispatch($account->username)->delay(now()->addSeconds(3 * $iteration));
         }
     }
 }

@@ -22,10 +22,7 @@ class InstagramScrapeController extends Controller
 
     public function index(Request $request, $username)
     {
-        \Log::info("Start");
-        $data = ScrapeInstagramAccount::dispatchNow($username);
-        \Log::info("run for account: {$username}");
-
+        $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null);
         //return $data;
         return view('instagramAccount', $data);
     }

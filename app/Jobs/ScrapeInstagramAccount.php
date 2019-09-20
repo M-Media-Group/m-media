@@ -67,7 +67,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             return $e;
         }
 
-        $account = InstagramAccount::where('instagram_id', $data->id)->orWhere('username', $data->userName)->first();
+        $account = InstagramAccount::where('instagram_id', $data->id)->orWhere('username', $data->userName)->withCount('scrapes')->first();
 
         if (!$account || !isset($account->id)) {
             $account = InstagramAccount::create(

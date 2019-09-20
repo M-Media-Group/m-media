@@ -162,6 +162,10 @@
                     <th>Last scraped</th>
                     <td>{{ $scraped_data->created_at->diffForHumans() }}</td>
                 </tr>
+                <tr>
+                    <th>Times scraped</th>
+                    <td>{{ $account->scrapes_count }}</td>
+                </tr>
                 <th>Qualifies for M Media services</th>
                     <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
                 </tr>

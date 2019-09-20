@@ -58,7 +58,7 @@
         <p>- Subscribe to our <a href="/instagram-engagement">Instagram Engagement service</a> to implement this solution automatically</p>
     @endif
 
-    @if(!($scraped_data->avg_likes_count) || ($scraped_data->avg_likes_count/$scraped_data->followers_count) * 100 <= 5)
+    @if(!$scraped_data->is_private && (!($scraped_data->avg_likes_count) || ($scraped_data->avg_likes_count/$scraped_data->followers_count) * 100 <= 5))
         <p class="mb-0 text-muted">To improve engagement health:</p>
         <p class="mb-0">- Use higher quality media posts that resonate better with your audience</p>
         <p class="mb-0">- Update the hashtags you use to hashtags that are more relevant to your users</p>
@@ -79,6 +79,7 @@
     @if($scraped_data->followers_count <= 100 || $scraped_data->media_count < 3)
         <p class="mb-0 text-muted">To qualify for M Media Instagram services:</p>
         <p class="mb-0">- Post at least 3 posts on your Instagram account</p>
+        <p class="mb-0">- Make sure your Instagram account is not set to private</p>
         <p>- Gain at least 100 followers by sharing your Instagram account with friends, family, and customers</p>
     @endif
 
@@ -233,7 +234,7 @@
         </div>
     @endif
 @else
-<h2 class="mt-5 mb-0">History</h2>
+    <h2 class="mt-5 mb-0">History</h2>
     @if(isset($account->scrapes) && $account->scrapes)
         <div class="table-responsive table-hover">
             <table class="table mb-0">
@@ -253,7 +254,11 @@
                         <td>{{ number_format($scrape->media_count) }}</td>
                         <td>{{ number_format($scrape->followers_count) }}</td>
                         <td>{{ number_format($scrape->following_count) }}</td>
+                        @if(!$scrape->is_private)
                         <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
+                        @else
+                        <td class="text-muted">Unknown, private account</td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
@@ -267,5 +272,32 @@
     <div class="alert text-muted">
          In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="mailto:contact@mmediagroup.fr">contact us</a>.
     </div>
+
+    <h2 class="mt-5 mb-0">Instagram content management</h2>
+    @if(isset($buffer) && $buffer && (Auth::user() && (Auth::user()->id == $account->user_id || Auth::user()->id == config('blog.super_admin_id'))))
+        <div class="table-responsive table-hover">
+            <table class="table mb-0">
+                <tbody>
+                    <tr>
+                        <th>Future posts</th>
+                        <td>{{$buffer['counts']['pending']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Published posts</th>
+                        <td>{{$buffer['counts']['sent']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    @elseif(isset($buffer) && $buffer)
+        <div class="alert text-muted">
+             You don't have permission to see data about this service for this account.
+        </div>
+    @else
+        <div class="alert text-muted">
+             This account isn't linked to the <a href="/instagram-content-management">M Media Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
+        </div>
+    @endif
+
 @endif
 @endsection

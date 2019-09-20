@@ -3,7 +3,11 @@
 <head>
      @include('components.head')
 </head>
-<body style="background-image: url('{{$background_image ?? ''}}')">
+@if(isset($background_image))
+    <body style="background-image: url('{{$background_image}}')">
+@else
+    <body>
+@endif
      <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('blog.google_tag_id') }}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

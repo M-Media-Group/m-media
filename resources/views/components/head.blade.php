@@ -45,6 +45,7 @@
 			 img-src 'self' https://i.imgur.com; object-src 'none'; script-src 'self'; style-src 'self'"> --}}
 
 <link rel="icon" href="{{ config('blog.favicon_url') }}">
+<link rel="apple-touch-icon" href="{{ config('blog.logo_url') }}"/>
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

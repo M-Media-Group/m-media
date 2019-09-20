@@ -204,7 +204,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no call history to show. When you make a phone call to M Media (<a href="tel:+33 4 86 06 08 59">+33 4 86 06 08 59</a>), it will show up here.
+			 There's currently no call history to show. When you make a phone call to M Media (<a href="tel:+33 4 86 06 08 59">+33 4 86 06 08 59</a>) from your primary phone number, it will show up here.
 		</div>
 	@endif
 

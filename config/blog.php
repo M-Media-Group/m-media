@@ -11,7 +11,7 @@ return [
 
     //App branding
     'logo_url' => env('LOGO_URL', '/images/logo.svg'),
-    'favicon_url' => env('FAVICON_URL', '/images/logo.png'),
+    'favicon_url' => env('FAVICON_URL', '/favicon.ico'),
 
     //App social media
     'instagram_username' => env('APP_INSTAGRAM_USERNAME', null),

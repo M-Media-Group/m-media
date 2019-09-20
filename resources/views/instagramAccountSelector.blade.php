@@ -19,11 +19,15 @@
                         <input id="username" type="text" autocomplete="off" minlength="1" maxlength="31" placeholder="@username" class="form-control" name="username" required autofocus>
                     </div>
                 </div>
-
+                <div class="form-group row">
+                    <div class="col-md-12 text-muted">
+                        When you type in a username and press analyze, we will start daily collection of data to build a historical profile of the account. If you do not want us to store historical data, <a href="mailto:contact@mmediagroup.fr">contact us</a>.
+                    </div>
+                </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="button button-primary">
-                            {{ __('Debug') }}
+                            {{ __('Analyze') }}
                         </button>
                     </div>
                 </div>

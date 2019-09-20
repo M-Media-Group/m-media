@@ -250,9 +250,9 @@
                 @foreach ($account->scrapes->reverse() as $scrape)
                     <tr>
                         <td>{{ $scrape->created_at->isoFormat('ll') }}</td>
-                        <td>{{ $scrape->media_count }}</td>
-                        <td>{{ $scrape->followers_count }}</td>
-                        <td>{{ $scrape->following_count }}</td>
+                        <td>{{ number_format($scrape->media_count) }}</td>
+                        <td>{{ number_format($scrape->followers_count) }}</td>
+                        <td>{{ number_format($scrape->following_count) }}</td>
                         <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
                     </tr>
                 @endforeach

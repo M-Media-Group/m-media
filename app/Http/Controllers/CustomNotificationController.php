@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Notification;
 
-class CutomNotificationController extends Controller
+class CustomNotificationController extends Controller
 {
     /**
      * Instantiate a new controller instance.
@@ -53,7 +53,7 @@ class CutomNotificationController extends Controller
             $this->authorize('create', Bot::class);
             $users = User::find($request->input('users'));
             Notification::send($users, new CustomNotification($request->input()));
-            return $request->input();
+            return redirect('/notifications');
         }
     }
 

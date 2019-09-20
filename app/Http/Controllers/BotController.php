@@ -168,7 +168,7 @@ class BotController extends Controller
         if (isset($bot->user)) {
             //return new BotOffline($bot);
             Mail::to($bot->user->email)->queue(new BotOffline($bot));
-            return "Sent email to " . $bot->user->email;
+            return redirect('/bots');
         }
         return "No user associated";
     }

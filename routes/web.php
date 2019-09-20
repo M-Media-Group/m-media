@@ -90,7 +90,7 @@ Route::get('/tools/website-debugger/{username}', 'WebsiteScrapeController@index'
 
 Route::resource('users', 'UserController')->middleware('auth');
 
-Route::resource('custom-notifications', 'CutomNotificationController')->middleware('auth');
+Route::resource('custom-notifications', 'CustomNotificationController')->middleware('auth');
 
 Route::resource('instagram-accounts', 'InstagramAccountController')->middleware('auth');
 

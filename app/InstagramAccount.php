@@ -25,4 +25,14 @@ class InstagramAccount extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function scrapes()
+    {
+        return $this->hasMany('App\InstagramAccountScrape');
+    }
+
+    public function latestScrape()
+    {
+        return $this->hasOne('App\InstagramAccountScrape')->latest();
+    }
 }

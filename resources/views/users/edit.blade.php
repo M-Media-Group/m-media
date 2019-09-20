@@ -222,7 +222,7 @@
 			@foreach ($user->instagramAccounts as $account)
 				<tr>
 					<td>{{ $account->id }}</td>
-					<td><a href="/tools/instagram-account-debugger/{{ $account->username }}">{{ '@'.$account->username }}</a></td>
+					<td><a href="/tools/instagram-account-analyzer/{{ $account->username }}">{{ '@'.$account->username }}</a></td>
 				</tr>
 			@endforeach
 			</tbody>

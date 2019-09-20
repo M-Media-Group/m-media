@@ -79,7 +79,7 @@
 
                 <tr>
                     <th>Detected Instagram account</th>
-                    <td><a href="/tools/instagram-account-debugger{{$instagram_account}}">{{ (str_replace('/', '@', $instagram_account)) }}</a></td>
+                    <td><a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ (str_replace('/', '@', $instagram_account)) }}</a></td>
                 </tr>
 
                 <th>Uses Google Analytics</th>

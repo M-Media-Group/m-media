@@ -1,15 +1,15 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('title', "Instagram data debugger")
+@section('title', "Instagram data analyzer")
 @section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
 <div style="padding-top:15rem;">
     <div class="action-section container mt-5">
-        <div>{{ __('Instagram account debugger') }}</div>
+        <div>{{ __('Instagram account analyzer') }}</div>
 
         <div class="mt-5">
-            <form method="GET" action="/instagram-account-debugger" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-debugger/' + document.getElementById('username').value; return false;">
+            <form method="GET" action="/instagram-account-analyzer" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-analyzer/' + document.getElementById('username').value; return false;">
                 @csrf
 
                 <div class="form-group row">

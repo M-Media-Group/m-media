@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 
-@section('title', "Instagram data debugging for ".$scraped_data->full_name)
+@section('title', "Instagram data analysis for ".$scraped_data->full_name)
 @section('meta_image', $scraped_data->profile_picture_url)
 
 @section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
@@ -8,7 +8,7 @@
 @section('above_container')
     <div class="header-section" style="background:#246EBA;">
         <h1>{{$scraped_data->full_name}}</h1>
-        <h2>Instagram data debugger</h2>
+        <h2>Instagram data analyzer</h2>
     </div>
 @endsection
 
@@ -34,7 +34,7 @@
         <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
 
-    @if(!$locations)
+    @if(!isset($locations) || !$locations)
         <p class="mb-0 text-muted">To help your posts reach more people:</p>
         <p class="mb-0">- Tag locations on your Instagram posts</p>
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
@@ -46,7 +46,7 @@
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
-    @if(!$hashtags || count($hashtags) < 10)
+    @if(isset($hashtags) && (!$hashtags || count($hashtags) < 10))
         <p class="mb-0 text-muted">To aid your posts exposure:</p>
         <p class="mb-0">- In your recent posts, you've used {{count($hashtags)}} unique hashtags. Use at least 10 and a wider variety of them on each post to gain more exposure</p>
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
@@ -70,7 +70,7 @@
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
     @endif
 
-    @if(!$scraped_data->externalUrl)
+    @if(!$scraped_data->external_url)
         <p class="mb-0 text-muted">To help get more people to your website:</p>
         <p class="mb-0">- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
         <p>- Subscribe to any <a href="/instagram">M Media Instagram service</a> and we'll do this for you</p>
@@ -160,7 +160,7 @@
                 </tr>
                 <tr>
                     <th>Last scraped</th>
-                    <td>{{ now()->diffForHumans() }}</td>
+                    <td>{{ $scraped_data->created_at->diffForHumans() }}</td>
                 </tr>
                 <th>Qualifies for M Media services</th>
                     <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
@@ -170,7 +170,7 @@
     </div>
 
     <h2 class="mt-5 mb-0">Recent hashtags</h2>
-    @if($hashtags)
+    @if(isset($hashtags) && $hashtags)
     @foreach($hashtags as $hashtag)
         <a target="_BLANK" rel="noopener noreferrer" href="https://www.instagram.com/explore/tags/{{$hashtag}}">#{{$hashtag}}</a>
     @endforeach
@@ -181,7 +181,7 @@
     @endif
 
     <h2 class="mt-5 mb-0">Recent locations</h2>
-    @if($locations)
+    @if(isset($locations) && $locations)
     @foreach($locations as $location)
         <a target="_BLANK" rel="noopener noreferrer" href="https://www.instagram.com/explore/locations/{{$location['id']}}">📍{{$location['name']}} </a>
     @endforeach
@@ -192,9 +192,9 @@
     @endif
 
     <h2 class="mt-5 mb-0">Recently mentioned accounts</h2>
-    @if($users)
+    @if(isset($users) && $users)
     @foreach($users as $user)
-        <a href="/tools/instagram-account-debugger/{{$user}}">{{"@".$user}}</a>
+        <a href="/tools/instagram-account-analyzer/{{$user}}">{{"@".$user}}</a>
     @endforeach
     @else
         <div class="alert text-muted">
@@ -203,7 +203,7 @@
     @endif
 
     <h2 class="mt-5 mb-0">Recent posts</h2>
-    @if($medias)
+    @if(isset($medias) && $medias)
     @foreach($medias as $media)
             <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media->link}}">
               <div class="row no-gutters">

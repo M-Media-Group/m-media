@@ -205,6 +205,7 @@ class ScrapeInstagramAccount implements ShouldQueue
                 'is_private' => $data->private,
                 'is_verified' => $data->verified,
                 'user_id' => $user_id,
+                'created_at' => now(),
             ];
         }
         return compact('scraped_data', 'hashtags', 'locations', 'users', 'account', 'medias');

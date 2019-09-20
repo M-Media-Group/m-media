@@ -77,10 +77,10 @@ Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     ]);
 })->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/tools/instagram-account-debugger', function () {
+Route::get('/tools/instagram-account-analyzer', function () {
     return view('instagramAccountSelector');
 });
-Route::get('/tools/instagram-account-debugger/{username}', 'InstagramScrapeController@index')->middleware('throttle:10,1');
+Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeController@index')->middleware('throttle:10,1');
 
 Route::get('/tools/website-debugger/{username}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 

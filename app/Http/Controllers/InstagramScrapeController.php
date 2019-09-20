@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bot;
+use App\instagramAccount;
 use App\Jobs\ScrapeInstagramAccount;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -22,8 +23,12 @@ class InstagramScrapeController extends Controller
 
     public function index(Request $request, $username)
     {
-        $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null);
-        //return $data;
+        $scraped_data = instagramAccount::where('username', $username)->with('latestScrape')->first();
+        if (!isset($scraped_data->latestScrape)) {
+            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null);
+        } else {
+            $data = ['scraped_data' => $scraped_data->latestScrape, 'account' => $scraped_data];
+        }
         return view('instagramAccount', $data);
     }
 

@@ -27,8 +27,8 @@
                             {{ __('Account settings') }}
                     </a>
                     <hr class="mb-0 mt-0">
-                    <a href="/tools/instagram-account-debugger">
-                            {{ __('Instagram account debugger') }}
+                    <a href="/tools/instagram-account-analyzer">
+                            {{ __('Instagram account analyzer') }}
                     </a>
   {{--                   <a href="/tools/website-debugger">
                             {{ __('Website debugger') }}

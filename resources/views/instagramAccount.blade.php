@@ -173,6 +173,7 @@
         </table>
     </div>
 
+@if(!$account->is_scrapeable)
     <h2 class="mt-5 mb-0">Recent hashtags</h2>
     @if(isset($hashtags) && $hashtags)
     @foreach($hashtags as $hashtag)
@@ -231,4 +232,9 @@
              There's no recent posts to show. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
         </div>
     @endif
+@else
+    <div class="alert text-muted">
+         In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="mailto:contact@mmediagroup.fr">contact us</a>.
+    </div>
+@endif
 @endsection

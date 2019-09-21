@@ -89,7 +89,7 @@ Whether you're upgrading to a newer version of the bot or have switched systems 
                     ),
                     'value' => 0,
                     'type' => 'subscription',
-                    'text' => '€3',
+                    'text' => '€3 a month',
                 ),
             ),
             'subtext' => "Daily Instagram stats",

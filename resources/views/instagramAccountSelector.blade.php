@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12 text-muted">
-                        When you type in a username and press analyze, we will start daily collection of data to build a historical profile of the account. If you do not want us to store historical data, <a href="mailto:contact@mmediagroup.fr">contact us</a> first.
+                        When you type in a username and press analyze, we will start daily collection of data to build a historical profile of the account. If you do not want us to store historical data, <a href="/contact">contact us</a> first.
                     </div>
                 </div>
                 <div class="form-group row mb-0">

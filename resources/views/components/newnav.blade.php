@@ -9,6 +9,8 @@
            <a href="/print-media">Print Media</a>
  --}}            <hr class="mb-0 mt-0">
                 @guest
+                    <a href="/contact">Contact us</a>
+                    <hr class="mb-0 mt-0">
                     <a href="/login">Login</a>
                 @else
                     <a href="/notifications">
@@ -57,6 +59,8 @@
                             {{ __('Notify users') }}
                         </a>
                     @endcan
+                    <a href="/contact">Contact us</a>
+                    <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

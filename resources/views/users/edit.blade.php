@@ -30,11 +30,11 @@
 
     @if(!$user->primaryPhone)
 	    <div class="alert alert-danger text-muted">
-	         Please <a href="mailto:contact@mmediagroup.fr">contact us</a> to add your phone number and get full access to your M Media services.
+	         Please <a href="/contact">contact us</a> to add your phone number and get full access to your M Media services.
 	    </div>
     @endif
 		<div class="alert alert-info text-muted">
-			 Some settings, like your name, can not be modified by you. Something wrong? <a href="mailto:contact@mmediagroup.fr">Contact us</a>!
+			 Some settings, like your name, can not be modified by you. Something wrong? <a href="/contact">Contact us</a>!
 		</div>
 	<form action="/users/{{$user->id}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	  @csrf

@@ -1,10 +1,11 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('above_container')
-<div style="padding-top:15rem;">
-    <div class="action-section container mt-5">
-        <div>{{ __('Reset password') }}</div>
-
+<div class="header-section" style="background:#246EBA;">
+    <h1>{{ __('Reset Password') }}</h1>
+</div>
+<div >
+    <div class="action-section container">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -42,5 +43,8 @@
             <a href="/register">Don't have an account? Sign up!</a>
         </div> --}}
     </div>
+</div>
+<div class="header-section" style="background:#2565aa;">
+    <h2>Having trouble logging in? <a href="/contact">Contact us</a>!</h2>
 </div>
 @endsection

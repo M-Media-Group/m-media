@@ -74,6 +74,6 @@
     </div>
 </div>
 <div class="header-section" style="background:#2565aa;">
-    <h2>Don't have an account? <a href="mailto:contact@mmediagroup.fr">Contact us</a>!</h2>
+    <h2>Don't have an account? <a href="/contact">Contact us</a>!</h2>
 </div>
 @endsection

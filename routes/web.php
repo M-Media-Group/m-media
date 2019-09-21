@@ -27,9 +27,9 @@ Route::get('/instagram', function () {
 //     return new App\Mail\BotOffline();
 // });
 
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 #Route::get('/web-development', 'ProductController@webdev');
 

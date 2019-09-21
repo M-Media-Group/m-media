@@ -100,7 +100,7 @@ This service also comes free with our [Instagram content management](/instagram-
 
 
 ## Want us to stop recording your profile history?
-If your account is already being tracked and you do not want us to store any more historical data for your account, please [contact us](mailto:contact@mmediagroup.fr).",
+If your account is already being tracked and you do not want us to store any more historical data for your account, please [contact us](/contact).",
             'image' => array(
                 'url' => '/images/instagram-person-plus.svg',
             ),

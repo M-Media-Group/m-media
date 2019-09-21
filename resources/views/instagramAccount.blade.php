@@ -88,14 +88,6 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
-                    <th>ID</th>
-                    <td>{{ $account->id }}</td>
-                </tr>
-                <tr>
-                    <th>Instagram ID</th>
-                    <td>{{ $account->instagram_id }}</td>
-                </tr>
-                <tr>
                     <th>Username</th>
                     <td>{{ $scraped_data->username }}</td>
                 </tr>
@@ -167,8 +159,21 @@
                     <th>Times scraped</th>
                     <td>{{ $account->scrapes_count }}</td>
                 </tr>
-                <th>Qualifies for M Media services</th>
+                <tr>
+                    <th>Is being scraped</th>
+                    <td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Qualifies for M Media services</th>
                     <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ $account->id }}</td>
+                </tr>
+                <tr>
+                    <th>Instagram ID</th>
+                    <td>{{ $account->instagram_id }}</td>
                 </tr>
             </tbody>
         </table>

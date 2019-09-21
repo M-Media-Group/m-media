@@ -105,7 +105,8 @@
                     <th>Last scraped</th>
                     <td>{{ now()->diffForHumans() }}</td>
                 </tr>
-                <th>Qualifies for M Media services</th>
+                <tr>
+                    <th>Qualifies for M Media services</th>
                     <td class="text-{{ count($images) >= 3  ? 'muted' : 'primary' }}">{{ count($images) >= 3 ? 'Yes' : 'No' }}</td>
                 </tr>
             </tbody>

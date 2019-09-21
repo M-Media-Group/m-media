@@ -89,17 +89,14 @@ Whether you're upgrading to a newer version of the bot or have switched systems 
                     ),
                     'value' => 0,
                     'type' => 'subscription',
-                    'text' => 'Free',
+                    'text' => '€3',
                 ),
             ),
             'subtext' => "Daily Instagram stats",
-            'text' => "This free M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
+            'text' => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
 
 
-This service also comes standard with our [Instagram content management](/instagram-content-management) and [Instagram engagement](/instagram-engagement) services, and helps you understand how our other subscription services benefit you.
-
-
-To get started with this service, tap on the 'Start the analysis tool' button.
+This service also comes free with our [Instagram content management](/instagram-content-management) and [Instagram engagement](/instagram-engagement) services, and helps you understand how our other subscription services benefit your brand.
 
 
 ## Want us to stop recording your profile history?
@@ -107,9 +104,9 @@ If your account is already being tracked and you do not want us to store any mor
             'image' => array(
                 'url' => '/images/instagram-person-plus.svg',
             ),
-            'actions' => [
-                array('text' => 'Start the analysis tool', 'url' => '/tools/instagram-account-analyzer'),
-            ],
+            // 'actions' => [
+            //     array('text' => 'Start the analysis tool', 'url' => '/tools/instagram-account-analyzer'),
+            // ],
         );
 
         return view('product', $data);

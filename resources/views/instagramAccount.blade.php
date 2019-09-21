@@ -174,7 +174,7 @@
         </table>
     </div>
 
-@if(!$account->is_scrapeable)
+@if(!$account->is_scrapeable || (isset($hashtags) && $hashtags))
     <h2 class="mt-5 mb-0">Recent hashtags</h2>
     @if(isset($hashtags) && $hashtags)
     @foreach($hashtags as $hashtag)
@@ -272,32 +272,48 @@
     <div class="alert text-muted">
          In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="mailto:contact@mmediagroup.fr">contact us</a>.
     </div>
-
-    <h2 class="mt-5 mb-0">Instagram content management</h2>
-    @if(isset($buffer) && $buffer && (Auth::user() && (Auth::user()->id == $account->user_id || Auth::user()->id == config('blog.super_admin_id'))))
-        <div class="table-responsive table-hover">
-            <table class="table mb-0">
-                <tbody>
-                    <tr>
-                        <th>Future posts</th>
-                        <td>{{$buffer['counts']['pending']}}</td>
-                    </tr>
-                    <tr>
-                        <th>Published posts</th>
-                        <td>{{$buffer['counts']['sent']}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    @elseif(isset($buffer) && $buffer)
-        <div class="alert text-muted">
-             You don't have permission to see data about this service for this account.
-        </div>
-    @else
-        <div class="alert text-muted">
-             This account isn't linked to the <a href="/instagram-content-management">M Media Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
-        </div>
-    @endif
-
 @endif
+
+<h2 class="mt-5 mb-0">Instagram content management</h2>
+@if(isset($buffer) && $buffer && (Auth::user() && (Auth::user()->id == $account->user_id || Auth::user()->id == config('blog.super_admin_id'))))
+{{--         {{var_dump($buffer)}}
+--}}        <div class="table-responsive table-hover">
+        <table class="table mb-0">
+            <tbody>
+                @foreach($buffer['counts'] as $count => $key)
+                    @if($count != 'daily_suggestions' && $count != 'pending-story-groups-with-errors')
+                    <tr>
+                        <th>{{str_replace (["_", "-"], " ", ucfirst($count))}}</th>
+                        <td>{{number_format($key)}}</td>
+                    </tr>
+                    @endif
+                @endforeach
+
+                @foreach($buffer['schedules'] as $day)
+                    <tr>
+                        <th>{{ucfirst($day['days'][0] ?? 0)}} posting time</th>
+                        <td class="{{ isset($day['times'][0]) ? null : 'text-muted'}}">{{$day['times'][0] ?? "No posts"}}</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <th>Service type</th>
+                    <td>{{ucfirst($buffer['service_type'])}}</td>
+                </tr>
+                <tr>
+                    <th>Instagram Content Management service ID</th>
+                    <td>{{$account->buffer_id}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+@elseif(isset($buffer) && $buffer)
+    <div class="alert text-muted">
+         You don't have permission to see data about this service for this account.
+    </div>
+@else
+    <div class="alert text-muted">
+         This account isn't linked to the <a href="/instagram-content-management">M Media Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
+    </div>
+@endif
+
 @endsection

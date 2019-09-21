@@ -17,16 +17,18 @@ class ScrapeInstagramAccount implements ShouldQueue
 
     protected $username;
     protected $user;
+    protected $save;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($username, User $user = null)
+    public function __construct($username, User $user = null, $save = true)
     {
         $this->username = str_replace("@", "", $username);
         $this->user = $user;
+        $this->save = $save;
     }
 
     /**
@@ -162,7 +164,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             $avg_dataset_end = \Carbon\Carbon::parse(reset($data->medias)->date->date);
         }
 
-        if ($account->is_scrapeable) {
+        if ($account->is_scrapeable && $this->save == true) {
             $scraped_data = InstagramAccountScrape::create([
                 'instagram_account_id' => $account->id,
                 'username' => $data->userName,

@@ -24,8 +24,8 @@ class InstagramScrapeController extends Controller
     public function index(Request $request, $username)
     {
         $scraped_data = InstagramAccount::where('username', $username)->with(['latestScrape', 'scrapes'])->withCount('scrapes')->first();
-        if (!isset($scraped_data->latestScrape)) {
-            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null);
+        if (!isset($scraped_data->latestScrape) || $request->input('force') == true) {
+            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, !$request->input('force'));
             $data['account']->scrapes_count = 1;
         } else {
             $buffer_data = null;

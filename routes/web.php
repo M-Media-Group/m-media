@@ -39,6 +39,8 @@ Route::get('/instagram-engagement', 'ProductController@engagement');
 
 Route::get('/instagram-content-management', 'ProductController@contentCreation');
 
+Route::get('/instagram-account-analyzer', 'ProductController@instagramAnalysis');
+
 #Route::get('/product-packaging', 'ProductController@packaging');
 
 Route::get('/automation-bot', 'ProductController@bot');

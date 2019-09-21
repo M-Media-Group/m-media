@@ -5,8 +5,8 @@
 
 @section('above_container')
 <div class="header-section" style="background:#246EBA;">
-        <h1>{{ __('Instagram account analyzer') }}</h1>
-    </div>
+    <h1>{{ __('Instagram account analyzer') }}</h1>
+</div>
 <div>
     <div class="action-section container">
         <div class="mt-5">

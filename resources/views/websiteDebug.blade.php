@@ -33,6 +33,7 @@
     @if(count($images) < 5)
         <p class="mb-0 text-muted">To help your website convey a better message:</p>
         <p class="mb-0">- You currently have {{count($images)}} pictures on your website. Consider adding more photos to increase your engagement</p>
+        <p class="mb-0">- If you're lazy-loading images, consider having at least 5 that aren't lazy-loaded</p>
         <p>- Subscribe to our <a href="mailto:contact@mmediagroup.fr">Web Management service</a> to implement this solution automatically</p>
     @elseif(count($images) > 50)
         <p class="mb-0 text-muted">To help your website load faster:</p>
@@ -79,7 +80,13 @@
 
                 <tr>
                     <th>Detected Instagram account</th>
-                    <td><a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ (str_replace('/', '@', $instagram_account)) }}</a></td>
+                    <td>
+                        @if($instagram_account)
+                        <a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
+                        @else
+                        <span class="text-primary">No account detected</span>
+                        @endif
+                    </td>
                 </tr>
 
                 <th>Uses Google Analytics</th>
@@ -111,11 +118,11 @@
             <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media['src']}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{$media['src']}}" class="card-img" style="object-fit: scale-down;" alt="{{$media['alt']}}">
+                  <img src="{{$media['is_relative'] ? '//'.$parsed_url['path'].'/'.ltrim($media['src'], '/') : $media['src']}}" class="card-img" style="object-fit: scale-down;" alt="{{$media['alt']}}">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{{$media['alt']}}</h5>
+                    <h5 class="card-title">{{$media['alt'] ?? $media['src']}}</h5>
                   </div>
                 </div>
               </div>
@@ -123,7 +130,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's no pictures to show.
+             There's no pictures to show. M Media can only detect images that are have a clear "src" attribute in the HTML 'img' tag. If you're lazy-loading images, it's possible we can't detect them.
         </div>
     @endif
 

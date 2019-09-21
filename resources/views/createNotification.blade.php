@@ -4,10 +4,11 @@
 @section('meta_description', "This M Media tool will let admins notify M Media users." )
 
 @section('above_container')
-<div style="padding-top:15rem;">
-    <div class="action-section container mt-5">
-        <div>{{ __('Create a notification') }}</div>
-
+<div class="header-section" style="background:#246EBA;">
+    <h1>{{ __('Create a notification') }}</h1>
+</div>
+<div>
+    <div class="action-section container">
         <div class="mt-5">
             <form method="POST" action="/custom-notifications">
                 @csrf

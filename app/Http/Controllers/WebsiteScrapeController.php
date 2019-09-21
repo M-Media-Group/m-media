@@ -69,7 +69,19 @@ class WebsiteScrapeController extends Controller
             }
 
             foreach ($html->getElementsByTagName('img') as $meta) {
-                array_push($images, ['src' => $meta->getAttribute('src'), 'alt' => $meta->getAttribute('alt')]);
+                $img_parsed_url = parse_url($meta->getAttribute('src'));
+
+                if (!$meta->getAttribute('src')) {
+                    continue;
+                }
+
+                $is_relative = false;
+                if (!isset($img_parsed_url['host'])) {
+                    $is_relative = true;
+                } elseif ($img_parsed_url['host'] == $parsed_url['path']) {
+                    $is_relative = true;
+                }
+                array_push($images, ['src' => $meta->getAttribute('src'), 'alt' => trim($meta->getAttribute('alt')), 'is_relative' => $is_relative]);
                 if (preg_match("/wp-content\b/i", $meta->getAttribute('src'))) {
                     $is_wordpress = true;
                 }
@@ -83,7 +95,7 @@ class WebsiteScrapeController extends Controller
                 } elseif ($parsed_url_2['host'] == $parsed_url['path']) {
                     $is_internal = true;
                 }
-                array_push($links, ['src' => $meta->getAttribute('href'), 'value' => $meta->textContent, 'is_internal' => $is_internal, 'url' => $parsed_url_2]);
+                array_push($links, ['src' => trim($meta->getAttribute('href')), 'value' => trim($meta->textContent), 'is_internal' => $is_internal, 'url' => $parsed_url_2]);
                 #similar_text("Hello World","Hello Peter",$percent);
                 if (isset($parsed_url_2['host']) && $parsed_url_2['host'] == "instagram.com") {
                     #return similar_text($parsed_url_2['path'], $parsed_url['path']);

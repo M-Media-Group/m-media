@@ -4,10 +4,11 @@
 @section('meta_description', "Log in to comment, post articles, and interact with the community at ".config('app.name')."!")
 
 @section('above_container')
-<div style="padding-top:15rem;">
-    <div class="action-section container mt-5">
-        <div>{{ __('Login') }}</div>
-
+<div class="header-section" style="background:#246EBA;">
+    <h1>{{ __('Login') }}</h1>
+</div>
+<div>
+    <div class="action-section container">
         <div class="mt-5">
             <form method="POST" action="{{ route('login') }}">
                 @csrf

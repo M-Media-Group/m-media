@@ -27,5 +27,7 @@
         <a href="/register">Don't have an account? Sign up!</a>
     </div> --}}
 </div>
-
+<div class="header-section" style="background:#2565aa;">
+    <h2>Based in {{config('blog.area_name')}}, {{config('blog.country_name')}}.</h2>
+</div>
 @endsection

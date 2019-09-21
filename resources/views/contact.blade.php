@@ -23,7 +23,10 @@
     <div class="fb-customerchat"
         attribution=setup_tool
         page_id="1640199049612220"
-  theme_color="#eb4647">
+	  theme_color="#eb4647"
+	  greeting_dialog_display="show"
+	  logged_out_greeting="Chat with us using Facebook Messenger!"
+	  logged_in_greeting="Hey there! How can we help?">
     </div>
 @endsection
 

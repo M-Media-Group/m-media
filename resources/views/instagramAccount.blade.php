@@ -271,7 +271,7 @@
         </div>
     @else
         <div class="alert text-muted">
-             There's no recent posts to show. <a target="_BLANK" rel="noopener noreferrer" href="https://help.instagram.com/488619974671134">Learn how to post on the Instagram help page</a>.
+             There's no history to show.
         </div>
     @endif
     <div class="alert text-muted">

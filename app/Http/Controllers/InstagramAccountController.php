@@ -28,6 +28,22 @@ class InstagramAccountController extends Controller
 
         // $bot = Bot::findOrFail($id);
         $this->authorize('index', InstagramAccount::class);
+
+        $accounts = InstagramAccount::with('latestScrape', 'user')->get();
+        return view('instagramAccounts.index', compact('accounts'));
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function syncWithBuffer()
+    {
+
+        // $bot = Bot::findOrFail($id);
+        $this->authorize('index', InstagramAccount::class);
         try {
 
             $client = new Client();

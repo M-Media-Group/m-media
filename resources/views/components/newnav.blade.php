@@ -46,6 +46,11 @@
                             {{ __('Bots') }}
                         </a>
                     @endcan
+                    @can('index', App\InstagramAccount::class)
+                        <a href="/instagram-accounts">
+                            {{ __('Instagram accounts') }}
+                        </a>
+                    @endcan
                     @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}

@@ -34,14 +34,16 @@
 					<td>{{ $account->id }}</td>
 					<td>{{ $account->username }}</td>
 					<td><a href="https://publish.buffer.com/profile/{{ $account->buffer_id }}" target="_BLANK" rel="noopener noreferrer">{{ $account->buffer_id }}</a></td>
-					<td>{{ number_format($account->latestScrape->followers_count) }}</td>
-					<td>{{ number_format($account->latestScrape->following_count) }}</td>
-					@if(!$account->latestScrape->is_private)
-                        <td class="text-{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100, 1)}}%)</td>
-                    @else
-                        <td class="text-muted">Unknown, private account</td>
+					@if ($account->latestScrape)
+						<td>{{ number_format($account->latestScrape->followers_count) }}</td>
+						<td>{{ number_format($account->latestScrape->following_count) }}</td>
+						@if(!$account->latestScrape->is_private)
+	                        <td class="text-{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100, 1)}}%)</td>
+	                    @else
+	                        <td class="text-muted">Unknown, private account</td>
+	                    @endif
+	                    <td>{{ $account->latestScrape->created_at->diffForHumans() }}</td>
                     @endif
-                    <td>{{ $account->latestScrape->created_at->diffForHumans() }}</td>
 
 			{{-- 		<td class="text-{{ $account->is_active  ? 'success' : 'primary' }}">{{ $account->is_active  ? null : 'Offline' }}</td>
 					<td class="text-{{ $account->is_servicable  ? 'success' : 'primary' }}">{{ $account->is_servicable  ? null : 'Do not service' }} </td>

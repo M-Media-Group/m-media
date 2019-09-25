@@ -87,16 +87,19 @@ Whether you're upgrading to a newer version of the bot or have switched systems 
                         'symbol' => "€",
                         'ISO' => "EUR",
                     ),
-                    'value' => 0,
+                    'value' => 5,
                     'type' => 'subscription',
-                    'text' => '€3 a month',
+                    'text' => '€5 a month',
                 ),
             ),
             'subtext' => "Daily Instagram stats",
             'text' => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
 
 
-This service also comes free with our [Instagram content management](/instagram-content-management) and [Instagram engagement](/instagram-engagement) services, and helps you understand how our other subscription services benefit your brand.
+We'll also track your follower to following ratio, and your engagement health. You'll get daily M Media suggestions to improve your performance on Instagram.
+
+
+This service comes free with our [Instagram content management](/instagram-content-management) and [Instagram engagement](/instagram-engagement) services, and helps you understand how our other subscription services benefit your brand.
 
 
 ## Want us to stop recording your profile history?

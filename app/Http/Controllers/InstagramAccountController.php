@@ -102,9 +102,20 @@ class InstagramAccountController extends Controller
      * @param  \App\InstagramAccount  $instagramAccount
      * @return \Illuminate\Http\Response
      */
-    public function show(InstagramAccount $instagramAccount)
+    public function show(Request $request, InstagramAccount $instagramAccount)
     {
-        //
+        $scraped_data = $instagramAccount->load(['latestScrape', 'scrapes']);
+        $scraped_data->scrapes_count = count($scraped_data->scrapes);
+        $buffer_data = null;
+        if ($scraped_data->buffer_id && $request->user()) {
+            $client = new Client();
+            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles/' . $scraped_data->buffer_id . '.json?access_token=' . config('blog.buffer.access_token'));
+            $data = $response->getBody()->getContents();
+            $buffer_data = json_decode($data, true);
+        }
+        $data = ['scraped_data' => $scraped_data->latestScrape, 'account' => $scraped_data, 'buffer' => $buffer_data];
+
+        return view('instagramAccounts.show', $data);
     }
 
     /**

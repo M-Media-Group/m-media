@@ -58,7 +58,7 @@
             <tbody>
                 <tr>
                     <th>URL</th>
-                    <td><a target="_BLANK" rel="noopener noreferrer" href="{{ urlencode($parsed_url['path']) }}">{{ urlencode($parsed_url['path']) }}</a></td>
+                    <td><a target="_BLANK" rel="noopener noreferrer" href="{{ 'https://'.urlencode($parsed_url['path']) }}">{{ urlencode($parsed_url['path']) }}</a></td>
                 </tr>
                 <tr>
                     <th>Title</th>
@@ -82,7 +82,7 @@
                     <th>Detected Instagram account</th>
                     <td>
                         @if($instagram_account)
-                        <a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
+                        <a href="/tools/instagram-account-analyzer/{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
                         @else
                         <span class="text-primary">No account detected</span>
                         @endif

@@ -26,18 +26,11 @@ class InstagramScrapeController extends Controller
         $scraped_data = InstagramAccount::where('username', $username)->with(['latestScrape', 'scrapes'])->withCount('scrapes')->first();
         if (!isset($scraped_data->latestScrape) || $request->input('force') == true) {
             $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, !$request->input('force'));
-            $data['account']->scrapes_count = 1;
-        } else {
-            $buffer_data = null;
-            if ($scraped_data->buffer_id && $request->user()) {
-                $client = new Client();
-                $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles/' . $scraped_data->buffer_id . '.json?access_token=' . config('blog.buffer.access_token'));
-                $data = $response->getBody()->getContents();
-                $buffer_data = json_decode($data, true);
-            }
-            $data = ['scraped_data' => $scraped_data->latestScrape, 'account' => $scraped_data, 'buffer' => $buffer_data];
+            //$data['account']->scrapes_count = 1;
+            return redirect('/instagram-accounts/' . $data['account']['id']);
         }
-        return view('instagramAccount', $data);
+        return redirect('/instagram-accounts/' . $scraped_data->id);
+
     }
 
     /**

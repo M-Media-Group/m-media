@@ -43,6 +43,7 @@ class WebsiteScrapeController extends Controller
             $emails = [];
             $h1s = [];
             $title = null;
+            $image = null;
             $description = null;
             $instagram_account = null;
             $uses_google_analytics = false;
@@ -59,6 +60,13 @@ class WebsiteScrapeController extends Controller
                 //If the property attribute of the meta tag is og:image
 
                 //$meta_tags[] .= $meta->nodeName;
+                if ($meta->getAttribute('name') == 'description') {
+                    $description = $meta->getAttribute('content');
+                }
+
+                if ($meta->getAttribute('property') == 'og:image') {
+                    $image = $meta->getAttribute('content');
+                }
 
                 foreach ($meta->attributes as $attr) {
                     $name = $attr->nodeName;
@@ -117,7 +125,7 @@ class WebsiteScrapeController extends Controller
                     $uses_google_tag_manager = true;
                 }
             }
-            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress'));
+            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress', 'image'));
             return json_encode($links);
         } catch (Exception $e) {
             return $e;

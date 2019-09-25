@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->with('primaryPhone')->firstOrFail();
+        $user = User::where('id', $id)->with('primaryPhone', 'instagramAccounts', 'websites')->firstOrFail();
         $this->authorize('show', $user);
         return view('users.show', ['user' => $user]);
 

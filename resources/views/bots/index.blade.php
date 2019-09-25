@@ -22,14 +22,13 @@
 				   <th>Serviceable</th>
 				   <th>User</th>
 				   <th>Last contact</th>
-				   <th>Edit</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach ($bots->where('service_title', 'Bulk Service')->sortByDesc('last_contact_at') as $bot)
 				<tr>
 
-					<td>{{ $bot->id }}</td>
+					<td><a href="/bots/{{ $bot->id }}">{{ $bot->id }}</a></td>
 					<td>{{ $bot->alias }}</td>
 					<td>{{ $bot->address }}</td>
 					<td>{{ $bot->last_ip }}</td>
@@ -39,7 +38,6 @@
 					<td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">{{ $bot->is_servicable  ? null : 'Do not service' }} </td>
 					<td class="text-{{ !$bot->user  ? 'primary' : null }}">{!! $bot->user ? '<a href="/users/'.$bot->user->id.'">'.$bot->user->name."</a>" : 'No owner' !!}</td>
 					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
-					<td><a href="/bots/{{ $bot->id }}">View</a></td>
 				</tr>
 			@endforeach
 			</tbody>

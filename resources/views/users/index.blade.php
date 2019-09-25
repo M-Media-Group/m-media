@@ -22,13 +22,12 @@
 				   <th>Stripe ID</th>
 				   <th>Devices</th>
 				   <th>Seen</th>
-				   <th>View</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach ($users->sortByDesc('seen_at') as $user)
 				<tr>
-					<td>{{ $user->id }}</td>
+					<td><a href="/users/{{ $user->id }}">{{ $user->id }}</a></td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->surname }}</td>
 					<td><a class="{{ $user->email_verified_at  ? null : 'text-primary' }}" href="mailto:{{$user->email}}">{{$user->email}}{{ $user->email_verified_at  ? null : ' (Unverified)' }}</a></td>
@@ -36,7 +35,6 @@
 					<td class="{{ $user->stripe_id ? null : 'text-primary' }}"><a target="_BLANK" rel="noopener noreferrer" {!! $user->stripe_id ? 'href="https://dashboard.stripe.com/customers/'.$user->stripe_id.'"' : null !!}>{{ $user->stripe_id  ? $user->stripe_id : 'No Stripe ID' }}</a></td>
 					<td class="text-{{ $user->bots_count == 0  ? 'primary' : 'muted'}}">{{ $user->bots_count }}</td>
 					<td class="text-{{ now()->diffInDays( $user->seen_at ) > 30  ? 'primary' : 'muted'}}">{{ $user->seen_at->diffForHumans() }}</td>
-					<td><a href="/users/{{ $user->id }}">View</a></td>
 				</tr>
 			@endforeach
 			</tbody>

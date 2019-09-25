@@ -54,6 +54,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\File');
     }
 
+    public function websites()
+    {
+        return $this->hasMany('App\Website');
+    }
+
     public function avatar()
     {
         return $this->hasOne('App\File', 'id', 'avatar_file_id');

@@ -75,4 +75,55 @@
             {{ __('Edit') }}
         </a>
     @endcan
+    <h2 class="mt-5 mb-0">Instagram profiles</h2>
+	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>ID</th>
+					   <th>Username</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($user->instagramAccounts as $account)
+				<tr>
+					<td>{{ $account->id }}</td>
+					<td><a href="/tools/instagram-account-analyzer/{{ $account->username }}">{{ '@'.$account->username }}</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no Instagram profiles associated with your account.
+		</div>
+	@endif
+
+<h2 class="mt-5 mb-0">Websites</h2>
+	@if($user->websites && count($user->websites) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>ID</th>
+					   <th>Username</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($user->websites as $website)
+				<tr>
+					<td>{{ $website->id }}</td>
+					<td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no websites associated with your account.
+		</div>
+	@endif
 @endsection

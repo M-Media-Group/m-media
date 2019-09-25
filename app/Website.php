@@ -13,4 +13,9 @@ class Website extends Model
         'port',
         'is_scrapeable',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

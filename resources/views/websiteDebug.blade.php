@@ -82,7 +82,7 @@
                     <th>Detected Instagram account</th>
                     <td>
                         @if($instagram_account)
-                        <a href="/tools/instagram-account-analyzer/{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
+                        <a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
                         @else
                         <span class="text-primary">No account detected</span>
                         @endif

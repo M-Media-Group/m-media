@@ -16,6 +16,7 @@
 				   <th>Username</th>
 				   <th>Buffer ID</th>
 				   <th>Is scrapeable</th>
+				   <th>User</th>
 				   <th>Followers</th>
 				   <th>Following</th>
 				   <th>Engagement health</th>
@@ -36,6 +37,12 @@
 					<td>{{ $account->username }}</td>
 					<td><a href="https://publish.buffer.com/profile/{{ $account->buffer_id }}" target="_BLANK" rel="noopener noreferrer">{{ $account->buffer_id }}</a></td>
 					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
+
+						@if($account->user)
+	                        <td class="text-muted"><a href="/users/{{$account->user->id}}">{{$account->user->name}}</a></td>
+	                    @else
+	                        <td class="text-primary">No owner</td>
+	                    @endif
 					@if ($account->latestScrape)
 						<td>{{ number_format($account->latestScrape->followers_count) }}</td>
 						<td>{{ number_format($account->latestScrape->following_count) }}</td>

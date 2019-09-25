@@ -89,6 +89,17 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <th>Detected Facebook page</th>
+                    <td>
+                        @if($facebook_account)
+                        <a rel="noopener noreferrer" href="https://facebook.com{{$facebook_account}}">{{ str_replace('/', '', $facebook_account) }}</a>
+                        @else
+                        <span class="text-primary">No account detected</span>
+                        @endif
+                    </td>
+                </tr>
+
                 <th>Uses Google Analytics</th>
                     <td class="text-{{ $uses_google_analytics  ? 'muted' : 'primary' }}">{{ $uses_google_analytics ? 'Yes' : 'No' }}</td>
                 </tr>

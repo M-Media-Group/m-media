@@ -46,6 +46,7 @@ class WebsiteScrapeController extends Controller
             $image = null;
             $description = null;
             $instagram_account = null;
+            $facebook_account = null;
             $uses_google_analytics = false;
             $uses_google_tag_manager = false;
             $is_wordpress = false;
@@ -109,7 +110,10 @@ class WebsiteScrapeController extends Controller
                     #return similar_text($parsed_url_2['path'], $parsed_url['path']);
                     #return levenshtein($parsed_url_2['path'], $title);
                     $instagram_account = $parsed_url_2['path'];
+                } else if (isset($parsed_url_2['host']) && ($parsed_url_2['host'] == "facebook.com" || $parsed_url_2['host'] == "fb.me")) {
+                    $facebook_account = $parsed_url_2['path'];
                 }
+
             }
 
             foreach ($html->getElementsByTagName('h1') as $meta) {
@@ -125,7 +129,7 @@ class WebsiteScrapeController extends Controller
                     $uses_google_tag_manager = true;
                 }
             }
-            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress', 'image'));
+            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'facebook_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress', 'image'));
             return json_encode($links);
         } catch (Exception $e) {
             return $e;

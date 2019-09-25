@@ -33,7 +33,7 @@
 			@foreach ($accounts->sortByDesc('created_at') as $account)
 				<tr>
 
-					<td>{{ $account->id }}</td>
+					<td><a href="/instagram-accounts/{{ $account->id }}">{{ $account->id }}</a></td>
 					<td>{{ $account->username }}</td>
 					<td><a href="https://publish.buffer.com/profile/{{ $account->buffer_id }}" target="_BLANK" rel="noopener noreferrer">{{ $account->buffer_id }}</a></td>
 					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>

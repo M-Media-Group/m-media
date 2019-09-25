@@ -106,11 +106,11 @@ class WebsiteScrapeController extends Controller
                 }
                 array_push($links, ['src' => trim($meta->getAttribute('href')), 'value' => trim($meta->textContent), 'is_internal' => $is_internal, 'url' => $parsed_url_2]);
                 #similar_text("Hello World","Hello Peter",$percent);
-                if (isset($parsed_url_2['host']) && $parsed_url_2['host'] == "instagram.com") {
+                if (isset($parsed_url_2['host']) && str_replace('www.', '', $parsed_url_2['host']) == "instagram.com") {
                     #return similar_text($parsed_url_2['path'], $parsed_url['path']);
                     #return levenshtein($parsed_url_2['path'], $title);
-                    $instagram_account = $parsed_url_2['path'];
-                } else if (isset($parsed_url_2['host']) && ($parsed_url_2['host'] == "facebook.com" || $parsed_url_2['host'] == "fb.me")) {
+                    $instagram_account = str_replace('/', '', $parsed_url_2['path']);
+                } else if (isset($parsed_url_2['host']) && (str_replace('www.', '', $parsed_url_2['host']) == "facebook.com" || str_replace('www.', '', $parsed_url_2['host']) == "fb.me")) {
                     $facebook_account = $parsed_url_2['path'];
                 }
 

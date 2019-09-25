@@ -82,7 +82,7 @@
                     <th>Detected Instagram account</th>
                     <td>
                         @if($instagram_account)
-                        <a href="/tools/instagram-account-analyzer{{$instagram_account}}">{{ str_replace('/', '@', $instagram_account) }}</a>
+                        <a href="/tools/instagram-account-analyzer/{{$instagram_account}}">{{ '@'.$instagram_account }}</a>
                         @else
                         <span class="text-primary">No account detected</span>
                         @endif
@@ -93,7 +93,7 @@
                     <th>Detected Facebook page</th>
                     <td>
                         @if($facebook_account)
-                        <a rel="noopener noreferrer" href="https://facebook.com{{$facebook_account}}">{{ str_replace('/', '', $facebook_account) }}</a>
+                        <a target="_BLANK" rel="noopener noreferrer" href="https://facebook.com{{$facebook_account}}">{{ str_replace('/', '', $facebook_account) }}</a>
                         @else
                         <span class="text-primary">No account detected</span>
                         @endif
@@ -130,7 +130,7 @@
             <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media['src']}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{$media['is_relative'] ? '//'.$parsed_url['path'].'/'.ltrim($media['src'], '/') : $media['src']}}" class="card-img" style="object-fit: scale-down;" alt="{{$media['alt']}}">
+                  <img src="{{$media['is_relative'] ? '//'.$parsed_url['path'].'/'.str_replace('../', '', ltrim($media['src'], '/')) : $media['src']}}" class="card-img" style="object-fit: scale-down;" alt="{{$media['alt']}}">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">

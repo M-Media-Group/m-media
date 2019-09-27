@@ -104,6 +104,8 @@ Route::get('users/{id}/invoices', 'UserController@invoices')->middleware('auth')
 
 Route::resource('roles', 'RoleController')->middleware('auth');
 Route::resource('bots', 'BotController')->middleware('auth');
+Route::resource('files', 'FileController')->middleware('auth');
+
 Route::get('bots/{id}/connect', 'BotController@connect')->middleware('auth');
 Route::get('bots/{id}/contact-user', 'BotController@contactUser')->middleware('auth');
 

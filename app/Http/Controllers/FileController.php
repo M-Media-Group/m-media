@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\File;
-use DB;
 use Illuminate\Http\Request;
+use Storage;
 
 class FileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['verified', 'optimizeImages']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,11 +21,11 @@ class FileController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->is('api*')) {
-            return File::with('category')->get();
-        } else {
-            return view('map');
-        }
+        $this->authorize('index', File::class);
+        //$files = Storage::allFiles('/');
+        $files = File::get();
+
+        return view('files.index', compact('files'));
     }
 
     /**
@@ -29,7 +35,8 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', File::class);
+        return view('files.create');
     }
 
     /**
@@ -40,29 +47,26 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //$this->authorize('create', File::class);
-        $validatedData = $request->validate([
-            'category' => 'required|exists:categories,id',
-            'lat' => 'required',
-            'lng' => 'required',
+        $this->authorize('create', File::class);
+        $request->validate([
+            'file' => 'file',
+            'title' => 'unique:files,name',
+            'public' => 'boolean',
         ]);
-
-        $location = DB::raw("(GeomFromText('POINT(" . $request->lat . " " . $request->lng . ")'))");
-
-        $result = new File(
-            [
-                'location' => $location,
-                'category_id' => $request->input('category'),
-                'user_id' => $request->user()->id,
-            ]
-        );
-        $result->save();
-
-        if ($request->is('api*')) {
-            return $result;
-        } else {
-            return back();
-        }
+        $path = Storage::putFile('files/' . ($request->user()->id ?? 'default'), $request->file, $request->input('public') ?? 'private');
+        $request->merge([
+            'name' => $request->input('title') ?? $request->file->getClientOriginalName(),
+            'url' => $path,
+            'extension' => $request->file->extension(),
+            //'type' => $request->file->type(),
+            'mimeType' => $request->file->getMimeType(),
+            'size' => $request->file->getSize(),
+            'user_id' => $request->user()->id ?? null,
+        ]);
+        //return $request;
+        $file = File::create($request->only('name', 'url', 'extension', 'mimeType', 'size', 'user_id'));
+        //return $file;
+        return back()->with('success', 'Your file h as been successfully uploaded');
     }
 
     /**
@@ -73,20 +77,7 @@ class FileController extends Controller
      */
     public function show(Request $request, File $qr)
     {
-        if (!$request->user()) {
-            $user_id = null;
-        } else {
-            $user_id = $request->user()->id;
-        }
-        \App\FileView::create(
-            [
-                "File_id" => $qr->id,
-                "user_id" => $user_id,
-                "ip" => $request->ip(),
-            ]
-        );
-        $query_parameters = ['utm_source' => 'real_world', 'utm_medium' => 'File', 'utm_campaign' => 'website_Files', 'utm_content' => $qr->id];
-        return redirect($qr->redirect_to . '?' . http_build_query($query_parameters));
+
     }
 
     /**
@@ -118,8 +109,9 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(File $file)
     {
-        //
+        $this->authorize('delete', File::class);
+        Storage::delete($file->getOriginal('url'));
     }
 }

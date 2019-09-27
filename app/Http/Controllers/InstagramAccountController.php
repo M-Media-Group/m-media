@@ -86,6 +86,16 @@ class InstagramAccountController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createPost()
+    {
+        return view('instagramAccounts.createPost');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -94,6 +104,25 @@ class InstagramAccountController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storePost(Request $request)
+    {
+        $data = [
+            'profile_ids' => [$request->input('profile_id')],
+            'text' => $request->input('text'),
+            'shorten' => false,
+            'media' => [
+                'photo' => $request->input('url'),
+            ],
+        ];
+
     }
 
     /**

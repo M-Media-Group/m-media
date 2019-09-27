@@ -51,6 +51,11 @@
                             {{ __('Instagram accounts') }}
                         </a>
                     @endcan
+                    @can('index', App\File::class)
+                        <a href="/files">
+                            {{ __('Files') }}
+                        </a>
+                    @endcan
                     @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}
@@ -62,6 +67,11 @@
                     @can('create custom notifications')
                         <a href="/custom-notifications/create">
                             {{ __('Notify users') }}
+                        </a>
+                    @endcan
+                    @can('create', App\File::class)
+                        <a href="/files/create">
+                            {{ __('Upload files') }}
                         </a>
                     @endcan
                     <a href="/contact">Contact us</a>

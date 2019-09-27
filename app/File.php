@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class File extends Model
 {
@@ -26,6 +27,14 @@ class File extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function getUrlAttribute()
+    {
+        if (config('filesystems.default') != 's3') {
+            return Storage::url($this->getOriginal('url'));
+        }
+        return $this->is_public ? Storage::url($this->getOriginal('url')) : Storage::temporaryUrl($this->getOriginal('url'), now()->addMinutes(5));
     }
 
 }

@@ -66,7 +66,7 @@ class FileController extends Controller
         //return $request;
         $file = File::create($request->only('name', 'url', 'extension', 'mimeType', 'size', 'user_id'));
         //return $file;
-        return back()->with('success', 'Your file h as been successfully uploaded');
+        return back()->with('success', 'Thanks for sending us your file!');
     }
 
     /**

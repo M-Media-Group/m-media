@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
 
 class File extends Model
 {
+    //use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *

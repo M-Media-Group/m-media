@@ -36,8 +36,23 @@ class FilePolicy
      */
     public function show(User $user, File $file)
     {
-        if ($file->user) {
-            return $user->id === $file->user->id;
+        if ($file->user_id) {
+            return $user->id == $file->user_id;
+        }
+        return false;
+    }
+
+    /**
+     * Determine whether the user can update the file.
+     *
+     * @param  \App\User  $user
+     * @param  \App\File  $file
+     * @return mixed
+     */
+    public function update(User $user, File $file)
+    {
+        if ($file->user_id) {
+            return $user->id == $file->user_id;
         }
         return false;
     }
@@ -54,33 +69,6 @@ class FilePolicy
     }
 
     /**
-     * Determine whether the user can update the file.
-     *
-     * @param  \App\User  $user
-     * @param  \App\File  $file
-     * @return mixed
-     */
-    public function update(User $user, File $file)
-    {
-        if ($file->user) {
-            return $user->id === $file->user->id;
-        }
-        return false;
-    }
-
-    /**
-     * Determine whether the user can update the file.
-     *
-     * @param  \App\User  $user
-     * @param  \App\File  $file
-     * @return mixed
-     */
-    public function connectToFile(User $user, File $file)
-    {
-        return $user->can('connect to files');
-    }
-
-    /**
      * Determine whether the user can delete the file.
      *
      * @param  \App\User  $user
@@ -89,10 +77,11 @@ class FilePolicy
      */
     public function delete(User $user, File $file)
     {
-        if ($file->user) {
-            return $user->id === $file->user->id;
+        if ($file->user_id) {
+            return $user->id == $file->user_id;
         }
-        return $user->can('manage files');
+        return false;
+        //return $user->can('manage files');
     }
 
     /**

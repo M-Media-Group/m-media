@@ -20,10 +20,10 @@
     </div>
     @endif
     <h2 class="mt-5 mb-0">Account suggestions</h2>
-    <p>M Media suggests the following actions to your account to improve your Instagram performance.</p>
+    <p>{{config('app.name')}} suggests the following actions to your account to improve your Instagram performance.</p>
 
     @if($scraped_data->is_private)
-        <p class="mb-0 text-muted">To help M Media debug your account and reach more people:</p>
+        <p class="mb-0 text-muted">To help {{config('app.name')}} debug your account and reach more people:</p>
         <p class="mb-0">- Make your account public by switching off 'Private Account' in your Instagram settings</p>
         <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
     @endif
@@ -73,11 +73,11 @@
     @if(!$scraped_data->external_url)
         <p class="mb-0 text-muted">To help get more people to your website:</p>
         <p class="mb-0">- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
-        <p>- Subscribe to any <a href="/instagram">M Media Instagram service</a> and we'll do this for you</p>
+        <p>- Subscribe to any <a href="/instagram">{{Config('app.name')}} Instagram service</a> and we'll do this for you</p>
     @endif
 
     @if($scraped_data->followers_count <= 100 || $scraped_data->media_count < 3)
-        <p class="mb-0 text-muted">To qualify for M Media Instagram services:</p>
+        <p class="mb-0 text-muted">To qualify for {{Config('app.name')}} Instagram services:</p>
         <p class="mb-0">- Post at least 3 posts on your Instagram account</p>
         <p class="mb-0">- Make sure your Instagram account is not set to private</p>
         <p>- Gain at least 100 followers by sharing your Instagram account with friends, family, and customers</p>
@@ -164,7 +164,7 @@
                     <td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
-                    <th>Qualifies for M Media services</th>
+                    <th>Qualifies for {{Config('app.name')}} services</th>
                     <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
@@ -219,7 +219,7 @@
             <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="{{$media->link}}">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{$media->displaySrc}}" class="card-img" style="object-fit: scale-down;" alt="M Media Marketing Bot">
+                  <img src="{{$media->displaySrc}}" class="card-img" style="object-fit: scale-down;" alt="{{Config('app.name')}} Marketing Bot">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -280,7 +280,7 @@
 @endif
 
 <h2 class="mt-5 mb-0">Instagram content management</h2>
-@if(isset($buffer) && $buffer && (Auth::user() && (Auth::user()->id == $account->user_id || Auth::user()->id == config('blog.super_admin_id'))))
+@if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
 {{--         {{var_dump($buffer)}}
 --}}        <div class="table-responsive table-hover">
         <table class="table mb-0">
@@ -317,7 +317,7 @@
     </div>
 @else
     <div class="alert text-muted">
-         This account isn't linked to the <a href="/instagram-content-management">M Media Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
+         This account isn't linked to the <a href="/instagram-content-management">{{Config('app.name')}} Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
     </div>
 @endif
 

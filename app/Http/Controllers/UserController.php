@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->with('primaryPhone', 'instagramAccounts', 'websites')->firstOrFail();
+        $user = User::where('id', $id)->with('primaryPhone', 'instagramAccounts', 'websites', 'files')->firstOrFail();
         $this->authorize('show', $user);
         return view('users.show', ['user' => $user]);
 
@@ -72,19 +72,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country', 'instagramAccounts')->firstOrFail();
+        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country')->firstOrFail();
         $this->authorize('update', $user);
 
-        $pmethod = [];
-        $subscriptions = [];
-        if ($user->stripe_id) {
-            $pmethod = $user->paymentMethods();
-            $subscriptions = $user->asStripeCustomer()->subscriptions;
-        }
         $roles = Role::get();
 
         #return $user;
-        return view('users.edit', compact('user', 'roles', 'pmethod', 'subscriptions'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -113,13 +107,19 @@ class UserController extends Controller
         $user = User::where('id', urldecode($id))->firstOrFail();
         $this->authorize('show', $user);
 
+        $pmethod = [];
         $invoices = [];
+        $subscriptions = [];
+        if ($user->stripe_id) {
+            $pmethod = $user->paymentMethods();
+            $subscriptions = $user->asStripeCustomer()->subscriptions;
+        }
         if ($user->stripe_id) {
             $invoices = $user->invoices();
         }
 
         #return $user;
-        return view('users.invoices', compact('user', 'invoices'));
+        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod'));
     }
 
     /**

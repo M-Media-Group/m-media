@@ -49,7 +49,7 @@ class FileController extends Controller
     {
         $this->authorize('create', File::class);
         $request->validate([
-            'file' => 'file|max:976562',
+            'file' => 'required|file|max:976562',
             'title' => 'unique:files,name',
             'public' => 'boolean',
         ]);
@@ -57,9 +57,9 @@ class FileController extends Controller
         $request->merge([
             'name' => $request->input('title') ?? $request->file->getClientOriginalName(),
             'url' => $path,
-            'extension' => $request->file->extension(),
+            'extension' => $request->file->getMimeType() == "image/svg" ? "svg" : $request->file->extension(),
             //'type' => $request->file->type(),
-            'mimeType' => $request->file->getMimeType(),
+            'mimeType' => $request->file->getMimeType() == "image/svg" ? "image/svg+xml" : $request->file->getMimeType(),
             'size' => $request->file->getSize(),
             'user_id' => $request->user()->id ?? null,
         ]);
@@ -75,9 +75,11 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, File $qr)
+    public function show(Request $request, File $file)
     {
-
+        //return $file;
+        $this->authorize('show', $file);
+        return view('files.show', compact('file'));
     }
 
     /**
@@ -98,9 +100,10 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, File $file)
     {
         //
+        $this->authorize('update', $file);
     }
 
     /**
@@ -111,7 +114,9 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        $this->authorize('delete', File::class);
+        $this->authorize('delete', $file);
         Storage::delete($file->getOriginal('url'));
+        $file->delete();
+        return "Successfully deleted file";
     }
 }

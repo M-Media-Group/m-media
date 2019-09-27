@@ -56,7 +56,7 @@ class BotOnline extends Notification implements ShouldQueue
     {
         return [
             'title' => "Your bot is online",
-            'message' => "Your bot has reconnected to our servers! Check the status of your bot on the 'My bots' page.",
+            'message' => "Your bot has reconnected to our servers! Check the status of your bot on the 'Your bots' page.",
             'action' => url(config('app.url') . "/my-bots"),
         ];
     }

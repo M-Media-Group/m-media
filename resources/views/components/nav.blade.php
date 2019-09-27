@@ -43,7 +43,7 @@
                                     {{ __('Create roles') }}
                                 </a>
                             @endcan
-                            <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">
+                            <a class="dropdown-item" href="/users/{{ Auth::id() }}/edit">
                                     {{ __('Account settings') }}
                                 </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"

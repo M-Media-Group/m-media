@@ -3,7 +3,7 @@
 @section('above_container')
 	<div class="header-section" style="background:#246EBA;">
 		<h1>Files</h1>
-		<h2>M Media Files</h2>
+		<h2>{{config('app.name')}} Files</h2>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">All files</h2>
@@ -30,12 +30,12 @@
 				<tr>
 
 					<td><a href="/files/{{ $file->id }}">{{ $file->id }}</a></td>
-					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 150px;" alt="{{ $file->name }}"></td>
+					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 100px;" alt="{{ $file->name }}"></td>
 					<td>{{ $file->name }}</td>
 					<td>{{ $file->extension }}</td>
 					<td>{{ $file->mimeType }}</td>
 					<td>{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
-					<td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">Link</a></td>
+					<td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
 
 					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes' : 'No' }} </td>
 					<td class="text-{{ !$file->user  ? 'primary' : null }}">{!! $file->user ? '<a href="/users/'.$file->user->id.'">'.$file->user->name."</a>" : 'No owner' !!}</td>
@@ -47,7 +47,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your {{config('app.name')}} account, you access more and better services via phone, and ensure more security over your account.
 		</div>
 	@endif
 </div>

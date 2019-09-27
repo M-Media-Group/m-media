@@ -3,7 +3,7 @@
 @section('above_container')
 	<div class="header-section" style="background:#246EBA;">
 		<h1>Instagram Accounts</h1>
-		<h2>M Media Instagram Accounts</h2>
+		<h2>{{config('app.name')}} Instagram Accounts</h2>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">All accounts</h2>
@@ -66,7 +66,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your M Media account, you access more and better services via phone, and ensure more security over your account.
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your {{config('app.name')}} account, you access more and better services via phone, and ensure more security over your account.
 		</div>
 	@endif
 </div>

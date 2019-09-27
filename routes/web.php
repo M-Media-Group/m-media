@@ -74,8 +74,8 @@ Auth::routes(['register' => false, 'verify' => true]);
 
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => 'M Media',
-        'product' => 'M Media Goods and Services',
+        'vendor' => config('app.name'),
+        'product' => config('app.name') . ' goods and services',
     ]);
 })->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -98,7 +98,11 @@ Route::resource('instagram-accounts', 'InstagramAccountController')->middleware(
 
 Route::get('my-bots', 'UserController@myBots')->middleware('auth');
 
-Route::get('users/{id}/invoices', 'UserController@invoices')->middleware('auth');
+Route::get('/users/{id}/invoices', function ($id) {
+    return Redirect::to('/users/' . $id . '/billing', 301);
+});
+
+Route::get('users/{id}/billing', 'UserController@invoices')->middleware('auth');
 
 #Route::post('me/apply/reporter', 'UserController@applyForReporter');
 

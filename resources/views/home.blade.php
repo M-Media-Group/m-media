@@ -10,7 +10,7 @@
 @section('content')
     <h2 class="mt-5 mb-0">Home</h2>
     <div class="card-columns">
-        <a class="action-section card mb-5 mt-5 round-all-round text-center text-white bg-primary" href="/users/{{Auth::id()}}/invoices">
+        <a class="action-section card mb-5 mt-5 round-all-round text-center text-white bg-primary" href="/users/{{Auth::id()}}/billing">
               <div class="card-body">
                 <h5 class="card-title">Manage invoices</h5>
               </div>

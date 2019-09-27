@@ -14,7 +14,7 @@
     @if(!$user->email_verified_at)
 	    <div class="alert alert-danger text-muted">
 	         Please verify your email address for full access to your account.
-	         @if(Auth::user()->id == $user->id)
+	         @if(Auth::id() == $user->id)
 	         	If you did not receive the email, <a href="/email/resend">click here to request another</a>.
 	         @endif
 	    </div>
@@ -22,7 +22,7 @@
 
     @if(!$user->primaryPhone)
 	    <div class="alert alert-danger text-muted">
-	         Please <a href="/contact">contact us</a> to add your phone number and get full access to your M Media services.
+	         Please <a href="/contact">contact us</a> to add your phone number and get full access to your {{config('app.name')}} services.
 	    </div>
     @endif
 
@@ -45,11 +45,7 @@
 	            </tr>
 	            <tr>
 	                <th>Email</th>
-	                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-	            </tr>
-	            <tr>
-	                <th>Email verified</th>
-	                <td>{{ $user->email_verified_at ? $user->email_verified_at->diffForHumans() : "Email not verified" }}</td>
+	                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a> <small>({{ $user->email_verified_at ? 'Verified '.$user->email_verified_at->diffForHumans() : "Email not verified" }})</small></td>
 	            </tr>
 	            @if($user->primaryPhone)
 		            <tr>
@@ -116,6 +112,33 @@
 				<tr>
 					<td>{{ $website->id }}</td>
 					<td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 There's currently no websites associated with your account.
+		</div>
+	@endif
+<h2 class="mt-5 mb-0">Files</h2>
+	@if($user->files && count($user->files) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>Preview</th>
+					   <th>Name</th>
+					   <th>Public</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($user->files as $file)
+				<tr>
+                    <td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 30px;" alt="{{ $file->name }}"></td>
+					<td><a href="/files/{{ $file->id }}">{{ $file->name }}</a></td>
+					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes' : 'No' }} </td>
 				</tr>
 			@endforeach
 			</tbody>

@@ -108,7 +108,7 @@
             <td>
                 <!-- Invoice Info -->
                 <p>
-                    <strong>Product:</strong> {{ $product ? $product : 'M Media Goods and Services' }}<br>
+                    <strong>Product:</strong> {{ $product ? $product : config('app.name') . ' goods and services' }}<br>
                     <strong>Invoice Number:</strong> {{ $id ?? $invoice->id }}<br>
                 </p>
 

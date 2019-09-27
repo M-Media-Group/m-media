@@ -49,7 +49,7 @@ class FileController extends Controller
     {
         $this->authorize('create', File::class);
         $request->validate([
-            'file' => 'file',
+            'file' => 'file|max:976562',
             'title' => 'unique:files,name',
             'public' => 'boolean',
         ]);

@@ -19,8 +19,10 @@ class CreateTopicsTable extends Migration
             $table->text('description')->nullable();
             $table->string('slug');
             $table->string('hashtag');
-            $table->boolean('is_nsfw')->default(0);
-            $table->boolean('sentiment')->nullable();
+            #PERSON or PLACE or ORGANIZATION etc
+            $table->string('type')->nullable();
+            $table->boolean('is_nsfw')->nullable();
+            $table->tinyInteger('sentiment')->nullable();
             $table->timestamps();
         });
     }

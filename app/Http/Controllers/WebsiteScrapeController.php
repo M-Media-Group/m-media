@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DonatelloZa\RakePlus\RakePlus;
 use Illuminate\Http\Request;
 
 class WebsiteScrapeController extends Controller
@@ -36,12 +37,14 @@ class WebsiteScrapeController extends Controller
             $html = new \DOMDocument();
             @$html->loadHTML($sites_html);
             $meta_og_img = null;
+            $lang = null;
             $meta_tags = [];
             $images = [];
             $links = [];
             $scripts = [];
             $emails = [];
             $h1s = [];
+            $detected_keywords = null;
             $title = null;
             $image = null;
             $description = null;
@@ -55,6 +58,8 @@ class WebsiteScrapeController extends Controller
             if ($list->length > 0) {
                 $title = $list->item(0)->textContent;
             }
+
+            $lang = $html->getElementsByTagName('html')[0]->getAttribute('lang');
 
 //Get all meta tags and loop through them.
             foreach ($html->getElementsByTagName('meta') as $meta) {
@@ -129,7 +134,15 @@ class WebsiteScrapeController extends Controller
                     $uses_google_tag_manager = true;
                 }
             }
-            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'facebook_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress', 'image'));
+            // Sort the phrases by score and return the scores
+            if (strpos($lang, 'en') !== false) {
+                $lang = 'en_US';
+                $rake = RakePlus::create($description, $lang);
+                $detected_keywords = $rake->sortByScore('desc')->scores();
+                //print_r($phrase_scores);
+            }
+
+            return view('websiteDebug', compact('meta_tags', 'description', 'images', 'links', 'title', 'h1s', 'parsed_url', 'url', 'instagram_account', 'facebook_account', 'uses_google_analytics', 'uses_google_tag_manager', 'is_wordpress', 'image', 'lang', 'detected_keywords'));
             return json_encode($links);
         } catch (Exception $e) {
             return $e;

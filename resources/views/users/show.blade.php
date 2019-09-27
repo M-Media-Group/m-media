@@ -32,16 +32,8 @@
 	    <table class="table mb-0">
 	        <tbody>
 	            <tr>
-	                <th>ID</th>
-	                <td>{{ $user->id }}</td>
-	            </tr>
-	            <tr>
-	                <th>Name</th>
-	                <td>{{ $user->name }}</td>
-	            </tr>
-	            <tr>
-	                <th>Surname</th>
-	                <td>{{ $user->surname }}</td>
+	                <th>Full name</th>
+	                <td>{{ $user->name }} {{ $user->surname }}</td>
 	            </tr>
 	            <tr>
 	                <th>Email</th>
@@ -58,16 +50,14 @@
 	                <td>{{ $user->seen_at->diffForHumans() }}</td>
 	            </tr>
 	            <tr>
-	                <th>Stripe ID</th>
-	                <td>{{ $user->stripe_id }}</td>
+	                <th>ID</th>
+	                <td>{{ $user->id }}</td>
 	            </tr>
-
 	        </tbody>
 	    </table>
 	</div>
-	<p class="mb-5"><a href="/contact">Incorrect data? Contact us!</a></p>
     @can('update', $user)
-        <a class="button button-primary" href="/users/{{$user->id}}/edit">
+        <a class="button button-primary mt-3" href="/users/{{$user->id}}/edit">
             {{ __('Edit') }}
         </a>
     @endcan
@@ -149,4 +139,9 @@
 			 There's currently no websites associated with your account.
 		</div>
 	@endif
+	@can('create', App\File::class)
+        <a class="button button-primary mt-3" href="/files/create">
+            {{ __('Upload a file') }}
+        </a>
+    @endcan
 @endsection

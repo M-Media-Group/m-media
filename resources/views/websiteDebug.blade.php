@@ -112,6 +112,10 @@
                     <td class="text-{{ $is_wordpress  ? 'm' : 'muted' }}">{{ $is_wordpress ? 'Yes' : 'No' }}</td>
                 </tr>
 
+                <th>Locale</th>
+                    <td class="text-{{ $lang ? 'muted' : 'primary' }}">{{ $lang ? $lang : 'No locale specified' }}</td>
+                </tr>
+
                 <tr>
                     <th>Last scraped</th>
                     <td>{{ now()->diffForHumans() }}</td>
@@ -143,6 +147,28 @@
     @else
         <div class="alert text-muted">
              There's no pictures to show. M Media can only detect images that are have a clear "src" attribute in the HTML 'img' tag. If you're lazy-loading images, it's possible we can't detect them.
+        </div>
+    @endif
+
+    <h2 class="mt-5 mb-0">Detected keywords</h2>
+    @if($detected_keywords)
+    @foreach($detected_keywords as $keyword => $value)
+            <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" target="_BLANK" rel="noopener noreferrer" href="#">
+              <div class="row no-gutters">
+                <div class="col-md-12">
+                  <div class="card-body">
+                    <h5 class="card-title">{{$keyword}}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">{{$value}} points certainty</small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+    @endforeach
+    @else
+        <div class="alert text-muted">
+             There's no keywords we could detect. Currently we can only detect keywords in English, which the opening html tag of your website must specify.
         </div>
     @endif
 

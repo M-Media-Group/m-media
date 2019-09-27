@@ -15,10 +15,9 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description')->nullable();
-            $table->string('slug');
-            $table->string('hashtag');
+            $table->string('slug')->unique();
             #PERSON or PLACE or ORGANIZATION etc
             $table->string('type')->nullable();
             $table->boolean('is_nsfw')->nullable();

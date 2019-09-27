@@ -30,7 +30,7 @@
 				<tr>
 
 					<td><a href="/files/{{ $file->id }}">{{ $file->id }}</a></td>
-					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" alt="{{ $file->name }}"></td>
+					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 150px;" alt="{{ $file->name }}"></td>
 					<td>{{ $file->name }}</td>
 					<td>{{ $file->extension }}</td>
 					<td>{{ $file->mimeType }}</td>

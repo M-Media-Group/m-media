@@ -32,10 +32,6 @@
 	    <table class="table mb-0">
 	        <tbody>
 	            <tr>
-	                <th>Full name</th>
-	                <td>{{ $user->name }} {{ $user->surname }}</td>
-	            </tr>
-	            <tr>
 	                <th>Email</th>
 	                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a> <small>({{ $user->email_verified_at ? 'Verified '.$user->email_verified_at->diffForHumans() : "Email not verified" }})</small></td>
 	            </tr>
@@ -58,7 +54,7 @@
 	</div>
     @can('update', $user)
         <a class="button button-primary mt-3" href="/users/{{$user->id}}/edit">
-            {{ __('Edit') }}
+            {{ __('Edit account settings') }}
         </a>
     @endcan
     <h2 class="mt-5 mb-0">Instagram profiles</h2>
@@ -136,7 +132,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no websites associated with your account.
+			 There's currently no files associated with your account. You can upload and share up to 1gb files with M Media.
 		</div>
 	@endif
 	@can('create', App\File::class)

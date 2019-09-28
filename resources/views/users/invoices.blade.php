@@ -107,7 +107,6 @@
 			</tbody>
 			</table>
 		</div>
-	<p class="mb-5"><a href="/users/{{$user->id}}/edit">View your payment methods</a></p>
 	@else
 		<div class="alert text-muted">
 	         There's no invoices to show. When you make a payment to {{config('app.name')}}, it will show here.

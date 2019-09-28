@@ -6,7 +6,7 @@
 		<h2>{{config('app.name')}} Files</h2>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">All files</h2>
+<h2 class="mt-5 mb-0">{{count($files)}} files</h2>
 	@if($files && count($files) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">

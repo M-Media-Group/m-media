@@ -30,7 +30,7 @@
                     <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                     <div class="col-md-6">
-	                    <input name="title" id="title" class="form-control" type="text" placeholder="Descriptive titles help SEO">
+	                    <input name="title" id="title" class="form-control" type="text" placeholder="Descriptive titles help us tag the file">
 	                    <span class="help-block text-danger">{{$errors->first('title')}}</span>
 	                </div>
 

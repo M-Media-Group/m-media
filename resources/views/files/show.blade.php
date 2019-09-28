@@ -80,7 +80,7 @@
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-primary">
+                <button type="submit" class="button button-primary" onclick="return confirm('Please confirm you want to delete this file forever.');">
                     {{ __('Delete file') }}
                 </button>.
             </form>

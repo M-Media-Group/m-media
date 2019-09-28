@@ -250,22 +250,47 @@
                        <th>Followers</th>
                        <th>Following</th>
                        <th>Engagement health</th>
+                       <th>Notes</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($account->scrapes->reverse() as $scrape)
-                    <tr>
-                        <td>{{ $scrape->created_at->isoFormat('ll') }}</td>
-                        <td>{{ number_format($scrape->media_count) }}</td>
-                        <td>{{ number_format($scrape->followers_count) }}</td>
-                        <td>{{ number_format($scrape->following_count) }}</td>
-                        @if(!$scrape->is_private)
-                        <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
-                        @else
-                        <td class="text-muted">Unknown, private account</td>
-                        @endif
-                    </tr>
-                @endforeach
+                    @for ($i = 0; $i < count($account->scrapes); $i++)
+                    @php
+                        $scrape = $account->scrapes[count($account->scrapes) - $i - 1];
+                        $next = count($account->scrapes) - $i - 2 >= 0 ? $account->scrapes[count($account->scrapes) - $i - 2] : $scrape;
+                    @endphp
+                        <tr>
+                            <td>{{ $scrape->created_at->isoFormat('ll') }}</td>
+                            <td>{{ number_format($scrape->media_count) }}</td>
+                            <td class="text-{{($scrape->followers_count) - ($next->followers_count) >=0 ? "" : "primary"}}">{{ sprintf("%+d",($scrape->followers_count) - ($next->followers_count)) }} <small class="text-muted">{{ number_format($scrape->followers_count) }}</small></td>
+                            <td>{{ sprintf("%+d",($scrape->following_count) - ($next->following_count)) }} <small class="text-muted">{{ number_format($scrape->following_count) }}</small></td>
+                            @if(!$scrape->is_private)
+                            <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
+                            @else
+                            <td class="text-muted">Unknown, private account</td>
+                            @endif
+                            <td class="text-muted">
+                                @if($scrape->external_url != $next->external_url)
+                                    <p class="mb-0">- Updated linked website</p>
+                                @endif
+                                @if($scrape->biography != $next->biography)
+                                    <p class="mb-0">- Updated biography</p>
+                                @endif
+                                @if($scrape->username != $next->username)
+                                    <p class="mb-0">- Updated username</p>
+                                @endif
+                                @if($scrape->full_name != $next->full_name)
+                                    <p class="mb-0">- Updated full name</p>
+                                @endif
+                                @if($scrape->profile_picture_url != $next->profile_picture_url)
+                                    <p class="mb-0">- Updated profile picture</p>
+                                @endif
+                                @if($scrape->is_private != $next->is_private)
+                                    <p class="mb-0">- Updated privacy settings</p>
+                                @endif
+                            </td>
+                        </tr>
+                    @endfor
                 </tbody>
             </table>
         </div>

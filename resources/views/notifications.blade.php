@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<h2 class="mt-5 mb-0">All notifications</h2>
+<h2 class="mt-5 mb-0">{{count(Auth::user()->notifications)}} {{str_plural("notifications", count(Auth::user()->notifications))}}</h2>
 @if(count(Auth::user()->notifications) > 0)
 	<div class="list-group">
 		@foreach(Auth::user()->notifications as $notification)

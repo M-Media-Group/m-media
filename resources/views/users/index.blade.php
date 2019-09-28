@@ -8,7 +8,7 @@
 		<h2>{{config('app.name')}} customers</h2>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">All users</h2>
+<h2 class="mt-5 mb-0">{{count($users)}} users</h2>
 	@if($users && count($users) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">

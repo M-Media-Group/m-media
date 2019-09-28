@@ -6,7 +6,7 @@
 		<h2>{{config('app.name')}} bots</h2>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">All devices</h2>
+<h2 class="mt-5 mb-0">{{count($bots)}} devices</h2>
 	@if($bots && count($bots) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">

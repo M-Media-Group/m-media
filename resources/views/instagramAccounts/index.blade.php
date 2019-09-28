@@ -6,7 +6,7 @@
 		<h2>{{config('app.name')}} Instagram Accounts</h2>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">All accounts</h2>
+<h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">

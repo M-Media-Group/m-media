@@ -53,7 +53,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send as email') }}</label>
+                    <label for="send_sms" class="col-md-4 col-form-label text-md-right">{{ __('Send as a text message (SMS)') }}</label>
+                    <div class="col-md-6">
+                        <input id="send_sms" type="checkbox" autocomplete="off" placeholder="send_sms" class="form-control" name="send_sms">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send as an email') }}</label>
                     <div class="col-md-6">
                         <input id="sendemail" type="checkbox" autocomplete="off" placeholder="send_email" class="form-control" name="send_email">
                     </div>

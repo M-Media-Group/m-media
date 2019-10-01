@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Bot;
 use App\Notifications\CustomNotification;
 use App\User;
 use Illuminate\Http\Request;
@@ -50,7 +49,7 @@ class CustomNotificationController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->can('create custom notifications')) {
-            $this->authorize('create', Bot::class);
+            //$this->authorize('create', Bot::class);
             $users = User::find($request->input('users'));
             Notification::send($users, new CustomNotification($request->input()));
             return redirect('/notifications');

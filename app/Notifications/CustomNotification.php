@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Channels\SmsAwsChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -31,7 +32,20 @@ class CustomNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return isset($this->data['send_email']) ? ['mail'] : ['database'];
+        $channels = ['database'];
+        if ($this->data['send_sms']) {
+
+            if ($notifiable->primaryPhone && mb_strtolower($notifiable->primaryPhone->number_type) == "mobile") {
+                array_push($channels, SmsAwsChannel::class);
+            } else {
+                $this->data['send_email'] = true;
+            }
+
+        }
+        if (isset($this->data['send_email'])) {
+            array_push($channels, 'mail');
+        }
+        return $channels;
     }
 
     /**
@@ -67,6 +81,24 @@ class CustomNotification extends Notification implements ShouldQueue
             'action' => $this->data['action'] ? url($this->data['action']) : null,
             'action_text' => $this->data['action_text'] ? $this->data['action_text'] : null,
             'is_custom' => true,
+        ];
+    }
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toSms($notifiable)
+    {
+        return [
+            'title' => $this->data['title'],
+            'message' => $this->data['message'],
+            'action' => $this->data['action'] ? url($this->data['action']) : null,
+            'action_text' => $this->data['action_text'] ? $this->data['action_text'] : null,
+            'is_custom' => true,
+            'type' => 'TRANSACTIONAL',
         ];
     }
 }

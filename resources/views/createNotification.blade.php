@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <select multiple="multiple" name="users[]" id="users" class="form-control">
                         @foreach($users as $user)
-                            <option value="{{$user->id}}">{{$user->id}}: {{$user->name ?? $user->email}} {{$user->surname}} <small>{{$user->primaryPhone ? "(SMS-able)" : null}}</small></option>
+                            <option value="{{$user->id}}">{{$user->id}}: {{$user->name ?? $user->email}} {{$user->surname}} <small>{{$user->primaryPhone && strtolower($user->primaryPhone->number_type) == "mobile" ? "(SMS-able)" : null}}</small></option>
                         @endforeach
                         </select>
                     </div>

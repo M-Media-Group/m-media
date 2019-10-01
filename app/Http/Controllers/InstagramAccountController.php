@@ -124,7 +124,7 @@ class InstagramAccountController extends Controller
         //return dump();
         $file = UploadFile::dispatchNow($request);
 
-        PostToBuffer::dispatchNow($file, $instagramAccount);
+        PostToBuffer::dispatch($file, $instagramAccount);
 
         return back()->with('success', 'We have scheduled your picture to be posted to your Instagram account!');
     }

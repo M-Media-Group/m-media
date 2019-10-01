@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/', function () {
-    return "ok API";
+    return "API online";
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\File;
+use App\InstagramAccount;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,7 +22,7 @@ class PostToBuffer implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($file, $instagramAccount)
+    public function __construct(File $file, InstagramAccount $instagramAccount)
     {
         $this->file = $file;
         $this->instagramAccount = $instagramAccount;
@@ -39,7 +41,7 @@ class PostToBuffer implements ShouldQueue
             preg_match_all('/#(\w+)/', $this->instagramAccount->bufferSentPosts()['updates'][0]['text'], $matches);
             foreach ($matches[1] as $match) {
                 if (!in_array($match, $hashtags_array)) {
-                    array_push($hashtags_array, $match);
+                    array_push($hashtags_array, "#" . $match);
                 }
             }
             $hashtags = implode(' ', $hashtags_array);

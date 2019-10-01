@@ -72,11 +72,6 @@
                             {{ __('Notify users') }}
                         </a>
                     @endcan
-                    @can('create', App\File::class)
-                        <a href="/files/create">
-                            {{ __('Upload files') }}
-                        </a>
-                    @endcan
                     <a href="/contact">Contact us</a>
                     <hr class="mb-0 mt-0">
                     <a href="{{ route('logout') }}"

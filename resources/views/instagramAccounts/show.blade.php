@@ -118,10 +118,7 @@
                     <th>Biography</th>
                     <td>{{$scraped_data->biography}}</td>
                 </tr>
-{{--                 <tr>
-                    <th>Profile picture URL</th>
-                    <td>{{$scraped_data->profile_picture_url}}</td>
-                </tr> --}}
+
                 <tr>
                     <th>External URL</th>
                     <td><a href="/tools/website-debugger/{{isset($scraped_data->external_url) ? parse_url($scraped_data->external_url)['host'] : $scraped_data->external_url}}">{{ $scraped_data->external_url }}</a></td>

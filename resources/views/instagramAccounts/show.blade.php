@@ -6,7 +6,10 @@
 @section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section background-filter" style="background:linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),url({{$scraped_data->profile_picture_url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
         <h1>{{$scraped_data->full_name}}</h1>
         <h2>Instagram data analyzer</h2>
     </div>

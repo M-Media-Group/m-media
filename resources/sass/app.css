@@ -289,3 +289,26 @@ main img {
 .card li {
     list-style: none;
 }
+
+.background-filter::before {
+  -webkit-backdrop-filter: blur(13px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: blur(13px); /* Supported in Chrome 76 */
+
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%; height: 100%;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.background-filter {
+  position: relative;
+}
+
+.background-filter > * {
+    position: relative;
+    text-shadow: 0 0 1px rgb(117, 117, 117);
+}

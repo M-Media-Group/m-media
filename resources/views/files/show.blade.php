@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
         <h1>{{$file->name}}</h1>
         <h2>{{config('app.name')}} file</h2>
     </div>
@@ -22,16 +22,12 @@
                     <td>{{ $file->id }}</td>
                 </tr>
                 <tr>
-                    <th>Preview</th>
-                    <td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 30px;" alt="{{ $file->name }}"></td>
-                </tr>
-                <tr>
                     <th>Name</th>
                     <td>{{ $file->name }}</td>
                 </tr>
                 <tr>
                     <th>URL</th>
-                    <td>{{ $file->url }}</td>
+                    <td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
                 </tr>
                 <tr>
                     <th>Size</th>

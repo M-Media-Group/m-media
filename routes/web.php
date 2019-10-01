@@ -96,6 +96,8 @@ Route::resource('custom-notifications', 'CustomNotificationController')->middlew
 
 Route::resource('instagram-accounts', 'InstagramAccountController')->middleware('auth');
 
+Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost')->middleware('auth');
+
 Route::get('my-bots', 'UserController@myBots')->middleware('auth');
 
 Route::get('/users/{id}/invoices', function ($id) {

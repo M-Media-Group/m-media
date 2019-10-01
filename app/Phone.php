@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use libphonenumber\PhoneNumberType;
 
 class Phone extends Model
 {
@@ -54,5 +55,10 @@ class Phone extends Model
     {
         return $this->hasMany('App\PhoneLog');
     }
-
+    public function getNumberTypeAttribute()
+    {
+        $types = PhoneNumberType::values();
+        $type = $types[$this->getOriginal('number_type')];
+        return $type;
+    }
 }

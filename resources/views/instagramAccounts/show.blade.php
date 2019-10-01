@@ -13,7 +13,11 @@
 @endsection
 
 @section('content')
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+    @endif
     @if($scraped_data->is_private)
     <div class="alert alert-danger text-muted">
          Your Instagram account is private so we couldn't get all the information we need to debug your account.
@@ -25,60 +29,79 @@
     @if($scraped_data->is_private)
         <p class="mb-0 text-muted">To help {{config('app.name')}} debug your account and reach more people:</p>
         <p class="mb-0">- Make your account public by switching off 'Private Account' in your Instagram settings</p>
-        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+        @if(!$account->user_id)
+            <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+        @endif
     @endif
 
     @if(!$scraped_data->biography)
         <p class="mb-0 text-muted">To improve your account info:</p>
         <p class="mb-0">- Set a biography, or description, on your Instagram profile</p>
-        <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+        @if(!$account->user_id)
+            <p>- Subscribe to any <a href="/instagram">Instagram solution</a> and we'll do this for you</p>
+        @endif
     @endif
 
     @if(isset($locations) && !$locations)
         <p class="mb-0 text-muted">To help your posts reach more people:</p>
         <p class="mb-0">- Tag locations on your Instagram posts</p>
+        @if(!$account->buffer_id)
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
+        @endif
     @endif
 
     @if(!$scraped_data->media_count || $scraped_data->media_count < 10)
         <p class="mb-0 text-muted">To grow your account:</p>
         <p class="mb-0">- You currently have {{$scraped_data->media_count}} posts on your profile. Consider adding more posts to grow your account</p>
+        @if(!$account->buffer_id)
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
+        @endif
     @endif
 
     @if(isset($hashtags) && (!$hashtags || count($hashtags) < 10))
         <p class="mb-0 text-muted">To aid your posts exposure:</p>
         <p class="mb-0">- In your recent posts, you've used {{count($hashtags)}} unique hashtags. Use at least 10 and a wider variety of them on each post to gain more exposure</p>
+        @if(!$account->buffer_id)
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
+        @endif
     @endif
 
     @if(!($scraped_data->followers_count) || $scraped_data->followers_count/$scraped_data->following_count <= 3)
         <p class="mb-0 text-muted">To improve your follower to following ratio:</p>
         <p class="mb-0">- Unfollow more people so that you have at least 3 followers for every person you follow</p>
+        @if(!$account->user_id)
         <p>- Subscribe to our <a href="/instagram-engagement">Instagram Engagement service</a> to implement this solution automatically</p>
+        @endif
     @endif
 
     @if(!$scraped_data->is_private && (!($scraped_data->avg_likes_count) || ($scraped_data->avg_likes_count/$scraped_data->followers_count) * 100 <= 5))
         <p class="mb-0 text-muted">To improve engagement health:</p>
         <p class="mb-0">- Use higher quality media posts that resonate better with your audience</p>
         <p class="mb-0">- Update the hashtags you use to hashtags that are more relevant to your users</p>
-        @if($scraped_data->avg_dataset_end)
+        @if($scraped_data->avg_dataset_end && now()->subDays(6) > $scraped_data->avg_dataset_end)
             <p class="mb-0">- Your last post was {{ \Carbon\Carbon::parse($scraped_data->avg_dataset_end)->diffForHumans()}}. Try altering your posting frequency and schedule for better engagement results</p>
-        @else
+        @elseif(!$scraped_data->avg_dataset_end)
             <p class="mb-0">- Your have not posted a post yet. Post your first picture or video for better engagement results</p>
         @endif
+        @if(!$account->buffer_id)
         <p>- Subscribe to our <a href="/instagram-content-management">Instagram Content Management service</a> to implement this solution automatically</p>
+        @endif
     @endif
 
     @if(!$scraped_data->external_url)
         <p class="mb-0 text-muted">To help get more people to your website:</p>
         <p class="mb-0">- Include a secure external URL, or a link to your website, on your Instagram profile. It's strongly suggested your link starts with 'https' rather than 'http'</p>
+        @if(!$account->user_id)
         <p>- Subscribe to any <a href="/instagram">{{Config('app.name')}} Instagram service</a> and we'll do this for you</p>
+        @endif
     @endif
 
     @if($scraped_data->followers_count <= 100 || $scraped_data->media_count < 3)
         <p class="mb-0 text-muted">To qualify for {{Config('app.name')}} Instagram services:</p>
         <p class="mb-0">- Post at least 3 posts on your Instagram account</p>
+        @if($scraped_data->avg_dataset_end && now()->subMonths(3) > $scraped_data->avg_dataset_end)
+            <p class="mb-0">- Your last post was more than {{ \Carbon\Carbon::parse($scraped_data->avg_dataset_end)->diffForHumans()}}. Post at least one picture to Instagram now</p>
+        @endif
         <p class="mb-0">- Make sure your Instagram account is not set to private</p>
         <p>- Gain at least 100 followers by sharing your Instagram account with friends, family, and customers</p>
     @endif
@@ -89,11 +112,7 @@
             <tbody>
                 <tr>
                     <th>Username</th>
-                    <td>{{ $scraped_data->username }}</td>
-                </tr>
-                <tr>
-                    <th>Full name</th>
-                    <td>{{ $scraped_data->full_name }}</td>
+                    <td><img src="{{ $scraped_data->profile_picture_url }}" class="rounded img-thumbnail" style="max-height: 30px;" alt="{{ $scraped_data->username }}"> {{ $scraped_data->username }}</td>
                 </tr>
                 <tr>
                     <th>Biography</th>
@@ -239,6 +258,82 @@
         </div>
     @endif
 @else
+<h2 class="mt-5 mb-0">Instagram content management</h2>
+@if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
+    @can('create', App\File::class)
+        <form action="/instagram-accounts/{{$account->id}}/instagram-posts" enctype="multipart/form-data" method="post">
+                @csrf
+                @method("POST")
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="file">{{ __('Picture') }}</label>
+                        <input type="file" name="file" id="file" class="input" required autofocus accept="image/*">
+                        <span class="help-block text-danger">{{$errors->first('file')}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="title" >{{ __('Caption') }}</label>
+                        <input name="title" id="title" class="form-control mb-0" type="text" placeholder="Descriptive captions help people understand what's on your picture">
+                        <span class="help-block">Don't add more than 3 hashtags - we'll add the rest</span>
+                        <span class="help-block text-danger">{{$errors->first('title')}}</span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row mb-0">
+                    <div class="col-md-12">
+                        <button type="submit" class="button button-primary">
+                            {{ __('Schedule post to Instagram') }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 text-muted">
+                        Each URL generated to your file by M Media is valid only for five minutes, however, publishing the file to Instagram via this form will naturally make it public.
+                    </div>
+                </div>
+            </form>
+    @endif
+       <div class="table-responsive table-hover">
+        <table class="table mb-0">
+            <tbody>
+                @foreach($buffer['counts'] as $count => $key)
+                    @if($count != 'daily_suggestions' && $count != 'pending-story-groups-with-errors')
+                    <tr>
+                        <th>{{str_replace (["_", "-"], " ", ucfirst($count))}}</th>
+                        <td>{{number_format($key)}}</td>
+                    </tr>
+                    @endif
+                @endforeach
+
+                @foreach($buffer['schedules'] as $day)
+                    <tr>
+                        <th>{{ucfirst($day['days'][0] ?? 0)}} posting time</th>
+                        <td class="{{ isset($day['times'][0]) ? null : 'text-muted'}}">{{$day['times'][0] ?? "No posts"}}</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <th>Service type</th>
+                    <td>{{ucfirst($buffer['service_type'])}}</td>
+                </tr>
+                <tr>
+                    <th>Instagram Content Management service ID</th>
+                    <td>{{$account->buffer_id}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+@elseif(isset($buffer) && $buffer)
+    <div class="alert text-muted">
+         You don't have permission to see data about this service for this account.
+    </div>
+@else
+    <div class="alert text-muted">
+         This account isn't linked to the <a href="/instagram-content-management">{{Config('app.name')}} Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
+    </div>
+@endif
     <h2 class="mt-5 mb-0">History</h2>
     @if(isset($account->scrapes) && $account->scrapes)
         <div class="table-responsive table-hover">
@@ -301,48 +396,6 @@
     @endif
     <div class="alert text-muted">
          In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="/contact">contact us</a>.
-    </div>
-@endif
-
-<h2 class="mt-5 mb-0">Instagram content management</h2>
-@if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
-{{--         {{var_dump($buffer)}}
---}}        <div class="table-responsive table-hover">
-        <table class="table mb-0">
-            <tbody>
-                @foreach($buffer['counts'] as $count => $key)
-                    @if($count != 'daily_suggestions' && $count != 'pending-story-groups-with-errors')
-                    <tr>
-                        <th>{{str_replace (["_", "-"], " ", ucfirst($count))}}</th>
-                        <td>{{number_format($key)}}</td>
-                    </tr>
-                    @endif
-                @endforeach
-
-                @foreach($buffer['schedules'] as $day)
-                    <tr>
-                        <th>{{ucfirst($day['days'][0] ?? 0)}} posting time</th>
-                        <td class="{{ isset($day['times'][0]) ? null : 'text-muted'}}">{{$day['times'][0] ?? "No posts"}}</td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <th>Service type</th>
-                    <td>{{ucfirst($buffer['service_type'])}}</td>
-                </tr>
-                <tr>
-                    <th>Instagram Content Management service ID</th>
-                    <td>{{$account->buffer_id}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-@elseif(isset($buffer) && $buffer)
-    <div class="alert text-muted">
-         You don't have permission to see data about this service for this account.
-    </div>
-@else
-    <div class="alert text-muted">
-         This account isn't linked to the <a href="/instagram-content-management">{{Config('app.name')}} Instagram Content Management service</a>. When you subscribe to this service, info about it will show up here.
     </div>
 @endif
 

@@ -186,6 +186,10 @@ class ScrapeInstagramAccount implements ShouldQueue
                 'is_verified' => $data->verified,
                 'user_id' => $user_id,
             ]);
+            if ($avg_dataset_end && now()->subMonths(3) >= $avg_dataset_end) {
+                $account->is_scrapeable = 0;
+                $account->save();
+            }
         } else {
             $scraped_data = (object) [
                 'instagram_account_id' => $account->id,

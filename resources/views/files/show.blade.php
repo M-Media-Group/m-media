@@ -8,7 +8,11 @@
 @endsection
 
 @section('content')
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+@endif
 <h2 class="mt-5 mb-0">File data</h2>
 <div class="table-responsive table-hover">
         <table class="table mb-0">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\Http\Requests\StoreFile;
+use App\Jobs\UploadFile;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -24,7 +26,6 @@ class FileController extends Controller
         $this->authorize('index', File::class);
         //$files = Storage::allFiles('/');
         $files = File::get();
-
         return view('files.index', compact('files'));
     }
 
@@ -45,27 +46,9 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFile $request)
     {
-        $this->authorize('create', File::class);
-        $request->validate([
-            'file' => 'required|file|max:976562',
-            'title' => 'unique:files,name',
-            'public' => 'boolean',
-        ]);
-        $path = Storage::putFile('files/' . ($request->user()->id ?? 'default'), $request->file, $request->input('public') ?? 'private');
-        $request->merge([
-            'name' => $request->input('title') ?? $request->file->getClientOriginalName(),
-            'url' => $path,
-            'extension' => $request->file->getMimeType() == "image/svg" ? "svg" : $request->file->extension(),
-            //'type' => $request->file->type(),
-            'mimeType' => $request->file->getMimeType() == "image/svg" ? "image/svg+xml" : $request->file->getMimeType(),
-            'size' => $request->file->getSize(),
-            'user_id' => $request->user()->id ?? null,
-        ]);
-        //return $request;
-        $file = File::create($request->only('name', 'url', 'extension', 'mimeType', 'size', 'user_id'));
-        //return $file;
+        UploadFile::dispatchNow($request);
         return back()->with('success', 'Thanks for sending us your file!');
     }
 

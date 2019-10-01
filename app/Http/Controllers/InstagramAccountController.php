@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFile;
 use App\InstagramAccount;
+use App\Jobs\PostToBuffer;
+use App\Jobs\UploadFile;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class InstagramAccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified');
+        //$this->middleware('verified');
     }
 
     /**
@@ -107,22 +110,23 @@ class InstagramAccountController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage for File model and post to Buffer.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storePost(Request $request)
+    public function storePost(StoreFile $request, InstagramAccount $instagramAccount)
     {
-        $data = [
-            'profile_ids' => [$request->input('profile_id')],
-            'text' => $request->input('text'),
-            'shorten' => false,
-            'media' => [
-                'photo' => $request->input('url'),
-            ],
-        ];
+        if (!$instagramAccount->buffer_id || !($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
+            return "false";
+        }
 
+        //return dump();
+        $file = UploadFile::dispatchNow($request);
+
+        PostToBuffer::dispatchNow($file, $instagramAccount);
+
+        return back()->with('success', 'We have scheduled your picture to be posted to your Instagram account!');
     }
 
     /**
@@ -137,10 +141,7 @@ class InstagramAccountController extends Controller
         $scraped_data->scrapes_count = count($scraped_data->scrapes);
         $buffer_data = null;
         if ($scraped_data->buffer_id && $request->user()) {
-            $client = new Client();
-            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles/' . $scraped_data->buffer_id . '.json?access_token=' . config('blog.buffer.access_token'));
-            $data = $response->getBody()->getContents();
-            $buffer_data = json_decode($data, true);
+            $buffer_data = $scraped_data->bufferProfile();
         }
         $data = ['scraped_data' => $scraped_data->latestScrape, 'account' => $scraped_data, 'buffer' => $buffer_data];
 

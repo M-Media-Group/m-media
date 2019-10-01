@@ -27,7 +27,8 @@ class WebsiteScrapeController extends Controller
             $context = stream_context_create(
                 array(
                     "http" => array(
-                        "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
+                        "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36" .
+                        "Accept-language: en",
                     ),
                 )
             );
@@ -44,7 +45,8 @@ class WebsiteScrapeController extends Controller
             $scripts = [];
             $emails = [];
             $h1s = [];
-            $detected_keywords = null;
+            $ps = [];
+            $detected_keywords = [];
             $title = null;
             $image = null;
             $description = null;
@@ -124,6 +126,11 @@ class WebsiteScrapeController extends Controller
             foreach ($html->getElementsByTagName('h1') as $meta) {
                 array_push($h1s, ['value' => $meta->textContent]);
             }
+
+            foreach ($html->getElementsByTagName('p') as $meta) {
+                array_push($ps, $meta->textContent);
+            }
+
             foreach ($html->getElementsByTagName('script') as $meta) {
                 array_push($scripts, ['src' => $meta->nodeValue]);
                 #check if contains UA- or if GTM
@@ -137,7 +144,8 @@ class WebsiteScrapeController extends Controller
             // Sort the phrases by score and return the scores
             if (strpos($lang, 'en') !== false) {
                 $lang = 'en_US';
-                $rake = RakePlus::create($description, $lang);
+                $text = implode(" ", $ps);
+                $rake = RakePlus::create($text, $lang);
                 $detected_keywords = $rake->sortByScore('desc')->scores();
                 //print_r($phrase_scores);
             }

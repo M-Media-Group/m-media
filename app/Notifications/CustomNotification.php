@@ -32,8 +32,8 @@ class CustomNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        $channels = ['database'];
-        if ($this->data['send_sms']) {
+        $channels = [];
+        if (isset($this->data['send_sms'])) {
 
             if ($notifiable->primaryPhone && mb_strtolower($notifiable->primaryPhone->number_type) == "mobile") {
                 array_push($channels, SmsAwsChannel::class);
@@ -44,6 +44,9 @@ class CustomNotification extends Notification implements ShouldQueue
         }
         if (isset($this->data['send_email'])) {
             array_push($channels, 'mail');
+        }
+        if (isset($this->data['send_database'])) {
+            array_push($channels, 'database');
         }
         return $channels;
     }

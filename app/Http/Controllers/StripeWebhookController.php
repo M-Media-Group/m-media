@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Notifications\CustomNotification;
 use App\Phone;
 use App\User;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
+use Notification;
+use Password;
 
 class StripeWebhookController extends CashierController
 {
@@ -33,6 +36,7 @@ class StripeWebhookController extends CashierController
                 "email" => $payload['data']['object']['email'],
                 "password" => 'notset',
             ]);
+            $created = $user->wasRecentlyCreated;
             $input = array();
             $input['phonenumber'] = $payload['data']['object']['phone'];
             $input['country'] = null;
@@ -145,6 +149,8 @@ class StripeWebhookController extends CashierController
             "password" => "notset",
         ]);
 
+        $created = $user->wasRecentlyCreated;
+
         if ($payload['data']['object']['phone']) {
             $input = array();
             $input['phonenumber'] = $payload['data']['object']['phone'];
@@ -212,10 +218,21 @@ class StripeWebhookController extends CashierController
         } else {
             $phone->id = null;
         }
-        $user->update(['stripe_id' => $payload['data']['object']['id'],
-            "email" => $payload['data']['object']['email'],
-            "phone_id" => $phone->id,
-        ]);
+
+        $user->stripe_id = $payload['data']['object']['id'];
+        $user->email = $payload['data']['object']['email'];
+        $user->phone_id = $phone->id;
+
+        if ($created) {
+            $token = Password::getRepository()->create($user);
+            $user->sendPasswordResetNotification($token);
+            $user->email_verified_at = now();
+            Notification::send($user, new CustomNotification([
+                'title' => "Hi! Welcome to the " . config('app.name') . " family!",
+                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $user->email . " , and you'll be good to go!",
+            ]));
+        }
+        $user->save();
 
         return response('Webhook Handled', 200);
     }

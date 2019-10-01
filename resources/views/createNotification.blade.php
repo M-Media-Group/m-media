@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <select multiple="multiple" name="users[]" id="users" class="form-control">
                         @foreach($users as $user)
-                            <option value="{{$user->id}}">{{$user->name}} {{$user->surname}}</option>
+                            <option value="{{$user->id}}">{{$user->id}}: {{$user->name ?? $user->email}} {{$user->surname}} <small>{{$user->primaryPhone ? "(SMS-able)" : null}}</small></option>
                         @endforeach
                         </select>
                     </div>
@@ -41,7 +41,7 @@
                 <div class="form-group row">
                     <label for="action" class="col-md-4 col-form-label text-md-right">{{ __('Action') }} {{ __('URL') }}</label>
                     <div class="col-md-6">
-                        <input id="action" type="text" autocomplete="off" placeholder="Action" class="form-control" name="action">
+                        <input id="action" type="text" autocomplete="off" placeholder="/url/to/action" class="form-control" name="action">
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="send_sms" class="col-md-4 col-form-label text-md-right">{{ __('Send as a text message (SMS)') }}</label>
+                    <label for="send_sms" class="col-md-4 col-form-label text-md-right">{{ __('Send as a text message (Transactional SMS)') }}</label>
                     <div class="col-md-6">
                         <input id="send_sms" type="checkbox" autocomplete="off" placeholder="send_sms" class="form-control" name="send_sms">
                     </div>
@@ -63,6 +63,13 @@
                     <label for="sendemail" class="col-md-4 col-form-label text-md-right">{{ __('Send as an email') }}</label>
                     <div class="col-md-6">
                         <input id="sendemail" type="checkbox" autocomplete="off" placeholder="send_email" class="form-control" name="send_email">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="send_database" class="col-md-4 col-form-label text-md-right">{{ __('Send as a website notification') }}</label>
+                    <div class="col-md-6">
+                        <input id="send_database" type="checkbox" autocomplete="off" checked placeholder="send_database" class="form-control" name="send_database">
                     </div>
                 </div>
 

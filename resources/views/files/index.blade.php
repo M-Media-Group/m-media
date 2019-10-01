@@ -34,7 +34,7 @@
 					<td>{{ $file->name }}</td>
 					<td>{{ $file->extension }}</td>
 					<td>{{ $file->mimeType }}</td>
-					<td>{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
+					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
 					<td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
 
 					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes' : 'No' }} </td>

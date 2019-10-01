@@ -6,6 +6,7 @@ use App\File;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\File as FileInstance;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Storage;
@@ -34,7 +35,7 @@ class UploadFile implements ShouldQueue
      */
     public function handle()
     {
-        $path = Storage::putFile('files/' . ($this->request->user()->id ?? 'default'), $this->request->file, $this->request->input('public') ?? 'private');
+        $path = Storage::putFile('files/' . ($this->request->user()->id ?? 'default'), new FileInstance($this->request->file), $this->request->input('public') ?? 'private');
         $this->request->merge([
             'name' => $this->request->input('title') ?? $this->request->file->getClientOriginalName(),
             'url' => $path,

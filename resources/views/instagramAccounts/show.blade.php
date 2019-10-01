@@ -13,11 +13,6 @@
 @endsection
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{session('success')}}
-        </div>
-    @endif
     @if($scraped_data->is_private)
     <div class="alert alert-danger text-muted">
          Your Instagram account is private so we couldn't get all the information we need to debug your account.
@@ -258,6 +253,11 @@
 <h2 class="mt-5 mb-0">Instagram content management</h2>
 @if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
     @can('create', App\File::class)
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+        @endif
         <form action="/instagram-accounts/{{$account->id}}/instagram-posts" enctype="multipart/form-data" method="post">
                 @csrf
                 @method("POST")

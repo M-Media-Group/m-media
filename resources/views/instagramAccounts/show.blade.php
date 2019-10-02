@@ -16,6 +16,7 @@
 @endsection
 
 @section('content')
+
     @if($scraped_data->is_private)
     <div class="alert alert-danger text-muted">
          Your Instagram account is private so we couldn't get all the information we need to debug your account.
@@ -336,6 +337,7 @@
 @endif
     <h2 class="mt-5 mb-0">History</h2>
     @if(isset($account->scrapes) && $account->scrapes)
+        <canvas id="myChart" height="200"></canvas>
         <div class="table-responsive table-hover">
             <table class="table mb-0">
                 <thead>
@@ -400,3 +402,58 @@
 @endif
 
 @endsection
+
+@if(isset($account->scrapes) && $account->scrapes)
+@section('footer_scripts')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<script>
+
+var timeFormat = 'YYYY-MM-DD';
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+
+        datasets: [{
+            label: '# of followers',
+            fill: false,
+            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
+echo (json_encode($array));?>,
+
+         borderColor: ['#246EBA'],
+            borderWidth: 2
+        },
+        {
+            label: '# of people you are following',
+            fill: false,
+            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->following_count, "x" => $scrape->created_at->toDateString()]);}
+echo (json_encode($array));?>,
+
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'day',
+                    parser: timeFormat,
+                    round: 'day',
+                    tooltipFormat: 'll'
+                },
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                }
+            }]
+        }
+    }
+});
+</script>
+@endsection
+@endif

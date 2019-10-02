@@ -43,7 +43,12 @@ class File extends Model
     {
         $parts = explode("/", $this->mimeType);
         return $parts[0];
+    }
 
+    public function setTypeAttribute()
+    {
+        $parts = explode("/", $this->attributes['mimeType']);
+        $this->attributes['type'] = $parts[0];
     }
 
 }

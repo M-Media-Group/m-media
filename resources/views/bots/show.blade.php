@@ -82,7 +82,7 @@
             </a>
             @endif
         @else
-            <a class="button button-primary" href="mailto:contact@mmediagroup.fr">
+            <a class="button button-primary" href="/contact">
                 {{ __('Get help') }}
             </a>
         @endif

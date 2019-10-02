@@ -29,9 +29,9 @@
         <div class="flex" style="flex-wrap: wrap;">
             <!-- <a class="button button-secondary">Website development</a>
             <a class="button button-secondary">Social media management</a> -->
+            <a class="button button-primary" href="/contact">Contact us</a>
             <a class="button button-secondary" href="/automation-bot">Automation bot</a>
             <a class="button button-secondary" href="/instagram">Instagram solutions</a>
-            <a class="button button-primary" href="/contact">Contact us</a>
         </div>
     </div>
     <div class="header-section" style="background:#246EBA;">

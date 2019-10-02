@@ -18,14 +18,6 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
-                    <th>ID</th>
-                    <td>{{ $file->id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ $file->name }}</td>
-                </tr>
-                <tr>
                     <th>URL</th>
                     <td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
                 </tr>
@@ -49,13 +41,14 @@
                     <th>Owned by</th>
                     <td class="text-{{ !$file->user  ? 'primary' : null }}">{!! $file->user ? '<a href="/users/'.$file->user->id.'">'.$file->user->name."</a>" : 'No owner' !!}</td>
                 </tr>
+
                 <tr>
-                    <th>Updated at</th>
-                    <td class="text-muted">{{ $file->updated_at->diffForHumans() }}</td>
+                    <th>Created</th>
+                    <td class="text-muted">{{ $file->created_at->diffForHumans() }}</td>
                 </tr>
                 <tr>
-                    <th>Created at</th>
-                    <td class="text-muted">{{ $file->created_at->diffForHumans() }}</td>
+                    <th>ID</th>
+                    <td class="text-muted">{{ $file->id }}</td>
                 </tr>
             </tbody>
         </table>
@@ -80,7 +73,7 @@
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-primary" onclick="return confirm('Please confirm you want to delete this file forever.');">
+                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever.');">
                     {{ __('Delete file') }}
                 </button>.
             </form>

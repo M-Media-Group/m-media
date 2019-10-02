@@ -143,6 +143,7 @@ class InstagramAccountController extends Controller
         if ($scraped_data->buffer_id && $request->user()) {
             $buffer_data = $scraped_data->bufferProfile();
         }
+
         $data = ['scraped_data' => $scraped_data->latestScrape, 'account' => $scraped_data, 'buffer' => $buffer_data];
 
         return view('instagramAccounts.show', $data);

@@ -126,7 +126,7 @@ echo (json_encode($array));?>,
                   //fontColor: "#246EBA",
                   precision:0
                 },
-                type: 'linear',
+                type: 'logarithmic',
                 position: 'left',
               }]
         }

@@ -422,7 +422,7 @@ var myChart = new Chart(ctx, {
             data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
 echo (json_encode($array));?>,
         yAxisID: 'A',
-         borderColor: ['#eb4647'],
+         borderColor: ['#246EBA'],
             borderWidth: 2
         },
         {
@@ -431,7 +431,7 @@ echo (json_encode($array));?>,
             data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->following_count, "x" => $scrape->created_at->toDateString()]);}
 echo (json_encode($array));?>,
             yAxisID: 'B',
-         borderColor: ['#246EBA'],
+         borderColor: ['#eb4647'],
             borderWidth: 2
         }]
     },
@@ -453,14 +453,19 @@ echo (json_encode($array));?>,
             }],
             yAxes: [{
                 id: 'A',
-
+                ticks: {
+                  fontColor: "#246EBA",
+                },
                 type: 'linear',
                 position: 'left',
               }, {
                 id: 'B',
+                ticks: {
+                  fontColor: "#eb4647",
+                },
                 gridLines: {
-        display: false,
-      },
+                    display: false,
+                  },
                 type: 'linear',
                 position: 'right',
             }]

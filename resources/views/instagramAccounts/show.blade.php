@@ -457,6 +457,7 @@ echo (json_encode($array));?>,
                 id: 'A',
                 ticks: {
                   fontColor: "#246EBA",
+                  precision:0
                 },
                 type: 'linear',
                 position: 'left',
@@ -464,6 +465,7 @@ echo (json_encode($array));?>,
                 id: 'B',
                 ticks: {
                   fontColor: "#eb4647",
+                  precision:0
                 },
                 gridLines: {
                     display: false,

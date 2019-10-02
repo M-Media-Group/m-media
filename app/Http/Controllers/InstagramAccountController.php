@@ -32,7 +32,7 @@ class InstagramAccountController extends Controller
         // $bot = Bot::findOrFail($id);
         $this->authorize('index', InstagramAccount::class);
 
-        $accounts = InstagramAccount::with('latestScrape', 'user')->get();
+        $accounts = InstagramAccount::with('latestScrape', 'user', 'scrapes')->get();
         return view('instagramAccounts.index', compact('accounts'));
 
     }

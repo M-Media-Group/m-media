@@ -5,6 +5,12 @@
 		<h1>Instagram Accounts</h1>
 		<h2>{{config('app.name')}} Instagram Accounts</h2>
 	</div>
+	    <h2 class="mt-5 mb-0">History</h2>
+        <canvas id="myChart" height="200"></canvas>
+        <div class="alert text-muted">
+             There's no history to show.
+        </div>
+
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
@@ -70,4 +76,61 @@
 		</div>
 	@endif
 </div>
+@endsection
+
+@section('footer_scripts')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<script>
+
+var timeFormat = 'YYYY-MM-DD';
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+
+        datasets: [
+        @foreach($accounts as $account)
+        {
+            pointHitRadius: 20,
+            label: '{{$account->username}} followers',
+            fill: false,
+            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
+echo (json_encode($array));?>,
+        yAxisID: 'A',
+         borderColor: ['#246EBA'],
+            borderWidth: 2
+        },
+        @endforeach
+       ]
+    },
+    options: {
+        tooltips: {
+            //backgroundColor: '#246EBA'
+        },
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'day',
+                    parser: timeFormat,
+                    round: 'day',
+                    tooltipFormat: 'll'
+                },
+                display: true
+            }],
+            yAxes: [{
+                id: 'A',
+                ticks: {
+                  //fontColor: "#246EBA",
+                  precision:0
+                },
+                type: 'linear',
+                position: 'left',
+              }]
+        }
+    }
+});
+</script>
 @endsection

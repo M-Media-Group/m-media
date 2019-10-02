@@ -351,7 +351,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < count($account->scrapes) && $i < 8; $i++)
+                    @for ($i = 0; $i < count($account->scrapes) && $i < 7; $i++)
                     @php
                         $scrape = $account->scrapes[count($account->scrapes) - $i - 1];
                         $next = count($account->scrapes) - $i - 2 >= 0 ? $account->scrapes[count($account->scrapes) - $i - 2] : $scrape;

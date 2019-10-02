@@ -417,6 +417,7 @@ var myChart = new Chart(ctx, {
     data: {
 
         datasets: [{
+            pointHitRadius: 20,
             label: '# of followers',
             fill: false,
             data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
@@ -426,6 +427,7 @@ echo (json_encode($array));?>,
             borderWidth: 2
         },
         {
+            pointHitRadius: 20,
             label: '# of people you are following',
             fill: false,
             data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->following_count, "x" => $scrape->created_at->toDateString()]);}

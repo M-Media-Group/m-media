@@ -92,7 +92,7 @@ var myChart = new Chart(ctx, {
             pointHitRadius: 20,
             label: '{{$account->username}} followers',
             fill: false,
-            data: <?php $array = [];foreach ($account->scrapes() as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
+            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
 echo (json_encode($array));?>,
         yAxisID: 'A',
          borderColor: ['<?php printf("#%06X", mt_rand(0, 0xFFFFFF));?>'],

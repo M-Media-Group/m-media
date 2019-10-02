@@ -2,7 +2,7 @@
 
 @section('title', "Website debugging for ".$title)
 
-@section('meta_description', "This M Media tool will scan and quickly analyze your website to provide you with suggestions on improving your web strategy." )
+@section('meta_description', "This ".config('app.name')." tool will scan and quickly analyze your website to provide you with suggestions on improving your web strategy." )
 
 @section('above_container')
     <div class="header-section background-filter" style="background:linear-gradient(
@@ -20,7 +20,7 @@
          This tool is in beta testing and some data may not be accurate.</a>
     </div>
     <h2 class="mt-5 mb-0">Website suggestions</h2>
-    <p>M Media suggests the following actions to your site to improve your website performance.</p>
+    <p>{{config('app.name')}} suggests the following actions to your site to improve your website performance.</p>
     @if(strlen($title) < 10 || strlen($title) > 55)
         <p class="mb-0 text-muted">To help your website look better on Google:</p>
         <p class="mb-0">- Consider adjusting your page title to be at least 10 characters long but no longer than 55 characters. It is currently {{strlen($title)}} characters</p>
@@ -124,7 +124,7 @@
                     <td>{{ now()->diffForHumans() }}</td>
                 </tr>
                 <tr>
-                    <th>Qualifies for M Media services</th>
+                    <th>Qualifies for {{config('app.name')}} services</th>
                     <td class="text-{{ count($images) >= 3  ? 'muted' : 'primary' }}">{{ count($images) >= 3 ? 'Yes' : 'No' }}</td>
                 </tr>
             </tbody>
@@ -171,7 +171,7 @@
     @endforeach
     @else
         <div class="alert text-muted">
-             There's no pictures to show. M Media can only detect images that are have a clear "src" attribute in the HTML 'img' tag. If you're lazy-loading images, it's possible we can't detect them.
+             There's no pictures to show. {{config('app.name')}} can only detect images that are have a clear "src" attribute in the HTML 'img' tag. If you're lazy-loading images, it's possible we can't detect them.
         </div>
     @endif
 

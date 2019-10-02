@@ -1,7 +1,7 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('title', "Create notification")
-@section('meta_description', "This M Media tool will let admins notify M Media users." )
+@section('meta_description', "This ".config('app.name')." tool will let admins notify ".config('app.name')." users." )
 
 @section('above_container')
 <div class="header-section" style="background:#246EBA;">

@@ -1,7 +1,7 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('title', "Instagram data analyzer")
-@section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
+@section('meta_description', "This ".config('app.name')." tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
 <div class="header-section" style="background:#246EBA;">

@@ -3,7 +3,7 @@
 @section('title', "Instagram data analysis for ".$scraped_data->full_name)
 @section('meta_image', $scraped_data->profile_picture_url)
 
-@section('meta_description', "This M Media tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
+@section('meta_description', "This ".config('app.name')." tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
     <div class="header-section background-filter" style="background:linear-gradient(
@@ -292,7 +292,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12 text-muted">
-                        Each URL generated to your file by M Media is valid only for five minutes, however, publishing the file to Instagram via this form will naturally make it public.
+                        Each URL generated to your file by {{config('app.name')}} is valid only for five minutes, however, publishing the file to Instagram via this form will naturally make it public.
                     </div>
                 </div>
             </form>
@@ -397,6 +397,8 @@
         </div>
     @endif
     <div class="alert text-muted">
+        This table only shows the most recent data from the past week.
+            <br/><br/>
          In order to minimize requests to Instagram, we scrape your account automatically no more than once a day and do not store all the data. If you do not want us to store historical data on this account, <a href="/contact">contact us</a>.
     </div>
 @endif
@@ -440,6 +442,9 @@ echo (json_encode($array));?>,
     options: {
         tooltips: {
             //backgroundColor: '#246EBA'
+        },
+        legend: {
+            position: 'bottom'
         },
         scales: {
             xAxes: [{

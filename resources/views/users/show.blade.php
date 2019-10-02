@@ -132,7 +132,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no files associated with your account. You can upload and share up to 1gb files with M Media.
+			 There's currently no files associated with your account. You can upload and share up to 1gb files with {{config('app.name')}}.
 		</div>
 	@endif
 	@can('create', App\File::class)

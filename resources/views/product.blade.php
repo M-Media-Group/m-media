@@ -40,7 +40,7 @@
     "availability": "https://schema.org/InStock",
     "seller": {
       "@type": "Organization",
-      "name": "M Media"
+      "name": "{{config('app.name')}}"
     }
   }
 }

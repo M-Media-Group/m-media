@@ -1,12 +1,12 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('title', "Upload a file")
-@section('meta_description', "This M Media tool will let people upload files." )
+@section('meta_description', "This ".config('app.name')." tool will let people upload files." )
 
 @section('above_container')
 <div class="header-section" style="background:#246EBA;">
     <h1>{{ __('Upload a file') }}</h1>
-    <h2>Share files with M Media</h2>
+    <h2>Share files with {{config('app.name')}}</h2>
 </div>
 <div>
     <div class="action-section container">
@@ -46,7 +46,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12 text-muted">
-                        Your file is private by default, which means that each URL generated to your file by M Media is valid only for five minutes. If you want your file public with long-lived URLs, <a href="/contact">contact us</a> after uploading.
+                        Your file is private by default, which means that each URL generated to your file by {{config('app.name')}} is valid only for five minutes. If you want your file public with long-lived URLs, <a href="/contact">contact us</a> after uploading.
                     </div>
                 </div>
             </form>

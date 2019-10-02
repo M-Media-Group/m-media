@@ -5,9 +5,10 @@
 		<h1>Instagram Accounts</h1>
 		<h2>{{config('app.name')}} Instagram Accounts</h2>
 	</div>
-	    <h2 class="mt-5 mb-0">History</h2>
-        <canvas id="myChart" height="100"></canvas>
 <div class="m-3">
+<h2 class="mt-5 mb-0">History</h2>
+<canvas id="myChart" height="100"></canvas>
+<button id="toggle">show/hide all</button>
 <h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
 	<div class="table-responsive table-hover">
@@ -105,6 +106,9 @@ echo (json_encode($array));?>,
         tooltips: {
             //backgroundColor: '#246EBA'
         },
+        legend: {
+        	position: 'bottom'
+        },
         scales: {
             xAxes: [{
                 type: 'time',
@@ -128,5 +132,11 @@ echo (json_encode($array));?>,
         }
     }
 });
+document.getElementById('toggle').onclick = function() {
+	 myChart.data.datasets.forEach(function(ds) {
+    ds.hidden = !ds.hidden;
+  });
+  myChart.update();
+};
 </script>
 @endsection

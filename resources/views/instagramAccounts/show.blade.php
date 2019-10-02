@@ -438,20 +438,19 @@ echo (json_encode($array));?>,
         }]
     },
     options: {
+        tooltips: {
+            backgroundColor: '#246EBA'
+        },
         scales: {
             xAxes: [{
                 type: 'time',
                 time: {
-                    unit: 'week',
+                    unit: 'day',
                     parser: timeFormat,
-                    round: 'week',
+                    round: 'day',
                     tooltipFormat: 'll'
                 },
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                }
+                display: true
             }],
             yAxes: [{
                 id: 'A',

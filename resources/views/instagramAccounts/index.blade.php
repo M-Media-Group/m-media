@@ -6,11 +6,7 @@
 		<h2>{{config('app.name')}} Instagram Accounts</h2>
 	</div>
 	    <h2 class="mt-5 mb-0">History</h2>
-        <canvas id="myChart" height="200"></canvas>
-        <div class="alert text-muted">
-             There's no history to show.
-        </div>
-
+        <canvas id="myChart" height="100"></canvas>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
@@ -99,7 +95,7 @@ var myChart = new Chart(ctx, {
             data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
 echo (json_encode($array));?>,
         yAxisID: 'A',
-         borderColor: ['#246EBA'],
+         borderColor: ['<?php printf("#%06X", mt_rand(0, 0xFFFFFF));?>'],
             borderWidth: 2
         },
         @endforeach

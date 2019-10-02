@@ -109,9 +109,9 @@ echo (json_encode($array));?>,
             xAxes: [{
                 type: 'time',
                 time: {
-                    unit: 'day',
+                    unit: 'week',
                     parser: timeFormat,
-                    round: 'day',
+                    round: 'week',
                     tooltipFormat: 'll'
                 },
                 display: true

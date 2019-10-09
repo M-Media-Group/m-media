@@ -67,7 +67,7 @@
     <div class="header-section" style="background:#246EBA;background-image: url('images/background.jpg')">
         <h1>Let's build.</h1>
         <h2>Market your brand to the world!</h2>
-        <a class="button button-primary" href="/contact">Contact us</a>
+        <a class="button button-primary mt-5" href="/contact">Contact us</a>
     </div>
     <div class="header-section" style="background:#031926">
         @if( config('blog.facebook_page_username'))

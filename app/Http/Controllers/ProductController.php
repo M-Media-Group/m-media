@@ -39,7 +39,7 @@ class ProductController extends Controller
                 ),
             ),
             'subtext' => "2 week delivery time",
-            'text' => "Our number 1 seller - a Raspberry Pi pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
+            'text' => "Our number 1 seller - a micro computer pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
 
 
 M Media uses the automation bot for a range of services including to [engage with your customers on Instagram](/instagram-engagement) so you can focus on running your business.
@@ -292,7 +292,7 @@ As with all of our monthly subscriptions, you can cancel this service at any tim
                 ),
             ),
             'subtext' => "1 month delivery time",
-            'text' => "A Raspberry Pi pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
+            'text' => "A micro computer pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
 
 
 Forget chasing clients for payments, sending invoices, manually ordering stock and shipping out orders, emails, and interacting with your followers on Instagram. With us, that's all handled by robots.
@@ -320,13 +320,66 @@ You'll get an extra employee that works 365 days a year, 24 hours a day, doing a
                     ),
                     'value' => 15,
                     'type' => 'subscription',
-                    'text' => 'From €1,500',
+                    'text' => 'Tailored pricing',
                 ),
             ),
-            'subtext' => "+ Free monthly Excel reports",
-            'text' => "",
+            'subtext' => "+ Free data analytics integration",
+            'text' => "
+You visit hundreds of sites a day. Yet, you remember just a handful of them. You remember them because they are useful, they work, and they are the answer to what you are looking for in a given moment. They are simple in their usage, and complex in their potential. Most importantly, you don't have to think about how to use them or how they work. They just do.
+
+That's what we make - unobtrusive, elegant, and functional websites that complement your brand and satisfy your customers needs.
+
+![Pi in packaging box](/images/devices2.svg)
+## Responsive design
+TV's, projectors, tablets, smartphones, laptops, and computers. Whatever device, your website looks great. Heck, you could even browse the site in a Tesla and it'll look great. Just make sure you're parked!
+
+All our websites are responsive from the get-go, so you don't have to worry about how your site will look on your clients devices. It'll look great. Always.
+
+![Pi in packaging box](/images/seo.svg)
+## SEO friendly
+Our websites make friends with search engines. We optimize sites to be clearly understood by major search engines, and we make sure that as they update their code (we're looking at you, Google), your site will be updated as well.
+
+You'll rank well when your customers search for your brand, your products, and your services. We do this not by milking keywords and using shady techniques, but by satisfing your customer. When your customer is satisfied, then Google is satisfied too.
+
+Just think about all the questions you've Googled and how the first couple of links answered your question. That's because Google is very good at understanding what you and your customers are looking for, and where to find it. The trick to ranking well is therefore to satisfy the needs of your customers. We do this by finding and suggesting improvements to your content depth and density.
+
+![Pi in packaging box](/images/webspeed.svg)
+## Blazingly fast
+Every second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
+
+Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they do not enough, so you need multiple plugins to achieve whatever you need to do.
+
+We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is made to meet your business needs while being blazingly fast.
+
+![Pi in packaging box](/images/loveweb.svg)
+## Flexible communication with other services
+Wether it's using Facebook for logging in, or having new cstomers added automatically to your Mailchimp list, our websites can easily communicate with other websites and services to effortlessly share data and tasks.
+
+![Pi in packaging box](/images/webscale.svg)
+## Highly scalable
+From one user a day to millions, your website can scale across servers so seamlessly that you won't notice it happens. If it's a temporary surge in people visitng your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.
+
+![Pi in packaging box](/images/analytics.svg)
+## Advanced analytics systems built in
+As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many much more data. You'll have access to this data from day one, and we'll be happy to help explain exactly all the metrics you have access to.
+
+![Pi in packaging box](/images/abtesting.svg)
+## A/B testing capable
+Not sure if you prefer blue or red on your website? There's a correct answer - and it's called data. We can run multiple versions of your website, each slightly different to the other, to understand how the slight variations affect your customers behaviour on the website.
+
+We'll see how each version performs thanks to the advanced analytics systems we build into every website, so you'll be able to understand what turns potential customers into customers, and how to capitalize on that.
+
+![Pi in packaging box](/images/emails.svg)
+## Emailing with advanced filtering
+You can have your own company email address ending with @your-domain.com (where your-domain is the name of your company). Oh, and since we're M Media - we automate this too. Your website will be able to send clients automatic email reminders, requests, or notifications.
+
+Thanks to our flexible communication with other services, your email address can easily be integrated with external mailing services like Mailchimp too.
+
+## Made for you
+Contact us and have a chat about what we can do for you and your business. We don't bite!
+",
             'image' => array(
-                'url' => '/images/devices2.svg',
+                'url' => '/images/heartweb.svg',
             ),
         );
         return view('product', $data);

@@ -137,6 +137,13 @@ class UserController extends Controller
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
+
+        #invalidate email if is new and require re-confirmation
+        if ($user->email != $validatedData->email) {
+            $user->email_verified_at = null;
+            $user->save();
+        }
+
         $user->update($validatedData);
 
         if ($request->user()->can('manage user roles')) {

@@ -31,7 +31,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-#Route::get('/web-development', 'ProductController@webdev');
+Route::get('/web-development', 'ProductController@webdev');
 
 #Route::resource('/phone', 'PhoneLogController');
 
@@ -76,7 +76,7 @@ Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
         'vendor' => config('app.name'),
         'product' => config('app.name') . ' goods and services',
-    ]);
+    ])->middleware('auth');
 })->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/tools/instagram-account-analyzer', function () {

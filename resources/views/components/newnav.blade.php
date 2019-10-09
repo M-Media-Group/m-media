@@ -5,8 +5,8 @@
             <a href="/">Home</a>
             <a href="/automation-bot">Marketing Automation Bot</a>
             <a href="/instagram">Instagram Solutions</a>
-{{--              <a href="/web-development">Web Development</a>
-           <a href="/print-media">Print Media</a>
+            <a href="/web-development">Web Development</a>
+{{--            <a href="/print-media">Print Media</a>
  --}}            <hr class="mb-0 mt-0">
                 @guest
                     <a href="/contact">Contact us</a>

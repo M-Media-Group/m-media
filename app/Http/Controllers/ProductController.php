@@ -347,7 +347,7 @@ Just think about all the questions you've Googled and how the first couple of li
 ## Blazingly fast
 Every second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
 
-Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they do not enough, so you need multiple plugins to achieve whatever you need to do.
+Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they don't do enough, so you need multiple plugins to achieve whatever you need to do.
 
 We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is made to meet your business needs while being blazingly fast.
 
@@ -361,7 +361,7 @@ From one user a day to millions, your website can scale across servers so seamle
 
 ![Pi in packaging box](/images/analytics.svg)
 ## Advanced analytics systems built in
-As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many much more data. You'll have access to this data from day one, and we'll be happy to help explain exactly all the metrics you have access to.
+As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many much more data. You'll have access to this data from day one, and we'll be happy to help you understand all the metrics you have access to.
 
 ![Pi in packaging box](/images/abtesting.svg)
 ## A/B testing capable

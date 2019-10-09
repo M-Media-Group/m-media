@@ -252,7 +252,7 @@ Choose a plan that best suites your business needs. Want something different? Co
 
 ### Enterprise
 €893 per month. Includes:
-- Free monthly photography and vidography sessions
+- Free monthly photography and videography sessions
 - Up to €100 in Instagram paid marketing
 - Instagram profile key-metrics analysis
 - 3-5 posts per week
@@ -339,13 +339,13 @@ All our websites are responsive from the get-go, so you don't have to worry abou
 ## SEO friendly
 Our websites make friends with search engines. We optimize sites to be clearly understood by major search engines, and we make sure that as they update their code (we're looking at you, Google), your site will be updated as well.
 
-You'll rank well when your customers search for your brand, your products, and your services. We do this not by milking keywords and using shady techniques, but by satisfing your customer. When your customer is satisfied, then Google is satisfied too.
+You'll rank well when your customers search for your brand, your products, and your services. We do this not by milking keywords and using shady techniques, but by satisfying your customer. When your customer is satisfied, then Google is satisfied too.
 
 Just think about all the questions you've Googled and how the first couple of links answered your question. That's because Google is very good at understanding what you and your customers are looking for, and where to find it. The trick to ranking well is therefore to satisfy the needs of your customers. We do this by finding and suggesting improvements to your content depth and density.
 
 ![Pi in packaging box](/images/webspeed.svg)
 ## Blazingly fast
-Every second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
+For every additional second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
 
 Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they don't do enough, so you need multiple plugins to achieve whatever you need to do.
 
@@ -353,19 +353,21 @@ We build websites tailored to your business needs using custom code on the Larav
 
 ![Pi in packaging box](/images/loveweb.svg)
 ## Flexible communication with other services
-Wether it's using Facebook for logging in, or having new cstomers added automatically to your Mailchimp list, our websites can easily communicate with other websites and services to effortlessly share data and tasks.
+Whether it's using Facebook for logging in, or having new customers added automatically to your Mailchimp list, our websites can easily communicate with other websites and services to effortlessly share data and tasks.
+
+There's little need to change your existing business workflow. We believe websites should work for you instead of you having to work on them. Websites we build reflect that by integrating with your existing way of doing business.
 
 ![Pi in packaging box](/images/webscale.svg)
 ## Highly scalable
-From one user a day to millions, your website can scale across servers so seamlessly that you won't notice it happens. If it's a temporary surge in people visitng your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.
+From one user a day to millions, your website can scale across servers so seamlessly that you won't even notice it happen. If there's a temporary surge in people visiting your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.
 
 ![Pi in packaging box](/images/analytics.svg)
 ## Advanced analytics systems built in
-As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many much more data. You'll have access to this data from day one, and we'll be happy to help you understand all the metrics you have access to.
+As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many more metrics. You'll have access to this data from day one, and we'll be happy to help you understand all the metrics you have access to.
 
 ![Pi in packaging box](/images/abtesting.svg)
 ## A/B testing capable
-Not sure if you prefer blue or red on your website? There's a correct answer - and it's called data. We can run multiple versions of your website, each slightly different to the other, to understand how the slight variations affect your customers behaviour on the website.
+Not sure if you prefer blue or red on your website? There's a correct answer - and it's called data. We can run multiple versions of your website, each slightly different from the other, to understand how the slight variations affect your customers behaviour on the website.
 
 We'll see how each version performs thanks to the advanced analytics systems we build into every website, so you'll be able to understand what turns potential customers into customers, and how to capitalize on that.
 

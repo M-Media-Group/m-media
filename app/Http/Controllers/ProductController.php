@@ -318,12 +318,12 @@ You'll get an extra employee that works 365 days a year, 24 hours a day, doing a
                         'symbol' => "€",
                         'ISO' => "EUR",
                     ),
-                    'value' => 15,
+                    'value' => 1500,
                     'type' => 'subscription',
                     'text' => 'Tailored pricing',
                 ),
             ),
-            'subtext' => "+ Free data analytics integration",
+            'subtext' => "+ Free website analytics",
             'text' => "
 You visit hundreds of sites a day. Yet, you remember just a handful of them. You remember them because they are useful, they work, and they are the answer to what you are looking for in a given moment. They are simple in their usage, and complex in their potential. Most importantly, you don't have to think about how to use them or how they work. They just do.
 
@@ -345,11 +345,11 @@ Just think about all the questions you've Googled and how the first couple of li
 
 ![Pi in packaging box](/images/webspeed.svg)
 ## Blazingly fast
-For every additional second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
+Nobody likes a slow website. For every additional second that it takes your website to load, you lose around 7% of your customers ([source and more info on page speed importance](https://neilpatel.com/blog/loading-time/)). Page speed is also crucial to SEO and ranking well on search engines like Google.
 
 Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they don't do enough, so you need multiple plugins to achieve whatever you need to do.
 
-We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is made to meet your business needs while being blazingly fast.
+We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is tailor made to meet your business needs while being blazingly fast.
 
 ![Pi in packaging box](/images/loveweb.svg)
 ## Flexible communication with other services

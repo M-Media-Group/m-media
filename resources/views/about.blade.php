@@ -9,5 +9,5 @@
 <p>{{ config('app.name') }} was founded by an Alumni student of the International University of Monaco, Michał, and works in the South of France (French Riviera); we design and develop websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see.</p>
 <p>{{ config('app.name') }} creates automations and lead channels for boring, repetitive, and unnecessarily expensive marketing objectives and business administration tasks!</p>
 <hr class="bg-dark"/>
-
+<small class="text-muted">Page loaded in {{round((microtime(true) - LARAVEL_START), 3). " seconds"}}</small>
 @endsection

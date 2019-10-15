@@ -18,9 +18,10 @@
        ]
     }
     </script>
-    <div class="header-section">
+    <div class="header-section" style="background:#246EBA;">
         <h1>Hi 👋! We're {{config('app.name')}}.</h1>
         <h2>We make websites and handle your marketing.</h2>
+        <a class="button button-primary mt-5" href="/contact">Contact us</a>
     </div>
     <div class="action-section container">
         <img src="images/devices2.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5">
@@ -34,7 +35,7 @@
             <a class="button button-secondary" href="/instagram">Instagram solutions</a>
         </div>
     </div>
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section">
         <h1>We'll connect your profiles to advanced analytics.</h1>
         <h2>You'll see who your customers really are.</h2>
     </div>
@@ -48,7 +49,7 @@
             <a class="button button-primary" href="/contact">Contact us</a>
         </div>
     </div>
-    <div class="header-section">
+    <div class="header-section" style="background:#246EBA;">
         <h1>We make sure people don't do repetitive BS.</h1>
         <h2>You'll save a lot of time, money, and sweat.</h2>
     </div>
@@ -64,12 +65,12 @@
             <a class="button button-primary" href="/automation-bot">Learn more</a>
         </div>
     </div>
-    <div class="header-section" style="background:#246EBA;background-image: url('images/background.jpg')">
+    <div class="header-section">
         <h1>Let's build.</h1>
         <h2>Market your brand to the world!</h2>
-        <a class="button button-primary mt-5" href="/contact">Contact us</a>
+        <a class="button button-primary mt-5" href="/contact" style="background-color: #246EBA;">Contact us</a>
     </div>
-    <div class="header-section" style="background:#031926">
+    <div class="header-section" style="background:#246EBA;background-image: url('images/background.jpg')">
         @if( config('blog.facebook_page_username'))
             <p>Facebook: <a target="_BLANK" rel="noopener noreferrer" href="{{config('blog.facebook_page_url')}}">{{config('blog.facebook_page_username')}}</a></p>
         @endif

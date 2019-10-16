@@ -31,6 +31,12 @@
     "@type": "Thing",
     "name": "{{config('app.name')}}"
   },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "bestRating": "5",
+    "ratingValue": "5",
+    "reviewCount": "1"
+  },
   "offers": {
     "@type": "Offer",
     "url": "{{url()->full()}}",

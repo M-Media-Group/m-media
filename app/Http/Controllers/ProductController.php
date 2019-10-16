@@ -132,7 +132,7 @@ If your account is already being tracked and you do not want us to store any mor
                     'text' => 'From €17 a month',
                 ),
             ),
-            'subtext' => "Service is temporarily unavailable",
+            'subtext' => "This service is temporarily unavailable",
             'text' => "M Media uses the [automation bot](/automation-bot) to handle your likes, follows, comments, and unfollows on Instagram, so you can focus on running your business.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the repetitive but very important engagement on Instagram. It doesn't make mistakes, and it doesn't get sick.

@@ -25,24 +25,20 @@ class CaseStudyController extends Controller
     {
         $data = array(
             'title' => "JustBookr",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
-                    'value' => 73,
-                    'type' => 'subscription',
-                    'text' => 'Case study',
-                ),
-            ),
             'subtext' => "Full business web-app and marketing creation",
-            'text' => "JustBookr is a global startup based in Monaco that lets students trade textbooks between each other on campus and allows libraries and bookstores to sell books directly to university students.
+            'text' => "JustBookr is a global startup based in Monaco that lets students trade textbooks between each other on campus and allows libraries and bookstores to sell books directly to university students. Founded in 2016 by a young entrepreneur from the International University of Monaco, JustBookr required their entire business to be built from the ground up by M Media.
 
-## What we did
-Founded in 2016 by a young entrepreneur from the International University of Monaco, JustBookr required their entire business to be built from the ground up by M Media. M Media built the web app for JustBookr, making sure it was blazingly fast, responsive, and SEO friendly; so much so that the website ranks higher for university keywords than some of the official university websites!
+## Project scope
+- Design and sketch of progressive web-app (website)
+- Development and optimization of progressive web-app
+- Creation and integration of seamless Stripe payment system
+- Creation and integration of advanced database system
+- Creation and management of automated emails and mailing-lists
+- Creation of crawling robot and deployment to gather data about universities around the world
+- Creation and printing of 5 different types of posters, 2 types of stickers, and business cards
+
+## Results
+M Media built the web app for JustBookr, making sure it was blazingly fast, responsive, and SEO friendly; so much so that JustBookr now ranks higher for university keywords than some of the official university websites.
 
 The web app M Media built for JustBookr is also highly progressive, meaning that students can now use the website even without an internet connection – which is useful at some university campuses with little to no access to the web. We’ve included automated online payments and developed a crawling robot to scrape multiple online data sources of universities, finally acquiring a database of over 16,000 universities to add to the platform.
 
@@ -60,4 +56,63 @@ JustBookr also entrusted M Media with the physical printing of the offline marke
         return view('caseStudy', $data);
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function breatheAsOne(Request $request)
+    {
+        $data = array(
+            'title' => "Breathe as One Festival",
+            'subtext' => "Full online marketing strategy and execution",
+            'text' => "Many cities in the world celebrate yearly the International Yoga Day, granted by the United Nations. The Breathe as One Yoga Festival held in Nice, France, is the French Riviera answer to that celebration.
+
+## Project scope
+- Design and sketch of website
+- Development of website
+- Creation and integration of online shop with easy PayPal payment system
+- Creation and integration of no-database sign-up form with auto-emailing to festival core team
+
+## Results
+We created the website and added a no-database sign-up form to complement the existing preferred work-flow of the organizers team. The website also included a shop section connected with the festivals existing PayPal account to seamlessly and easily process the sales of festival merchandise via the website.
+
+We now have the honor and continuous pleasure of being chosen by the festivals core team on other projects as their sole online and offline marketing agency. With their irresistible entrepreneurial spirit, we thoroughly enjoy exploring innovative ideas that bring meaningful solutions to the community on the French Riviera.",
+            'image' => array(
+                'url' => '/images/case-studies/breathe-as-one/event.jpg',
+            ),
+        );
+
+        return view('caseStudy', $data);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function nicolasPisani(Request $request)
+    {
+        $data = array(
+            'title' => "Nicolas Pisani Real Estate Agents",
+            'subtext' => "Multi-agent Instagram account engagement",
+            'text' => "This real estate agency lies at the very heart of the French Riviera. Neighboring the Principality of Monaco, two agencies are situated in Villefranche sur Mer and Beaulieu sur Mer. Nicolas Pisani real estate agents assist increasingly cosmopolitan clients in their quest for high-end property.
+
+## Project scope
+- Instagram hashtag research
+- Instagram location-targeting research
+- Management of Instagram Engagement Service for multiple clients simultaneously
+
+## Results
+We have managed the accounts of 3 real estate agents at the agency and have been able to acquire a healthy 3-10 new organic leads per day. We're proud to say that two of the real estate agents are nearing close to a year of happily working with us, while one has already surpassed the mark.
+
+Each agent has seen an average or above average engagement rate, something that would not be possible without the time dedication that M Media can optimize for and deliver to your Instagram account, all using in-house automation tools.
+",
+            'image' => array(
+                'url' => '/images/realestate.svg',
+            ),
+        );
+
+        return view('caseStudy', $data);
+    }
 }

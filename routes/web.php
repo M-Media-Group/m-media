@@ -23,6 +23,10 @@ Route::get('/instagram', function () {
     return view('instagram');
 });
 
+Route::get('/case-studies', function () {
+    return view('caseStudies');
+});
+
 // Route::get('/mail', function () {
 //     return new App\Mail\BotOffline();
 // });
@@ -46,6 +50,10 @@ Route::get('/instagram-account-analyzer', 'ProductController@instagramAnalysis')
 Route::get('/automation-bot', 'ProductController@bot');
 
 Route::get('/case-studies/justbookr', 'CaseStudyController@justbookr');
+
+Route::get('/case-studies/breathe-as-one-festival', 'CaseStudyController@breatheAsOne');
+
+Route::get('/case-studies/nicolas-pisani-real-estate-agents', 'CaseStudyController@nicolasPisani');
 
 Route::get('/privacy-policy', function () {
     return view('privacy');

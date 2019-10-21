@@ -4,11 +4,12 @@
 @section('meta_description', strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) )
 
 @section('sidebar')
-	<h2 class="text-muted">{{$price[0]['text']}}</h2>
+	<h2 class="text-muted">Case study</h2>
 	@if (isset($subtext))
 		<p class="text-muted">{{$subtext}}</p>
 	@endif
     <a class="button button-primary" href="/contact">Contact us</a>
+    <a class="button button-secondary" href="/case-studies">See all case studies</a>
     @if (isset($actions))
     @foreach($actions as $action)
         <a class="button button-secondary" target="_BLANK" rel="noopener noreferrer" href="{{$action['url']}}">{{$action['text']}}</a>
@@ -31,7 +32,7 @@
 {{--     "dateModified": "2019-02-11T11:11:11",
  --}}    "inLanguage": "{{ app()->getLocale() }}",
     "isFamilyFriendly": "true",
-    "copyrightYear": "2019",
+    "copyrightYear": "{{ now()->year }}",
     "copyrightHolder": "{{config('app.name')}}",
     "contentLocation": {
       "@type": "Place",

@@ -8,7 +8,7 @@
             <a href="/web-development">Web Development</a>
 {{--            <a href="/print-media">Print Media</a>
  --}}           <hr class="mb-0 mt-0">
-                <a href="/case-studies/justbookr">Case Studies</a>
+                <a href="/case-studies">Case Studies</a>
                 <hr class="mb-0 mt-0">
                 @guest
                     <a href="/contact">Contact us</a>

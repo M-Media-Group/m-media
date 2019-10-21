@@ -45,6 +45,8 @@ Route::get('/instagram-account-analyzer', 'ProductController@instagramAnalysis')
 
 Route::get('/automation-bot', 'ProductController@bot');
 
+Route::get('/case-studies/justbookr', 'CaseStudyController@justbookr');
+
 Route::get('/privacy-policy', function () {
     return view('privacy');
 });

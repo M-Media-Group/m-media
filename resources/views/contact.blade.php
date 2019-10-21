@@ -1,4 +1,5 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
+@section('title', __('Contact us'))
 
 @section('opening_body')
  <!-- Load Facebook SDK for JavaScript -->

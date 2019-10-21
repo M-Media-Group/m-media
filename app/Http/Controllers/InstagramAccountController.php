@@ -122,6 +122,8 @@ class InstagramAccountController extends Controller
         }
 
         //return dump();
+        $request->user()->id = $instagramAccount->user_id;
+
         $file = UploadFile::dispatchNow($request);
 
         PostToBuffer::dispatch($file, $instagramAccount);

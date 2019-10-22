@@ -121,7 +121,13 @@
 			@foreach ($user->primaryPhone['logs']->reverse() as $call)
 				<tr>
 					<td>{{ $call->created_at->diffForHumans() }}</td>
-					<td>{{ $call->type == 'INBOUND' ? 'You called us' : 'We called you' }}</td>
+					@if($call->type == 'INBOUND')
+						<td>You called us</td>
+					@elseif($call->type == 'OUTBOUND_AUTO_SMS')
+						<td>We sent you an automated SMS</td>
+					@else
+						<td>We called you</td>
+					@endif
 					<td class="text-muted">{{ $call->notes ? $call->notes : null }}</td>
 					@if(Auth::user()->can('edit phone logs'))
 						<td><a href="/user/phone-log/{{ $call->id }}">Edit notes</a></td>

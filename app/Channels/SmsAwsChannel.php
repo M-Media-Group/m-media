@@ -2,6 +2,7 @@
 
 namespace App\Channels;
 
+use App\PhoneLog;
 use AWS;
 use Illuminate\Notifications\Notification;
 
@@ -20,6 +21,8 @@ class SmsAwsChannel
         $message = $notification->toSms($notifiable);
 
         $sms = AWS::createClient('pinpoint');
+
+        PhoneLog::create(['phone_id' => $notifiable->primaryPhone->id, 'notes' => "SMS regarding: " . $message['title'], 'type' => "OUTBOUND_AUTO_SMS"]);
 
         return $sms->sendMessages([
             'ApplicationId' => config('aws.pinpoint.app_id'),

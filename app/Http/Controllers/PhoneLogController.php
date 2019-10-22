@@ -56,7 +56,7 @@ class PhoneLogController extends Controller
         $input['language'] = (isset($request['language']) && $request['language'] != '') ? $request['language'] : 'en';
         $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
         $phone = savePhone($input);
-        PhoneLog::create(['phone_id' => $phone->id, 'type' => $input['callNotes'], 'type' => $input['callType']]);
+        PhoneLog::create(['phone_id' => $phone->id, 'notes' => $input['callNotes'], 'type' => $input['callType']]);
         $phone->logs = PhoneLog::where('phone_id', $phone->id)->get();
 
         return $phone;

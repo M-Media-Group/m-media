@@ -21,7 +21,8 @@
     <div class="header-section" style="background:#246EBA;">
         <h1>Hi 👋! We're {{config('app.name')}}.</h1>
         <h2>We make websites and handle your marketing.</h2>
-        <a class="button button-primary mt-5" href="/contact">Contact us</a>
+        <a class="button button-primary mt-5 mr-3" href="/contact">Contact us</a>
+        <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
     </div>
     <div class="action-section container">
         <img src="images/devices2.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5">
@@ -31,7 +32,7 @@
             <!-- <a class="button button-secondary">Website development</a>
             <a class="button button-secondary">Social media management</a> -->
             <a class="button button-primary" href="/contact">Contact us</a>
-            <a class="button button-secondary" href="/automation-bot">Automation bot</a>
+            <a class="button button-secondary" href="/web-development">Web development</a>
             <a class="button button-secondary" href="/instagram">Instagram solutions</a>
         </div>
     </div>

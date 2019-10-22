@@ -37,7 +37,7 @@ Route::get('/contact', function () {
 
 Route::get('/web-development', 'ProductController@webdev');
 
-#Route::resource('/phone', 'PhoneLogController');
+Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index')->middleware('auth', 'verified');
 
 Route::get('/instagram-engagement', 'ProductController@engagement');
 

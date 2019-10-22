@@ -35,6 +35,7 @@ class CaseStudyController extends Controller
 - Creation and integration of advanced database system
 - Creation and management of automated emails and mailing-lists
 - Creation of crawling robot and deployment to gather data about universities around the world
+- Creation and initial management of Facebook ads, pages, and the Instagram account
 - Creation and printing of 5 different types of posters, 2 types of stickers, and business cards
 
 ## Results
@@ -104,7 +105,7 @@ We now have the honor and continuous pleasure of being chosen by the festivals c
 - Management of Instagram Engagement Service for multiple clients simultaneously
 
 ## Results
-We have managed the accounts of 3 real estate agents at the agency and have been able to acquire a healthy 3-10 new organic leads per day. We're proud to say that two of the real estate agents are nearing close to a year of happily working with us, while one has already surpassed the mark.
+We have managed the accounts of 3 real estate agents at the agency and have been able to acquire a healthy 3-10 new organic Instagram leads per day. We're proud to say that two of the real estate agents are nearing close to a year of happily working with us, while one has already surpassed the mark.
 
 Each agent has seen an average or above average engagement rate, something that would not be possible without the time dedication that M Media can optimize for and deliver to your Instagram account, all using in-house automation tools.
 ",

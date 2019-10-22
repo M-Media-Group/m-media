@@ -223,7 +223,7 @@ As with all of our monthly subscriptions, you can cancel this service at any tim
                     'text' => 'From €147 a month',
                 ),
             ),
-            //'subtext' => "+ Free monthly Excel reports",
+            'subtext' => "+ Free progress reports",
             'text' => "M Media uses analytics data to understand the best times to post your content to Instagram, and then does exactly that.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the things you hate. It doesn't make mistakes, and it doesn't get sick.

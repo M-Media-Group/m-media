@@ -3,7 +3,7 @@
 
 @section('above_container')
     <a class="header-section d-block text-center" style="background:#246EBA;" href="/case-studies/breathe-as-one-festival">
-        <img src="/images/case-studies/breathe-as-one/product.jpg" alt="Breathe as One Festival product shirt" class="mb-5" style="max-height:200px; min-height: 190px; border-radius: 100%;">
+        <img src="/images/case-studies/breathe-as-one/product.jpg" alt="Breathe as One Festival product shirt" class="mb-5 rounded-circle" style="max-height:200px; min-height: 190px;">
         <h1>Breathe as One Festival</h1>
         <h2>Yearly festival bringing in hundreds of yoga and well-being enthusiasts together</h2>
     </a>

@@ -42,17 +42,21 @@ h1 {
     animation-duration: .55s;
     animation-timing-function: ease-in-out;
 }
-.header-section h1
+.header-section h1, .header-section-title
 {
     font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 2.3rem;
-    font-weight: 900;
-    letter-spacing: 0;
     margin-bottom: .5rem;
-
     /*    color: #4a4a4a;
 */
 }
+
+.header-section-title
+{
+    font-size: 2.3rem;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
 h2, p, .button {
     -webkit-transition: all 0s;
             transition: all 0s;
@@ -60,6 +64,12 @@ h2, p, .button {
     animation-duration: .65s;
     animation-timing-function: ease-in-out;
 }
+
+.button {
+    -webkit-transition: all 0.1s;
+            transition: all 0.1s;
+}
+
 .header-section h2
 {
     font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -311,4 +321,10 @@ main img {
 .background-filter > * {
     position: relative;
     text-shadow: 0 0 1px rgb(117, 117, 117);
+}
+
+.shadow-filter {
+  -webkit-filter: drop-shadow( 1px 1px 3px rgba(0, 0, 0, .2));
+  filter: drop-shadow( 1px 1px 3px rgba(0, 0, 0, .2));
+  /* Similar syntax to box-shadow */
 }

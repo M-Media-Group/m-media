@@ -91,7 +91,7 @@
 			<tbody>
 			@foreach ($user->phones as $phone)
 				<tr>
-					<td>{{ $phone->country->iso }}</td>
+					<td>{{ strtoupper($phone->country->iso) }}</td>
 					<td>{{ $phone->number }}</td>
 					<td>{!! $phone['is_public'] ? '<b>Number is publicly visible</b>' : 'No' !!}</td>
 					<td>{{$user->primaryPhone->id == $phone->id ? 'Primary' : null}} {{ strtolower($phone->number_type) }} number</td>

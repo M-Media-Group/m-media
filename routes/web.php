@@ -19,6 +19,13 @@ use Illuminate\Http\Request;
 //     return view('print');
 // });
 
+Route::get('/web-development/entrepreneurs', function () {
+    return view('entrepreneur');
+});
+// Route::get('/web-development/restaurateurs', function () {
+//     return view('restaurateur');
+// });
+
 Route::get('/instagram', function () {
     return view('instagram');
 });
@@ -94,7 +101,7 @@ Route::get('/tools/instagram-account-analyzer', function () {
 });
 Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeController@index')->middleware('throttle:10,1');
 
-Route::get('/tools/website-debugger/{username}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
+Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 
 //Route::resource('posts', 'PostController');
 

@@ -145,18 +145,18 @@ class ScrapeInstagramAccount implements ShouldQueue
         $users = array_unique(array_merge($users, $biography_users));
         $hashtags = array_unique(array_merge($hashtags, $biography_hashtags));
 
+        if ($this->user) {
+            $user_id = $this->user->id;
+        }
+
         if ($data->externalUrl) {
             $parsed_url = parse_url($data->externalUrl);
             $website = Website::firstOrCreate(
                 ['host' => $parsed_url['host']],
-                ['scheme' => $parsed_url['scheme']]
+                ['scheme' => $parsed_url['scheme'], 'user_id' => $account->user_id ?? null]
                 //['is_scrapeable' => $data->private ? 0 : 1]
             );
             $website_id = $website->id;
-        }
-
-        if ($this->user) {
-            $user_id = $this->user->id;
         }
 
         if ($data->mediaCount && !$data->private) {

@@ -99,6 +99,9 @@
 			            <td>
 			            	@foreach ($invoice->subscriptions() as $subscription)
 			            		{{$subscription->description}}
+			            		@if(!$loop->last)
+						    		+
+						    	@endif
 			            	@endforeach
 			            </td>
 			            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>

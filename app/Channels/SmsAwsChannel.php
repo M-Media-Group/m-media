@@ -37,7 +37,7 @@ class SmsAwsChannel
                     'SMSMessage' => [
                         'Body' => $message['title'] . "\n" . $message['message'] . ($message['action_text'] ? "\n\n" . $message['action_text'] . ": " . $message['action'] : null),
                         'MessageType' => $message['type'],
-                        'SenderId' => "MMedia",
+                        'SenderId' => str_replace(' ', '', config('app.name')),
                     ],
                 ],
             ],

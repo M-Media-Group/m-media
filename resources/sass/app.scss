@@ -101,3 +101,42 @@ span.fa {
 	border-top: none;
 	border-bottom: none;
 }
+
+.progress {
+	background-color: #e3e3e3;
+}
+.header-section.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+@media print {
+	  html, body {
+    background-color: #fff !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html, body {
+    // background-color: #333333 !important;
+    background-color: #232323 !important;
+    color: white !important;
+  }
+  .alert-info {
+	background-color: #0a2c47 !important;
+	border-color: #0a2c47 !important;
+  }
+
+  .action-section, .dropdown-content, .img-thumbnail {
+  	background-color: #333333 !important;
+    color: white !important;
+  }
+  .bg-light, input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea, select {
+    background-color: #131313 !important;
+    color: white !important;
+  }
+    body > *, .text-dark, a.text-dark:hover, a.text-dark:focus, .table, .table-hover tbody tr:hover, .dropdown-content a {
+    color: white !important;
+  }
+  .text-muted, a.text-muted, p.text-muted, small.text-muted, .button-secondary, .btn {
+  	color: #bfc4c8 !important;
+  }
+}

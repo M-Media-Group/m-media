@@ -26,7 +26,13 @@
 	    </div>
     @endif
 
-	<h2 class="mt-5 mb-0">Customer data</h2>
+    Jump to:
+    <a href="#data">data</a> |
+    <a href="#instagram">Instagram profiles</a> |
+    <a href="#websites">websites</a> |
+    <a href="#files">files</a>
+
+	<h2 class="mt-5 mb-0" id="data">Customer data</h2>
 
 	<div class="table-responsive table-hover">
 	    <table class="table mb-0">
@@ -57,7 +63,7 @@
             {{ __('Edit account settings') }}
         </a>
     @endcan
-    <h2 class="mt-5 mb-0">Instagram profiles</h2>
+    <h2 class="mt-5 mb-0" id="instagram">Instagram profiles</h2>
 	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -83,7 +89,7 @@
 		</div>
 	@endif
 
-<h2 class="mt-5 mb-0">Websites</h2>
+<h2 class="mt-5 mb-0" id="websites">Websites</h2>
 	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -108,7 +114,8 @@
 			 There's currently no websites associated with your account.
 		</div>
 	@endif
-<h2 class="mt-5 mb-0">Files</h2>
+
+<h2 class="mt-5 mb-0" id="files">Files</h2>
 	@if($user->files && count($user->files) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">

@@ -19,14 +19,14 @@
     }
     </script>
     <div class="header-section" style="background:#246EBA;">
-        <h1>Hi 👋! We're {{config('app.name')}}.</h1>
+        <h1 class="header-section-title">Hi 👋! We're {{config('app.name')}}.</h1>
         <h2>We make websites and handle your marketing.</h2>
         <a class="button button-primary mt-5 mr-3" href="/contact">Contact us</a>
         <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
     </div>
     <div class="action-section container">
         <img src="images/devices2.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5">
-        <p>Based in the South of France and founded in 2018 by alumni of the International University of Monaco; we design websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see. Some social media managers will tell you need to post wacky posts to stand out, while SEO “experts” will tell you that you have to include popular keywords that you want to target, and then milk them to death. We don’t believe in any of that.</p>
+        <p>Based in the South of France and founded in 2018 by alumni of the International University of Monaco; we design websites, social media posts, and business profile pages on sites like Facebook and Instagram based on what your customers want to see. Some social media managers will tell you need to post wacky posts to stand out, while SEO “experts” will tell you that you have to include popular keywords that you want to target, and then milk them to infinity. We don’t believe in any of that.</p>
         <p>Our philosophy stems from the idea that if the customer is happy, they will organically grow your business with you. They’ll share their experiences on a range of rating platforms, and they’ll rave about your company on social media accounts. Our job is to make your customers have an effortless, pleasant, and unobtrusive experience with your brand on the French Riviera.</p>
         <div class="flex" style="flex-wrap: wrap;">
             <!-- <a class="button button-secondary">Website development</a>
@@ -37,13 +37,13 @@
         </div>
     </div>
     <div class="header-section">
-        <h1>We'll connect your profiles to advanced analytics.</h1>
+        <h1 class="header-section-title">We'll connect your profiles to advanced analytics.</h1>
         <h2>You'll see who your customers really are.</h2>
     </div>
     <div class="action-section container">
         <img src="images/data.svg" alt="Data chart from web analytics" style="max-height:150px;min-height: 80px;" class="mb-5">
-        <p>We're a data driven web development and marketing company. We won’t make your text pink and your titles in Comic Sans because ‘design’. We’ll make it pink and Comic Sans because the data shows us that that's what converts your potential customers into paying ones.</p>
-        <p>We measure this by setting up advanced web analytics systems and continuously A/B testing your website and Instagram profiles to see what elements speak best to your target market. Speaking of, in our years of experience, pink text and Comic Sans fonts have never proven successful - so stay clear of those when you’re designing some marketing pieces!</p>
+        <p>We're a data driven web development and marketing company. We won’t make your text in Comic Sans because ‘design’. We’ll make it a font that the data shows us converts your potential customers into paying ones.</p>
+        <p>We measure this by setting up advanced web analytics systems and continuously A/B testing your website and Instagram profiles to see what elements speak best to your target market. Speaking of, in our years of experience, Comic Sans fonts have never proven successful - so stay clear of those when you’re designing some marketing pieces!</p>
         <div class="flex">
             <!-- <a class="button button-secondary">Web analytics</a>
             <a class="button button-secondary">Social media analytics</a> -->
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="header-section" style="background:#246EBA;">
-        <h1>We make sure people don't do repetitive BS.</h1>
+        <h1 class="header-section-title">We make sure people don't do repetitive BS.</h1>
         <h2>You'll save a lot of time, money, and sweat.</h2>
     </div>
     <div class="action-section container">
@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="header-section">
-        <h1>Let's build.</h1>
+        <h1 class="header-section-title">Let's build.</h1>
         <h2>Market your brand to the world!</h2>
         <a class="button button-primary mt-5" href="/contact" style="background-color: #246EBA;">Contact us</a>
     </div>

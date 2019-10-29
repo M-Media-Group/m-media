@@ -124,7 +124,8 @@ class EmailLogController extends Controller
     private function email_split($str)
     {
         $str .= " ";
-        $sPattern = '/([\w\s\'\"]+[\s]+)?[\<]?([\w-\.]+\@(?:[\w]+\.)+[a-zA-Z]{2,4})[\>]?/';
+        //$aMatch = mailparse_rfc822_parse_addresses($str)[0];
+        $sPattern = '/([\w\s\'\"]+[\s]+)?[<]?([\w\-\.]+\@(?:[\w]+\.)+[a-zA-Z]{2,4})[>]?/';
         preg_match($sPattern, $str, $aMatch);
         //echo "string";
         //print_r($aMatch);

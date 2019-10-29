@@ -41,8 +41,6 @@ class SavePhone implements ShouldQueue
         $input = $this->input;
         $input['phonenumber'] = $input['phonenumber'];
         $input['country'] = $input['country'] ?? null;
-        $input['callType'] = $input['callType'] ?? 'INBOUND';
-        $input['callNotes'] = $input['callNotes'] ?? null;
         $input['language'] = (isset($input['language']) && $input['language'] != '') ? $input['language'] : 'en';
         $input['region'] = (isset($input['region']) && $input['region'] != '') ? $input['region'] : null;
 

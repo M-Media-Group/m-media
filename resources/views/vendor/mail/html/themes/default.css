@@ -21,6 +21,9 @@ body {
     -webkit-text-size-adjust: none;
     word-break: break-all;
     word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 p,

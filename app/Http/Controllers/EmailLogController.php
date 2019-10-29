@@ -124,12 +124,12 @@ class EmailLogController extends Controller
     private function email_split($str)
     {
         $str .= " ";
-        $sPattern = '/([\w\s\'\"]+[\s]+)?(\<)?(([\w-\.]+)\@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(\>)?/';
+        $sPattern = '/([\w\s\'\"]+[\s]+)?\<?([\w-\.]+\@(?:[\w]+\.)+[a-zA-Z]{2,4})\>?/';
         preg_match($sPattern, $str, $aMatch);
         //echo "string";
         //print_r($aMatch);
         $name = (isset($aMatch[1])) ? $aMatch[1] : '';
-        $email = (isset($aMatch[3])) ? $aMatch[3] : '';
+        $email = (isset($aMatch[2])) ? $aMatch[2] : '';
         return array('name' => trim($name), 'email' => trim($email));
     }
 }

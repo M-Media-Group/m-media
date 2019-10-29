@@ -61,6 +61,11 @@
                             {{ __('Files') }}
                         </a>
                     @endcan
+                    @can('index', App\Email::class)
+                        <a href="/emails">
+                            {{ __('Emails') }}
+                        </a>
+                    @endcan
                     @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}

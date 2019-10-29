@@ -75,7 +75,7 @@
                 @method('DELETE')
                 <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever.');">
                     {{ __('Delete file') }}
-                </button>.
+                </button>
             </form>
         @endif
 @endsection

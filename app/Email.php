@@ -35,4 +35,8 @@ class Email extends Model
     {
         return $this->hasMany('App\EmailLog');
     }
+    public function received_logs()
+    {
+        return $this->hasMany('App\EmailLog', 'to_email_id', 'id');
+    }
 }

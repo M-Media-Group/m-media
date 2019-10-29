@@ -17,4 +17,19 @@ class EmailLog extends Model
         'subject',
         'notes',
     ];
+
+    public function email()
+    {
+        return $this->belongsTo('App\Email');
+    }
+
+    public function to_email()
+    {
+        return $this->belongsTo('App\Email', 'to_email_id', 'id');
+    }
+
+    public function reply_to_email()
+    {
+        return $this->belongsTo('App\Email', 'reply_to_email_id', 'id');
+    }
 }

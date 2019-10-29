@@ -36,7 +36,7 @@ class EmailLogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->replace([
+        $request->merge([
             'from_display' => $this->email_split($request->input('email'))['name'],
             'email' => $this->email_split($request->input('email'))['email'],
             'from' => $this->email_split($request->input('from'))['email'],

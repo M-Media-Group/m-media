@@ -15,7 +15,9 @@ class EmailLogController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('index', EmailLog::class);
+        $email_logs = EmailLog::get();
+        return view('emailLogs.index', compact('email_logs'));
     }
 
     /**
@@ -45,13 +47,13 @@ class EmailLogController extends Controller
 
         $request->validate([
             'from_display' => 'nullable|string',
-            'email' => 'email',
-            'from' => 'email',
+            'email' => 'required|email',
+            'from' => 'required|email',
             'reply_to' => 'nullable|email',
             'type' => 'nullable|string',
             'status' => 'nullable|string',
             'subject' => 'nullable|string',
-            'aws_id' => 'string',
+            'aws_id' => 'required|string',
         ]);
 
         $email = SaveEmail::dispatchNow($request->only('email'));

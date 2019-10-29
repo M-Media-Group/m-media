@@ -66,14 +66,19 @@
                             {{ __('Emails') }}
                         </a>
                     @endcan
-                    @can('manage roles')
+                    @can('index', App\EmailLog::class)
+                        <a href="/email-logs">
+                            {{ __('Email logs') }}
+                        </a>
+                    @endcan
+                    {{-- @can('manage roles')
                         <a href="/roles">
                             {{ __('Manage roles') }}
                         </a>
                         <a href="/roles/create">
                             {{ __('Create roles') }}
                         </a>
-                    @endcan
+                    @endcan --}}
                     @can('create custom notifications')
                         <a href="/custom-notifications/create">
                             {{ __('Notify users') }}

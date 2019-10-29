@@ -18,8 +18,8 @@
 				   <th>Public</th>
 				   <th>Primary User</th>
 				   <th>User</th>
-				   <th>Messages sent</th>
-				   <th>Messages received</th>
+				   <th>Emails sent</th>
+				   <th>Emails received</th>
 				   <th>Created at</th>
 				</tr>
 			</thead>

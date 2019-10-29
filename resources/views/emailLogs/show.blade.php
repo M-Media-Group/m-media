@@ -42,7 +42,7 @@
         </table>
     </div>
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this email.</a></p>
-        {{-- @if (Auth::user()->can('update', $email))
+        @if (Auth::user()->can('update', $email))
             @if($email->is_public)
                 <a class="button button-primary" href="/contact">
                     {{ __('Make private') }}
@@ -65,7 +65,7 @@
                     {{ __('Delete email') }}
                 </button>
             </form>
-        @endif --}}
+        @endif
          <h2 class="mt-5 mb-0" id="emails">Emails sent</h2>
 	    @if($email->logs->count() > 0)
 	     <div class="table-responsive table-hover">

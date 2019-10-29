@@ -30,7 +30,7 @@
         <a class="button button-secondary text-white" href="/case-studies">See case studies</a>
     </div>
 
-    <div class="header-section text-dark row" style="background:initial;">
+    <div class="header-section text-dark row m-0" style="background:initial;">
         <div class="col-md-6 order-md-6 flex mb-5">
             <img src="/images/lightbulb.svg" alt="Multiple devices showing responsive websites" style="max-height:100%;min-height: 80px; margin: 0 auto;">
         </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div class="header-section bg-light text-dark row">
+    <div class="header-section bg-light text-dark row m-0">
         <div class="col-md-6 order-md-12 flex mb-5">
             <img src="/images/tabletshop.svg" alt="Multiple devices showing responsive websites" style="max-height:100%;min-height: 80px; margin: 0 auto;">
         </div>
@@ -60,7 +60,7 @@
     </div>
 
 
- <div class="header-section text-dark row" style="background:initial;">
+ <div class="header-section text-dark row m-0" style="background:initial;">
         <div class="col-md-6 order-md-6 flex mb-5">
             <img src="/images/hearts.svg" alt="Multiple devices showing responsive websites" style="max-height:100%;min-height: 80px; margin: 0 auto;">
         </div>
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <div class="header-section bg-light text-dark row">
+    <div class="header-section bg-light text-dark row m-0">
         <div class="col-md-6 order-md-12 flex mb-5">
             <img src="/images/people.svg" alt="Multiple devices showing responsive websites" style="max-height:300px;min-height: 80px; margin: 0 auto;" class="shadow-filter">
         </div>
@@ -88,7 +88,7 @@
         </div>
     </div>
 
-    <div class="header-section text-dark row" style="background:initial;">
+    <div class="header-section text-dark row m-0" style="background:initial;">
         <div class="col-md-6 order-md-6 flex mb-5">
             <img src="/images/fireworks.svg" alt="Multiple devices showing responsive websites" style="max-height:350px;min-height: 80px; margin: 0 auto;">
         </div>
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-     <div class="header-section bg-primary row">
+     <div class="header-section bg-primary row m-0">
         <div class="col-md-12 text-center">
             <img src="/images/heart.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5 shadow-filter">
             <h3>It's a match!</h3>

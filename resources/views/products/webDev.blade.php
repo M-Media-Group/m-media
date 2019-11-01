@@ -135,7 +135,7 @@
 </div>
 <div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-6 order-md-6 mb-5 flex">
-        <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
+        <img src="/images/emails.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
     <div class="col-md-6 order-md-12">
         <h3 class="mt-0">Emails included.</h3>

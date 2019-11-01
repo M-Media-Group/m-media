@@ -120,9 +120,10 @@ span.fa {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
-
+.blockquote {
+    font-size: inherit;
+}
 
 /* Self Clearing Goodness */
 .container:after,

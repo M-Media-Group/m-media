@@ -25,7 +25,6 @@
         <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
     </div>
     <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-
         <div class="col-md-6">
             <h3 class="mt-0">You want to get your business online.</h3>
             <p style="max-width: 550px;">You're here to find out how to get a business website online and in front of your customers. You need a low-cost, quick, and tailored solution.</p>
@@ -38,7 +37,7 @@
         </div>
     </div>
 
-    <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);">
+    <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0">You're looking to reach people on Instagram.</h3>
             <p>You'd like to run ads and engage with your target audience on Instagram. You need someone to post regularly and write captions with hashtags.</p>
@@ -91,7 +90,7 @@
         </div>
     </div>
 
- <div class="header-section u-bg-primary row m-0">
+    <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
                 <a class="button button-secondary" href="/contact">Let's talk :)</a>

@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);background-size: cover;">
+    <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0">You're looking to reach people on Instagram.</h3>
             <p>You'd like to run ads and engage with your target audience on Instagram. You need someone to post regularly and write captions with hashtags.</p>

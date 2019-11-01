@@ -68,7 +68,7 @@
     <div class="header-section row m-0" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0">You'd like some help on your digital strategy.</h3>
-            <p>You're not 100% sure if Instagram or Facebook are the right solutions for you, or you can't decide how much of your business logic can be online.</p>
+            <p>You're not 100% sure if Instagram or Facebook are the right solutions for you, or you can't decide how much of your business logic should be online.</p>
             <p>We can help.</p>
         </div>
         <div class="col-md-6 mb-5 flex">

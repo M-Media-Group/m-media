@@ -35,7 +35,7 @@
   }
 }
 </script>
-    <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/404.svg'), var(--primary);background-position: 65vw, bottom;background-repeat: no-repeat;">
+    <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/404.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;">
         <h1 class="header-section-title mb-0">Web Development</h1>
         <p class="mb-0">With free website analytics.</p>
         <a class="button button-secondary mt-3 mb-5" href="/contact">Contact us</a>
@@ -95,20 +95,20 @@
     </div>
 
 <div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-    <div class="col-md-6 order-md-6 mb-5 flex">
+    <div class="col-md-6 order-md-12 mb-5 flex">
         <img src="/images/analytics.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-12">
+    <div class="col-md-6 order-md-6">
         <h3 class="mt-0">Advanced analytics systems built in.</h3>
         <p>As a data driven company, we wouldn't be M Media if we wouldn't include analytics systems into your website. You'll be able to see how many people saw your website, your best performing pages, bounce rate, session views, and many more metrics. You'll have access to this data from day one, and we'll be happy to help you understand all the metrics you have access to.</p>
     </div>
 </div>
 
 <div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-    <div class="col-md-6 order-md-12 mb-5 flex">
+    <div class="col-md-6 order-md-6 mb-5 flex">
         <img src="/images/webscale.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-6">
+    <div class="col-md-6 order-md-12">
         <h3 class="mt-0">Highly scalable.</h3>
         <p>From one user a day to millions, your website can scale across servers so seamlessly that you won't even notice it happen. If there's a temporary surge in people visiting your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.</p>
     </div>
@@ -123,6 +123,34 @@
             <p class="u-center">We'll see how each version performs thanks to the advanced analytics systems we build into every website, so you'll be able to understand what turns potential customers into customers, and how to capitalize on that.</p>
         </div>
     </div>
+<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="col-md-6 order-md-12 mb-5 flex">
+        <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
+    </div>
+    <div class="col-md-6 order-md-6">
+        <h3 class="mt-0">Flexible with other services.</h3>
+        <p>Whether it's using Facebook for logging in, or having new customers added automatically to your Mailchimp list, our websites can easily communicate with other websites and services to effortlessly share data and tasks.</p>
+        <p>There's little need to change your existing business workflow. We believe websites should work for you instead of you having to work on them. Websites we build reflect that by integrating with your existing way of doing business.</p>
+    </div>
+</div>
+<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="col-md-6 order-md-6 mb-5 flex">
+        <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
+    </div>
+    <div class="col-md-6 order-md-12">
+        <h3 class="mt-0">Emails included.</h3>
+        <p>You can have your own company email address ending with @your-domain.com (where your-domain is the name of your company). Oh, and since we're M Media - we automate this too. Your website will be able to send clients automatic email reminders, requests, or notifications.</p>
+        <p>Thanks to our flexible communication with other services, your email address can easily be integrated with external mailing services like Mailchimp too.</p>
+    </div>
+</div>
+<div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="col-md-12">
+        <blockquote class="blockquote m-0">
+          <p class="u-center">"Thanks to M Media for your bespoke service! I have no doubts today, the results are there!"</p>
+          <p class="blockquote-footer u-center text-small">Anthony Alessandra, CEO of <cite title="Source Title">Nicolas Pisani Real Estate</cite></p>
+        </blockquote>
+    </div>
+</div>
  <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">

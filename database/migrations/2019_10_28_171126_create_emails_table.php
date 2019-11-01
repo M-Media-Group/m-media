@@ -26,7 +26,6 @@ class CreateEmailsTable extends Migration
 
             $table->foreign('website_id')->references('id')->on('websites')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-
         });
     }
 

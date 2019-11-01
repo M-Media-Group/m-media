@@ -40,13 +40,15 @@ class CategoryController extends Controller
     public function create()
     {
         $this->authorize('create', Category::class);
+
         return view('categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -74,7 +76,8 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param \App\Category $category
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $slug)
@@ -87,9 +90,9 @@ class CategoryController extends Controller
         }
         \App\CategoryView::create(
             [
-                "category_id" => $category->id,
-                "user_id" => $user_id,
-                "ip" => $request->ip(),
+                'category_id' => $category->id,
+                'user_id'     => $user_id,
+                'ip'          => $request->ip(),
             ]
         );
 
@@ -98,27 +101,29 @@ class CategoryController extends Controller
         } else {
             return view('categories.show', ['category' => $category]);
         }
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param \App\Category $category
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         $this->authorize('update', $category);
+
         return view('categories.edit', ['category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Category            $category
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
@@ -135,14 +140,14 @@ class CategoryController extends Controller
             ]
         );
 
-        return redirect('/categories/' . str_slug($request->input('name')));
-
+        return redirect('/categories/'.str_slug($request->input('name')));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param \App\Category $category
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)

@@ -15,7 +15,8 @@ class StripeWebhookController extends CashierController
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleInvoicePaymentActionRequired($payload)
@@ -26,18 +27,19 @@ class StripeWebhookController extends CashierController
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerUpdated($payload)
     {
         if ($payload['data']['object']['phone']) {
             $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-                "email" => $payload['data']['object']['email'],
-                "password" => 'notset',
+                'email'    => $payload['data']['object']['email'],
+                'password' => 'notset',
             ]);
             $created = $user->wasRecentlyCreated;
-            $input = array();
+            $input = [];
             $input['phonenumber'] = $payload['data']['object']['phone'];
             $input['country'] = null;
             $input['language'] = 'en';
@@ -59,8 +61,7 @@ class StripeWebhookController extends CashierController
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
             if (!$validNumber) {
-                return response()->json(['Error' => "This is not a valid number"], 422);
-
+                return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
             $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
@@ -89,15 +90,15 @@ class StripeWebhookController extends CashierController
                 ['e164' => $e164],
                 [
                     'number' => $nationalNumber,
-                    #   'possibleNumber' => $possibleNumber,
-                    #   'validNumber' => $validNumber,
-                    #    'validNumberForRegion' => $validNumberForRegion,
+                    //   'possibleNumber' => $possibleNumber,
+                    //   'validNumber' => $validNumber,
+                    //    'validNumberForRegion' => $validNumberForRegion,
                     'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
+                    'country_id'  => $country->id,
+                    'timezone'    => $timezone[0],
                     'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
+                    'user_id'     => $user->id,
+                    'is_public'   => 0,
                 ]
             );
         } else {
@@ -105,7 +106,7 @@ class StripeWebhookController extends CashierController
             $phone->id = null;
         }
 
-        #Check for default card
+        //Check for default card
         if ($payload['data']['object']['default_source']) {
             $default_card = collect($payload['data']['object']['sources']['data'])->keyBy('id')[$payload['data']['object']['default_source']]['card'];
         } else {
@@ -115,20 +116,21 @@ class StripeWebhookController extends CashierController
         }
 
         $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-            "email" => $payload['data']['object']['email'],
-            "phone_id" => $phone->id,
-            "card_brand" => $default_card['brand'],
-            "card_last_four" => $default_card['last4'],
+            'email'          => $payload['data']['object']['email'],
+            'phone_id'       => $phone->id,
+            'card_brand'     => $default_card['brand'],
+            'card_last_four' => $default_card['last4'],
         ]);
-        #$payload['data']['default_source'];
-        #return;
+        //$payload['data']['default_source'];
+        //return;
         return response($user, 200);
     }
 
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerDeleted($payload)
@@ -139,20 +141,21 @@ class StripeWebhookController extends CashierController
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerCreated($payload)
     {
         $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-            "email" => $payload['data']['object']['email'],
-            "password" => "notset",
+            'email'    => $payload['data']['object']['email'],
+            'password' => 'notset',
         ]);
 
         $created = $user->wasRecentlyCreated;
 
         if ($payload['data']['object']['phone']) {
-            $input = array();
+            $input = [];
             $input['phonenumber'] = $payload['data']['object']['phone'];
             $input['country'] = null;
             $input['language'] = 'en';
@@ -174,8 +177,7 @@ class StripeWebhookController extends CashierController
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
             if (!$validNumber) {
-                return response()->json(['Error' => "This is not a valid number"], 422);
-
+                return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
             $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
@@ -204,15 +206,15 @@ class StripeWebhookController extends CashierController
                 ['e164' => $e164],
                 [
                     'number' => $nationalNumber,
-                    #   'possibleNumber' => $possibleNumber,
-                    #   'validNumber' => $validNumber,
-                    #    'validNumberForRegion' => $validNumberForRegion,
+                    //   'possibleNumber' => $possibleNumber,
+                    //   'validNumber' => $validNumber,
+                    //    'validNumberForRegion' => $validNumberForRegion,
                     'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
+                    'country_id'  => $country->id,
+                    'timezone'    => $timezone[0],
                     'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
+                    'user_id'     => $user->id,
+                    'is_public'   => 0,
                 ]
             );
         } else {
@@ -228,8 +230,8 @@ class StripeWebhookController extends CashierController
             $user->sendPasswordResetNotification($token);
             $user->email_verified_at = now();
             Notification::send($user, new CustomNotification([
-                'title' => "Hi! Welcome to the " . config('app.name') . " family!",
-                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $user->email . " , and you'll be good to go!",
+                'title'   => 'Hi! Welcome to the '.config('app.name').' family!',
+                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$user->email." , and you'll be good to go!",
             ]));
         }
         $user->save();
@@ -240,7 +242,8 @@ class StripeWebhookController extends CashierController
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionUpdated($payload)
@@ -251,7 +254,8 @@ class StripeWebhookController extends CashierController
     /**
      * Handle invoice payment succeeded.
      *
-     * @param  array  $payload
+     * @param array $payload
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handleCustomerSubscriptionDeleted($payload)

@@ -16,6 +16,7 @@ class EmailController extends Controller
     {
         $this->authorize('index', File::class);
         $emails = Email::withCount('logs', 'received_logs')->get();
+
         return view('emails.index', compact('emails'));
     }
 
@@ -32,7 +33,8 @@ class EmailController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,20 +45,23 @@ class EmailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Email  $email
+     * @param \App\Email $email
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Email $email)
     {
         $this->authorize('show', $email);
         $email->load('logs', 'received_logs');
+
         return view('emails.show', compact('email'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Email  $email
+     * @param \App\Email $email
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Email $email)
@@ -67,8 +72,9 @@ class EmailController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Email  $email
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Email               $email
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Email $email)
@@ -79,7 +85,8 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Email  $email
+     * @param \App\Email $email
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Email $email)

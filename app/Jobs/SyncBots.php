@@ -36,30 +36,30 @@ class SyncBots implements ShouldQueue
     {
         try {
             $headers = [
-                'Content-Type' => 'application/json',
-                'AccessToken' => 'key',
+                'Content-Type'  => 'application/json',
+                'AccessToken'   => 'key',
                 'Authorization' => 'Bearer token',
-                'developerkey' => config('blog.remoteit.developerkey'),
+                'developerkey'  => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
             ]);
 
             $response = $client->request('POST', 'https://api.remot3.it/apv/v27/user/login', [RequestOptions::JSON => [
-                "username" => config('blog.remoteit.username'),
-                "password" => config('blog.remoteit.password'),
+                'username' => config('blog.remoteit.username'),
+                'password' => config('blog.remoteit.password'),
             ]]);
             $statusCode = $response->getStatusCode();
             $body = $response->getBody()->getContents();
 
             $obj = json_decode($body);
 
-            ## Get devices
+            //# Get devices
             $headers = [
-                'Content-Type' => 'application/json',
-                'token' => $obj->token,
+                'Content-Type'  => 'application/json',
+                'token'         => $obj->token,
                 'Authorization' => 'Bearer token',
-                'developerkey' => config('blog.remoteit.developerkey'),
+                'developerkey'  => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -76,24 +76,25 @@ class SyncBots implements ShouldQueue
                 $updated_bot = Bot::updateOrCreate(
                     ['address' => $device->deviceaddress],
                     [
-                        'alias' => $device->devicealias,
-                        'last_ip' => $device->devicelastip,
+                        'alias'            => $device->devicealias,
+                        'last_ip'          => $device->devicelastip,
                         'last_internal_ip' => $device->lastinternalip,
-                        'service_title' => $device->servicetitle,
-                        'georegion' => $device->georegion,
-                        'type' => $device->devicetype,
-                        'is_active' => $device->devicestate == 'active' ? 1 : 0,
-                        'last_contact_at' => date("Y-m-d H:i:s", strtotime($device->lastcontacted)),
+                        'service_title'    => $device->servicetitle,
+                        'georegion'        => $device->georegion,
+                        'type'             => $device->devicetype,
+                        'is_active'        => $device->devicestate == 'active' ? 1 : 0,
+                        'last_contact_at'  => date('Y-m-d H:i:s', strtotime($device->lastcontacted)),
                     ]
                 );
                 if (isset($bot) && $bot->is_active == 0 && $updated_bot->is_active == 1 && $bot->is_servicable) {
-                    #bot online notification
+                    //bot online notification
                     $bot->user->notify(new BotOnline($updated_bot));
                 } elseif (isset($bot) && isset($bot->user) && $bot->is_active == 1 && $updated_bot->is_active == 0 && $bot->is_servicable) {
-                    #bot offline notification
+                    //bot offline notification
                     $bot->user->notify(new BotOffline($updated_bot));
                 }
             }
+
             return $body;
         } catch (Exception $e) {
             return $e;

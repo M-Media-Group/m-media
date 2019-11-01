@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /*
  * This file is part of Laravel Markdown.
@@ -63,7 +63,7 @@ return [
     'renderer' => [
         'block_separator' => "\n",
         'inner_separator' => "\n",
-        'soft_break' => "\n",
+        'soft_break'      => "\n",
     ],
 
     /*

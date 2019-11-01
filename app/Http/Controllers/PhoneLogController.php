@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class PhoneLogController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +17,7 @@ class PhoneLogController extends Controller
      */
     public function index(Request $request, $number)
     {
-        $input = array();
+        $input = [];
         $input['phonenumber'] = $number;
         $input['country'] = ($request->input('country')) ?? null;
         $input['callType'] = ($request->input('type')) ?? 'INBOUND';
@@ -27,6 +26,7 @@ class PhoneLogController extends Controller
         $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
         //return dump($input);
         return SavePhone::dispatchNow($input, false);
+
         return PhoneLog::get();
     }
 
@@ -43,12 +43,13 @@ class PhoneLogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $input = array();
+        $input = [];
         $input['phonenumber'] = $request->input('number');
         $input['country'] = ($request->input('country')) ? $request->input('country') : null;
         $input['callType'] = ($request->input('type')) ? $request->input('type') : 'INBOUND';
@@ -60,13 +61,13 @@ class PhoneLogController extends Controller
         $phone->logs = PhoneLog::where('phone_id', $phone->id)->get();
 
         return $phone;
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,19 +78,21 @@ class PhoneLogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        # PhoneLog::create(['phone_id' => $phone->id, 'type' => 'INBOUND']);
+        // PhoneLog::create(['phone_id' => $phone->id, 'type' => 'INBOUND']);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,7 +100,7 @@ class PhoneLogController extends Controller
         $PhoneLog = PhoneLog::with('phone.defaultForUser')->findOrFail($id);
 
         $request->validate([
-            'notes' => 'nullable',
+            'notes'    => 'nullable',
             'ended_at' => 'nullable',
         ]);
 
@@ -106,19 +109,19 @@ class PhoneLogController extends Controller
         if (isset($PhoneLog->phone->defaultForUser) && $request->input('notes') == 'Customer requested a callback.') {
             $PhoneLog->phone->user->notify(new CallbackRequested($PhoneLog));
         }
-        return $PhoneLog;
 
+        return $PhoneLog;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-
 }

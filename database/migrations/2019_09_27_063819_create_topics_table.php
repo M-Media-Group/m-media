@@ -18,7 +18,7 @@ class CreateTopicsTable extends Migration
             $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->string('slug')->unique();
-            #PERSON or PLACE or ORGANIZATION etc - should come from NLP Entity
+            //PERSON or PLACE or ORGANIZATION etc - should come from NLP Entity
             $table->string('type')->nullable();
 
             $table->boolean('is_nsfw')->nullable();

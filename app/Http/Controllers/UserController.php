@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         $this->middleware('verified')->except(['applyForReporter']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +27,7 @@ class UserController extends Controller
     {
         $this->authorize('index', User::class);
         $users = User::with('primaryPhone')->withCount('bots')->get();
+
         return view('users.index', compact('users'));
     }
 
@@ -42,7 +44,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,21 +56,23 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $user = User::where('id', $id)->with('primaryPhone', 'instagramAccounts', 'websites', 'files')->firstOrFail();
         $this->authorize('show', $user);
-        return view('users.show', ['user' => $user]);
 
+        return view('users.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,14 +82,15 @@ class UserController extends Controller
 
         $roles = Role::get();
 
-        #return $user;
+        //return $user;
         return view('users.edit', compact('user', 'roles'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function myBots(Request $request)
@@ -92,14 +98,15 @@ class UserController extends Controller
         $user = $request->user()->load('bots');
         $this->authorize('update', $user);
 
-        #return $user;
+        //return $user;
         return view('users.myBots', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function invoices($id)
@@ -118,27 +125,28 @@ class UserController extends Controller
             $invoices = $user->invoices();
         }
 
-        #return $user;
+        //return $user;
         return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User                $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'name'    => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'email'   => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
         ]);
 
-        #invalidate email if is new and require re-confirmation
+        //invalidate email if is new and require re-confirmation
         if ($user->email != $validatedData->email) {
             $user->email_verified_at = null;
             $user->save();
@@ -155,14 +163,14 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
-
+        return redirect('/users/'.urlencode($request->user()->id).'/edit');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

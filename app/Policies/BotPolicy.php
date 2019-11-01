@@ -16,10 +16,12 @@ class BotPolicy
             return true;
         }
     }
+
     /**
      * Determine whether the user can view any bots.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function index(User $user)
@@ -30,8 +32,9 @@ class BotPolicy
     /**
      * Determine whether the user can view the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function show(User $user, Bot $bot)
@@ -39,13 +42,15 @@ class BotPolicy
         if ($bot->user) {
             return $user->id === $bot->user->id;
         }
+
         return false;
     }
 
     /**
      * Determine whether the user can create bots.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -56,8 +61,9 @@ class BotPolicy
     /**
      * Determine whether the user can update the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function update(User $user, Bot $bot)
@@ -68,8 +74,9 @@ class BotPolicy
     /**
      * Determine whether the user can update the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function connectToBot(User $user, Bot $bot)
@@ -80,8 +87,9 @@ class BotPolicy
     /**
      * Determine whether the user can delete the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function delete(User $user, Bot $bot)
@@ -92,8 +100,9 @@ class BotPolicy
     /**
      * Determine whether the user can restore the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function restore(User $user, Bot $bot)
@@ -104,8 +113,9 @@ class BotPolicy
     /**
      * Determine whether the user can permanently delete the bot.
      *
-     * @param  \App\User  $user
-     * @param  \App\Bot  $bot
+     * @param \App\User $user
+     * @param \App\Bot  $bot
+     *
      * @return mixed
      */
     public function forceDelete(User $user, Bot $bot)

@@ -21,7 +21,7 @@
     <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/bdevices.svg'), url('images/backgrounds/1.svg'), var(--primary);background-position: left, bottom;background-repeat: no-repeat;background-size: cover;">
         <h1 class="header-section-title mb-0">Hi 👋! We're {{config('app.name')}}.</h1>
         <p class="mb-0">We make websites and handle your marketing.</p>
-        <a class="button button-secondary mt-3 mb-5" href="/contact">Contact us</a>
+        <a class="button button-secondary mt-3 mb-5" href="/contact">Talk to an expert now</a>
         <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
     </div>
     <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/web-development">Explore our Instagram solutions</a>
+                <a class="button button-secondary u-center" href="/instagram">Explore our Instagram solutions</a>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/case-studies">Talk to us</a>
+                <a class="button button-secondary u-center" href="/contact">Talk to us</a>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/case-studies">Send us a message</a>
+                <a class="button button-secondary u-center" href="/contact">Send us a message</a>
             </div>
         </div>
     </div>

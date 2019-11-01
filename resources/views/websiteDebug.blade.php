@@ -198,7 +198,7 @@
         <td>{{$keyword->topic}}</td>
         <td style="vertical-align: middle;" class="d-print-none">
             <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: {{($keyword->score) / $detected_keywords[0]->score * 100 }}%" aria-valuenow="{{($keyword->score) / $detected_keywords[0]->score * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar u-bg-primary" role="progressbar" style="width: {{($keyword->score) / $detected_keywords[0]->score * 100 }}%" aria-valuenow="{{($keyword->score) / $detected_keywords[0]->score * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </td>
         {{-- Show percentage on print page --}}
@@ -276,7 +276,7 @@
                 <td>{{$number['value']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar bg-primary" role="progressbar" style="position: absolute;top: {{($number['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($number['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($number['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($number['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>
@@ -309,7 +309,7 @@
                 <td>{{$email['value']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar bg-primary" role="progressbar" style="position: absolute;top: {{($email['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($email['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($email['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($email['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>
@@ -342,7 +342,7 @@
                 <td>{{$media['alt']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar bg-primary" role="progressbar" style="position: absolute;top: {{($media['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($media['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($media['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($media['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>

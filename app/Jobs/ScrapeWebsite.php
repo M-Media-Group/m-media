@@ -65,7 +65,6 @@ class ScrapeWebsite implements ShouldQueue
                     "is_scrapeable" => 1,
                     "created_at" => now(),
                     "updated_at" => now(),
-
                 ];
             }
 

@@ -22,7 +22,7 @@
        ]
     }
     </script>
-    <div class="header-section u-bg-secondary">
+    <div class="header-section u-bg-primary">
         <img src="/images/laptop-and-person.svg" alt="Multiple devices showing responsive websites" style="max-height:250px;min-height: 80px;max-width: 250px;" class="mb-0">
         <h1>Websites that don't cost an 💪 and a 🦵.</h1>
         <h2>Web services for entrepreneurs.</h2>
@@ -36,12 +36,9 @@
         </div>
         <div class="col-md-6 order-md-12">
 {{--             <h3>Got a great business idea that could really work?</h3>
- --}}            <h3>You've got a great business idea that could really work.</h3>
-            <p style="max-width: 550px;">You're here to find out how to get a minimum viable product online and in front of your target market. You need a low-cost, quick, and custom coded website.</p>
-            <p>We're here to help.</p>
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-primary" href="/web-development">See our website creation offer</a>
-            </div>
+ --}}            <h3>Katarzyna</h3>
+            <p>MMediagroup is our partner of choice for developing website and branding for our new consultancy business. Excellent sense of customer needs and high-quality, data-driven solutions is what distinguishes MMediagroup from other companies in the field.</p>
+
         </div>
     </div>
 

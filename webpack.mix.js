@@ -13,9 +13,11 @@ const mix = require('laravel-mix');
 
 mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'axios', 'bootstrap', 'jquery']);
 mix.sass('resources/sass/app.scss', 'public/css').styles([
+        'resources/sass/app.css',
     'resources/sass/normalize.css',
     'resources/sass/skeleton.css',
-    'resources/sass/app.css'
+    // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/normalize.css',
+    // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/skeleton.css'
 ], 'public/css/all.css');
 
 //mix.browserSync('https://mmedia:7890');

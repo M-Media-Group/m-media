@@ -33,11 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $dates = ['email_verified_at', 'seen_at'];
 
-    public function phones()
-    {
-        return $this->hasMany('App\Phone');
-    }
-
     public function instagramAccounts()
     {
         return $this->hasMany('App\InstagramAccount');
@@ -64,9 +59,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\File', 'id', 'avatar_file_id');
     }
 
+    public function phones()
+    {
+        return $this->hasMany('App\Phone');
+    }
+
     public function primaryPhone()
     {
         return $this->hasOne('App\Phone', 'id', 'phone_id');
+    }
+
+    public function emails()
+    {
+        return $this->hasMany('App\Phone');
+    }
+
+    public function primaryEmail()
+    {
+        return $this->hasOne('App\Email', 'email', 'email');
     }
 
     // public function seenPosts()

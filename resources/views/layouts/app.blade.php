@@ -13,8 +13,8 @@
     <div id="app">
         @include('components.newnav')
         @yield('above_container')
-        <div class="container">
-            <div class="row justify-content-center mt-5">
+        <div class="container p-0">
+            <div class="row m-0 p-0 mt-5">
                 <main class="col-md-6 order-md-6">
                     @yield('content')
                 </main>

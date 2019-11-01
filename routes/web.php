@@ -19,6 +19,10 @@ use Illuminate\Http\Request;
 //     return view('print');
 // });
 
+Route::get('/web-development', function () {
+    return view('products.webDev');
+});
+
 Route::get('/web-development/entrepreneurs', function () {
     return view('entrepreneur');
 });
@@ -41,8 +45,6 @@ Route::get('/case-studies', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-
-Route::get('/web-development', 'ProductController@webdev');
 
 Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index')->middleware('auth', 'verified');
 

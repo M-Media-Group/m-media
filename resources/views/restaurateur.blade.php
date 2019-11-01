@@ -22,7 +22,7 @@
        ]
     }
     </script>
-    <div class="header-section bg-primary">
+    <div class="header-section u-bg-primary">
         <img src="/images/chef.svg" alt="Multiple devices showing responsive websites" style="max-height:250px;min-height: 80px;max-width: 250px;" class="mb-0">
 
 {{--         <h1>🍜, 🐟, 🥡, 🍔, or even just 🥂.</h1>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-     <div class="header-section bg-primary row">
+     <div class="header-section u-bg-primary row">
         <div class="col-md-12 text-center">
             <img src="/images/heart.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5 shadow-filter">
             <h3>It's a match!</h3>

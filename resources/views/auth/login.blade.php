@@ -4,7 +4,7 @@
 @section('meta_description', "Log in to comment, post articles, and interact with the community at ".config('app.name')."!")
 
 @section('above_container')
-<div class="header-section" style="background:#246EBA;">
+<div class="header-section u-bg-primary">
     <h1>{{ __('Login') }}</h1>
 </div>
 <div>
@@ -73,7 +73,7 @@
         </div> --}}
     </div>
 </div>
-<div class="header-section" style="background:#2565aa;">
+<div class="header-section u-bg-primary">
     <h2>Don't have an account? <a href="/contact">Contact us</a>!</h2>
 </div>
 @endsection

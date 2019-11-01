@@ -65,15 +65,19 @@ class ScrapePage implements ShouldQueue
         $uses_google_tag_manager = false;
         $is_wordpress = false;
         try {
-
             $this->website = (object) ScrapeWebsite::dispatchNow($this->url);
+        } catch (\Exception $e) {
+            return response()->json(['Error' => "Scraping website: " . $e->getMessage()], 422);
+        }
 
-            if ($this->page) {
-                $this->page = '/' . ltrim($this->page, "/");
-                $this->url = $this->website->url . $this->page;
-            } else {
-                $this->url = $this->website->url;
-            }
+        if ($this->page) {
+            $this->page = '/' . ltrim($this->page, "/");
+            $this->url = $this->website->url . $this->page;
+        } else {
+            $this->url = $this->website->url;
+        }
+
+        try {
 
             $context = stream_context_create(
                 array(
@@ -88,7 +92,10 @@ class ScrapePage implements ShouldQueue
             $time_start = microtime(true);
             $sites_html = file_get_contents($this->url, false, $context);
             $this->load_times->push(microtime(true) - $time_start);
-
+        } catch (\Exception $e) {
+            return response()->json(['Error' => "Fetching page: " . $e->getMessage()], 422);
+        }
+        try {
             $headers = (object) $this->parseHeaders($http_response_header);
 
             if ($headers->reponse_code == 301 || $headers->reponse_code == 302 || $headers->reponse_code == 303) {
@@ -191,7 +198,6 @@ class ScrapePage implements ShouldQueue
                             'url' => $parsed_url_2,
                         ];
                         array_push($phones, $data);
-
                     } elseif (stripos($meta->getAttribute('href'), 'mailto:') !== false) {
                         $data = [
                             'position' => $value,
@@ -228,7 +234,6 @@ class ScrapePage implements ShouldQueue
                     }
                 } elseif (preg_match("/h(?:[0-9])/", $meta->nodeName)) {
                     $h1s->push((object) ['position' => $value, 'type' => $meta->nodeName, 'value' => $meta->textContent]);
-                    //array_push($h1s, $meta->textContent);
                 }
             }
 
@@ -309,7 +314,7 @@ class ScrapePage implements ShouldQueue
         }
     }
 
-    private function formatUrl($url, $check_for_https = true, $default_https = false)
+    private function formatUrl($url, $check_for_https = false, $default_https = false)
     {
         $local_parsed_url = parse_url($url);
 

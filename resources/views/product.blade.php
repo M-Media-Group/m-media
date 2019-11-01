@@ -8,10 +8,10 @@
 	@if (isset($subtext))
 		<p class="text-muted">{{$subtext}}</p>
 	@endif
-    <a class="button button-primary" href="/contact">Contact us</a>
+    <a class="button button-secondary" href="/contact">Contact us</a>
     @if (isset($actions))
     @foreach($actions as $action)
-        <a class="button button-secondary" target="_BLANK" rel="noopener noreferrer" href="{{$action['url']}}">{{$action['text']}}</a>
+        <a class="button button" target="_BLANK" rel="noopener noreferrer" href="{{$action['url']}}">{{$action['text']}}</a>
     @endforeach
     @endif
 @endsection

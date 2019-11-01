@@ -28,7 +28,7 @@
 
         <div class="col-md-6">
             <h3 class="mt-0">You want to get your business online.</h3>
-            <p style="max-width: 550px;">You're here to find out how to get a business website online and in front of your target market. You need a low-cost, quick, and custom coded solution.</p>
+            <p style="max-width: 550px;">You're here to find out how to get a business website online and in front of your customers. You need a low-cost, quick, and tailored solution.</p>
             <p>We're here to help.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
@@ -41,7 +41,7 @@
     <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);">
         <div class="col-md-6">
             <h3 class="mt-0">You're looking to reach people on Instagram.</h3>
-            <p>You'd like to test your product market fit with your target audience. For that, you need an online sales channel. Quickly.</p>
+            <p>You'd like to run ads and engage with your target audience on Instagram. You need someone to post regularly and write captions with hashtags.</p>
             <p>That's what we do.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
@@ -55,7 +55,7 @@
  <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0">You'd like to be visible on Facebook.</h3>
-            <p>You've thought long and hard over your idea. You're open to suggestions but ultimately you need things done efficiently once you take a decision.</p>
+            <p>You've discovered that your clients are Facebook users, and you'd like someone to keep them engaged with a Facebook page and some Facebook ads.</p>
             <p>That's us.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
@@ -67,9 +67,9 @@
 
     <div class="header-section row m-0" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
-            <h3 class="mt-0">You need business cards, flyers, and posters.</h3>
-            <p>Ideas evolve as you get more real-world market feedback. You need your website handled by a team that can respond and adapt to those changes, quickly.</p>
-            <p>Respond and adapt. Got it.</p>
+            <h3 class="mt-0">You'd like some help on your digital strategy.</h3>
+            <p>You're not 100% sure if Instagram or Facebook are the right solutions for you, or you can't decide how much of your business logic can be online.</p>
+            <p>We can help.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
@@ -81,8 +81,8 @@
     <div class="header-section row m-0" style="background: url('images/backgrounds/1-blue.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0">You'd like to know more about who we are.</h3>
-            <p style="max-width: 550px;">While you believe in your product and you know marketing takes a big chunk of capital, you still need money to invest in product development and research.</p>
-            <p>We understand. Oh, look:</p>
+            <p style="max-width: 550px;">You're intrigued with our offers but you'd still like to read up about who we are.</p>
+            <p>Not a problem.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">

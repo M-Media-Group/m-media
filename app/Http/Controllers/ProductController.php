@@ -384,6 +384,6 @@ Contact us and have a chat about what we can do for you and your business. We do
                 'url' => '/images/heartweb.svg',
             ),
         );
-        return view('product', $data);
+        return view('products.webDev', $data);
     }
 }

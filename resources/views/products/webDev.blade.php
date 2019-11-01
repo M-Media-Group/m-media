@@ -1,23 +1,40 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <script type="application/ld+json">
+
+<script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Organization",
-      "name" : "{{config('app.name')}}",
-     "url" : "{{config('app.url')}}",
-     "sameAs" : [
-       "https://www.facebook.com/{{config('blog.facebook_page_username')}}",
-       "{{config('blog.instagram_url')}}",
-       "https://github.com/M-Media-Group",
-       "https://twitter.com/MMediaFr",
-       "https://opencollective.com/m-media",
-       "https://www.linkedin.com/company/m-media-group",
-       "https://www.youtube.com/channel/UCXvMLmK312CfJOg8PrIhFvA"
-       ]
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{$title}}",
+  "image": [
+    "{{$image['url']}}"
+   ],
+  "description": "{{ strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) }}",
+  "brand": {
+    "@type": "Thing",
+    "name": "{{config('app.name')}}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "bestRating": "5",
+    "ratingValue": "5",
+    "reviewCount": "1"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{url()->full()}}",
+    "priceCurrency": "{{$price[0]['currency']['ISO']}}",
+    "price": "{{$price[0]['value']}}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "{{config('app.name')}}"
     }
-    </script>
+  }
+}
+</script>
     <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/404.svg'), var(--primary);background-position: 65vw, bottom;background-repeat: no-repeat;">
         <h1 class="header-section-title mb-0">Web Development</h1>
         <p class="mb-0">With free website analytics.</p>

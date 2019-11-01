@@ -19,10 +19,6 @@ use Illuminate\Http\Request;
 //     return view('print');
 // });
 
-Route::get('/web-development', function () {
-    return view('products.webDev');
-});
-
 Route::get('/web-development/entrepreneurs', function () {
     return view('entrepreneur');
 });

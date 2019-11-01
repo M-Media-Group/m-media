@@ -86,7 +86,7 @@
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/case-studies">Read about us</a>
+                <a class="button button-secondary u-center" href="/about">Read about us</a>
             </div>
         </div>
     </div>

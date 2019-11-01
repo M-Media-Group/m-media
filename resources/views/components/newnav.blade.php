@@ -3,10 +3,10 @@
         <a href="#" class="logo-container"><img src="/images/logo.png" height="35" alt="{{config('app.name')}} logo"></a>
         <div class="dropdown-content" style="max-height: 80vh;overflow-y: scroll;">
             <a href="/">Home</a>
-            <a href="/automation-bot">Marketing Automation Bot</a>
-            <a href="/instagram">Instagram Solutions</a>
             <a href="/web-development">Web Development</a>
-{{--            <a href="/print-media">Print Media</a>
+            <a href="/instagram">Instagram Solutions</a>
+{{--             <a href="/automation-bot">Marketing Automation Bot</a>
+ --}}{{--            <a href="/print-media">Print Media</a>
  --}}           <hr class="mb-0 mt-0">
                 <a href="/case-studies">Case Studies</a>
                 <hr class="mb-0 mt-0">

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use App\InstagramAccount;
@@ -26,7 +27,7 @@ class ScrapeInstagramAccount implements ShouldQueue
      */
     public function __construct($username, User $user = null, $save = true)
     {
-        $this->username = str_replace("@", "", $username);
+        $this->username = str_replace('@', '', $username);
         $this->user = $user;
         $this->save = $save;
     }
@@ -39,7 +40,7 @@ class ScrapeInstagramAccount implements ShouldQueue
     public function handle()
     {
 
-        #Define variables
+        //Define variables
         $medias = [];
         $hashtags = [];
         $locations = [];
@@ -58,7 +59,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             $api->setUserName($this->username);
             $obj = $api->getFeed();
 
-            #quick hack to convert to nested obj
+            //quick hack to convert to nested obj
             $data = json_decode(json_encode($obj));
 
             $data->videos_count = 0;
@@ -73,15 +74,15 @@ class ScrapeInstagramAccount implements ShouldQueue
 
         if (!$account || !isset($account->id)) {
             $account = InstagramAccount::create(
-                ['username' => $data->userName,
-                    'instagram_id' => $data->id,
-                    'is_scrapeable' => 1]
+                ['username'         => $data->userName,
+                    'instagram_id'  => $data->id,
+                    'is_scrapeable' => 1, ]
             );
         } else {
             $account->update(['username' => $data->userName, 'instagram_id' => $data->id]);
         }
 
-        #loop and proccess the hashtags mentioned in biography
+        //loop and proccess the hashtags mentioned in biography
         preg_match_all('/#(\w+)/', $data->biography, $matchesForHashtagsInCaption);
         foreach ($matchesForHashtagsInCaption[1] as $match) {
             if (!in_array($match, $biography_hashtags)) {
@@ -89,7 +90,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             }
         }
 
-        #loop and proccess the users mentioned in biography
+        //loop and proccess the users mentioned in biography
         preg_match_all('/@([\w\.]+)/', $data->biography, $matchesForUsersInCaption);
         foreach ($matchesForUsersInCaption[1] as $match) {
             if (!in_array($match, $biography_users)) {
@@ -100,12 +101,12 @@ class ScrapeInstagramAccount implements ShouldQueue
             }
         }
 
-        #loop and proccess the medias
+        //loop and proccess the medias
         foreach ($data->medias as $media) {
             array_push($medias, $media);
             //$hashtags[] .= $media['caption'];
 
-            #loop and proccess the hashtags mentioned in the post
+            //loop and proccess the hashtags mentioned in the post
             preg_match_all('/#(\w+)/', $media->caption, $matches);
             foreach ($matches[1] as $match) {
                 if (!in_array($match, $hashtags)) {
@@ -113,7 +114,7 @@ class ScrapeInstagramAccount implements ShouldQueue
                 }
             }
 
-            #loop and proccess the users mentioned in the post
+            //loop and proccess the users mentioned in the post
             preg_match_all('/@([\w\.]+)/', $media->caption, $matchesForUsers);
             foreach ($matchesForUsers[1] as $match) {
                 if (!in_array($match, $users)) {
@@ -141,7 +142,7 @@ class ScrapeInstagramAccount implements ShouldQueue
         $data->avgPostLikes = count($postLikes) > 0 ? array_sum($postLikes) / count($postLikes) : null;
         $data->avgPostComments = count($postComments) > 0 ? array_sum($postComments) / count($postComments) : null;
 
-        #combine arrays from caption data and post data
+        //combine arrays from caption data and post data
         $users = array_unique(array_merge($users, $biography_users));
         $hashtags = array_unique(array_merge($hashtags, $biography_hashtags));
 
@@ -166,25 +167,25 @@ class ScrapeInstagramAccount implements ShouldQueue
 
         if ($account->is_scrapeable && $this->save == true) {
             $scraped_data = InstagramAccountScrape::create([
-                'instagram_account_id' => $account->id,
-                'username' => $data->userName,
-                'full_name' => $data->fullName,
-                'biography' => $data->biography,
-                'profile_picture_url' => $data->profilePicture,
-                'external_url' => $data->externalUrl,
-                'website_id' => $website_id,
-                'media_count' => $data->mediaCount,
-                'followers_count' => $data->followers,
-                'following_count' => $data->following,
-                'avg_likes_count' => $data->avgPostLikes,
-                'avg_comments_count' => $data->avgPostComments,
-                'avg_dataset_start' => $avg_dataset_start,
-                'avg_dataset_end' => $avg_dataset_end,
+                'instagram_account_id'     => $account->id,
+                'username'                 => $data->userName,
+                'full_name'                => $data->fullName,
+                'biography'                => $data->biography,
+                'profile_picture_url'      => $data->profilePicture,
+                'external_url'             => $data->externalUrl,
+                'website_id'               => $website_id,
+                'media_count'              => $data->mediaCount,
+                'followers_count'          => $data->followers,
+                'following_count'          => $data->following,
+                'avg_likes_count'          => $data->avgPostLikes,
+                'avg_comments_count'       => $data->avgPostComments,
+                'avg_dataset_start'        => $avg_dataset_start,
+                'avg_dataset_end'          => $avg_dataset_end,
                 'avg_dataset_photos_count' => $data->pictures_count,
                 'avg_dataset_videos_count' => $data->videos_count,
-                'is_private' => $data->private,
-                'is_verified' => $data->verified,
-                'user_id' => $user_id,
+                'is_private'               => $data->private,
+                'is_verified'              => $data->verified,
+                'user_id'                  => $user_id,
             ]);
             if ($avg_dataset_end && now()->subMonths(3) >= $avg_dataset_end) {
                 $account->is_scrapeable = 0;
@@ -192,28 +193,29 @@ class ScrapeInstagramAccount implements ShouldQueue
             }
         } else {
             $scraped_data = (object) [
-                'instagram_account_id' => $account->id,
-                'username' => $data->userName,
-                'full_name' => $data->fullName,
-                'biography' => $data->biography,
-                'profile_picture_url' => $data->profilePicture,
-                'external_url' => $data->externalUrl,
-                'website_id' => $website_id,
-                'media_count' => $data->mediaCount,
-                'followers_count' => $data->followers,
-                'following_count' => $data->following,
-                'avg_likes_count' => $data->avgPostLikes,
-                'avg_comments_count' => $data->avgPostComments,
-                'avg_dataset_start' => $avg_dataset_start,
-                'avg_dataset_end' => $avg_dataset_end,
+                'instagram_account_id'     => $account->id,
+                'username'                 => $data->userName,
+                'full_name'                => $data->fullName,
+                'biography'                => $data->biography,
+                'profile_picture_url'      => $data->profilePicture,
+                'external_url'             => $data->externalUrl,
+                'website_id'               => $website_id,
+                'media_count'              => $data->mediaCount,
+                'followers_count'          => $data->followers,
+                'following_count'          => $data->following,
+                'avg_likes_count'          => $data->avgPostLikes,
+                'avg_comments_count'       => $data->avgPostComments,
+                'avg_dataset_start'        => $avg_dataset_start,
+                'avg_dataset_end'          => $avg_dataset_end,
                 'avg_dataset_photos_count' => $data->pictures_count,
                 'avg_dataset_videos_count' => $data->videos_count,
-                'is_private' => $data->private,
-                'is_verified' => $data->verified,
-                'user_id' => $user_id,
-                'created_at' => now(),
+                'is_private'               => $data->private,
+                'is_verified'              => $data->verified,
+                'user_id'                  => $user_id,
+                'created_at'               => now(),
             ];
         }
+
         return compact('scraped_data', 'hashtags', 'locations', 'users', 'account', 'medias');
         //return response()->json($data);
     }

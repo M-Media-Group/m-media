@@ -39,5 +39,4 @@ class InstagramAccountScrape extends Model
     {
         return $this->belongsTo('App\InstagramAccount');
     }
-
 }

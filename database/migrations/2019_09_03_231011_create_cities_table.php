@@ -22,7 +22,6 @@ class CreateCitiesTable extends Migration
 
             $table->unique(['name', 'country_id']);
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-
         });
     }
 

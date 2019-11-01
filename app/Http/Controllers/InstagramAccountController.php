@@ -33,8 +33,8 @@ class InstagramAccountController extends Controller
         $this->authorize('index', InstagramAccount::class);
 
         $accounts = InstagramAccount::with('latestScrape', 'user')->get();
-        return view('instagramAccounts.index', compact('accounts'));
 
+        return view('instagramAccounts.index', compact('accounts'));
     }
 
     /**
@@ -47,11 +47,11 @@ class InstagramAccountController extends Controller
 
         // $bot = Bot::findOrFail($id);
         $this->authorize('index', InstagramAccount::class);
-        try {
 
+        try {
             $client = new Client();
 
-            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token=' . config('blog.buffer.access_token'));
+            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token='.config('blog.buffer.access_token'));
             $statusCode = $response->getStatusCode();
             $data = $response->getBody()->getContents();
 
@@ -70,6 +70,7 @@ class InstagramAccountController extends Controller
                     array_push($instagram_accounts, $profile);
                 }
             }
+
             return $instagram_accounts;
         } catch (Exception $e) {
             return $e;
@@ -101,7 +102,8 @@ class InstagramAccountController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -112,13 +114,14 @@ class InstagramAccountController extends Controller
     /**
      * Store a newly created resource in storage for File model and post to Buffer.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function storePost(StoreFile $request, InstagramAccount $instagramAccount)
     {
         if (!$instagramAccount->buffer_id || !($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
-            return "false";
+            return 'false';
         }
 
         //return dump();
@@ -134,7 +137,8 @@ class InstagramAccountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\InstagramAccount  $instagramAccount
+     * @param \App\InstagramAccount $instagramAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, InstagramAccount $instagramAccount)
@@ -154,7 +158,8 @@ class InstagramAccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\InstagramAccount  $instagramAccount
+     * @param \App\InstagramAccount $instagramAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(InstagramAccount $instagramAccount)
@@ -165,8 +170,9 @@ class InstagramAccountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\InstagramAccount  $instagramAccount
+     * @param \Illuminate\Http\Request $request
+     * @param \App\InstagramAccount    $instagramAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, InstagramAccount $instagramAccount)
@@ -177,7 +183,8 @@ class InstagramAccountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\InstagramAccount  $instagramAccount
+     * @param \App\InstagramAccount $instagramAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(InstagramAccount $instagramAccount)

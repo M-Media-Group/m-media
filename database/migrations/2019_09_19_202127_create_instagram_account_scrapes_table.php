@@ -41,7 +41,6 @@ class CreateInstagramAccountScrapesTable extends Migration
             $table->foreign('website_id')->references('id')->on('websites')->onDelete('set null');
             $table->foreign('phone_id')->references('id')->on('phones')->onDelete('set null');
             $table->foreign('instagram_account_id')->references('id')->on('instagram_accounts')->onDelete('cascade');
-
         });
     }
 

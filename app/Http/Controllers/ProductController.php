@@ -23,23 +23,23 @@ class ProductController extends Controller
      */
     public function bot(Request $request)
     {
-        $data = array(
-            'title' => "Marketing Automation Bot",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Marketing Automation Bot',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 73,
-                    'type' => 'subscription',
-                    'text' => '€73',
-                ),
-            ),
-            'subtext' => "2 week delivery time",
-            'text' => "Our number 1 seller - a micro computer pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
+                    'type'  => 'subscription',
+                    'text'  => '€73',
+                ],
+            ],
+            'subtext' => '2 week delivery time',
+            'text'    => "Our number 1 seller - a micro computer pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
 
 
 M Media uses the automation bot for a range of services including to [engage with your customers on Instagram](/instagram-engagement) so you can focus on running your business.
@@ -67,33 +67,33 @@ Your bot is incredibly powerful thanks to all the inputs it has available. We us
 
 ## Want to return it? We'll buy it back.
 Whether you're upgrading to a newer version of the bot or have switched systems completely and no longer need your current one, we'll buy it back from you for 50% of the price you paid, assuming it's in good condition and nothing is missing.",
-            'image' => array(
+            'image' => [
                 'url' => '/images/pi-hand2.png',
-            ),
-        );
+            ],
+        ];
 
         return view('product', $data);
     }
 
     public function instagramAnalysis(Request $request)
     {
-        $data = array(
-            'title' => "Instagram progress monitoring",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Instagram progress monitoring',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 5,
-                    'type' => 'subscription',
-                    'text' => '€5 a month',
-                ),
-            ),
-            'subtext' => "Daily Instagram stats",
-            'text' => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
+                    'type'  => 'subscription',
+                    'text'  => '€5 a month',
+                ],
+            ],
+            'subtext' => 'Daily Instagram stats',
+            'text'    => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
 
 
 We'll also track your follower to following ratio, and your engagement health. You'll get daily M Media suggestions to improve your performance on Instagram.
@@ -104,36 +104,36 @@ This service comes free with our [Instagram content management](/instagram-conte
 
 ## Want us to stop recording your profile history?
 If your account is already being tracked and you do not want us to store any more historical data for your account, please [contact us](/contact).",
-            'image' => array(
+            'image' => [
                 'url' => '/images/instagram-person-plus.svg',
-            ),
+            ],
             // 'actions' => [
             //     array('text' => 'Start the analysis tool', 'url' => '/tools/instagram-account-analyzer'),
             // ],
-        );
+        ];
 
         return view('product', $data);
     }
 
     public function engagement(Request $request)
     {
-        $data = array(
-            'title' => "Instagram Engagement",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Instagram Engagement',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 17,
-                    'type' => 'subscription',
-                    'text' => 'From €17 a month',
-                ),
-            ),
-            'subtext' => "This service is temporarily unavailable",
-            'text' => "M Media uses the [automation bot](/automation-bot) to handle your likes, follows, comments, and unfollows on Instagram, so you can focus on running your business.
+                    'type'  => 'subscription',
+                    'text'  => 'From €17 a month',
+                ],
+            ],
+            'subtext' => 'This service is temporarily unavailable',
+            'text'    => "M Media uses the [automation bot](/automation-bot) to handle your likes, follows, comments, and unfollows on Instagram, so you can focus on running your business.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the repetitive but very important engagement on Instagram. It doesn't make mistakes, and it doesn't get sick.
 
@@ -195,36 +195,37 @@ Choose a plan that best suites your business needs. Want something different? Co
 
 As with all of our monthly subscriptions, you can cancel this service at any time you wish, even if you've only used it for a month!
 ",
-            'image' => array(
+            'image' => [
                 'url' => '/images/instagram-like.png',
-            ),
-            'actions' => [
-                array('text' => 'Read the online guide', 'url' => 'https://1drv.ms/w/s!AgzXTr18UdJfgSJgvUxlRIIh7-P7'),
-                array('text' => 'Download sample Excel report', 'url' => '/samples/InstagramStats.xlsx'),
             ],
-        );
+            'actions' => [
+                ['text' => 'Read the online guide', 'url' => 'https://1drv.ms/w/s!AgzXTr18UdJfgSJgvUxlRIIh7-P7'],
+                ['text' => 'Download sample Excel report', 'url' => '/samples/InstagramStats.xlsx'],
+            ],
+        ];
+
         return view('product', $data);
     }
 
     public function contentCreation(Request $request)
     {
-        $data = array(
-            'title' => "Instagram Content Management",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Instagram Content Management',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 147,
-                    'type' => 'subscription',
-                    'text' => 'From €147 a month',
-                ),
-            ),
-            'subtext' => "+ Free progress reports",
-            'text' => "M Media uses analytics data to understand the best times to post your content to Instagram, and then does exactly that.
+                    'type'  => 'subscription',
+                    'text'  => 'From €147 a month',
+                ],
+            ],
+            'subtext' => '+ Free progress reports',
+            'text'    => "M Media uses analytics data to understand the best times to post your content to Instagram, and then does exactly that.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the things you hate. It doesn't make mistakes, and it doesn't get sick.
 
@@ -264,67 +265,69 @@ Choose a plan that best suites your business needs. Want something different? Co
 
 As with all of our monthly subscriptions, you can cancel this service at any time you wish, even if you've used it for only a month!
 ",
-            'image' => array(
+            'image' => [
                 'url' => '/images/polaroid.svg',
-            ),
-            'actions' => [
-                array('text' => 'See a sample profile', 'url' => '/samples/InstagramProfile.png'),
             ],
-        );
+            'actions' => [
+                ['text' => 'See a sample profile', 'url' => '/samples/InstagramProfile.png'],
+            ],
+        ];
+
         return view('product', $data);
     }
 
     public function packaging(Request $request)
     {
-        $data = array(
-            'title' => "Product Packaging",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Product Packaging',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 15,
-                    'type' => 'subscription',
-                    'text' => '€1,13 - €10 per box',
-                ),
-            ),
-            'subtext' => "1 month delivery time",
-            'text' => "A micro computer pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
+                    'type'  => 'subscription',
+                    'text'  => '€1,13 - €10 per box',
+                ],
+            ],
+            'subtext' => '1 month delivery time',
+            'text'    => "A micro computer pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
 
 
 Forget chasing clients for payments, sending invoices, manually ordering stock and shipping out orders, emails, and interacting with your followers on Instagram. With us, that's all handled by robots.
 
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the things you hate. It doesn't make mistakes, and it doesn't get sick. Thanks to the advanced analytics interconnected with all our services, your automations get better by the day.",
-            'image' => array(
+            'image' => [
                 'url' => '/images/box.png',
-            ),
-        );
+            ],
+        ];
+
         return view('product', $data);
     }
 
     public function webdev(Request $request)
     {
-        $data = array(
-            'title' => "Web Development",
-            'price' => array(
-                array(
-                    'plan' => "basic",
-                    'currency' => array(
-                        'name' => "Euro",
-                        'symbol' => "€",
-                        'ISO' => "EUR",
-                    ),
+        $data = [
+            'title' => 'Web Development',
+            'price' => [
+                [
+                    'plan'     => 'basic',
+                    'currency' => [
+                        'name'   => 'Euro',
+                        'symbol' => '€',
+                        'ISO'    => 'EUR',
+                    ],
                     'value' => 1500,
-                    'type' => 'subscription',
-                    'text' => 'Tailored pricing',
-                ),
-            ),
-            'subtext' => "+ Free website analytics",
-            'text' => "
+                    'type'  => 'subscription',
+                    'text'  => 'Tailored pricing',
+                ],
+            ],
+            'subtext' => '+ Free website analytics',
+            'text'    => "
 You visit hundreds of sites a day. Yet, you remember just a handful of them. You remember them because they are useful, they work, and they are the answer to what you are looking for in a given moment. They are simple in their usage, and complex in their potential. Most importantly, you don't have to think about how to use them or how they work. They just do.
 
 That's what we make - unobtrusive, elegant, and functional websites that complement your brand and satisfy your customers needs.
@@ -380,10 +383,11 @@ Thanks to our flexible communication with other services, your email address can
 ## Made for you
 Contact us and have a chat about what we can do for you and your business. We don't bite!
 ",
-            'image' => array(
+            'image' => [
                 'url' => '/images/heartweb.svg',
-            ),
-        );
+            ],
+        ];
+
         return view('products.webDev', $data);
     }
 }

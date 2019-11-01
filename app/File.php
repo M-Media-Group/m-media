@@ -36,19 +36,20 @@ class File extends Model
         if (config('filesystems.default') != 's3') {
             return Storage::url($this->getOriginal('url'));
         }
+
         return $this->is_public ? Storage::url($this->getOriginal('url')) : Storage::temporaryUrl($this->getOriginal('url'), now()->addMinutes(5));
     }
 
     public function getTypeAttribute()
     {
-        $parts = explode("/", $this->mimeType);
+        $parts = explode('/', $this->mimeType);
+
         return $parts[0];
     }
 
     public function setTypeAttribute()
     {
-        $parts = explode("/", $this->attributes['mimeType']);
+        $parts = explode('/', $this->attributes['mimeType']);
         $this->attributes['type'] = $parts[0];
     }
-
 }

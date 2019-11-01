@@ -36,7 +36,6 @@ class Address extends Model
         static::addGlobalScope('area', function (Builder $builder) {
             $builder->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y, user_id, created_at, updated_at'));
         });
-
     }
 
     public function user()
@@ -48,6 +47,7 @@ class Address extends Model
     {
         return $this->belongsTo('App\City');
     }
+
     // public function getLocationAttribute()
     // {
     //     return $this->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y'));

@@ -36,7 +36,7 @@ class CategoryAutolinkExtension extends Extension
     public function getBlockRenderers()
     {
         return [
-            'League\CommonMark\Block\Element\Document' => new CoreBlockRenderer\DocumentRenderer(),
+            'League\CommonMark\Block\Element\Document'  => new CoreBlockRenderer\DocumentRenderer(),
             'League\CommonMark\Block\Element\Paragraph' => new CoreBlockRenderer\ParagraphRenderer(),
         ];
     }

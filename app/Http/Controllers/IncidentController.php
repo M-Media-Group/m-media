@@ -35,7 +35,8 @@ class IncidentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,17 +44,17 @@ class IncidentController extends Controller
         //$this->authorize('create', Incident::class);
         $validatedData = $request->validate([
             'category' => 'required|exists:categories,id',
-            'lat' => 'required',
-            'lng' => 'required',
+            'lat'      => 'required',
+            'lng'      => 'required',
         ]);
 
-        $location = DB::raw("(GeomFromText('POINT(" . $request->lat . " " . $request->lng . ")'))");
+        $location = DB::raw("(GeomFromText('POINT(".$request->lat.' '.$request->lng.")'))");
 
         $result = new Incident(
             [
-                'location' => $location,
+                'location'    => $location,
                 'category_id' => $request->input('category'),
-                'user_id' => $request->user()->id,
+                'user_id'     => $request->user()->id,
             ]
         );
         $result->save();
@@ -68,7 +69,8 @@ class IncidentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Incident $qr)
@@ -80,19 +82,21 @@ class IncidentController extends Controller
         }
         \App\IncidentView::create(
             [
-                "incident_id" => $qr->id,
-                "user_id" => $user_id,
-                "ip" => $request->ip(),
+                'incident_id' => $qr->id,
+                'user_id'     => $user_id,
+                'ip'          => $request->ip(),
             ]
         );
         $query_parameters = ['utm_source' => 'real_world', 'utm_medium' => 'incident', 'utm_campaign' => 'website_incidents', 'utm_content' => $qr->id];
-        return redirect($qr->redirect_to . '?' . http_build_query($query_parameters));
+
+        return redirect($qr->redirect_to.'?'.http_build_query($query_parameters));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -103,8 +107,9 @@ class IncidentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -115,7 +120,8 @@ class IncidentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

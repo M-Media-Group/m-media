@@ -11,8 +11,9 @@ class SmsAwsChannel
     /**
      * Send the given notification.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed                                  $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
+     *
      * @return void
      */
     public function send($notifiable, Notification $notification)
@@ -22,22 +23,22 @@ class SmsAwsChannel
 
         $sms = AWS::createClient('pinpoint');
 
-        PhoneLog::create(['phone_id' => $notifiable->primaryPhone->id, 'notes' => "SMS regarding: " . $message['title'], 'type' => "OUTBOUND_AUTO_SMS"]);
+        PhoneLog::create(['phone_id' => $notifiable->primaryPhone->id, 'notes' => 'SMS regarding: '.$message['title'], 'type' => 'OUTBOUND_AUTO_SMS']);
 
         return $sms->sendMessages([
-            'ApplicationId' => config('aws.pinpoint.app_id'),
+            'ApplicationId'  => config('aws.pinpoint.app_id'),
             'MessageRequest' => [
                 'Addresses' => [
                     $notifiable->primaryPhone->e164 => [
-                        'ChannelType' => "SMS",
+                        'ChannelType' => 'SMS',
                     ],
                 ],
 
                 'MessageConfiguration' => [
                     'SMSMessage' => [
-                        'Body' => $message['title'] . "\n" . $message['message'] . ($message['action_text'] ? "\n\n" . $message['action_text'] . ": " . $message['action'] : null),
+                        'Body'        => $message['title']."\n".$message['message'].($message['action_text'] ? "\n\n".$message['action_text'].': '.$message['action'] : null),
                         'MessageType' => $message['type'],
-                        'SenderId' => str_replace(' ', '', config('app.name')),
+                        'SenderId'    => str_replace(' ', '', config('app.name')),
                     ],
                 ],
             ],

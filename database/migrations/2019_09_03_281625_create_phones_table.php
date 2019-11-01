@@ -17,7 +17,7 @@ class CreatePhonesTable extends Migration
             $table->increments('id');
             $table->string('e164')->unique();
             $table->string('number');
-            #$table->string('country_code'); Now in countries table
+            //$table->string('country_code'); Now in countries table
             $table->unsignedInteger('country_id')->nullable();
             $table->string('number_type')->nullable();
             $table->string('timezone')->nullable();

@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\InstagramAccount;
-use App\Jobs\ScrapeInstagramAccount;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use App\User;
@@ -40,7 +41,6 @@ class ScrapeWebsite implements ShouldQueue
      */
     public function handle()
     {
-
         try {
             $time_start = microtime(true);
 
@@ -58,13 +58,13 @@ class ScrapeWebsite implements ShouldQueue
                 }
             } else {
                 $website = (object) [
-                    "id" => null,
-                    "scheme" => $this->website_url['scheme'],
-                    "host" => $this->website_url['host'],
-                    "user_id" => null,
-                    "is_scrapeable" => 1,
-                    "created_at" => now(),
-                    "updated_at" => now(),
+                    'id'            => null,
+                    'scheme'        => $this->website_url['scheme'],
+                    'host'          => $this->website_url['host'],
+                    'user_id'       => null,
+                    'is_scrapeable' => 1,
+                    'created_at'    => now(),
+                    'updated_at'    => now(),
                 ];
             }
 
@@ -72,34 +72,33 @@ class ScrapeWebsite implements ShouldQueue
             $dns_records = (object) $this->getDnsInfo($this->website_url['host']);
 
             $data = [
-                'id' => $website->id,
-                'scheme' => $website->scheme,
-                'host' => $website->host,
-                'url' => $website->scheme . "://" . $website->host,
-                'user_id' => $website->user_id,
+                'id'            => $website->id,
+                'scheme'        => $website->scheme,
+                'host'          => $website->host,
+                'url'           => $website->scheme.'://'.$website->host,
+                'user_id'       => $website->user_id,
                 'is_scrapeable' => $website->is_scrapeable,
-                'created_at' => $website->created_at,
-                'updated_at' => $website->updated_at,
+                'created_at'    => $website->created_at,
+                'updated_at'    => $website->updated_at,
                 'latest_scrape' => (object) [
-                    'domain_registrar' => $domain->domain_registrar,
-                    'domain_owner' => $domain->domain_owner,
-                    'domain_created_at' => $domain->domain_created_at,
-                    'domain_expires_at' => $domain->domain_expires_at,
-                    'whois_server' => $domain->whois_server,
-                    'client_delete_lock' => $domain->states->contains('clientdeleteprohibited'),
-                    'client_renew_lock' => $domain->states->contains('clientrenewprohibited'),
-                    'client_update_lock' => $domain->states->contains('clientupdateprohibited'),
+                    'domain_registrar'     => $domain->domain_registrar,
+                    'domain_owner'         => $domain->domain_owner,
+                    'domain_created_at'    => $domain->domain_created_at,
+                    'domain_expires_at'    => $domain->domain_expires_at,
+                    'whois_server'         => $domain->whois_server,
+                    'client_delete_lock'   => $domain->states->contains('clientdeleteprohibited'),
+                    'client_renew_lock'    => $domain->states->contains('clientrenewprohibited'),
+                    'client_update_lock'   => $domain->states->contains('clientupdateprohibited'),
                     'client_transfer_lock' => $domain->states->contains('clienttransferprohibited'),
-                    'dns_records' => $dns_records,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'dns_records'          => $dns_records,
+                    'created_at'           => now(),
+                    'updated_at'           => now(),
                 ],
-                'execution_time' => microtime(true) - $time_start,
+                'execution_time'       => microtime(true) - $time_start,
                 'was_recently_created' => $website->wasRecentlyCreated ?? true,
             ];
 
             return $data;
-
         } catch (\Exception $e) {
             //return dump($e);
             return response()->json(['Error' => $e->getMessage()], 422);
@@ -126,17 +125,17 @@ class ScrapeWebsite implements ShouldQueue
             }
         }
         if (!isset($local_parsed_url['scheme']) && $check_for_https) {
-
-            $local_parsed_url['scheme'] = "http";
+            $local_parsed_url['scheme'] = 'http';
 
             if ($default_https || $this->supportsHttps($url)) {
-                $local_parsed_url['scheme'] = "https";
+                $local_parsed_url['scheme'] = 'https';
             }
         } elseif (!isset($local_parsed_url['scheme'])) {
             if ($default_https) {
-                $local_parsed_url['scheme'] = "https";
+                $local_parsed_url['scheme'] = 'https';
             }
         }
+
         return $local_parsed_url;
     }
 
@@ -144,7 +143,7 @@ class ScrapeWebsite implements ShouldQueue
     {
         $local_parsed_url = parse_url($url);
         if (!isset($local_parsed_url['scheme'])) {
-            $file = 'https://' . $url;
+            $file = 'https://'.$url;
 
             //$time_start_1 = microtime(true);
             $file_headers = @get_headers($file);
@@ -156,6 +155,7 @@ class ScrapeWebsite implements ShouldQueue
                 return true;
             }
         }
+
         return false;
     }
 
@@ -167,28 +167,29 @@ class ScrapeWebsite implements ShouldQueue
 
         // Checking existance
         if ($whois->isDomainAvailable($host)) {
-            return abort(404, "Domain is not registered");
+            return abort(404, 'Domain is not registered');
             //return response()->json(['Error' => "Domain is not registered"], 422);
         }
 
         $info = $whois->loadDomainInfo($host);
 
-        #Sometimes need to restart it
+        //Sometimes need to restart it
         if (!$info) {
             sleep(2);
             $info = $whois->loadDomainInfo($host);
         }
+
         return (object) [
-            'name' => $info->getDomainName(),
-            'whois_server' => $info->getWhoisServer(),
+            'name'              => $info->getDomainName(),
+            'whois_server'      => $info->getWhoisServer(),
             'domain_created_at' => \Carbon\Carbon::parse($info->getCreationDate()),
             'domain_expires_at' => \Carbon\Carbon::parse($info->getExpirationDate()),
-            'domain_registrar' => $info->getRegistrar(),
-            'domain_owner' => $info->getOwner(),
-            'states' => collect($info->getStates()),
+            'domain_registrar'  => $info->getRegistrar(),
+            'domain_owner'      => $info->getOwner(),
+            'states'            => collect($info->getStates()),
             //'response' => $info->getResponse(),
             //'parser_type' => $info->getParserType(),
-            ##'nameservers' => $info->getNameServers(), <-- Now fetched from getDnsInfo function
+            //#'nameservers' => $info->getNameServers(), <-- Now fetched from getDnsInfo function
             //'name_unicode' => $info->getDomainNameUnicode(),
         ];
     }

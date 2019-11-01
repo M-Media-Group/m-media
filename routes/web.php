@@ -52,7 +52,7 @@ Route::get('/instagram-content-management', 'ProductController@contentCreation')
 
 Route::get('/instagram-account-analyzer', 'ProductController@instagramAnalysis');
 
-#Route::get('/product-packaging', 'ProductController@packaging');
+//Route::get('/product-packaging', 'ProductController@packaging');
 
 Route::get('/automation-bot', 'ProductController@bot');
 
@@ -91,8 +91,8 @@ Auth::routes(['register' => false, 'verify' => true]);
 
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => config('app.name'),
-        'product' => config('app.name') . ' goods and services',
+        'vendor'  => config('app.name'),
+        'product' => config('app.name').' goods and services',
     ])->middleware('auth');
 })->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -105,7 +105,7 @@ Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->mi
 
 //Route::resource('posts', 'PostController');
 
-#Route::resource('categories', 'CategoryController');
+//Route::resource('categories', 'CategoryController');
 
 Route::resource('users', 'UserController')->middleware('auth');
 
@@ -118,12 +118,12 @@ Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'Instagram
 Route::get('my-bots', 'UserController@myBots')->middleware('auth');
 
 Route::get('/users/{id}/invoices', function ($id) {
-    return Redirect::to('/users/' . $id . '/billing', 301);
+    return Redirect::to('/users/'.$id.'/billing', 301);
 });
 
 Route::get('users/{id}/billing', 'UserController@invoices')->middleware('auth');
 
-#Route::post('me/apply/reporter', 'UserController@applyForReporter');
+//Route::post('me/apply/reporter', 'UserController@applyForReporter');
 
 Route::resource('roles', 'RoleController')->middleware('auth');
 Route::resource('bots', 'BotController')->middleware('auth');
@@ -134,7 +134,7 @@ Route::resource('email-logs', 'EmailLogController')->middleware('auth');
 Route::get('bots/{id}/connect', 'BotController@connect')->middleware('auth');
 Route::get('bots/{id}/contact-user', 'BotController@contactUser')->middleware('auth');
 
-#Route::resource('incidents', 'IncidentController');
+//Route::resource('incidents', 'IncidentController');
 
 Route::get('{slug?}', function () {
     // //http://feeds.bbci.co.uk/news/world/rss.xml

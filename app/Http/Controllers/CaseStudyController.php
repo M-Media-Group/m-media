@@ -23,10 +23,10 @@ class CaseStudyController extends Controller
      */
     public function justbookr(Request $request)
     {
-        $data = array(
-            'title' => "JustBookr",
-            'subtext' => "Full business web-app and marketing creation",
-            'text' => "JustBookr is a global startup based in Monaco that lets students trade textbooks between each other on campus and allows libraries and bookstores to sell books directly to university students. Founded in 2016 by a young entrepreneur from the International University of Monaco, JustBookr required their entire business to be built from the ground up by M Media.
+        $data = [
+            'title'   => 'JustBookr',
+            'subtext' => 'Full business web-app and marketing creation',
+            'text'    => 'JustBookr is a global startup based in Monaco that lets students trade textbooks between each other on campus and allows libraries and bookstores to sell books directly to university students. Founded in 2016 by a young entrepreneur from the International University of Monaco, JustBookr required their entire business to be built from the ground up by M Media.
 
 ## Project scope
 - Design and sketch of progressive web-app (website)
@@ -48,11 +48,11 @@ M Media also built the social media profiles for JustBookr, including setting up
 Lastly, M Media also created initial branding guidelines and materials. First, we’ve developed the dark and light versions of the logo as a scalable vector graphic, we’ve defined the color scheme, and we’ve set some typeface rules, creatively putting it into a clear and concise company graphic charter. We then took this information to create physical branding material; 5 different types of posters, 2 types of stickers, and business cards.
 
 JustBookr also entrusted M Media with the physical printing of the offline marketing material, so we’ve optimized the design for printing and sent it to our partner company for the actual print. Within two weeks, all print materials were delivered and the JustBookr team was incredibly satisfied, even ordering an additional batch of stickers.
-",
-            'image' => array(
+',
+            'image' => [
                 'url' => '/images/case-studies/justbookr/products.png',
-            ),
-        );
+            ],
+        ];
 
         return view('caseStudy', $data);
     }
@@ -64,10 +64,10 @@ JustBookr also entrusted M Media with the physical printing of the offline marke
      */
     public function breatheAsOne(Request $request)
     {
-        $data = array(
-            'title' => "Breathe as One Festival",
-            'subtext' => "Full online marketing strategy and execution",
-            'text' => "Many cities in the world celebrate yearly the International Yoga Day, granted by the United Nations. The Breathe as One Yoga Festival held in Nice, France, is the French Riviera answer to that celebration.
+        $data = [
+            'title'   => 'Breathe as One Festival',
+            'subtext' => 'Full online marketing strategy and execution',
+            'text'    => 'Many cities in the world celebrate yearly the International Yoga Day, granted by the United Nations. The Breathe as One Yoga Festival held in Nice, France, is the French Riviera answer to that celebration.
 
 ## Project scope
 - Design and sketch of website
@@ -78,11 +78,11 @@ JustBookr also entrusted M Media with the physical printing of the offline marke
 ## Results
 We created the website and added a no-database sign-up form to complement the existing preferred work-flow of the organizers team. The website also included a shop section connected with the festivals existing PayPal account to seamlessly and easily process the sales of festival merchandise via the website.
 
-We now have the honor and continuous pleasure of being chosen by the festivals core team on other projects as their sole online and offline marketing agency. With their irresistible entrepreneurial spirit, we thoroughly enjoy exploring innovative ideas that bring meaningful solutions to the community on the French Riviera.",
-            'image' => array(
+We now have the honor and continuous pleasure of being chosen by the festivals core team on other projects as their sole online and offline marketing agency. With their irresistible entrepreneurial spirit, we thoroughly enjoy exploring innovative ideas that bring meaningful solutions to the community on the French Riviera.',
+            'image' => [
                 'url' => '/images/case-studies/breathe-as-one/event.jpg',
-            ),
-        );
+            ],
+        ];
 
         return view('caseStudy', $data);
     }
@@ -94,10 +94,10 @@ We now have the honor and continuous pleasure of being chosen by the festivals c
      */
     public function nicolasPisani(Request $request)
     {
-        $data = array(
-            'title' => "Nicolas Pisani Real Estate Agents",
-            'subtext' => "Multi-agent Instagram account engagement",
-            'text' => "This real estate agency lies at the very heart of the French Riviera. Neighboring the Principality of Monaco, two agencies are situated in Villefranche sur Mer and Beaulieu sur Mer. Nicolas Pisani real estate agents assist increasingly cosmopolitan clients in their quest for high-end property.
+        $data = [
+            'title'   => 'Nicolas Pisani Real Estate Agents',
+            'subtext' => 'Multi-agent Instagram account engagement',
+            'text'    => "This real estate agency lies at the very heart of the French Riviera. Neighboring the Principality of Monaco, two agencies are situated in Villefranche sur Mer and Beaulieu sur Mer. Nicolas Pisani real estate agents assist increasingly cosmopolitan clients in their quest for high-end property.
 
 ## Project scope
 - Instagram hashtag research
@@ -109,10 +109,10 @@ We have managed the accounts of 3 real estate agents at the agency and have been
 
 Each agent has seen an average or above average engagement rate, something that would not be possible without the time dedication that M Media can optimize for and deliver to your Instagram account, all using in-house automation tools.
 ",
-            'image' => array(
+            'image' => [
                 'url' => '/images/realestate.svg',
-            ),
-        );
+            ],
+        ];
 
         return view('caseStudy', $data);
     }

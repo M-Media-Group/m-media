@@ -10,7 +10,6 @@ use Storage;
 
 class FileController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['verified', 'optimizeImages']);
@@ -26,6 +25,7 @@ class FileController extends Controller
         $this->authorize('index', File::class);
         //$files = Storage::allFiles('/');
         $files = File::get();
+
         return view('files.index', compact('files'));
     }
 
@@ -37,38 +37,44 @@ class FileController extends Controller
     public function create()
     {
         $this->authorize('create', File::class);
+
         return view('files.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreFile $request)
     {
         UploadFile::dispatchNow($request);
+
         return back()->with('success', 'Thanks for sending us your file!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, File $file)
     {
         //return $file;
         $this->authorize('show', $file);
+
         return view('files.show', compact('file'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,8 +85,9 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, File $file)
@@ -92,7 +99,8 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(File $file)
@@ -100,6 +108,7 @@ class FileController extends Controller
         $this->authorize('delete', $file);
         Storage::delete($file->getOriginal('url'));
         $file->delete();
-        return "Successfully deleted file";
+
+        return 'Successfully deleted file';
     }
 }

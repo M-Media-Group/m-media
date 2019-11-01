@@ -55,10 +55,12 @@ class Phone extends Model
     {
         return $this->hasMany('App\PhoneLog');
     }
+
     public function getNumberTypeAttribute()
     {
         $types = PhoneNumberType::values();
         $type = $types[$this->getOriginal('number_type')];
+
         return $type;
     }
 }

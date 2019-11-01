@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use App\Country;
@@ -65,7 +66,7 @@ class SavePhone implements ShouldQueue
         $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
         $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
         if (!$validNumber) {
-            return response()->json(['Error' => "This is not a valid number."], 422);
+            return response()->json(['Error' => 'This is not a valid number.'], 422);
         }
         $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, strtoupper($input['country']));
         $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
@@ -93,31 +94,33 @@ class SavePhone implements ShouldQueue
         if ($this->save == false) {
             $types = PhoneNumberType::values();
             $type = $types[$phoneNumberType];
+
             return [
-                'e164' => $e164,
-                'number' => $nationalNumber,
+                'e164'        => $e164,
+                'number'      => $nationalNumber,
                 'number_type' => $type,
-                'country_id' => $country->id,
-                'timezone' => $timezone[0],
+                'country_id'  => $country->id,
+                'timezone'    => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id' => null,
-                'is_public' => 0,
-                'country' => $country,
+                'user_id'     => null,
+                'is_public'   => 0,
+                'country'     => $country,
             ];
         }
         $phone = Phone::firstOrCreate(
             ['e164' => $e164],
             [
-                'number' => $nationalNumber,
+                'number'      => $nationalNumber,
                 'number_type' => $phoneNumberType,
-                'country_id' => $country->id,
-                'timezone' => $timezone[0],
+                'country_id'  => $country->id,
+                'timezone'    => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id' => null,
-                'is_public' => 0,
+                'user_id'     => null,
+                'is_public'   => 0,
             ]
         )->load('defaultForUser', 'user');
         $phone->country = $country;
+
         return $phone;
     }
 }

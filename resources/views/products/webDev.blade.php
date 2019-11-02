@@ -15,11 +15,49 @@
     "@type": "Thing",
     "name": "{{config('app.name')}}"
   },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Katarzyna Gardapkhadze"
+      },
+      "reviewBody": "M Media is our partner of choice for developing website and branding for our new consultancy business. Excellent sense of customer needs and high-quality, data-driven solutions is what distinguishes M Media from other companies in the field."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Benjamin Kalies"
+      },
+      "reviewBody": "Very serious company and very professionnel. M Media is exactly what I was looking for for my company, and they know how to make custom my strategy for my restaurant. Congtatulation !!!"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Anthony Alessandra"
+      },
+      "reviewBody": "Thanks to M Media for your bespoke service! I have no doubts today, the results are there!"
+    }
+  ],
   "aggregateRating": {
     "@type": "AggregateRating",
     "bestRating": "5",
     "ratingValue": "5",
-    "reviewCount": "1"
+    "reviewCount": "3"
   },
   "offers": {
     "@type": "Offer",

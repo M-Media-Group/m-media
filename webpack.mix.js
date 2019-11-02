@@ -19,7 +19,9 @@ mix.sass('resources/sass/app.scss', 'public/css').styles([
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/normalize.css',
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/skeleton.css'
 ], 'public/css/all.css');
-
+if (mix.inProduction()) {
+    mix.version();
+}
 //mix.browserSync('https://mmedia:7890');
 mix.options({
   extractVueStyles: true, // Extract .vue component styling to file, rather than inline.

@@ -24,6 +24,7 @@ class WebsiteScrapeController extends Controller
         if ($request->input('json')) {
             return $data;
         }
+
         try {
             return view('websiteDebug', $data);
         } catch (\Exception $e) {

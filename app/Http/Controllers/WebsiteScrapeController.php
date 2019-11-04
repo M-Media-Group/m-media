@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ScrapePage;
+use App\Jobs\ScrapeWebsite;
 use Illuminate\Http\Request;
 
 class WebsiteScrapeController extends Controller
@@ -19,10 +19,11 @@ class WebsiteScrapeController extends Controller
 
     public function index(Request $request, $url)
     {
-        $data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
-        //$data = ScrapeWebsite::dispatchNow($url);
+        return dns_get_record('mmediagroup.fr' . '.', DNS_ALL);
+        //$data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
+        $data = ScrapeWebsite::dispatchNow($url);
 
-        //return $data;
+        return $data;
 
         try {
             return view('websiteDebug', $data);

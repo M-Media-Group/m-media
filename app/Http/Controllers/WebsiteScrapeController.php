@@ -19,7 +19,7 @@ class WebsiteScrapeController extends Controller
 
     public function index(Request $request, $url)
     {
-        return dns_get_record('mmediagroup.fr' . '.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR + DNS_A6);
+        return dns_get_record('mmediagroup.fr'.'.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR + DNS_A6);
         //$data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
         $data = ScrapeWebsite::dispatchNow($url);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ScrapeWebsite;
+use App\Jobs\ScrapePage;
 use Illuminate\Http\Request;
 
 class WebsiteScrapeController extends Controller
@@ -19,10 +19,10 @@ class WebsiteScrapeController extends Controller
 
     public function index(Request $request, $url)
     {
-        //$data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
-        $data = ScrapeWebsite::dispatchNow($url);
+        $data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
+        //$data = ScrapeWebsite::dispatchNow($url);
 
-        return $data;
+        //return $data;
 
         try {
             return view('websiteDebug', $data);

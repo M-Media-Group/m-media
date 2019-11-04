@@ -3,9 +3,9 @@
 @section('title', 'Edit a user')
 
 @section('above_container')
-	<div class="header-section" style="background:#246EBA;">
+	<div class="header-section u-bg-primary">
 		<h1>Account settings</h1>
-		<h2>{{$user->name}} {{$user->surname}}</h2>
+		<p>{{$user->name}} {{$user->surname}}</p>
 	</div>
 @endsection
 

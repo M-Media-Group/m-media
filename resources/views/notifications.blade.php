@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section u-bg-primary">
         <h1>Notifications</h1>
-        <h2>{{Auth::user()->name}} {{Auth::user()->surname}}</h2>
+        <p>{{Auth::user()->name}} {{Auth::user()->surname}}</p>
     </div>
 @endsection
 

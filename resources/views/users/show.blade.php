@@ -3,9 +3,9 @@
 @section('title', $user->name )
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section u-bg-primary">
         <h1>{{ $user->name }} {{ $user->surname }}</h1>
-        <h2>{{config('app.name')}} Customer</h2>
+        <p>{{config('app.name')}} Customer</p>
     </div>
 @endsection
 

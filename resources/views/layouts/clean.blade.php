@@ -20,7 +20,7 @@
             <div class="container p-0">
                 <div class="row m-0 p-0 mt-5">
 
-                    <div class="col-md-12" style="max-width: 700px;">
+                    <div class="col-md-12 u-center" style="max-width: 700px;">
                         @yield('content')
                     </div>
 

@@ -3,9 +3,9 @@
 @section('title', 'Users')
 
 @section('above_container')
-	<div class="header-section" style="background:#246EBA;">
+	<div class="header-section u-bg-primary">
 		<h1>Users</h1>
-		<h2>{{config('app.name')}} customers</h2>
+		<p>{{config('app.name')}} customers</p>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($users)}} users</h2>

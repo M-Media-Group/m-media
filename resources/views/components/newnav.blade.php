@@ -33,10 +33,10 @@
                     <a href="/users/{{ Auth::id() }}/edit">
                             {{ __('Account settings') }}
                     </a>
-                    <hr class="mb-0 mt-0">
+{{--                     <hr class="mb-0 mt-0">
                     <a href="/tools/instagram-account-analyzer">
                             {{ __('Instagram account analyzer') }}
-                    </a>
+                    </a> --}}
   {{--                   <a href="/tools/website-debugger">
                             {{ __('Website debugger') }}
                     </a> --}}
@@ -69,6 +69,11 @@
                     @can('index', App\EmailLog::class)
                         <a href="/email-logs">
                             {{ __('Email logs') }}
+                        </a>
+                    @endcan
+                    @can('index', App\PhoneLog::class)
+                        <a href="/phone-logs">
+                            {{ __('Phone logs') }}
                         </a>
                     @endcan
                     {{-- @can('manage roles')

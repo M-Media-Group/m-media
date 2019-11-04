@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section" style="background:#246EBA;">
+	<div class="header-section u-bg-primary">
 		<h1>Phone logs</h1>
-		<h2>{{config('app.name')}} Phones</h2>
+		<p>{{config('app.name')}} Phones</p>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($phone_logs)}} phones</h2>
@@ -27,7 +27,7 @@
 					<td><a href="/phone-logs/{{ $log->id }}">{{ $log->id }}</a></td>
 					<td>{{ $log->notes }}</td>
 					<td><a href="/phones/{{ $log->phone_id }}">{{ $log->phone->e164 }}</a></td>
-					<td>{{ $log->phone->defaultForUser->name }}</td>
+					<td>{{ $log->phone->defaultForUser ? $log->phone->defaultForUser->name : null }}</td>
 					<td>{{ $log->phone->number_type }}</td>
 					<td>{{ $log->type }}</td>
 					<td>{{ $log->created_at->diffForHumans() }}</td>

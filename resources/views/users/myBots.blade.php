@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section u-bg-primary">
         <h1>Your bots</h1>
-        <h2>{{$user->name}} {{$user->surname}}</h2>
+        <p>{{$user->name}} {{$user->surname}}</p>
     </div>
 @endsection
 

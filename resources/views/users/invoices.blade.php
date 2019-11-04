@@ -116,4 +116,33 @@
 	    </div>
 	@endif
 
+	<h2 class="mt-5 mb-0">Services available to you</h2>
+	@if($plans && count($plans->data) > 0)
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+						<th>Service</th>
+					   <th>Price</th>
+					   <th>Subscribe</th>
+					</tr>
+				</thead>
+				<tbody>
+			@foreach ($plans->data as $plan)
+				@if($plan->product->active)
+				<tr>
+					<td>{{ $plan->product->name }}</td>
+					<td>{{ $plan->amount / 100 }} {{ strtoupper($plan->currency) }} / {{ $plan->interval }}</td>
+					<td><a href="/contact">{{ __('Contact us') }}</a></td>
+				</tr>
+				@endif
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+	@else
+		<div class="alert text-muted">
+			 You have no active subscription to an {{Config('app.name')}} service yet. When you do, it will show up here.
+		</div>
+	@endif
 @endsection

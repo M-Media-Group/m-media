@@ -202,7 +202,7 @@ class ScrapePage implements ShouldQueue
                     } elseif (stripos($meta->getAttribute('href'), 'mailto:') !== false) {
                         $data = [
                             'position' => $value,
-                            'src' => ltrim($meta->getAttribute('href'), 'mailto:'),
+                            'src' => $parsed_url_2['path'],
                             'value' => trim($meta->textContent),
                             'is_internal' => $is_internal,
                             'url' => $parsed_url_2,

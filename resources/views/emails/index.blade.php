@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section" style="background:#246EBA;">
+	<div class="header-section u-bg-primary">
 		<h1>Emails</h1>
-		<h2>{{config('app.name')}} Emails</h2>
+		<p>{{config('app.name')}} Emails</p>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($emails)}} emails</h2>

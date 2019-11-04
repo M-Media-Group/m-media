@@ -196,6 +196,6 @@ class ScrapeWebsite implements ShouldQueue
 
     private function getDnsInfo($host)
     {
-        return dns_get_record($host, DNS_ANY);
+        return dns_get_record($host . ".", DNS_ALL);
     }
 }

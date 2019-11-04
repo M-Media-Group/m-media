@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ScrapeWebsite;
+use App\Jobs\ScrapePage;
 use Illuminate\Http\Request;
 
 class WebsiteScrapeController extends Controller
@@ -19,12 +19,11 @@ class WebsiteScrapeController extends Controller
 
     public function index(Request $request, $url)
     {
-        return dns_get_record('mmediagroup.fr' . '.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
-        //$data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
-        $data = ScrapeWebsite::dispatchNow($url);
-
-        return $data;
-
+        $data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
+        //$data = ScrapeWebsite::dispatchNow($url);
+        if ($request->input('json')) {
+            return $data;
+        }
         try {
             return view('websiteDebug', $data);
         } catch (\Exception $e) {

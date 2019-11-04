@@ -15,7 +15,7 @@ class PhoneLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $number)
+    public function index(Request $request)
     {
         $this->authorize('index', PhoneLog::class);
         // $input = [];

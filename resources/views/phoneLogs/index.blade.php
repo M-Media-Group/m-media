@@ -13,11 +13,11 @@
 			<thead>
 				<tr>
 				   <th>ID</th>
-				   <th>Subject</th>
-				   <th>From</th>
-				   <th>To</th>
-				   <th>Status</th>
-				   <th>Type</th>
+				   <th>Notes</th>
+				   <th>Number</th>
+				   <th>Owner</th>
+				   <th>Phone type</th>
+				   <th>Direction</th>
 				   <th>Created at</th>
 				</tr>
 			</thead>
@@ -25,10 +25,10 @@
 			@foreach ($phone_logs->sortByDesc('created_at') as $log)
 				<tr>
 					<td><a href="/phone-logs/{{ $log->id }}">{{ $log->id }}</a></td>
-					<td>{{ $log->subject }}</td>
-					<td><a href="/phones/{{ $log->phone_id }}">{{ $log->phone->phone }}</a></td>
-					<td><a href="/phones/{{ $log->to_phone_id }}">{{ $log->to_phone->phone }}</a></td>
-					<td>{{ $log->status }}</td>
+					<td>{{ $log->notes }}</td>
+					<td><a href="/phones/{{ $log->phone_id }}">{{ $log->phone->e164 }}</a></td>
+					<td>{{ $log->phone->defaultForUser }}</td>
+					<td>{{ $log->phone->number_type }}</td>
 					<td>{{ $log->type }}</td>
 					<td>{{ $log->created_at->diffForHumans() }}</td>
 				</tr>

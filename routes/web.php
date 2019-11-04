@@ -68,17 +68,9 @@ Route::get('/terms-and-conditions', function () {
     return view('toc');
 });
 
-// Route::get('/apply', function () {
-//     return view('write');
-// })->middleware('auth');
-
 Route::get('/about', function () {
     return view('about');
 });
-
-Route::get('/notifications', function () {
-    return view('notifications');
-})->middleware('auth');
 
 Route::post(
     'stripe/webhook',
@@ -87,7 +79,6 @@ Route::post(
 
 Auth::routes(['register' => false, 'verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/tools/instagram-account-analyzer', function () {
     return view('instagramAccountSelector');
 });
@@ -95,23 +86,17 @@ Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeContr
 
 Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 
-//Route::resource('posts', 'PostController');
-
-//Route::resource('categories', 'CategoryController');
-
-Route::resource('users', 'UserController')->middleware('auth');
-
-Route::resource('instagram-accounts', 'InstagramAccountController')->middleware('auth');
-
-Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost')->middleware('auth');
-
 Route::get('/users/{id}/invoices', function ($id) {
     return Redirect::to('/users/' . $id . '/billing', 301);
 });
 
-//Route::post('me/apply/reporter', 'UserController@applyForReporter');
-
-//Route::resource('incidents', 'IncidentController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/notifications', function () {
+        return view('notifications');
+    });
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('users', 'UserController');
+});
 
 Route::group(['middleware' => ['verified']], function () {
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
@@ -120,11 +105,12 @@ Route::group(['middleware' => ['verified']], function () {
             'product' => config('app.name') . ' goods and services',
         ]);
     });
-    Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index')->middleware('verified');
+    Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
     Route::get('bots/{id}/connect', 'BotController@connect');
     Route::get('bots/{id}/contact-user', 'BotController@contactUser');
+    Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');
     Route::resource('custom-notifications', 'CustomNotificationController');
     Route::resource('roles', 'RoleController');
     Route::resource('bots', 'BotController');
@@ -132,18 +118,9 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('emails', 'EmailController');
     Route::resource('email-logs', 'EmailLogController');
     Route::resource('phone-logs', 'PhoneLogController');
+    Route::resource('instagram-accounts', 'InstagramAccountController');
 });
 
 Route::get('{slug?}', function () {
-    // //http://feeds.bbci.co.uk/news/world/rss.xml
-    // $feed = Feeds::make(array(
-    //     'https://www.reddit.com/r/breakingnews/.rss', 'https://www.reddit.com/r/news/.rss', 'http://feeds.bbci.co.uk/news/world/rss.xml', 'https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB?hl=en-US&gl=US&ceid=US:en',
-    // ));
-    // $data = array(
-    //     'title' => $feed->get_title(),
-    //     'permalink' => $feed->get_permalink(),
-    //     'items' => $feed->get_items(),
-    // );
-
     return View::make('welcome');
 });

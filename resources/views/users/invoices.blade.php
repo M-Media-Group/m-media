@@ -132,7 +132,7 @@
 				@if($plan->product->active)
 				<tr>
 					<td>{{ $plan->product->name }}</td>
-					<td>{{ $plan->amount / 100 }} {{ strtoupper($plan->currency) }} / {{ $plan->interval }}</td>
+					<td>{{ $plan->amount / 100 }} {{ strtoupper($plan->currency) }} / {{ $plan->product->unit_label }}, billed every {{ $plan->interval }}</td>
 					<td><a href="/contact">{{ __('Contact us') }}</a></td>
 				</tr>
 				@endif

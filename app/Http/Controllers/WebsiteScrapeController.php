@@ -21,7 +21,9 @@ class WebsiteScrapeController extends Controller
     {
         //$data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
         $data = ScrapeWebsite::dispatchNow($url);
+
         return $data;
+
         try {
             return view('websiteDebug', $data);
         } catch (\Exception $e) {

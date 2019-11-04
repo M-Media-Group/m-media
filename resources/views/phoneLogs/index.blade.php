@@ -27,7 +27,7 @@
 					<td><a href="/phone-logs/{{ $log->id }}">{{ $log->id }}</a></td>
 					<td>{{ $log->notes }}</td>
 					<td><a href="/phones/{{ $log->phone_id }}">{{ $log->phone->e164 }}</a></td>
-					<td>{{ $log->phone->defaultForUser }}</td>
+					<td>{{ $log->phone->defaultForUser->name }}</td>
 					<td>{{ $log->phone->number_type }}</td>
 					<td>{{ $log->type }}</td>
 					<td>{{ $log->created_at->diffForHumans() }}</td>

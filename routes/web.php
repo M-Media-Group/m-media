@@ -121,6 +121,6 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('instagram-accounts', 'InstagramAccountController');
 });
 
-Route::get('{slug?}', function () {
+Route::get('/', function () {
     return View::make('welcome');
 });

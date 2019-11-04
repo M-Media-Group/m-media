@@ -1,4 +1,7 @@
 @extends('layouts.clean')
+@section('title', $title)
+@section('meta_image', $image['url'])
+@section('meta_description', strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) )
 
 @section('above_container')
 

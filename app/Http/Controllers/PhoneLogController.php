@@ -17,15 +17,19 @@ class PhoneLogController extends Controller
      */
     public function index(Request $request, $number)
     {
-        $input = [];
-        $input['phonenumber'] = $number;
-        $input['country'] = ($request->input('country')) ?? null;
-        $input['callType'] = ($request->input('type')) ?? 'INBOUND';
-        $input['callNotes'] = ($request->input('notes')) ?? null;
-        $input['language'] = (isset($request['language']) && $request['language'] != '') ? $request['language'] : 'en';
-        $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
-        //return dump($input);
-        return SavePhone::dispatchNow($input, false);
+        $this->authorize('index', PhoneLog::class);
+        // $input = [];
+        // $input['phonenumber'] = $number;
+        // $input['country'] = ($request->input('country')) ?? null;
+        // $input['callType'] = ($request->input('type')) ?? 'INBOUND';
+        // $input['callNotes'] = ($request->input('notes')) ?? null;
+        // $input['language'] = (isset($request['language']) && $request['language'] != '') ? $request['language'] : 'en';
+        // $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
+        // return SavePhone::dispatchNow($input, false);
+
+        $phone_logs = PhoneLog::get();
+
+        return view('phoneLogs.index', compact('phone_logs'));
 
         return PhoneLog::get();
     }
@@ -100,7 +104,7 @@ class PhoneLogController extends Controller
         $PhoneLog = PhoneLog::with('phone.defaultForUser')->findOrFail($id);
 
         $request->validate([
-            'notes'    => 'nullable',
+            'notes' => 'nullable',
             'ended_at' => 'nullable',
         ]);
 

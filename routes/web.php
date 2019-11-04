@@ -42,8 +42,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index')->middleware('auth', 'verified');
-
 Route::get('/web-development', 'ProductController@webdev');
 
 Route::get('/instagram-engagement', 'ProductController@engagement');
@@ -89,12 +87,6 @@ Route::post(
 
 Auth::routes(['register' => false, 'verify' => true]);
 
-Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
-    return $request->user()->downloadInvoice($invoiceId, [
-        'vendor'  => config('app.name'),
-        'product' => config('app.name').' goods and services',
-    ])->middleware('auth');
-})->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/tools/instagram-account-analyzer', function () {
     return view('instagramAccountSelector');
@@ -109,32 +101,38 @@ Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->mi
 
 Route::resource('users', 'UserController')->middleware('auth');
 
-Route::resource('custom-notifications', 'CustomNotificationController')->middleware('auth');
-
 Route::resource('instagram-accounts', 'InstagramAccountController')->middleware('auth');
 
 Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost')->middleware('auth');
 
-Route::get('my-bots', 'UserController@myBots')->middleware('auth');
-
 Route::get('/users/{id}/invoices', function ($id) {
-    return Redirect::to('/users/'.$id.'/billing', 301);
+    return Redirect::to('/users/' . $id . '/billing', 301);
 });
-
-Route::get('users/{id}/billing', 'UserController@invoices')->middleware('auth');
 
 //Route::post('me/apply/reporter', 'UserController@applyForReporter');
 
-Route::resource('roles', 'RoleController')->middleware('auth');
-Route::resource('bots', 'BotController')->middleware('auth');
-Route::resource('files', 'FileController')->middleware('auth');
-Route::resource('emails', 'EmailController')->middleware('auth');
-Route::resource('email-logs', 'EmailLogController')->middleware('auth');
-
-Route::get('bots/{id}/connect', 'BotController@connect')->middleware('auth');
-Route::get('bots/{id}/contact-user', 'BotController@contactUser')->middleware('auth');
-
 //Route::resource('incidents', 'IncidentController');
+
+Route::group(['middleware' => ['verified']], function () {
+    Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
+        return $request->user()->downloadInvoice($invoiceId, [
+            'vendor' => config('app.name'),
+            'product' => config('app.name') . ' goods and services',
+        ]);
+    });
+    Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index')->middleware('verified');
+    Route::get('my-bots', 'UserController@myBots');
+    Route::get('users/{id}/billing', 'UserController@invoices');
+    Route::get('bots/{id}/connect', 'BotController@connect');
+    Route::get('bots/{id}/contact-user', 'BotController@contactUser');
+    Route::resource('custom-notifications', 'CustomNotificationController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('bots', 'BotController');
+    Route::resource('files', 'FileController');
+    Route::resource('emails', 'EmailController');
+    Route::resource('email-logs', 'EmailLogController');
+    Route::resource('phone-logs', 'PhoneLogController');
+});
 
 Route::get('{slug?}', function () {
     // //http://feeds.bbci.co.uk/news/world/rss.xml

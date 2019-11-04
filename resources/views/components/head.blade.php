@@ -8,7 +8,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <meta name="keywords" content="{{ config('app.name') }},{{ config('blog.country_name') }},{{ config('blog.area_name') }},@yield('meta_keywords')">
-<meta name="description" property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera.')">
+<meta name="description" property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera. SEO friendly, responsive, and tailored websites built for you in Monaco and around.')">
 <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 <meta name="robots" content="index,follow">
 <meta name="googlebot" content="index,follow">
@@ -32,7 +32,7 @@
 <meta name="twitter:creator" content="@individual_account">
 <meta name="twitter:url" content="https://example.com/page.html"> --}}
 <meta name="twitter:title" content="@yield('title', config('app.name'))">
-<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle your marketing on the French Riviera.')">
+<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle your marketing on the French Riviera. SEO friendly, responsive, and tailored websites built for you in Monaco and around.')">
 <meta name="twitter:image" content="@yield('meta_image', config('blog.logo_url'))">
 
 <meta name="theme-color" content="#eb4647">

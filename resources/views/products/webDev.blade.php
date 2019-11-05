@@ -76,7 +76,7 @@
   }
 }
 </script>
-    <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/404.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;">
+    <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/1-scaled2x.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain, cover;">
         <h1 class="header-section-title mb-0">Web Development</h1>
         <p class="mb-0">With free website analytics.</p>
         <a class="button button-secondary mt-3 mb-5" href="/contact">Contact us</a>
@@ -84,6 +84,9 @@
     </div>
     <div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
+            <div class="u-limit-max-width u-center d-none">
+              <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
+           </div>
             <blockquote class="blockquote m-0">
               <p class="u-center">"M Media is our partner of choice for developing website and branding for our new consultancy business. Excellent sense of customer needs and high-quality, data-driven solutions is what distinguishes M Media from other companies in the field."</p>
               <p class="blockquote-footer u-center text-small">Katarzyna Gardapkhadze, CEO at <cite title="Source Title">Responsible Leadership Academy</cite></p>
@@ -128,6 +131,9 @@
 
 <div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
+            <div class="u-limit-max-width u-center d-none">
+              <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
+           </div>
             <blockquote class="blockquote m-0">
               <p class="u-center">"Very serious company and very professionnel. M Media is exactly what I was looking for for my company, and they know how to make custom my strategy for my restaurant. Congtatulation !!!"</p>
               <p class="blockquote-footer u-center text-small">Benjamin Kalies, founder of <cite title="Source Title">Achill's Restaurant and Rooftop Bar</cite></p>
@@ -186,6 +192,9 @@
 </div>
 <div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-12">
+        <div class="u-limit-max-width u-center d-none">
+              <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
+        </div>
         <blockquote class="blockquote m-0">
           <p class="u-center">"Thanks to M Media for your bespoke service! I have no doubts today, the results are there!"</p>
           <p class="blockquote-footer u-center text-small">Anthony Alessandra, CEO of <cite title="Source Title">Nicolas Pisani Real Estate</cite></p>
@@ -195,6 +204,8 @@
  <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
+                <h3>Websites starting at €999</h3>
+                <p>Hosting from €15 a month</p>
                 <a class="button button-secondary" href="/contact">Let's talk :)</a>
                 <a class="button button-secondary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
             </div>

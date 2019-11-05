@@ -30,9 +30,17 @@ Route::get('/instagram', function () {
     return view('instagram');
 });
 
-// Route::get('/write', function () {
-//     return view('write');
-// });
+Route::get('/frequently-asked-questions', function () {
+    return view('faq');
+});
+
+Route::get('/pricing', function () {
+    \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+    $plans = \Stripe\Plan::all(['expand' => ['data.product']]);
+    $products = \Stripe\Sku::all(['expand' => ['data.product']]);
+    //return $products;
+    return view('pricing', compact('plans', 'products'));
+});
 
 Route::get('/case-studies', function () {
     return view('caseStudies');
@@ -91,7 +99,7 @@ Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeContr
 Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 
 Route::get('/users/{id}/invoices', function ($id) {
-    return Redirect::to('/users/'.$id.'/billing', 301);
+    return Redirect::to('/users/' . $id . '/billing', 301);
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -105,8 +113,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['verified']], function () {
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
         return $request->user()->downloadInvoice($invoiceId, [
-            'vendor'  => config('app.name'),
-            'product' => config('app.name').' goods and services',
+            'vendor' => config('app.name'),
+            'product' => config('app.name') . ' goods and services',
         ]);
     });
     Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');

@@ -29,9 +29,10 @@
         @endif
         <div class="footer d-flex justify-content-around">
             <small>
-                <a href="/about" class="text-white">About</a>
-                <a href="/privacy-policy" class="text-white">Privacy policy</a>
-                <a href="/terms-and-conditions" class="text-white">Terms and conditions</a>
+                <a href="/about" class="text-white">About</a> |
+                <a href="/privacy-policy" class="text-white">Privacy policy</a> |
+                <a href="/terms-and-conditions" class="text-white">Terms and conditions</a> |
+                <a href="/frequently-asked-questions">FAQ</a>
             </small>
         </div>
     </div>

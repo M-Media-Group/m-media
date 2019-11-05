@@ -41,9 +41,10 @@
         </div>
         <div class="footer d-flex justify-content-around">
             <small>
-                <a href="/about" class="text-white" title="About {{config('app.name')}}">About</a>
-                <a href="/privacy-policy" class="text-white" title="Privacy policy">Privacy policy</a>
-                <a href="/terms-and-conditions" class="text-white" title="Terms and conditions">Terms and conditions</a>
+                <a href="/about" class="text-white" title="About {{config('app.name')}}">About</a> |
+                <a href="/privacy-policy" class="text-white" title="Privacy policy">Privacy policy</a> |
+                <a href="/terms-and-conditions" class="text-white" title="Terms and conditions">Terms and conditions</a> |
+                <a href="/frequently-asked-questions">FAQ</a>
             </small>
         </div>
     </div>

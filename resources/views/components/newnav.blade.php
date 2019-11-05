@@ -10,6 +10,8 @@
  --}}           <hr class="mb-0 mt-0">
                 <a href="/case-studies">Case Studies</a>
                 <hr class="mb-0 mt-0">
+                <a href="/pricing" class="d-none">Pricing</a>
+                <hr class="mb-0 mt-0">
                 @guest
                     <a href="/contact">Contact us</a>
                     <hr class="mb-0 mt-0">

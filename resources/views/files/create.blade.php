@@ -4,9 +4,9 @@
 @section('meta_description', "This ".config('app.name')." tool will let people upload files." )
 
 @section('above_container')
-<div class="header-section" style="background:#246EBA;">
+<div class="header-section u-bg-primary">
     <h1>{{ __('Upload a file') }}</h1>
-    <h2>Share files with {{config('app.name')}}</h2>
+    <p>Share files with {{config('app.name')}}</p>
 </div>
 <div>
     <div class="action-section container">
@@ -50,7 +50,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

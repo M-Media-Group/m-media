@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section" style="background:#246EBA;">
+    <div class="header-section u-bg-primary">
         <h1>{{str_replace (["_", "-"], " ", $bot->alias)}}</h1>
         <h2>Marketing Automation Bot</h2>
     </div>

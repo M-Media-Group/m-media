@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section" style="background:#246EBA;">
+	<div class="header-section u-bg-primary">
 		<h1>Instagram Accounts</h1>
-		<h2>{{config('app.name')}} Instagram Accounts</h2>
+		<p>{{config('app.name')}} Instagram Accounts</p>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">History</h2>

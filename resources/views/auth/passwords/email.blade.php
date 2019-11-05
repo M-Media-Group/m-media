@@ -1,7 +1,7 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('above_container')
-<div class="header-section" style="background:#246EBA;">
+<div class="header-section u-bg-primary">
     <h1>{{ __('Reset Password') }}</h1>
 </div>
 <div >

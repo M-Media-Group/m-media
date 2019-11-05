@@ -131,8 +131,8 @@
 			@foreach ($plans->data as $plan)
 				@if($plan->product->active)
 				<tr>
-					<td>{{ $plan->product->name }}</td>
-					<td>{{ $plan->amount / 100 }} {{ strtoupper($plan->currency) }} / {{ $plan->product->unit_label }}, billed every {{ $plan->interval }}</td>
+					<td>{{ $plan->product->name }}<br/><small>{{ $plan->nickname }}</small></td>
+					<td>{{ $plan->amount / 100 }} {{ strtoupper($plan->currency) }} / {{ $plan->product->unit_label }}<br/><small>Billed once a {{ $plan->interval }}</small></td>
 					<td><a href="/contact">{{ __('Contact us') }}</a></td>
 				</tr>
 				@endif

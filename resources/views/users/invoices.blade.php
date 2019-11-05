@@ -128,7 +128,7 @@
 					</tr>
 				</thead>
 				<tbody>
-			@foreach ($plans->data as $plan)
+			@foreach (collect($plans->data)->sortBy('product.name') as $plan)
 				@if($plan->product->active)
 				<tr>
 					<td>{{ $plan->product->name }}<br/><small>{{ $plan->nickname }}</small></td>

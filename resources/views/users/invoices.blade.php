@@ -122,7 +122,7 @@
 	@endif
 
     <h2 class="mt-5 mb-0">Discounts</h2>
-	@if(count($discounts) > 0)
+	@if($discounts && count($discounts) > 0)
     <div class="table-responsive">
 		<table class="table mb-0">
 				<thead>

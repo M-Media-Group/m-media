@@ -19,7 +19,7 @@ class BotController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified');
+        //$this->middleware('verified');
     }
 
     public function index(Request $request)
@@ -77,9 +77,9 @@ class BotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bot $bot)
     {
-        // PhoneLog::create(['phone_id' => $phone->id, 'type' => 'INBOUND']);
+        return view('bots.edit', compact('bot'));
     }
 
     /**
@@ -90,17 +90,17 @@ class BotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bot $bot)
     {
-        $PhoneLog = PhoneLog::findOrFail($id);
+        //return "OK";
 
         $request->validate([
-            'notes'    => 'nullable',
-            'ended_at' => 'nullable',
+            'is_servicable' => 'nullable|boolean',
+            'user_id' => 'nullable',
         ]);
 
-        //$PhoneLog->update($request->only('notes', 'ended_at'));
-        return $PhoneLog;
+        $bot->update($request->only('is_servicable', 'user_id'));
+        return $bot;
     }
 
     /**
@@ -118,10 +118,10 @@ class BotController extends Controller
 
         try {
             $headers = [
-                'Content-Type'  => 'application/json',
-                'AccessToken'   => 'key',
+                'Content-Type' => 'application/json',
+                'AccessToken' => 'key',
                 'Authorization' => 'Bearer token',
-                'developerkey'  => config('blog.remoteit.developerkey'),
+                'developerkey' => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -138,10 +138,10 @@ class BotController extends Controller
 
             //# Get devices
             $headers = [
-                'Content-Type'  => 'application/json',
-                'token'         => $obj->token,
+                'Content-Type' => 'application/json',
+                'token' => $obj->token,
                 'Authorization' => 'Bearer token',
-                'developerkey'  => config('blog.remoteit.developerkey'),
+                'developerkey' => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -149,14 +149,14 @@ class BotController extends Controller
 
             $response = $client->request('POST', 'https://api.remot3.it/apv/v27/device/connect', [RequestOptions::JSON => [
                 'deviceaddress' => $bot->address,
-                'wait'          => true,
+                'wait' => true,
             ]]);
             $statusCode = $response->getStatusCode();
             $body = $response->getBody()->getContents();
 
             $obj = json_decode($body);
 
-            return 'ssh -l pi '.$obj->connection->proxyserver.' -p '.$obj->connection->proxyport;
+            return 'ssh -l pi ' . $obj->connection->proxyserver . ' -p ' . $obj->connection->proxyport;
         } catch (Exception $e) {
             return $e;
         }

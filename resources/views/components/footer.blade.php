@@ -22,12 +22,15 @@
 		, 1);
 		</script>
 
-{{-- 		<!-- STAY - Scripts -->
-		<script src="{{ asset('js/manifest.js') }}" defer></script>
 
-		<script src="{{ asset('js/vendor.js') }}" defer></script>
+		<!-- STAY - Scripts -->
+		<script src="https://js.stripe.com/v3/"></script>
 
-		<script src="{{ asset('js/app.js') }}" defer></script> --}}
+		<script src="{{ asset('js/manifest.js') }}"></script>
+
+		<script src="{{ asset('js/vendor.js') }}"></script>
+
+		<script src="{{ asset('js/app.js') }}"></script>
 
    		@yield('footer_scripts')
 	</body>

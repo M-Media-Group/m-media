@@ -4,7 +4,7 @@
 @section('meta_description', "This ".config('app.name')." tool will let admins notify ".config('app.name')." users." )
 
 @section('above_container')
-<div class="header-section" style="background:#246EBA;">
+<div class="header-section u-bg-primary">
     <h1>{{ __('Create a notification') }}</h1>
 </div>
 <div>

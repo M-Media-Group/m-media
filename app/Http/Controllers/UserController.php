@@ -115,24 +115,26 @@ class UserController extends Controller
         $this->authorize('show', $user);
 
         $pmethod = [];
-        $invoices = [];
-        $subscriptions = [];
+        $invoices = collect();
+        $subscriptions = collect();
+        $discounts = collect();
         if ($user->stripe_id) {
             $pmethod = $user->paymentMethods();
-            $subscriptions = $user->asStripeCustomer()->subscriptions;
+            $stripe_customer = $user->asStripeCustomer();
+            $subscriptions = $stripe_customer->subscriptions;
+            $discounts = $stripe_customer->discount;
             // Cancel invoice code example
             //             $subscriptions = $user->asStripeCustomer()->subscriptions->retrieve('sub_DrywzCY3ajr2uu')->cancel();
-        }
-        if ($user->stripe_id) {
+
             $invoices = $user->invoices();
         }
 
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-        $plans = \Stripe\Plan::all(['expand' => ['data.product']]);
+        //$plans = \Stripe\Plan::all(['expand' => ['data.product']]);
         //$plans2 = $user->asStripeCustomer();
 
-        //return $plans2;
-        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'plans'));
+        //return $discounts;
+        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts'));
     }
 
     /**
@@ -147,13 +149,13 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'name'    => ['sometimes', 'required', 'string', 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email'   => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
-        if ($user->email != $validatedData->email) {
+        if ($user->email != $validatedData['email']) {
             $user->email_verified_at = null;
             $user->save();
         }
@@ -169,7 +171,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     /**

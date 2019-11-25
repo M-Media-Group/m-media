@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
-@section('title', 'Create a post')
+@section('title', 'Create a bot')
 
 @section('content')
-	<h1>Edit a post</h1>
+	<h1>Edit a bot</h1>
 	@if ($errors->any())
 	    <div class="alert alert-danger">
 	        <ul>
@@ -13,31 +13,13 @@
 	        </ul>
 	    </div>
 	@endif
-	<form action="/posts/{{$post->id}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-	  @csrf
-	  @method('PATCH')
-	  <div class="form-group">
-		<label for="exampleFormControlInput1">Title</label>
-		<input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="Title" value="{{$post->title}}" required>
-	  </div>
-	  <div class="form-group">
-		<label for="exampleFormControlTextarea1">Post</label>
-		<textarea class="form-control" id="exampleFormControlTextarea1" rows="13" name="body_markdown" placeholder="Markdown" required>{{$post->body_markdown}}</textarea>
-	  </div>
-	  <div class="form-group">
-		<label for="exampleFormControlTextarea2">Blurb</label>
-		<textarea class="form-control" id="exampleFormControlTextarea2" rows="2" name="excerpt" required>{{$post->excerpt}}</textarea>
-	  </div>
-	  <div class="form-group">
-		<label for="exampleFormControlSelect1">Category</label>
-		<select class="form-control" id="exampleFormControlSelect1" name="category_id" required>
-			@foreach($categories as $category)
-		  		<option value="{{$category->id}}" @if (in_array($category->id, $post->categories->pluck('id')->toArray())) selected="selected" @endif>{{$category->name}}</option>
-		  	@endforeach
-		</select>
-	  </div>
-	  <button type="submit" class="button button-primary">Save</button>
-	  <hr>
-	</form>
+	<div class="mb-0">
+        <div class="form-group row">
+            <label for="dynamic_checkbox" class="col-md-4 col-form-label text-md-right">Is serviceable</label>
+            <div class="col-md-6">
+				<checkbox-toggle-component checked="{{$bot->is_servicable ? true : false}}" title="Is serviceable" url="/bots/{{$bot->id}}" column_title="is_servicable"></checkbox-toggle-component>
+            </div>
+        </div>
+    </div>
 
 @endsection

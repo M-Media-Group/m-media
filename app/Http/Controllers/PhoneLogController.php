@@ -55,9 +55,9 @@ class PhoneLogController extends Controller
     {
         $input = [];
         $input['phonenumber'] = $request->input('number');
-        $input['country'] = ($request->input('country')) ? $request->input('country') : null;
-        $input['callType'] = ($request->input('type')) ? $request->input('type') : 'INBOUND';
-        $input['callNotes'] = ($request->input('notes')) ? $request->input('notes') : null;
+        $input['country'] = $request->input('country') ?? null;
+        $input['callType'] = $request->input('type') ?? 'INBOUND';
+        $input['callNotes'] = $request->input('notes') ?? null;
         $input['language'] = (isset($request['language']) && $request['language'] != '') ? $request['language'] : 'en';
         $input['region'] = (isset($request['region']) && $request['region'] != '') ? $request['region'] : null;
         $phone = SavePhone::dispatchNow($input);
@@ -104,7 +104,7 @@ class PhoneLogController extends Controller
         $PhoneLog = PhoneLog::with('phone.defaultForUser')->findOrFail($id);
 
         $request->validate([
-            'notes'    => 'nullable',
+            'notes' => 'nullable',
             'ended_at' => 'nullable',
         ]);
 

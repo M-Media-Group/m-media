@@ -16,40 +16,7 @@
 			</div>
 		@endif
         <div class="mt-5">
-        	<form action="/files" enctype="multipart/form-data" method="post">
-            	@csrf
-                <div class="form-group row">
-                    <label for="file" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>
-
-                    <div class="col-md-6">
-	                    <input type="file" name="file" id="file" class="input" required autofocus>
-	                    <span class="help-block text-danger">{{$errors->first('file')}}</span>
-                	</div>
-                </div>
-                <div class="form-group row">
-                    <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-
-                    <div class="col-md-6">
-	                    <input name="title" id="title" class="form-control" type="text" placeholder="Descriptive titles help us tag the file">
-	                    <span class="help-block text-danger">{{$errors->first('title')}}</span>
-	                </div>
-
-                </div>
-
-                <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="button button-primary">
-                            {{ __('Upload') }}
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-12 text-muted">
-                        Your file is private by default, which means that each URL generated to your file by {{config('app.name')}} is valid only for five minutes. If you want your file public with long-lived URLs, <a href="/contact">contact us</a> after uploading.
-                    </div>
-                </div>
-            </form>
+            <file-upload-component url="/api/files" />
         </div>
     </div>
 </div>

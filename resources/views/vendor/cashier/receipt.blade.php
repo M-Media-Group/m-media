@@ -139,8 +139,9 @@
 
                     <!-- Display The Subscriptions -->
                     @foreach ($invoice->subscriptions() as $subscription)
+                    {{ var_dump($subscription) }}
                         <tr class="row">
-                            <td>Subscription ({{ $subscription->quantity }})</td>
+                            <td>Awesome subscription ({{ $subscription->quantity }})</td>
                             <td>
                                 {{ $subscription->startDateAsCarbon()->formatLocalized('%B %e, %Y') }} -
                                 {{ $subscription->endDateAsCarbon()->formatLocalized('%B %e, %Y') }}

@@ -44,6 +44,9 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="text-muted">
+         To cancel or pause subscriptions, <a href="/contact">contact us</a>.
+    </div>
 	@else
 		<div class="alert text-muted">
 			 You have no active subscription to an {{Config('app.name')}} service yet. When you do, it will show up here.
@@ -79,6 +82,8 @@
 			 You haven't set up a payment method yet. When you subscribe to an {{Config('app.name')}} service, you'll receive an invoice where you will be able to add a payment method.
 		</div>
 	@endif
+{{-- 	<card-payment-component></card-payment-component>
+ --}}
 
     <h2 class="mt-5 mb-0">All invoices</h2>
 	@if(count($invoices) > 0)
@@ -113,6 +118,30 @@
 	@else
 		<div class="alert text-muted">
 	         There's no invoices to show. When you make a payment to {{config('app.name')}}, it will show here.
+	    </div>
+	@endif
+
+    <h2 class="mt-5 mb-0">Discounts</h2>
+	@if(count($discounts) > 0)
+    <div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+			     <tr>
+				   <th>Name</th>
+				   <th>Discount</th>
+				 </tr>
+				</thead>
+				<tbody>
+			        <tr>
+			            <td>{{ $discounts->coupon->name }}</td>
+			            <td>{{ $discounts->coupon->amount_off ? $discounts->coupon->amount_off : $discounts->coupon->percent_off."% off" }} {{ $discounts->coupon->duration }}</td>
+			        </tr>
+			</tbody>
+			</table>
+		</div>
+	@else
+		<div class="alert text-muted">
+	         There's no discounts applied to your account.
 	    </div>
 	@endif
 

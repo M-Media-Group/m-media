@@ -7,8 +7,28 @@
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">History</h2>
-<canvas id="myChart" height="100"></canvas>
-<button id="toggle">show/hide all</button>
+
+@php
+$datasets = [];
+foreach($accounts->where('is_scrapeable', true)->where('user_id') as $account)
+{
+	$array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
+	$color = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+	$data = [
+    'pointHitRadius' => 20,
+    'label' => $account->username.' followers',
+    'fill' => false,
+    'data' => $array,
+	'yAxisID' => 'A',
+	 'borderColor' => [ $color],
+	    'borderWidth' => 2
+	];
+array_push($datasets, $data);
+}
+@endphp
+
+<chart-line-component :data="{{json_encode($datasets)}}" scale="logarithmic" :height="100"></chart-line-component>
+
 <h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
 	<div class="table-responsive table-hover">
@@ -39,13 +59,12 @@
 					<td><a href="/instagram-accounts/{{ $account->id }}">{{ $account->id }}</a></td>
 					<td>{{ $account->username }}</td>
 					<td><a href="https://publish.buffer.com/profile/{{ $account->buffer_id }}" target="_BLANK" rel="noopener noreferrer">{{ $account->buffer_id }}</a></td>
-					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
-
-						@if($account->user)
-	                        <td class="text-muted"><a href="/users/{{$account->user->id}}">{{$account->user->name}}</a></td>
-	                    @else
-	                        <td class="text-primary">No owner</td>
-	                    @endif
+					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">
+						<checkbox-toggle-component checked="{{$account->is_scrapeable ? true : false}}" title="Is scrapeable" url="/instagram-accounts/{{$account->id}}" column_title="is_scrapeable"></checkbox-toggle-component>
+					</td>
+	                    <td>
+	                    	<select-component :options="{{$users}}" title="Is serviceable" url="/instagram-accounts/{{$account->id}}" column_title="user_id" current_value="{{$account->user_id}}"></select-component>
+						</td>
 					@if ($account->latestScrape)
 						<td>{{ number_format($account->latestScrape->followers_count) }}</td>
 						<td>{{ number_format($account->latestScrape->following_count) }}</td>
@@ -73,70 +92,4 @@
 		</div>
 	@endif
 </div>
-@endsection
-
-@section('footer_scripts')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-<script>
-
-var timeFormat = 'YYYY-MM-DD';
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-
-        datasets: [
-        @foreach($accounts->where('is_scrapeable', true)->where('user_id') as $account)
-        {
-            pointHitRadius: 20,
-            label: '{{$account->username}} followers',
-            fill: false,
-            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
-echo (json_encode($array));?>,
-        yAxisID: 'A',
-         borderColor: ['<?php printf("#%06X", mt_rand(0, 0xFFFFFF));?>'],
-            borderWidth: 2
-        },
-        @endforeach
-       ]
-    },
-    options: {
-        tooltips: {
-            //backgroundColor: '#246EBA'
-        },
-        legend: {
-        	position: 'bottom'
-        },
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    unit: 'day',
-                    parser: timeFormat,
-                    round: 'day',
-                    tooltipFormat: 'll'
-                },
-                display: true
-            }],
-            yAxes: [{
-                id: 'A',
-                ticks: {
-                  //fontColor: "#246EBA",
-                  precision:0
-                },
-                type: 'logarithmic',
-                position: 'left',
-              }]
-        }
-    }
-});
-document.getElementById('toggle').onclick = function() {
-	 myChart.data.datasets.forEach(function(ds) {
-    ds.hidden = !ds.hidden;
-  });
-  myChart.update();
-};
-</script>
 @endsection

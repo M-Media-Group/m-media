@@ -33,8 +33,18 @@ class InstagramAccountController extends Controller
         $this->authorize('index', InstagramAccount::class);
 
         $accounts = InstagramAccount::with('latestScrape', 'user')->get();
+        $all_users = \App\User::all();
+        $users = collect();
 
-        return view('instagramAccounts.index', compact('accounts'));
+        foreach ($all_users as $user) {
+            $data = [
+                'full_name' => $user->full_name,
+                'id' => $user->id,
+            ];
+            $users->push($data);
+        }
+
+        return view('instagramAccounts.index', compact('accounts', 'users'));
     }
 
     /**
@@ -51,7 +61,7 @@ class InstagramAccountController extends Controller
         try {
             $client = new Client();
 
-            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token='.config('blog.buffer.access_token'));
+            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token=' . config('blog.buffer.access_token'));
             $statusCode = $response->getStatusCode();
             $data = $response->getBody()->getContents();
 
@@ -177,7 +187,14 @@ class InstagramAccountController extends Controller
      */
     public function update(Request $request, InstagramAccount $instagramAccount)
     {
-        //
+        $this->authorize('update', $instagramAccount);
+        $request->validate([
+            'is_scrapeable' => 'nullable|boolean',
+            'user_id' => 'nullable',
+        ]);
+
+        $instagramAccount->update($request->only('is_scrapeable', 'user_id'));
+        return $instagramAccount;
     }
 
     /**

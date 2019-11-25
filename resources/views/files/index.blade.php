@@ -3,7 +3,8 @@
 @section('above_container')
 	<div class="header-section u-bg-primary">
 		<h1>Files</h1>
-		<p>{{config('app.name')}} Files</p>
+		<p class="mb-0">{{config('app.name')}} Files</p>
+		<a class="button button-secondary mt-3 mb-5" href="/files/create">Upload a new file</a>
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{{count($files)}} files</h2>
@@ -37,8 +38,12 @@
 					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
 					<td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
 
-					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes' : 'No' }} </td>
-					<td class="text-{{ !$file->user  ? 'primary' : null }}">{!! $file->user ? '<a href="/users/'.$file->user->id.'">'.$file->user->name."</a>" : 'No owner' !!}</td>
+					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">
+						<checkbox-toggle-component checked="{{$file->is_public ? true : false}}" title="Is public" url="/files/{{$file->id}}" column_title="is_public"></checkbox-toggle-component>
+					</td>
+					<td class="text-{{ !$file->user  ? 'primary' : null }}">
+						<select-component :options="{{$users}}" title="Is serviceable" url="/files/{{$file->id}}" column_title="user_id" current_value="{{$file->user_id}}"></select-component>
+					</td>
 					<td class="text-{{ now()->diffInDays( $file->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $file->created_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach

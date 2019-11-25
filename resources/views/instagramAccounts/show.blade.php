@@ -256,46 +256,8 @@
 @else
 <h2 class="mt-5 mb-0">Instagram content management</h2>
 @if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
-    @can('create', App\File::class)
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{session('success')}}
-            </div>
-        @endif
-        <form action="/instagram-accounts/{{$account->id}}/instagram-posts" enctype="multipart/form-data" method="post">
-                @csrf
-                @method("POST")
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="file">{{ __('Picture') }}</label>
-                        <input type="file" name="file" id="file" class="input" required autofocus accept="image/*">
-                        <span class="help-block text-danger">{{$errors->first('file')}}</span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="title" >{{ __('Caption') }}</label>
-                        <input name="title" id="title" class="form-control mb-0" type="text" placeholder="Descriptive captions help people understand what's on your picture">
-                        <span class="help-block">Don't add more than 3 hashtags - we'll add the rest</span>
-                        <span class="help-block text-danger">{{$errors->first('title')}}</span>
-                    </div>
-
-                </div>
-
-                <div class="form-group row mb-0">
-                    <div class="col-md-12">
-                        <button type="submit" class="button button-primary">
-                            {{ __('Schedule post to Instagram') }}
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-12 text-muted">
-                        Each URL generated to your file by {{config('app.name')}} is valid only for five minutes, however, publishing the file to Instagram via this form will naturally make it public.
-                    </div>
-                </div>
-            </form>
+    @can('create', File::class)
+        <file-upload-component url="/instagram-accounts/{{$account->id}}/instagram-posts"></file-upload-component>
     @endif
        <div class="table-responsive table-hover">
         <table class="table mb-0">
@@ -337,7 +299,39 @@
 @endif
     <h2 class="mt-5 mb-0">History</h2>
     @if(isset($account->scrapes) && $account->scrapes)
-        <canvas id="myChart" height="200"></canvas>
+
+@php
+$datasets = [];
+// foreach($accounts->where('is_scrapeable', true)->where('user_id') as $account)
+// {
+    $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
+    $color = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => $account->username.' followers',
+    'fill' => false,
+    'data' => $array,
+    'yAxisID' => 'A',
+     'borderColor' => [ $color],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+
+$array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->following_count, "x" => $scrape->created_at->toDateString()]);}
+$color = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => $account->username.' following',
+    'fill' => false,
+    'data' => $array,
+    'yAxisID' => 'B',
+     'borderColor' => [ $color],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+// }
+@endphp
+        <chart-line-component :data="{{json_encode($datasets)}}" :height="200"></chart-line-component>
         <div class="table-responsive table-hover">
             <table class="table mb-0">
                 <thead>
@@ -404,82 +398,3 @@
 @endif
 
 @endsection
-
-@if(isset($account->scrapes) && $account->scrapes)
-@section('footer_scripts')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-<script>
-
-var timeFormat = 'YYYY-MM-DD';
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-
-        datasets: [{
-            pointHitRadius: 20,
-            label: '# of followers',
-            fill: false,
-            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->followers_count, "x" => $scrape->created_at->toDateString()]);}
-echo (json_encode($array));?>,
-        yAxisID: 'A',
-         borderColor: ['#246EBA'],
-            borderWidth: 2
-        },
-        {
-            pointHitRadius: 20,
-            label: '# of people you are following',
-            fill: false,
-            data: <?php $array = [];foreach ($account->scrapes as $scrape) {array_push($array, ["y" => $scrape->following_count, "x" => $scrape->created_at->toDateString()]);}
-echo (json_encode($array));?>,
-            yAxisID: 'B',
-         borderColor: ['#eb4647'],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        tooltips: {
-            //backgroundColor: '#246EBA'
-        },
-        legend: {
-            position: 'bottom'
-        },
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    unit: 'day',
-                    parser: timeFormat,
-                    round: 'day',
-                    tooltipFormat: 'll'
-                },
-                display: true
-            }],
-            yAxes: [{
-                id: 'A',
-                ticks: {
-                  fontColor: "#246EBA",
-                  precision:0
-                },
-                type: 'linear',
-                position: 'left',
-              }, {
-                id: 'B',
-                ticks: {
-                  fontColor: "#eb4647",
-                  precision:0
-                },
-                gridLines: {
-                    display: false,
-                  },
-                type: 'linear',
-                position: 'right',
-            }]
-        }
-    }
-});
-</script>
-@endsection
-@endif

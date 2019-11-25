@@ -22,12 +22,11 @@
        ]
     }
     </script>
-    <div class="header-section u-bg-secondary">
-        <img src="/images/laptop-and-person.svg" alt="Multiple devices showing responsive websites" style="max-height:250px;min-height: 80px;max-width: 250px;" class="mb-0">
+    <div class="header-section u-bg-primary"  style="background:url('/images/laptop-and-person.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain;">
         <h1>Websites that don't cost an 💪 and a 🦵.</h1>
-        <h2>Web services for entrepreneurs.</h2>
-        <a class="button button-primary mt-5 mr-3" href="/contact">Contact us</a>
-        <a class="button button-secondary text-white" href="/case-studies">See case studies</a>
+        <p>Web services for entrepreneurs.</p>
+        <a class="button button-secondary mt-5 mr-3" href="/contact">Contact us</a>
+        <a class="button button-primary text-white" href="/case-studies">See case studies</a>
     </div>
 
     <div class="header-section row m-0" style="background:initial;">
@@ -102,14 +101,14 @@
         </div>
     </div>
 
-     <div class="header-section u-bg-secondary row m-0">
+     <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
             <img src="/images/heart.svg" alt="Multiple devices showing responsive websites" style="max-height:150px;min-height: 80px;" class="mb-5 shadow-filter">
             <h3 class="u-center">It's a match!</h3>
             <p style="max-width: 550px; margin: 0 auto; margin-bottom: 2.5rem;"></p>
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
-                <a class="button button-primary" href="/contact">Say hi :)</a>
-                <a class="button button-secondary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
+                <a class="button button-secondary" href="/contact">Say hi :)</a>
+                <a class="button button-primary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
             </div>
         </div>
     </div>

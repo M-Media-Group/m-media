@@ -14,21 +14,45 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/', function () {
-    return 'API online';
-});
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    $routeCollection = Route::getRoutes();
+    $middlewareName = "api";
+    $routeHasFilter = collect();
+
+    foreach ($routeCollection as $route) {
+        $middleware = $route->middleware();
+        if (count($middleware) > 0) {
+            if (in_array($middlewareName, $middleware)) {
+                $routeHasFilter->push($route);
+            }
+        }
+    }
+    return $routeHasFilter;
+
+    $result = $routeHasFilter->map(function ($route) {
+        return $route->only(['uri', 'methods']);
+    });
+    return $result;
 });
 
 //Route::get('categories', 'CategoryController@index');
 
 //Route::resource('users', 'UserController');
 
-//Route::apiResource('incidents', 'IncidentController');
+Route::group(['middleware' => ['auth:api']], function () {
 
-Route::apiResource('phone-logs', 'PhoneLogController')->middleware('client');
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::apiResource('files', 'FileController');
 
-Route::apiResource('email-logs', 'EmailLogController')->middleware('client');
+    Route::apiResource('bots', 'BotController');
+});
 
-Route::apiResource('bots', 'BotController')->middleware('auth:api');
+Route::group(['middleware' => ['client']], function () {
+
+    Route::apiResource('phone-logs', 'PhoneLogController');
+
+    Route::apiResource('email-logs', 'EmailLogController');
+
+});

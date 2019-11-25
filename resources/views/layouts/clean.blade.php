@@ -19,11 +19,11 @@
         @if(View::hasSection('content'))
             <div class="container p-0">
                 <div class="row m-0 p-0 mt-5">
-
-                    <div class="col-md-12 u-center" style="max-width: 700px;">
+                    <transition name="fade">
+                    <div class="col-md-12 u-center u-text-center" style="max-width: 700px;">
                         @yield('content')
                     </div>
-
+                    </transition>
                 </div>
             </div>
         @endif
@@ -32,7 +32,9 @@
                 <a href="/about" class="text-white">About</a> |
                 <a href="/privacy-policy" class="text-white">Privacy policy</a> |
                 <a href="/terms-and-conditions" class="text-white">Terms and conditions</a> |
-                <a href="/frequently-asked-questions">FAQ</a>
+                <a href="/frequently-asked-questions" class="text-white">FAQ</a> |
+                <a href="/sitemap" class="text-white">Sitemap</a> |
+                <a href="/contact" class="text-white">Contact us</a>
             </small>
         </div>
     </div>

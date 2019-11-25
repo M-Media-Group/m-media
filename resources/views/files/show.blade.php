@@ -1,9 +1,9 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section u-bg-primary background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
         <h1>{{$file->name}}</h1>
-        <h2>{{config('app.name')}} file</h2>
+        <p>{{config('app.name')}} file</p>
     </div>
 @endsection
 

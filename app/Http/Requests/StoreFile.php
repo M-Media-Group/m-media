@@ -13,7 +13,7 @@ class StoreFile extends FormRequest
      */
     public function authorize()
     {
-        return $this->user() ? $this->user()->can('create', File::class) : true;
+        return $this->user() ? $this->user()->can('create', \App\File::class) : true;
     }
 
     /**
@@ -24,8 +24,8 @@ class StoreFile extends FormRequest
     public function rules()
     {
         return [
-            'file'   => 'required|file|max:976562',
-            'title'  => 'nullable|string|unique:files,name|max:191',
+            'file' => 'required|file|max:976562',
+            'title' => 'nullable|string|max:191',
             'public' => 'boolean',
         ];
     }

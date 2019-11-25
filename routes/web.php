@@ -30,6 +30,10 @@ Route::get('/instagram', function () {
     return view('instagram');
 });
 
+Route::get('/sitemap', function () {
+    return view('write');
+});
+
 Route::get('/frequently-asked-questions', function () {
     return view('faq');
 });
@@ -98,10 +102,6 @@ Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeContr
 
 Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
 
-Route::get('/users/{id}/invoices', function ($id) {
-    return Redirect::to('/users/' . $id . '/billing', 301);
-});
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/notifications', function () {
         return view('notifications');
@@ -112,14 +112,18 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['verified']], function () {
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
-        return $request->user()->downloadInvoice($invoiceId, [
-            'vendor' => config('app.name'),
-            'product' => config('app.name') . ' goods and services',
-        ]);
+        $invoice = $request->user()->findInvoiceOrFail($invoiceId);
+        $collected_invoice = collect($invoice);
+
+        #ugly hack to redirect to Stripe PDF and dowload it
+        return Redirect::to($collected_invoice->values()[1]->invoice_pdf);
     });
     Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
+    Route::get('/users/{id}/invoices', function ($id) {
+        return Redirect::to('/users/' . $id . '/billing', 301);
+    });
     Route::get('bots/{id}/connect', 'BotController@connect');
     Route::get('bots/{id}/contact-user', 'BotController@contactUser');
     Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');

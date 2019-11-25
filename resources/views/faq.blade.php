@@ -14,7 +14,7 @@
 @php
 $data = [
 
-'Can you guarantee my website will be number 1 on Google?' => "No. There is no way to absolutely guarantee that you're number 1 on Google; it's all up to their algorithms.",
+'Can you guarantee my website will be number 1 on Google?' => "No. There is no way to absolutely guarantee that you're number 1 on Google; it's all up to their algorithms. That being said, we not only optimize your website to rank well on Google, but also add your business to Google Business, Google Search Console, and Facebook Business platforms.",
 
 "What programming languages do you use?" => " We use PHP on Nginx servers for the back-end using the Laravel framework. For the front end, we'll use either Blade, VueJS, or a combination of both, along with HTML, CSS, and JavaScript.",
 
@@ -24,7 +24,7 @@ $data = [
 
 "I don't live in Monaco or the French Riviera. Can I still work with you?" => "Absolutely! We can provide our digital marketing services to anyone, anywhere. Some of our physical-location based marketing services may not be available though.",
 
-"Do I even need to market myself online?" => "It depends. Generally yes, but depending on who you're marketing to and the industry you're in, the amount of online marketing efforts will differ.",
+"Do I even need to market myself online?" => "It depends. Generally yes, but depending on who you're marketing to and the industry you're in, the amount of online marketing efforts will differ. Our [on-request consulting services](/contact) can help you decide what your next steps should be.",
 ];
 @endphp
 

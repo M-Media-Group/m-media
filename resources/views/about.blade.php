@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <img src="{{ config('blog.logo_url') }}"  style="max-height:200px;" class="mb-5">
 <h1>{{ config('app.name') }}</h1>
 
@@ -27,6 +28,6 @@ We measure this by setting up advanced web analytics systems and continuously A/
 
 Forget chasing clients for payments, sending invoices, manually ordering stock and shipping out orders, emails, and interacting with your followers on Instagram. With us, that's all handled by robots. For you, that means that you get an extra employee that works 365 days a year, 24 hours a day, doing all the things you hate. It doesn't make mistakes, and it doesn't get sick. Thanks to the advanced analytics interconnected with all our services, your automations get better by the day.
 
-<hr class="bg-dark"/>
+<hr class="bg-dark fade-enter-active fade-enter"/>
 <small class="text-muted">Page loaded in {{round((microtime(true) - LARAVEL_START), 3). " seconds"}}</small>
 @endsection

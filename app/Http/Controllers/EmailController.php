@@ -16,8 +16,18 @@ class EmailController extends Controller
     {
         $this->authorize('index', File::class);
         $emails = Email::withCount('logs', 'received_logs')->get();
+        $all_users = \App\User::all();
+        $users = collect();
 
-        return view('emails.index', compact('emails'));
+        foreach ($all_users as $user) {
+            $data = [
+                'full_name' => $user->full_name,
+                'id' => $user->id,
+            ];
+            $users->push($data);
+        }
+
+        return view('emails.index', compact('emails', 'users'));
     }
 
     /**
@@ -79,7 +89,14 @@ class EmailController extends Controller
      */
     public function update(Request $request, Email $email)
     {
-        //
+        $this->authorize('update', $email);
+        $request->validate([
+            'is_public' => 'nullable|boolean',
+            'can_receive_mail' => 'nullable|boolean',
+            'user_id' => 'nullable',
+        ]);
+        $email->update($request->only('can_receive_mail', 'is_public', 'user_id'));
+        return $email;
     }
 
     /**

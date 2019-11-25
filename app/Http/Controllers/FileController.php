@@ -12,7 +12,7 @@ class FileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['verified', 'optimizeImages']);
+        $this->middleware(['optimizeImages']);
     }
 
     /**
@@ -25,8 +25,18 @@ class FileController extends Controller
         $this->authorize('index', File::class);
         //$files = Storage::allFiles('/');
         $files = File::get();
+        $all_users = \App\User::all();
+        $users = collect();
 
-        return view('files.index', compact('files'));
+        foreach ($all_users as $user) {
+            $data = [
+                'full_name' => $user->full_name,
+                'id' => $user->id,
+            ];
+            $users->push($data);
+        }
+
+        return view('files.index', compact('files', 'users'));
     }
 
     /**
@@ -50,9 +60,10 @@ class FileController extends Controller
      */
     public function store(StoreFile $request)
     {
-        UploadFile::dispatchNow($request);
+        //return $request->user();
+        $data = UploadFile::dispatchNow($request);
 
-        return back()->with('success', 'Thanks for sending us your file!');
+        return $data;
     }
 
     /**
@@ -94,6 +105,13 @@ class FileController extends Controller
     {
         //
         $this->authorize('update', $file);
+        $request->validate([
+            'is_public' => 'nullable|boolean',
+            'user_id' => 'nullable',
+        ]);
+
+        $file->update($request->only('is_public', 'user_id'));
+        return $file;
     }
 
     /**

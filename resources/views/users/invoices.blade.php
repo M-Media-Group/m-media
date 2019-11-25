@@ -11,7 +11,7 @@
 
 @section('content')
 <h2 class="mt-5 mb-0">Subscriptions</h2>
-	@if($subscriptions && count($subscriptions->data) > 0)
+	@if(isset($subscriptions->data) && count($subscriptions->data) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
 				<thead>

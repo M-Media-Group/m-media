@@ -312,7 +312,7 @@ $datasets = [];
     'fill' => false,
     'data' => $array,
     'yAxisID' => 'A',
-     'borderColor' => [ $color],
+     'borderColor' => ['#246EBA'],
         'borderWidth' => 2
     ];
 array_push($datasets, $data);
@@ -325,7 +325,7 @@ $color = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
     'fill' => false,
     'data' => $array,
     'yAxisID' => 'B',
-     'borderColor' => [ $color],
+     'borderColor' => ['#eb4647'],
         'borderWidth' => 2
     ];
 array_push($datasets, $data);

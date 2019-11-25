@@ -2,6 +2,16 @@
 
 @section('title', 'Edit a user')
 
+@section('header_scripts')
+	<style type="text/css">
+		input:focus ~ span::before {
+			 content: "Changing your email will require you to verify it once again.";
+
+  font-weight: bold;
+		}
+	</style>
+@endsection
+
 @section('above_container')
 	<div class="header-section u-bg-primary">
 		<h1>Account settings</h1>
@@ -53,7 +63,8 @@
 		<h2 class="mt-5 mb-0">Email address</h2>
 	  <div class="form-group">
 		<label for="exampleFormControlInput4">Email <span class="small">({{ $user->email_verified_at ? 'Your email was verified on '. $user->email_verified_at->toFormattedDateString() : 'Your email has not been verified' }})</span></label>
-		<input type="text" class="form-control" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
+		<input type="text" class="form-control custom-warning" id="exampleFormControlInput4" name="email" placeholder="Username" value="{{$user->email}}" required>
+		<span></span>
 	  </div>
 
 	@if(Auth::user()->can('manage user roles') && count($roles) > 0)

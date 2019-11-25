@@ -3,7 +3,7 @@
 @section('above_container')
     <div class="header-section u-bg-primary">
         <h1>{{str_replace (["_", "-"], " ", $bot->alias)}}</h1>
-        <h2>Marketing Automation Bot</h2>
+        <p>Marketing Automation Bot</p>
     </div>
 @endsection
 

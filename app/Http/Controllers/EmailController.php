@@ -22,7 +22,7 @@ class EmailController extends Controller
         foreach ($all_users as $user) {
             $data = [
                 'full_name' => $user->full_name,
-                'id' => $user->id,
+                'id'        => $user->id,
             ];
             $users->push($data);
         }
@@ -91,11 +91,12 @@ class EmailController extends Controller
     {
         $this->authorize('update', $email);
         $request->validate([
-            'is_public' => 'nullable|boolean',
+            'is_public'        => 'nullable|boolean',
             'can_receive_mail' => 'nullable|boolean',
-            'user_id' => 'nullable',
+            'user_id'          => 'nullable',
         ]);
         $email->update($request->only('can_receive_mail', 'is_public', 'user_id'));
+
         return $email;
     }
 

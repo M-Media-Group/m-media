@@ -96,10 +96,11 @@ class BotController extends Controller
 
         $request->validate([
             'is_servicable' => 'nullable|boolean',
-            'user_id' => 'nullable',
+            'user_id'       => 'nullable',
         ]);
 
         $bot->update($request->only('is_servicable', 'user_id'));
+
         return $bot;
     }
 
@@ -118,10 +119,10 @@ class BotController extends Controller
 
         try {
             $headers = [
-                'Content-Type' => 'application/json',
-                'AccessToken' => 'key',
+                'Content-Type'  => 'application/json',
+                'AccessToken'   => 'key',
                 'Authorization' => 'Bearer token',
-                'developerkey' => config('blog.remoteit.developerkey'),
+                'developerkey'  => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -138,10 +139,10 @@ class BotController extends Controller
 
             //# Get devices
             $headers = [
-                'Content-Type' => 'application/json',
-                'token' => $obj->token,
+                'Content-Type'  => 'application/json',
+                'token'         => $obj->token,
                 'Authorization' => 'Bearer token',
-                'developerkey' => config('blog.remoteit.developerkey'),
+                'developerkey'  => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -149,14 +150,14 @@ class BotController extends Controller
 
             $response = $client->request('POST', 'https://api.remot3.it/apv/v27/device/connect', [RequestOptions::JSON => [
                 'deviceaddress' => $bot->address,
-                'wait' => true,
+                'wait'          => true,
             ]]);
             $statusCode = $response->getStatusCode();
             $body = $response->getBody()->getContents();
 
             $obj = json_decode($body);
 
-            return 'ssh -l pi ' . $obj->connection->proxyserver . ' -p ' . $obj->connection->proxyport;
+            return 'ssh -l pi '.$obj->connection->proxyserver.' -p '.$obj->connection->proxyport;
         } catch (Exception $e) {
             return $e;
         }

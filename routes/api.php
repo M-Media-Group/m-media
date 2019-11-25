@@ -14,9 +14,8 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/', function () {
-
     $routeCollection = Route::getRoutes();
-    $middlewareName = "api";
+    $middlewareName = 'api';
     $routeHasFilter = collect();
 
     foreach ($routeCollection as $route) {
@@ -27,11 +26,13 @@ Route::get('/', function () {
             }
         }
     }
+
     return $routeHasFilter;
 
     $result = $routeHasFilter->map(function ($route) {
         return $route->only(['uri', 'methods']);
     });
+
     return $result;
 });
 
@@ -40,7 +41,6 @@ Route::get('/', function () {
 //Route::resource('users', 'UserController');
 
 Route::group(['middleware' => ['auth:api']], function () {
-
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -50,9 +50,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 
 Route::group(['middleware' => ['client']], function () {
-
     Route::apiResource('phone-logs', 'PhoneLogController');
 
     Route::apiResource('email-logs', 'EmailLogController');
-
 });

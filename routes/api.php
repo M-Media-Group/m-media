@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('users', 'UserController');
 
     Route::post('/users/{user}/update-card', 'UserController@updateCard');
-
 });
 
 Route::group(['middleware' => ['client']], function () {

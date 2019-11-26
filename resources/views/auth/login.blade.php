@@ -22,6 +22,9 @@
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
+                                <a href="{{ route('password.request') }}" style="font-weight: 700;">
+                                    {{ __('Forgot your password?') }}
+                                </a>
                             </span>
                         @endif
                     </div>
@@ -74,6 +77,6 @@
     </div>
 </div>
 <div class="header-section u-bg-primary">
-    <h2>Don't have an account? <a href="/contact">Contact us</a>!</h2>
+    <p>Don't have an account? <a href="/contact">Contact us</a>!</p>
 </div>
 @endsection

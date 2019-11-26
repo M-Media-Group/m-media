@@ -20,7 +20,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
         </div> --}}
     </div>
 </div>
-<div class="header-section" style="background:#2565aa;">
-    <h2>Having trouble logging in? <a href="/contact">Contact us</a>!</h2>
+<div class="header-section u-bg-primary">
+    <p>Having trouble logging in? <a href="/contact">Contact us</a>!</p>
 </div>
 @endsection

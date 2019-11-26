@@ -43,18 +43,18 @@ class SaveEmail implements ShouldQueue
     {
         $input = $this->input;
 
-        $domain = 'http://'.substr($input['email'], strpos($input['email'], '@') + 1);
+        $domain = 'http://' . substr($input['email'], strpos($input['email'], '@') + 1);
         $website_url = parse_url($domain);
 
         if ($this->save == false) {
             return [
-                'email'             => $input['email'],
-                'website_id'        => null,
-                'user_id'           => null,
-                'is_public'         => 0,
-                'can_receive_mail'  => null,
+                'email' => $input['email'],
+                'website_id' => null,
+                'user_id' => null,
+                'is_public' => 0,
+                'can_receive_mail' => null,
                 'email_verified_at' => null,
-                'notes'             => $input['notes'] ?? null,
+                'notes' => $input['notes'] ?? null,
             ];
         }
 
@@ -68,11 +68,11 @@ class SaveEmail implements ShouldQueue
             ['email' => $input['email']],
             [
                 'website_id' => $website->id,
-                'user_id'    => null,
-                'is_public'  => 0,
+                'user_id' => null,
+                'is_public' => 0,
                 //'can_receive_mail' => 1,
                 'email_verified_at' => null,
-                'notes'             => $input['notes'] ?? null,
+                'notes' => $input['notes'] ?? null,
             ]
         )->load('defaultForUser', 'user');
 

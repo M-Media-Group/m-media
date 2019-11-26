@@ -32,7 +32,7 @@
 	    </div>
 	@endif
 	<hr>
-	<a class="action-section card mb-5 mt-5 round-all-round action-section-hover text-center" href="/automation-bot">
+	<a class="action-section card mb-5 mt-5 round-all-round action-section-hover text-center" href="/automation-bot" data-aos="fade">
 	      <img src="/images/box.png" class="card-img-top" style="max-height: 200px;object-fit: scale-down;" alt="{{Config('app.name')}} Marketing Bot">
 
 	      <div class="card-body">

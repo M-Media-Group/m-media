@@ -7,7 +7,7 @@
         <h1>Pricing</h1>
         <p>Products and services</p>
     </div>
-<div class="row m-0 pt-5 pb-5 ">
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Services</h2>
 	@if($plans && count($plans->data) > 0)
@@ -42,7 +42,7 @@
 	<p class="text-muted">Pricing is based per unit and units cannot be divided. As an example, website maintenance is charged by the hour. Replacing a picture might take 30 minutes, but you'll still be billed the hour. That's why its a good idea to consolidate your requests; if you send us two or three pictures to change, it's the same price as changing one.</p>
 	</div>
 </div>
-<div class="row m-0 pt-5 pb-5 " style="background:var(--white);">
+<div class="row m-0 pt-5 pb-5 " style="background:var(--white);" data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Products</h2>
 	@if($products && count($products->data) > 0)
@@ -98,7 +98,7 @@
 
 </div>
 </div>
-<div class="row m-0 pt-5 pb-5 ">
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Discounts</h2>
 	<div class="table-responsive">

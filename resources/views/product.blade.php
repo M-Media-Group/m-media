@@ -51,8 +51,8 @@
   }
 }
 </script>
-<img src="{{$image['url']}}" style="max-height:65vh; min-height: 100px;" alt="{{$title}}" class="mb-5"  data-aos="fade">
-<h1>{{$title}}</h1>
+<img src="{{$image['url']}}" style="max-height:65vh; min-height: 100px;" alt="{{$title}}" class="mb-5" data-aos="fade">
+<h1 data-aos="fade">{{$title}}</h1>
 
 @markdown($text)
 

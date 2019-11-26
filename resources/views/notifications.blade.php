@@ -12,7 +12,7 @@
 @if(count(Auth::user()->notifications) > 0)
 	<div class="list-group">
 		@foreach(Auth::user()->notifications as $notification)
-			<article onclick="location.href='{{isset($notification->data['action']) ? $notification->data['action'] : "#" }}';" class="list-group-item list-group-item-action action-section round-all-round mt-5" style="cursor: pointer;">
+			<article onclick="location.href='{{isset($notification->data['action']) ? $notification->data['action'] : "#" }}';" class="list-group-item list-group-item-action action-section round-all-round mt-5" style="cursor: pointer;" data-aos="fade">
 			    <div class="d-flex w-100 justify-content-between">
 			      <h5 class="mb-1 mt-0">{{$notification->data['title']}}</h5>
 			    </div>

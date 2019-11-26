@@ -33,7 +33,6 @@
     <a href="#files">files</a>
 
 	<h2 class="mt-5 mb-0" id="data">Customer data</h2>
-
 	<div class="table-responsive table-hover">
 	    <table class="table mb-0">
 	        <tbody>

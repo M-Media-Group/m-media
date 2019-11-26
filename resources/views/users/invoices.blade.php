@@ -54,7 +54,7 @@
 	@endif
 
 	<h2 class="mt-5 mb-0">Payment methods</h2>
-	@if($user->stripe_id)
+	@if($pmethod && count($pmethod) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
 				<thead>
@@ -79,11 +79,21 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 You haven't set up a payment method yet. When you subscribe to an {{Config('app.name')}} service, you'll receive an invoice where you will be able to add a payment method.
+			 You haven't set up a payment method yet.
 		</div>
 	@endif
-{{-- 	<card-payment-component></card-payment-component>
+{{-- 	<card-payment-component :user_id="{{$user->id}}"></card-payment-component>
  --}}
+
+<!-- Stripe Elements Placeholder -->
+<label class="mt-4 mb-0">Add a new card</label>
+<div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);">
+	<div id="card-element"></div>
+</div>
+
+<button id="card-button" data-secret="{{ $intent->client_secret }}">
+    Add card
+</button>
 
     <h2 class="mt-5 mb-0">All invoices</h2>
 	@if(count($invoices) > 0)
@@ -145,4 +155,62 @@
 	    </div>
 	@endif
 
+@endsection
+@section('footer_scripts')
+<script>
+
+	var style = {
+        base: {
+            // color: '#32325d',
+            lineHeight: '1.8',
+            fontFamily: '"Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                // color: '#aab7c4'
+            }
+        },
+        invalid: {
+            // color: '#fa755a',
+            // iconColor: '#fa755a'
+        }
+    };
+
+    const stripe = Stripe('{{config('services.stripe.key')}}');
+
+    const elements = stripe.elements();
+    const cardElement = elements.create('card', { style: style });
+
+    cardElement.mount('#card-element');
+
+    //const cardHolderName = document.getElementById('card-holder-name');
+	const cardButton = document.getElementById('card-button');
+	const clientSecret = cardButton.dataset.secret;
+
+	cardButton.addEventListener('click', async (e) => {
+		cardButton.setAttribute("disabled", "disabled");
+		cardButton.innerText = 'Please wait...';
+	    const { setupIntent, error } = await stripe.handleCardSetup(
+	        clientSecret, cardElement
+	    );
+
+	    if (error) {
+	        // Display "error.message" to the user...
+	        alert(error.message)
+			cardButton.innerText = 'Try again';
+	       	cardButton.removeAttribute("disabled");
+	    } else {
+	        axios.post('/api/users/{{$user->id}}/update-card', {
+                    card_token: setupIntent.payment_method,
+                }).then(response => {
+                	console.log(response)
+                	cardButton.innerText = 'Card added';
+					location.reload();
+                }).catch(e => {
+                    console.log(e)
+                	cardButton.innerText = 'Something went wrong';
+                })
+	    }
+	});
+</script>
 @endsection

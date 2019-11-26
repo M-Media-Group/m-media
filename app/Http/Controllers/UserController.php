@@ -134,7 +134,8 @@ class UserController extends Controller
         //$plans2 = $user->asStripeCustomer();
 
         //return $discounts;
-        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts'));
+        $intent = $user->createSetupIntent();
+        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent'));
     }
 
     /**
@@ -149,9 +150,9 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'name'    => ['sometimes', 'required', 'string', 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email'   => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -171,7 +172,15 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
+    }
+
+    public function updateCard(Request $request, User $user)
+    {
+        $this->authorize('update', $user);
+        $stripeToken = $request->input('card_token');
+        $user->updateDefaultPaymentMethod($stripeToken);
+        return $user;
     }
 
     /**

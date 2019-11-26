@@ -205,7 +205,7 @@
         <div class="col-md-12 text-center">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
                 <h3 data-aos="fade">Websites starting at €999</h3>
-                <p data-aos="fade">Hosting from €15 a month</p>
+                <p data-aos="fade" data-aos-delay="300">Hosting from €15 a month</p>
                 <a class="button button-secondary" href="/contact">Let's talk :)</a>
                 <a class="button button-secondary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
             </div>

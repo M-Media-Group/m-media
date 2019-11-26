@@ -26,7 +26,7 @@
         </div>
     <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade">You want to get your business online.</h3>
+            <h3 class="mt-0" data-aos="fade" data-aos-offset="0" data-aos-delay="500">You want to get your business online.</h3>
             <p style="max-width: 550px;" data-aos="fade">You're here to find out how to get a business website online and in front of your customers. You need a low-cost, quick, and tailored solution.</p>
             <p data-aos="fade">We're here to help.</p>
         </div>

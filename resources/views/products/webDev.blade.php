@@ -78,11 +78,11 @@
 </script>
     <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/1-scaled2x.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain, cover;">
         <h1 class="header-section-title mb-0">Web Development</h1>
-        <p class="mb-0">With free website analytics.</p>
-        <a class="button button-secondary mt-3 mb-5" href="/contact">Contact us</a>
-        <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
+        <p class="mb-0" data-aos="fade">With free website analytics.</p>
+        <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Contact us</a>
+        <a class="button button-secondary text-white d-none" href="/case-studies" data-aos="fade" data-aos-delay="300">See case studies</a>
     </div>
-    <div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
             <div class="u-limit-max-width u-center d-none">
               <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
@@ -95,7 +95,7 @@
             <p class="u-center">That's what we make - unobtrusive, elegant, and functional websites that complement your brand and satisfy your customers needs.</p> --}}
         </div>
     </div>
-    <div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
             <img src="/images/devices2.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div class="header-section row m-0" style="background: url('images/bgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
             <div class="u-limit-max-width u-center" data-aos="fade">
                 <img src="/images/seo.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
@@ -117,7 +117,7 @@
         </div>
     </div>
 
-    <div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
             <img src="/images/webspeed.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
@@ -129,7 +129,7 @@
         </div>
     </div>
 
-  <div class="header-section row m-0" style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+  <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
             <div class="u-limit-max-width u-center d-none">
               <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
@@ -141,7 +141,7 @@
         </div>
     </div>
 
-<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+<div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
         <img src="/images/analytics.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
@@ -151,7 +151,7 @@
     </div>
 </div>
 
-<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+<div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
         <img src="/images/webscale.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
@@ -160,7 +160,7 @@
         <p>From one user a day to millions, your website can scale across servers so seamlessly that you won't even notice it happen. If there's a temporary surge in people visiting your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.</p>
     </div>
 </div>
-  <div class="header-section row m-0" style="background: url('images/bgrounds/1-white.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+  <div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
             <div class="u-limit-max-width u-center" data-aos="fade">
                 <img src="/images/abtesting.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
@@ -170,7 +170,7 @@
             <p class="u-center" data-aos="fade-up">We'll see how each version performs thanks to the advanced analytics systems we build into every website, so you'll be able to understand what turns potential customers into customers, and how to capitalize on that.</p>
         </div>
     </div>
-<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+<div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
         <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
@@ -180,7 +180,7 @@
         <p>There's little need to change your existing business workflow. We believe websites should work for you instead of you having to work on them. Websites we build reflect that by integrating with your existing way of doing business.</p>
     </div>
 </div>
-<div class="header-section row m-0" style="background: url('images/bacounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+<div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
         <img src="/images/emails.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
@@ -190,7 +190,7 @@
         <p>Thanks to our flexible communication with other services, your email address can easily be integrated with external mailing services like Mailchimp too.</p>
     </div>
 </div>
-<div class="header-section row m-0"  style="background: url('images/bacounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+<div class="header-section row m-0"  style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-12">
         <div class="u-limit-max-width u-center d-none" data-aos="fade">
               <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">

@@ -24,9 +24,9 @@
     </script>
     <div class="header-section u-bg-primary"  style="background:url('/images/laptop-and-person.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain;">
         <h1>Websites that don't cost an 💪 and a 🦵.</h1>
-        <p>Web services for entrepreneurs.</p>
-        <a class="button button-secondary mt-5 mr-3" href="/contact">Contact us</a>
-        <a class="button button-primary text-white" href="/case-studies">See case studies</a>
+        <p data-aos="fade">Web services for entrepreneurs.</p>
+        <a class="button button-secondary mt-5 mr-3" href="/contact" data-aos="fade">Contact us</a>
+        <a class="button button-primary text-white" href="/case-studies" data-aos="fade">See case studies</a>
     </div>
 
     <div class="header-section row m-0" style="background:initial;">

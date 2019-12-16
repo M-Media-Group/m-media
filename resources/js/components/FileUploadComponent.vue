@@ -37,10 +37,12 @@
             <div class="alert alert-success" role="alert" v-show="success" key="3">
                 File uploaded!<br/>
                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a>
+                <a :href="file_url" class="button" target="_BLANK" rel="noopener noreferrer">Open file</a>
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
                 File error! {{error_msg}}<br/>
                 <a href="#" class="button button-primary" v-on:click.prevent="error = false">Retry file upload</a>
+                <a href="/contact" class="button">Contact us for help</a>
             </div>
             <div class="row" key="5">
                 <div class="col-md-8 offset-md-4 text-muted">
@@ -66,10 +68,11 @@ export default{
             success: false,
             user: null,
             progress: 0,
+            file_url: null,
         }
     },
     mounted() {
-        this.getUser()
+        //this.getUser()
     },
     methods: {
     newFile(event) {
@@ -96,6 +99,7 @@ export default{
             this.error = false;
             console.log(res);
          this.loading = false;
+         this.file_url = res.data.url;
 
         })
         .catch(error => {

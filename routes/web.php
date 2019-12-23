@@ -42,8 +42,9 @@ Route::get('/pricing', function () {
     \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
     $plans = \Stripe\Plan::all(['expand' => ['data.product']]);
     $products = \Stripe\Sku::all(['expand' => ['data.product']]);
-    //return $products;
-    return view('pricing', compact('plans', 'products'));
+    $coupons = \Stripe\Coupon::all();
+    //return $coupons;
+    return view('pricing', compact('plans', 'products', 'coupons'));
 });
 
 Route::get('/case-studies', function () {
@@ -122,10 +123,10 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
     Route::get('/users/{id}/invoices', function ($id) {
-        return Redirect::to('/users/'.$id.'/billing', 301);
+        return Redirect::to('/users/' . $id . '/billing', 301);
     });
     Route::get('bots/{id}/connect', 'BotController@connect');
     Route::get('bots/{id}/contact-user', 'BotController@contactUser');

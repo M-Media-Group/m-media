@@ -101,39 +101,35 @@
 <div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Discounts</h2>
+	@if($coupons && count($coupons->data) > 0)
 	<div class="table-responsive">
 		<table class="table">
 				<thead>
 					<tr>
-						<th>Eligibility</th>
-					   <th>Reduction</th>
-					   <th>Subscribe</th>
+					    <th>Eligibility</th>
+					    <th>Reduction</th>
+					    <th>Subscribe</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Charities and non-profits</td>
-						<td>20% off</td>
-						<td><a href="/contact">{{ __('Contact us') }}</a></td>
-					</tr>
-					<tr>
-						<td>Educators, teachers, and schools/universities</td>
-						<td>15% off</td>
-						<td><a href="/contact">{{ __('Contact us') }}</a></td>
-					</tr>
-					<tr>
-						<td>Referrals</td>
-						<td>€15 for both parties</td>
-						<td><a href="/contact">{{ __('Contact us') }}</a></td>
-					</tr>
-					<tr>
-						<td>+1 year loyal customers</td>
-						<td>3% off</td>
-						<td><a href="/contact">{{ __('Contact us') }}</a></td>
-					</tr>
-				</tbody>
+			@foreach (collect($coupons->data)->sortBy('product.name') as $plan)
+				@if($plan->valid)
+				<tr>
+					<td>{{ $plan->name }}</td>
+					<td>{{ $plan->percent_off_precise ? $plan->percent_off_precise."%" : $plan->amount_off." EUR" }} off {{ $plan->duration }}</td>
+					<td><a href="/contact">{{ __('Contact us') }}</a></td>
+				</tr>
+				@endif
+			@endforeach
+			</tbody>
 		</table>
 	</div>
+	@else
+		<div class="alert text-muted">
+			 You have no active subscription to an {{Config('app.name')}} service yet. When you do, it will show up here.
+		</div>
+	@endif
+
 	<p class="text-muted">Contact us to find out if you are eligible for a discount on our products and services. Discounts only apply to products and services; one time charges, such as late payment collection fees, are not subject to discount.</p>
 	<p class="text-muted">Discounts are not cumulative. If you are eligible for multiple discounts, only the discount with the highest reduction applies.</p>
 	</div>

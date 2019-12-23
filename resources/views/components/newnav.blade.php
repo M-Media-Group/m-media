@@ -8,6 +8,7 @@
 {{--             <a href="/automation-bot">Marketing Automation Bot</a>
  --}}{{--            <a href="/print-media">Print Media</a>
  --}}           <hr class="mb-0 mt-0">
+                <a href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener noreferrer">Blog</a>
                 <a href="/case-studies">Case Studies</a>
                 <hr class="mb-0 mt-0">
                 <a href="/pricing" class="d-none">Pricing</a>

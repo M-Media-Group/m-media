@@ -125,7 +125,7 @@
             <h3 class="mt-0">Blazingly fast.</h3>
             <p>Nobody likes a slow website. For every additional second that it takes your website to load, you lose around 7% of your customers (source and more info on page speed importance). Page speed is also crucial to SEO and ranking well on search engines like Google.</p>
             <p class="d-none">Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they don't do enough, so you need multiple plugins to achieve whatever you need to do.</p>
-            <p">We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is tailor made to meet your business needs while being blazingly fast.</p>
+            <p>We build websites tailored to your business needs using custom code on the Laravel framework. You don't have to know what that means, but it's enough to understand that your website is tailor made to meet your business needs while being blazingly fast.</p>
         </div>
     </div>
 

@@ -116,7 +116,7 @@
 				@if($plan->valid)
 				<tr>
 					<td>{{ $plan->name }}</td>
-					<td>{{ $plan->percent_off_precise ? $plan->percent_off_precise."%" : $plan->amount_off." EUR" }} off {{ $plan->duration }}</td>
+					<td>{{ $plan->percent_off_precise ? $plan->percent_off_precise."%" : ($plan->amount_off/100)." EUR" }} off {{ $plan->duration }}</td>
 					<td><a href="/contact">{{ __('Contact us') }}</a></td>
 				</tr>
 				@endif

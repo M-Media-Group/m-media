@@ -38,8 +38,6 @@ Route::get('/', function () {
 
 //Route::get('categories', 'CategoryController@index');
 
-//Route::resource('users', 'UserController');
-
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();

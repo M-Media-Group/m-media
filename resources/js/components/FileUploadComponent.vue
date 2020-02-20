@@ -9,7 +9,7 @@
                     <label for="file" class="col-md-4 col-form-label text-md-right">File</label>
 
                     <div class="col-md-6">
-                        <input type="file" @change="newFile" name="file" id="file" class="input" required autofocus>
+                        <input type="file" @change="newFile" name="file" id="file" ref="fileInput" class="input" required autofocus>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -47,6 +47,8 @@
             <div class="row" key="5">
                 <div class="col-md-8 offset-md-4 text-muted">
                     <span class="label label-default" v-tooltip:top="'Each URL generated to your file is only valid for five minutes. If you want your file public with long-lived URLs, contact us.'">Your file is private by default.</span>
+                    <br/>
+                    <a href="https://blog.mmediagroup.fr/post/share-files-with-m-media/" target="_BLANK" rel="noopener noreferrer">Need help?</a>
                 </div>
             </div>
         </transition-group>
@@ -100,7 +102,11 @@ export default{
             console.log(res);
          this.loading = false;
          this.file_url = res.data.url;
-
+         this.avatar_url = null;
+        this.title = null;
+        const input = this.$refs.fileInput;
+        input.type = 'text';
+        input.type = 'file';
         })
         .catch(error => {
             this.error = true;

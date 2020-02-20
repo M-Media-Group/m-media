@@ -116,7 +116,7 @@
 				@if($plan->valid)
 				<tr>
 					<td>{{ $plan->name }}</td>
-					<td>{{ $plan->percent_off_precise ? $plan->percent_off_precise."%" : ($plan->amount_off/100)." EUR" }} off {{ $plan->duration }}</td>
+					<td>{{ $plan->percent_off ? $plan->percent_off."%" : ($plan->amount_off/100)." EUR" }} off {{ $plan->duration }}</td>
 					<td><a href="/contact">{{ __('Contact us') }}</a></td>
 				</tr>
 				@endif
@@ -126,7 +126,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 You have no active subscription to an {{Config('app.name')}} service yet. When you do, it will show up here.
+			 There are no coupons to show for {{Config('app.name')}}.
 		</div>
 	@endif
 

@@ -13,8 +13,10 @@ use Illuminate\Queue\SerializesModels;
 
 class SaveEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     protected $input;
     protected $user;
     protected $save;

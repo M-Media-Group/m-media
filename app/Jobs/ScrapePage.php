@@ -12,8 +12,10 @@ use Illuminate\Queue\SerializesModels;
 
 class ScrapePage implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     protected $url;
     protected $user;
     protected $save;

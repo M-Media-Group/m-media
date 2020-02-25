@@ -24,6 +24,14 @@
                         @endif
 
                         <div class="buttons">
+                            <!-- Authorize Button -->
+                            <form method="post" action="{{ route('passport.authorizations.approve') }}">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="state" value="{{ $request->state }}">
+                                <input type="hidden" name="client_id" value="{{ $client->id }}">
+                                <button type="submit" class="button button-secondary">Authorize</button>
+                            </form>
                              <!-- Cancel Button -->
                             <form method="post" action="{{ route('passport.authorizations.deny') }}">
                                 {{ csrf_field() }}
@@ -32,14 +40,6 @@
                                 <input type="hidden" name="state" value="{{ $request->state }}">
                                 <input type="hidden" name="client_id" value="{{ $client->id }}">
                                 <button class="button">Cancel</button>
-                            </form>
-                            <!-- Authorize Button -->
-                            <form method="post" action="{{ route('passport.authorizations.approve') }}">
-                                {{ csrf_field() }}
-
-                                <input type="hidden" name="state" value="{{ $request->state }}">
-                                <input type="hidden" name="client_id" value="{{ $client->id }}">
-                                <button type="submit" class="button button-primary">Authorize</button>
                             </form>
                         </div>
     </div>

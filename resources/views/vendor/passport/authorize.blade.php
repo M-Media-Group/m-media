@@ -42,9 +42,9 @@
                                 <button class="button">Deny</button>
                             </form>
                         </div>
-                        @if($client->client_id)
+                        @if($client->user_id)
                             @php
-                                $user = App\User::find($client->client_id);
+                                $user = App\User::find($client->user_id);
                             @endphp
                             <p class="mt-3 text-muted small">{{ $client->name }} is owned by M Media customer <strong>{{ $user->name }} {{$user->surname[0]}}</strong>. Only allow applications from sources you trust to access your data.</p>
                         @endif

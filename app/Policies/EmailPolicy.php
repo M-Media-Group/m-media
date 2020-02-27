@@ -32,7 +32,7 @@ class EmailPolicy
     /**
      * Determine whether the user can view the email.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param \App\Email $email
      *
      * @return mixed
@@ -52,7 +52,7 @@ class EmailPolicy
     /**
      * Determine whether the user can update the email.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param \App\Email $email
      *
      * @return mixed
@@ -84,7 +84,7 @@ class EmailPolicy
     /**
      * Determine whether the user can delete the email.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param \App\Email $email
      *
      * @return mixed
@@ -102,7 +102,7 @@ class EmailPolicy
     /**
      * Determine whether the user can restore the email.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param \App\Email $email
      *
      * @return mixed
@@ -115,7 +115,7 @@ class EmailPolicy
     /**
      * Determine whether the user can permanently delete the email.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param \App\Email $email
      *
      * @return mixed

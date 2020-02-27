@@ -76,15 +76,15 @@ Route::group(['middleware' => ['auth:api']], function () {
         return response()->json([
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
-                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => $request->input('message', ''),
+                    'name'     => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
+                    'message'  => $request->input('message', ''),
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',
-                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
+                'ContactFlowId'          => config('aws.connect.ContactFlowId'), // REQUIRED
                 'DestinationPhoneNumber' => $phone->e164, // REQUIRED
-                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
-                'QueueId' => config('aws.connect.QueueId'),
+                'InstanceId'             => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId'                => config('aws.connect.QueueId'),
                 //'SourcePhoneNumber' => '<string>',
             ]),
         ]);
@@ -101,5 +101,4 @@ Route::group(['middleware' => ['client']], function () {
 
         return $sms->listDomains()->get('Domains');
     });
-
 });

@@ -27,18 +27,17 @@ class VoiceAwsChannel
         return response()->json([
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
-                    'name' => $notifiable->name,
-                    'message' => '<speak><break time="1s"/>' . preg_replace("/\r|\n/", '<break time="230ms"/>', $message['message']) . '<break time="1s"/></speak>',
+                    'name'     => $notifiable->name,
+                    'message'  => '<speak><break time="1s"/>'.preg_replace("/\r|\n/", '<break time="230ms"/>', $message['message']).'<break time="1s"/></speak>',
                     'transfer' => $message['transfer'] ?? 'false',
                 ],
                 //'ClientToken' => '<string>',
-                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
+                'ContactFlowId'          => config('aws.connect.ContactFlowId'), // REQUIRED
                 'DestinationPhoneNumber' => $notifiable->primaryPhone->e164, // REQUIRED
-                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
-                'QueueId' => config('aws.connect.QueueId'),
+                'InstanceId'             => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId'                => config('aws.connect.QueueId'),
                 //'SourcePhoneNumber' => '<string>',
             ]),
         ]);
-
     }
 }

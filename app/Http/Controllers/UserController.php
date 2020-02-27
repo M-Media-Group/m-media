@@ -60,10 +60,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::where('id', $id)->with('primaryPhone', 'instagramAccounts', 'websites', 'files')->firstOrFail();
         $this->authorize('show', $user);
+        $user->load('primaryPhone', 'instagramAccounts', 'websites', 'files', 'emails', 'primaryEmail');
 
         return view('users.show', ['user' => $user]);
     }
@@ -153,9 +153,9 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
         $validatedData = $request->validate([
-            'name'    => ['sometimes', 'required', 'string', 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email'   => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -175,7 +175,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     public function updateCard(Request $request, User $user)

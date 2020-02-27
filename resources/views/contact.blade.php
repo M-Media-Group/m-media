@@ -49,7 +49,7 @@
                 <p>contact@mmediagroup.fr</p>
                 <div class="flex" style="flex-wrap: wrap;">
 		            <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
-		            <a class="button " rel="noopener noreferrer" href="{{config('blog.messenger_url')}}">Messenger</a>
+		            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}">Messenger</a>
 		            <a class="button" href="tel:+33486060859">Call</a>
 		        </div>
             </div>

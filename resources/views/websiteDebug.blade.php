@@ -92,7 +92,7 @@
     <h2 class="mt-5 mb-0" id="data">Website data</h2>
     {{-- Google search result --}}
     <div class="mt-5 mb-5 card action-section round-all-round action-section-hover">
-        <div class=" ">
+        <div class="pt-0">
             <a class=" " target="_BLANK" rel="noopener noreferrer" href="{{ $page->url }}">
                 <div class="mb-3 small">
                     {{-- <img aria-hidden="true" class="K7JcSb" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEXLAAD////KAADXSEjYTEzHAADJAADedXXOExPdcXHbZ2fqpqbfenrPISHYS0tAKQ2QAAAASElEQVQYlWNgwAKY4ADC52BhhgIWDrA8CyMcsIDUMDEjBJiRBLg4uVEFWNk40QXYqSnAAhXggToM4nQgk5cP4nSo58A0Nq8DAPmPAey2ObvQAAAAAElFTkSuQmCC" width="16" alt="Image" data-atf="3"> --}}

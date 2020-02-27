@@ -30,8 +30,10 @@
     <a href="#data">data</a> |
     <a href="#instagram">Instagram profiles</a> |
     <a href="#websites">websites</a> |
+    <a href="#emails">email accounts</a> |
     <a href="#files">files</a>
 
+<div class="row m-0 pt-5 pb-5">
 	<h2 class="mt-5 mb-0" id="data">Customer data</h2>
 	<div class="table-responsive table-hover">
 	    <table class="table mb-0">
@@ -62,6 +64,9 @@
             {{ __('Edit account settings') }}
         </a>
     @endcan
+</div>
+
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
     <h2 class="mt-5 mb-0" id="instagram">Instagram profiles</h2>
 	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
 	<div class="table-responsive">
@@ -87,8 +92,9 @@
 			 There's currently no Instagram profiles associated with your account.
 		</div>
 	@endif
-
-<h2 class="mt-5 mb-0" id="websites">Websites</h2>
+</div>
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+	<h2 class="mt-5 mb-0" id="websites">Websites</h2>
 	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -113,8 +119,38 @@
 			 There's currently no websites associated with your account.
 		</div>
 	@endif
+    <a class="button button-primary mt-3" href="/domains/check-availability">
+            {{ __('Register a new domain') }}
+    </a>
+</div>
 
-<h2 class="mt-5 mb-0" id="files">Files</h2>
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+	<h2 class="mt-5 mb-0" id="emails">Email accounts</h2>
+	<div class="table-responsive">
+		<table class="table mb-0">
+				<thead>
+					<tr>
+					   <th>ID</th>
+					   <th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>{{ $user->primaryEmail->id }}</td>
+					<td><a href="/emails/{{ $user->primaryEmail->id }}">{{ $user->primaryEmail->email }}</a></td>
+				</tr>
+			@foreach ($user->emails as $email)
+				<tr>
+					<td>{{ $email->id }}</td>
+					<td><a href="/emails/{{ $email->id }}">{{ $email->email }}</a></td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+	<h2 class="mt-5 mb-0" id="files">Files</h2>
 	@if($user->files && count($user->files) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -146,4 +182,5 @@
             {{ __('Upload a file') }}
         </a>
     @endcan
+</div>
 @endsection

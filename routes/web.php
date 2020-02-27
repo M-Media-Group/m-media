@@ -31,7 +31,7 @@ Route::get('/instagram', function () {
 });
 
 Route::get('/sitemap', function () {
-    return view('write');
+    return view('sitemap');
 });
 
 Route::get('/frequently-asked-questions', function () {
@@ -124,11 +124,16 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
     Route::get('/users/{id}/invoices', function ($id) {
-        return Redirect::to('/users/'.$id.'/billing', 301);
+        return Redirect::to('/users/' . $id . '/billing', 301);
     });
+
+    Route::get('/domains/check-availability', function () {
+        return view('domains.checkAvailability');
+    });
+
     Route::get('bots/{id}/connect', 'BotController@connect');
     Route::get('bots/{id}/contact-user', 'BotController@contactUser');
     Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');

@@ -73,7 +73,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function emails()
     {
-        return $this->hasMany('App\Phone');
+        return $this->hasMany('App\Email');
     }
 
     public function primaryEmail()
@@ -105,6 +105,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute()
     {
-        return $this->name.' '.$this->surname;
+        return $this->name . ' ' . $this->surname;
     }
 }

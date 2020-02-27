@@ -5,13 +5,13 @@
             <a href="/">Home</a>
             <a href="/web-development">Web Development</a>
             <a href="/instagram">Instagram Solutions</a>
+            <a href="/pricing">Pricing</a>
+
 {{--             <a href="/automation-bot">Marketing Automation Bot</a>
  --}}{{--            <a href="/print-media">Print Media</a>
  --}}           <hr class="mb-0 mt-0">
-                <a href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener noreferrer">Blog</a>
+                <a href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener">Blog</a>
                 <a href="/case-studies">Case Studies</a>
-                <hr class="mb-0 mt-0">
-                <a href="/pricing" class="d-none">Pricing</a>
                 <hr class="mb-0 mt-0">
                 @guest
                     <a href="/contact">Contact us</a>
@@ -35,6 +35,14 @@
                     </a>
                     <a href="/users/{{ Auth::id() }}/edit">
                             {{ __('Account settings') }}
+                    </a>
+                    <hr class="mb-0 mt-0">
+                    {{-- <div class="ml-4 mt-5 small text-muted">Admin</div> --}}
+                    <a href="/files/create">
+                            {{ __('Share files') }}
+                    </a>
+                    <a href="/domains/check-availability">
+                            {{ __('Register domains') }}
                     </a>
 {{--                     <hr class="mb-0 mt-0">
                     <a href="/tools/instagram-account-analyzer">

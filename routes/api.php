@@ -49,10 +49,33 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('users', 'UserController');
 
     Route::post('/users/{user}/update-card', 'UserController@updateCard');
+
+    Route::get('/domains/{domain}/availability', function ($domain) {
+        $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+        return response()->json(["availability" => $sms->checkDomainAvailability(['DomainName' => $domain])->get('Availability')]);
+    });
+
+    Route::get('/domains/{domain}/suggestions', function ($domain) {
+        $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+        $list = $sms->GetDomainSuggestions(['DomainName' => $domain, 'OnlyAvailable' => true, 'SuggestionCount' => 50])->get('SuggestionsList');
+        $new_list = [];
+        foreach ($list as $item) {
+            //$new_list[strstr($item['DomainName'], '.')][]['domain'] = $item['DomainName'];
+            $new_list[] = array('domain' => $item['DomainName'], 'tld' => strstr($item['DomainName'], '.'));
+        }
+        return response()->json(["suggestions" => $new_list]);
+    });
+
 });
 
 Route::group(['middleware' => ['client']], function () {
     Route::apiResource('phone-logs', 'PhoneLogController');
 
     Route::apiResource('email-logs', 'EmailLogController');
+
+    Route::get('/domains', function ($domain) {
+        $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+        return $sms->listDomains()->get('Domains');
+    });
+
 });

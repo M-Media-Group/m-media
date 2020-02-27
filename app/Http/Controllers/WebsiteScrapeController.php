@@ -20,6 +20,7 @@ class WebsiteScrapeController extends Controller
     public function index(Request $request, $url)
     {
         $data = ScrapePage::dispatchNow($url, $request->input('page') ?? null);
+        //dd($data);
         //$data = ScrapeWebsite::dispatchNow($url);
         if ($request->input('json')) {
             return $data;

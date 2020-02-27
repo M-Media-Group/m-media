@@ -37,7 +37,7 @@
             <div class="alert alert-success" role="alert" v-show="success" key="3">
                 File uploaded!<br/>
                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a>
-                <a :href="file_url" class="button" target="_BLANK" rel="noopener noreferrer">Open file</a>
+                <a :href="'/files/'+file_url" class="button">Open file</a>
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
                 File error! {{error_msg}}<br/>
@@ -48,7 +48,7 @@
                 <div class="col-md-8 offset-md-4 text-muted">
                     <span class="label label-default" v-tooltip:top="'Each URL generated to your file is only valid for five minutes. If you want your file public with long-lived URLs, contact us.'">Your file is private by default.</span>
                     <br/>
-                    <a href="https://blog.mmediagroup.fr/post/share-files-with-m-media/" target="_BLANK" rel="noopener noreferrer">Need help?</a>
+                    <a href="https://blog.mmediagroup.fr/post/share-files-with-m-media/" target="_BLANK" rel="noopener">Need help?</a>
                 </div>
             </div>
         </transition-group>
@@ -101,7 +101,7 @@ export default{
             this.error = false;
             console.log(res);
          this.loading = false;
-         this.file_url = res.data.url;
+         this.file_url = res.data.id;
          this.avatar_url = null;
         this.title = null;
         const input = this.$refs.fileInput;

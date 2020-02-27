@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/about" data-aos="fade">Read about us</a>
+                <a class="button button-secondary u-center" href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener" data-aos="fade">Explore our blog</a>
             </div>
         </div>
     </div>

@@ -60,13 +60,13 @@ class ScrapeWebsite implements ShouldQueue
                 }
             } else {
                 $website = (object) [
-                    'id'            => null,
-                    'scheme'        => $this->website_url['scheme'],
-                    'host'          => $this->website_url['host'],
-                    'user_id'       => null,
+                    'id' => null,
+                    'scheme' => $this->website_url['scheme'],
+                    'host' => $this->website_url['host'],
+                    'user_id' => null,
                     'is_scrapeable' => 1,
-                    'created_at'    => now(),
-                    'updated_at'    => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
             }
 
@@ -74,29 +74,29 @@ class ScrapeWebsite implements ShouldQueue
             $dns_records = (object) $this->getDnsInfo($this->website_url['host']);
 
             $data = [
-                'id'            => $website->id,
-                'scheme'        => $website->scheme,
-                'host'          => $website->host,
-                'url'           => $website->scheme.'://'.$website->host,
-                'user_id'       => $website->user_id,
+                'id' => $website->id,
+                'scheme' => $website->scheme,
+                'host' => $website->host,
+                'url' => $website->scheme . '://' . $website->host,
+                'user_id' => $website->user_id,
                 'is_scrapeable' => $website->is_scrapeable,
-                'created_at'    => $website->created_at,
-                'updated_at'    => $website->updated_at,
+                'created_at' => $website->created_at,
+                'updated_at' => $website->updated_at,
                 'latest_scrape' => (object) [
-                    'domain_registrar'     => $domain->domain_registrar,
-                    'domain_owner'         => $domain->domain_owner,
-                    'domain_created_at'    => $domain->domain_created_at,
-                    'domain_expires_at'    => $domain->domain_expires_at,
-                    'whois_server'         => $domain->whois_server,
-                    'client_delete_lock'   => $domain->states->contains('clientdeleteprohibited'),
-                    'client_renew_lock'    => $domain->states->contains('clientrenewprohibited'),
-                    'client_update_lock'   => $domain->states->contains('clientupdateprohibited'),
+                    'domain_registrar' => $domain->domain_registrar,
+                    'domain_owner' => $domain->domain_owner,
+                    'domain_created_at' => $domain->domain_created_at,
+                    'domain_expires_at' => $domain->domain_expires_at,
+                    'whois_server' => $domain->whois_server,
+                    'client_delete_lock' => $domain->states->contains('clientdeleteprohibited'),
+                    'client_renew_lock' => $domain->states->contains('clientrenewprohibited'),
+                    'client_update_lock' => $domain->states->contains('clientupdateprohibited'),
                     'client_transfer_lock' => $domain->states->contains('clienttransferprohibited'),
-                    'dns_records'          => $dns_records,
-                    'created_at'           => now(),
-                    'updated_at'           => now(),
+                    'dns_records' => $dns_records,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ],
-                'execution_time'       => microtime(true) - $time_start,
+                'execution_time' => microtime(true) - $time_start,
                 'was_recently_created' => $website->wasRecentlyCreated ?? true,
             ];
 
@@ -145,7 +145,7 @@ class ScrapeWebsite implements ShouldQueue
     {
         $local_parsed_url = parse_url($url);
         if (!isset($local_parsed_url['scheme'])) {
-            $file = 'https://'.$url;
+            $file = 'https://' . $url;
 
             //$time_start_1 = microtime(true);
             $file_headers = @get_headers($file);
@@ -166,12 +166,19 @@ class ScrapeWebsite implements ShouldQueue
         // Creating default configured client
         $whois = Whois::create();
         $host = ltrim($host, 'www.');
+        $host = $this->getDomainFromHost($host);
 
-        // Checking existance
+        // Checking existance OLD WAY AWS IS NEW WAY
         if ($whois->isDomainAvailable($host)) {
             return abort(404, 'Domain is not registered');
             //return response()->json(['Error' => "Domain is not registered"], 422);
         }
+
+        // $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+
+        // if ($sms->checkDomainAvailability(['DomainName' => $domain])->get('Availability') === "AVAILABLE") {
+        //     return abort(404, 'Domain is not registered');
+        // }
 
         $info = $whois->loadDomainInfo($host);
 
@@ -182,13 +189,13 @@ class ScrapeWebsite implements ShouldQueue
         }
 
         return (object) [
-            'name'              => $info->getDomainName(),
-            'whois_server'      => $info->getWhoisServer(),
+            'name' => $info->getDomainName(),
+            'whois_server' => $info->getWhoisServer(),
             'domain_created_at' => \Carbon\Carbon::parse($info->getCreationDate()),
             'domain_expires_at' => \Carbon\Carbon::parse($info->getExpirationDate()),
-            'domain_registrar'  => $info->getRegistrar(),
-            'domain_owner'      => $info->getOwner(),
-            'states'            => collect($info->getStates()),
+            'domain_registrar' => $info->getRegistrar(),
+            'domain_owner' => $info->getOwner(),
+            'states' => collect($info->getStates()),
             //'response' => $info->getResponse(),
             //'parser_type' => $info->getParserType(),
             //#'nameservers' => $info->getNameServers(), <-- Now fetched from getDnsInfo function
@@ -196,8 +203,16 @@ class ScrapeWebsite implements ShouldQueue
         ];
     }
 
+    private function getDomainFromHost($url)
+    {
+
+        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $url, $regs)) {
+            return $regs['domain'];
+        }
+        return "Nope";
+    }
     private function getDnsInfo($host)
     {
-        return dns_get_record(rtrim($host, '.').'.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
+        return dns_get_record(rtrim($host, '.') . '.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
     }
 }

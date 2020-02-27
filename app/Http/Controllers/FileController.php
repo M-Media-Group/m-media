@@ -31,7 +31,7 @@ class FileController extends Controller
         foreach ($all_users as $user) {
             $data = [
                 'full_name' => $user->full_name,
-                'id'        => $user->id,
+                'id' => $user->id,
             ];
             $users->push($data);
         }
@@ -60,6 +60,7 @@ class FileController extends Controller
      */
     public function store(StoreFile $request)
     {
+        $this->authorize('create', File::class);
         //return $request->user();
         $data = UploadFile::dispatchNow($request);
 
@@ -107,7 +108,7 @@ class FileController extends Controller
         $this->authorize('update', $file);
         $request->validate([
             'is_public' => 'nullable|boolean',
-            'user_id'   => 'nullable',
+            'user_id' => 'nullable',
         ]);
 
         $file->update($request->only('is_public', 'user_id'));

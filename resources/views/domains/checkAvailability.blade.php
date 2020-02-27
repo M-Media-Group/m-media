@@ -1,20 +1,19 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('title', "Register new domains")
+@section('title', "Check domain availability")
 @section('meta_description', "This ".config('app.name')." tool lets you check domain names for availability." )
 
 @section('above_container')
     <div class="header-section u-bg-primary">
-        <h1>Register new domains</h1>
+        <h1>Check domain availability</h1>
     </div>
-    <div class="action-section container">
+    <div class="action-section container" data-aos="fade">
       <domain-check-component class="mt-5"></domain-check-component>
     </div>
     <div class="header-section u-bg-primary">
-
-    <h2 class="mt-5 mb-0">From our Help Center</h2>
-    <block-post-component></block-post-component>
-</div>
+	    <h2 class="mt-5 mb-0">From our Help Center</h2>
+	    <block-post-component></block-post-component>
+	</div>
 @endsection
 
 @section('content')

@@ -42,7 +42,7 @@
     <div class="mt-1">
         <div class="form-group row mb-0">
             <div class="col-md-12">
-                <p class="mb-0">M Media</p>
+                <p class="mb-0">{{config('app.name')}}</p>
                 <p>06230 Villefranche sur Mer, France</p>
 
                 <p class="mb-0">+33 4 86 06 08 59</p>

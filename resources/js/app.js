@@ -23,7 +23,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 Vue.component('chart-line-component', require('./components/ChartLineComponent.js').default);
 
-
 Vue.directive('tooltip', function(el, binding){
     $(el).tooltip({
          title: binding.value,

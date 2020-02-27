@@ -1,5 +1,5 @@
 @extends('layouts.clean')
-@section('title', "Pricing for M Media Products and Services")
+@section('title', "Pricing for ".config('app.name')." Products and Services")
 @section('meta_description', "Pay as you go model, fair and transparent pricing for all web development and marketing customers." )
 
 @section('above_container')

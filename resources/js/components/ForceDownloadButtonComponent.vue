@@ -28,9 +28,11 @@ export default{
       link.click()
     },
     downloadWithAxios(){
-      axios({
-        method: 'get',
-        url: this.url,
+      axios.get(this.url, {
+         headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
         responseType: 'arraybuffer'
       })
       .then(response => {

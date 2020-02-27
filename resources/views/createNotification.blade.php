@@ -53,6 +53,13 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="send_voice" class="col-md-4 col-form-label text-md-right">{{ __('Send as a voice message (phone call)') }}</label>
+                    <div class="col-md-6">
+                        <input id="send_voice" type="checkbox" autocomplete="off" placeholder="send_voice" class="form-control" name="send_voice">
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="send_sms" class="col-md-4 col-form-label text-md-right">{{ __('Send as a text message (Transactional SMS)') }}</label>
                     <div class="col-md-6">
                         <input id="send_sms" type="checkbox" autocomplete="off" placeholder="send_sms" class="form-control" name="send_sms">

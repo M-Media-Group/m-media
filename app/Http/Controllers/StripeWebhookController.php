@@ -35,7 +35,7 @@ class StripeWebhookController extends CashierController
     {
         if ($payload['data']['object']['phone']) {
             $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-                'email' => $payload['data']['object']['email'],
+                'email'    => $payload['data']['object']['email'],
                 'password' => 'notset',
             ]);
             $created = $user->wasRecentlyCreated;
@@ -94,11 +94,11 @@ class StripeWebhookController extends CashierController
                     //   'validNumber' => $validNumber,
                     //    'validNumberForRegion' => $validNumberForRegion,
                     'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
+                    'country_id'  => $country->id,
+                    'timezone'    => $timezone[0],
                     'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
+                    'user_id'     => $user->id,
+                    'is_public'   => 0,
                 ]
             );
         } else {
@@ -116,9 +116,9 @@ class StripeWebhookController extends CashierController
         }
 
         $user = User::updateOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-            'email' => $payload['data']['object']['email'],
-            'phone_id' => $phone->id,
-            'card_brand' => $default_card['brand'],
+            'email'          => $payload['data']['object']['email'],
+            'phone_id'       => $phone->id,
+            'card_brand'     => $default_card['brand'],
             'card_last_four' => $default_card['last4'],
         ]);
         //$payload['data']['default_source'];
@@ -148,7 +148,7 @@ class StripeWebhookController extends CashierController
     public function handleCustomerCreated($payload)
     {
         $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-            'email' => $payload['data']['object']['email'],
+            'email'    => $payload['data']['object']['email'],
             'password' => 'notset',
         ]);
 
@@ -210,11 +210,11 @@ class StripeWebhookController extends CashierController
                     //   'validNumber' => $validNumber,
                     //    'validNumberForRegion' => $validNumberForRegion,
                     'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
+                    'country_id'  => $country->id,
+                    'timezone'    => $timezone[0],
                     'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
+                    'user_id'     => $user->id,
+                    'is_public'   => 0,
                 ]
             );
         } else {
@@ -232,9 +232,9 @@ class StripeWebhookController extends CashierController
             $user->save();
             Notification::send($user, new CustomNotification([
                 'send_sms' => 1,
-                'action' => null,
-                'title' => 'Hi! Welcome to the ' . config('app.name') . ' family!',
-                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $user->email . " , and you'll be good to go!",
+                'action'   => null,
+                'title'    => 'Hi! Welcome to the '.config('app.name').' family!',
+                'message'  => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$user->email." , and you'll be good to go!",
             ]));
         } else {
             $user->save();

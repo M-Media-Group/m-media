@@ -31,7 +31,7 @@ class FileController extends Controller
         foreach ($all_users as $user) {
             $data = [
                 'full_name' => $user->full_name,
-                'id'        => $user->id,
+                'id' => $user->id,
             ];
             $users->push($data);
         }
@@ -108,10 +108,13 @@ class FileController extends Controller
         $this->authorize('update', $file);
         $request->validate([
             'is_public' => 'nullable|boolean',
-            'user_id'   => 'nullable',
+            'user_id' => 'nullable',
         ]);
 
         $file->update($request->only('is_public', 'user_id'));
+        if ($request->is_public) {
+            Storage::setVisibility($file->getOriginal('url'), 'is_public' ? 'public' : 'private');
+        }
 
         return $file;
     }

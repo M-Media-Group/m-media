@@ -17,15 +17,20 @@ return [
     |
      */
     'credentials' => [
-        'key'    => env('AWS_ACCESS_KEY_ID', ''),
+        'key' => env('AWS_ACCESS_KEY_ID', ''),
         'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
     ],
-    'region'    => env('AWS_REGION', 'eu-central-1'),
-    'version'   => 'latest',
+    'region' => env('AWS_REGION', 'eu-central-1'),
+    'version' => 'latest',
     'ua_append' => [
-        'L5MOD/'.AwsServiceProvider::VERSION,
+        'L5MOD/' . AwsServiceProvider::VERSION,
     ],
     'pinpoint' => [
         'app_id' => env('AWS_PINPOINT_APP_ID', ''),
+    ],
+    'connect' => [
+        'ContactFlowId' => env('AWS_CONTACT_FLOW_ID', ''),
+        'InstanceId' => env('AWS_INSTANCE_ID', ''),
+        'QueueId' => env('AWS_QUEUE_ID', ''),
     ],
 ];

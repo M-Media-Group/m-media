@@ -67,6 +67,28 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         return response()->json(['suggestions' => $new_list]);
     });
+    Route::post('/phones/{phone}/call', function (App\Phone $phone, Request $request) {
+        if (Gate::denies('call', $phone)) {
+            abort(403, 'Unauthorized action.');
+        }
+        $client = AWS::createClient('Connect', ['region' => 'eu-central-1']);
+
+        return response()->json([
+            'availability' => $client->startOutboundVoiceContact([
+                'Attributes' => [
+                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
+                    'message' => $request->input('message', ''),
+                    'transfer' => $request->input('transfer', 'false'),
+                ],
+                //'ClientToken' => '<string>',
+                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
+                'DestinationPhoneNumber' => $phone->e164, // REQUIRED
+                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId' => config('aws.connect.QueueId'),
+                //'SourcePhoneNumber' => '<string>',
+            ]),
+        ]);
+    });
 });
 
 Route::group(['middleware' => ['client']], function () {
@@ -79,4 +101,5 @@ Route::group(['middleware' => ['client']], function () {
 
         return $sms->listDomains()->get('Domains');
     });
+
 });

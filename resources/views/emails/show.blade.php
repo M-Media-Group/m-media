@@ -58,7 +58,7 @@
 		                </tr>
 		            </thead>
 		            <tbody>
-			    		@foreach($email->logs as $log)
+			    		@foreach($email->logs->sortByDesc('created_at') as $log)
 				            <tr>
 				                <td>{{ $log['status']}}</td>
 				                <td>{{$log['subject']}}</td>
@@ -90,7 +90,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-		    		@foreach($email->received_logs as $log)
+		    		@foreach($email->received_logs->sortByDesc('created_at') as $log)
 			            <tr>
 			                <td>{{ $log['status']}}</td>
 			                <td>{{$log['subject']}}</td>

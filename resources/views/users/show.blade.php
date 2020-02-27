@@ -66,7 +66,7 @@
     @endcan
 </div>
 
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 ">
     <h2 class="mt-5 mb-0" id="instagram">Instagram profiles</h2>
 	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
 	<div class="table-responsive">
@@ -93,7 +93,7 @@
 		</div>
 	@endif
 </div>
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 ">
 	<h2 class="mt-5 mb-0" id="websites">Websites</h2>
 	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
@@ -124,7 +124,7 @@
     </a>
 </div>
 
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 ">
 	<h2 class="mt-5 mb-0" id="emails">Email accounts</h2>
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -149,7 +149,7 @@
 		</table>
 	</div>
 </div>
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 ">
 	<h2 class="mt-5 mb-0" id="files">Files</h2>
 	@if($user->files && count($user->files) > 0)
 	<div class="table-responsive">

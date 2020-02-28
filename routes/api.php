@@ -67,34 +67,35 @@ Route::group(['middleware' => ['auth:api']], function () {
 
         return response()->json(['suggestions' => $new_list]);
     });
-});
-
-Route::group(['middleware' => ['client']], function () {
-    Route::apiResource('phone-logs', 'PhoneLogController');
-
-    Route::apiResource('email-logs', 'EmailLogController');
     Route::post('/phones/{phone}/call', function (App\Phone $phone, Request $request) {
         if (Gate::denies('call', $phone)) {
-            //abort(403, 'Unauthorized action.');
+            abort(403, 'Unauthorized action.');
         }
         $client = AWS::createClient('Connect', ['region' => 'eu-central-1']);
 
         return response()->json([
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
-                    'name'     => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message'  => $request->input('message', ''),
+                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',
-                'ContactFlowId'          => config('aws.connect.ContactFlowId'), // REQUIRED
+                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
                 'DestinationPhoneNumber' => $phone->e164, // REQUIRED
-                'InstanceId'             => config('aws.connect.InstanceId'), // REQUIRED
-                'QueueId'                => config('aws.connect.QueueId'),
+                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId' => config('aws.connect.QueueId'),
                 //'SourcePhoneNumber' => '<string>',
             ]),
         ]);
     });
+});
+
+Route::group(['middleware' => ['client']], function () {
+    Route::apiResource('phone-logs', 'PhoneLogController');
+
+    Route::apiResource('email-logs', 'EmailLogController');
+
     Route::get('/domains', function ($domain) {
         $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
 

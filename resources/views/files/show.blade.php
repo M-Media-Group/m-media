@@ -56,8 +56,8 @@
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this file.</a></p>
         @if (Auth::user()->can('update', $file))
 
-                <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
-            @if($file->is_public)
+{{--                 <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
+ --}}            @if($file->is_public)
                 <a class="button button-primary" href="/contact">
                     {{ __('Make private') }}
                 </a>

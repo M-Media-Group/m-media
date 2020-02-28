@@ -29,10 +29,6 @@ export default{
     },
     downloadWithAxios(){
       axios.get(this.url, {
-         headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
         responseType: 'arraybuffer'
       })
       .then(response => {

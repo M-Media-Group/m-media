@@ -152,6 +152,13 @@ Jump to:
 			</tbody>
 			</table>
 		</div>
+		@php
+		$amount_spent = 0;
+        foreach ($invoices as $invoice) {
+            $amount_spent += $invoice->amount_paid;
+        }
+        @endphp
+		<div class="text-muted">Total expenditure: {{$amount_spent / 100}} {{strtoupper($invoices[0]->currency)}}</div>
 	@else
 		<div class="alert text-muted">
 	         There's no invoices to show. When you make a payment to {{config('app.name')}}, it will show here.

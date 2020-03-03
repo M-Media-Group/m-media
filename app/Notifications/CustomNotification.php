@@ -86,11 +86,11 @@ class CustomNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->data['title'],
-            'message' => $this->data['message'],
-            'action' => $this->data['action'] ? url($this->data['action']) : null,
+            'title'       => $this->data['title'],
+            'message'     => $this->data['message'],
+            'action'      => $this->data['action'] ? url($this->data['action']) : null,
             'action_text' => $this->data['action_text'] ?? null,
-            'is_custom' => true,
+            'is_custom'   => true,
         ];
     }
 
@@ -104,12 +104,12 @@ class CustomNotification extends Notification implements ShouldQueue
     public function toSms($notifiable)
     {
         return [
-            'title' => $this->data['title'],
-            'message' => $this->data['message'],
-            'action' => $this->data['action'] ? url($this->data['action']) : null,
+            'title'       => $this->data['title'],
+            'message'     => $this->data['message'],
+            'action'      => $this->data['action'] ? url($this->data['action']) : null,
             'action_text' => $this->data['action_text'] ?? null,
-            'is_custom' => true,
-            'type' => 'TRANSACTIONAL',
+            'is_custom'   => true,
+            'type'        => 'TRANSACTIONAL',
         ];
     }
 
@@ -123,10 +123,10 @@ class CustomNotification extends Notification implements ShouldQueue
     public function toVoice($notifiable)
     {
         return [
-            'title' => $this->data['title'],
-            'message' => $this->data['message'],
+            'title'       => $this->data['title'],
+            'message'     => $this->data['message'],
             'action_text' => $this->data['action_text'] ?? null,
-            'transfer' => 'false',
+            'transfer'    => 'false',
         ];
     }
 }

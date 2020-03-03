@@ -9,7 +9,6 @@ use Redirect;
 
 class InvoiceController extends Controller
 {
-
     public function index(Request $request)
     {
         $user = $request->input('user');
@@ -25,12 +24,10 @@ class InvoiceController extends Controller
         $invoices = \Stripe\Invoice::all(['customer' => $user->stripe_id ?? null]);
 
         return $invoices->data;
-
     }
 
     public function show(Request $request, $id)
     {
-
         $invoice = \Stripe\Invoice::retrieve(['id' => $id]);
 
         if (Gate::denies('invoices.view', $invoice)) {
@@ -38,27 +35,23 @@ class InvoiceController extends Controller
         }
 
         return $invoice;
-
     }
 
     public function showFuture(Request $request, $id)
     {
-
         $user = User::findOrFail($id);
 
-        $invoice = \Stripe\Invoice::upcoming(["customer" => $user->stripe_id]);
+        $invoice = \Stripe\Invoice::upcoming(['customer' => $user->stripe_id]);
 
         if (Gate::denies('invoices.view', $invoice)) {
             abort(403);
         }
 
         return $invoice;
-
     }
 
     public function redirectToStripeInvoice(Request $request, $id)
     {
-
         $invoice = \Stripe\Invoice::retrieve(['id' => $id]);
 
         if (Gate::denies('invoices.view', $invoice)) {
@@ -66,6 +59,5 @@ class InvoiceController extends Controller
         }
 
         return Redirect::to($invoice->invoice_pdf);
-
     }
 }

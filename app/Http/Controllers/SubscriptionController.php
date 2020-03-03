@@ -30,7 +30,6 @@ class SubscriptionController extends Controller
         $subscriptions = \Stripe\Subscription::all(['customer' => $user->stripe_id ?? null, 'expand' => ['data.items.data.plan']]);
 
         return $subscriptions->data;
-
     }
 
     /**
@@ -46,6 +45,7 @@ class SubscriptionController extends Controller
         if (Gate::denies('subscriptions.view', $subscription)) {
             abort(403);
         }
+
         return $subscription;
     }
 }

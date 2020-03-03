@@ -112,11 +112,10 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['verified']], function () {
-
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
+        return Redirect::to('/users/'.Auth::id().'/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {

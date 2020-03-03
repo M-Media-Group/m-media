@@ -48,6 +48,12 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::apiResource('users', 'UserController');
 
+    Route::apiResource('invoices', 'InvoiceController');
+    Route::get('invoices/{id}/pdf', 'InvoiceController@redirectToStripeInvoice');
+    Route::get('users/{id}/future-invoice', 'InvoiceController@showFuture');
+
+    Route::apiResource('subscriptions', 'SubscriptionController');
+
     Route::post('/users/{user}/update-card', 'UserController@updateCard');
 
     Route::get('/domains/{domain}/availability', function ($domain) {
@@ -76,15 +82,15 @@ Route::group(['middleware' => ['auth:api']], function () {
         return response()->json([
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
-                    'name'     => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message'  => '<speak>'.$request->input('message', '').'</speak>',
+                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',
-                'ContactFlowId'          => config('aws.connect.ContactFlowId'), // REQUIRED
+                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
                 'DestinationPhoneNumber' => $phone->e164, // REQUIRED
-                'InstanceId'             => config('aws.connect.InstanceId'), // REQUIRED
-                'QueueId'                => config('aws.connect.QueueId'),
+                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId' => config('aws.connect.QueueId'),
                 //'SourcePhoneNumber' => '<string>',
             ]),
         ]);

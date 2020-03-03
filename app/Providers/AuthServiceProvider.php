@@ -15,13 +15,12 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model'                     => 'App\Policies\ModelPolicy',
-        'App\Post'                      => 'App\Policies\PostPolicy',
-        'App\Category'                  => 'App\Policies\CategoryPolicy',
-        'App\User'                      => 'App\Policies\UserPolicy',
-        'App\Bot'                       => 'App\Policies\BotPolicy',
+        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Post' => 'App\Policies\PostPolicy',
+        'App\Category' => 'App\Policies\CategoryPolicy',
+        'App\User' => 'App\Policies\UserPolicy',
+        'App\Bot' => 'App\Policies\BotPolicy',
         'Spatie\Permission\Models\Role' => 'App\Policies\RolePolicy',
-        'App\Bot'                       => 'App\Policies\BotPolicy',
 
     ];
 
@@ -40,6 +39,15 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        Gate::resource('invoices', 'App\Policies\InvoicePolicy');
+        Gate::define('invoices.index', 'App\Policies\InvoicePolicy@index');
+
+        Gate::resource('subscriptions', 'App\Policies\SubscriptionPolicy');
+        Gate::define('subscriptions.index', 'App\Policies\SubscriptionPolicy@index');
+
+//        Gate::resource('invoices', 'App\Policies\InvoicePolicy');
+
         Passport::routes();
     }
 }

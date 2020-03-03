@@ -10,8 +10,30 @@
 @endsection
 
 @section('content')
-<h2 class="mt-5 mb-0">Subscriptions</h2>
+Jump to:
+    <a href="#upcoming">upcoming invoices</a> |
+    <a href="#subscriptions">subscriptions</a> |
+    <a href="#paymentMethods">payment methods</a> |
+    <a href="#invoices">invoices</a> |
+    <a href="#discounts">discounts</a>
+
+<div class="row m-0 pt-5 pb-5 ">
+<h2 class="mt-5 mb-0" id="upcoming">Upcoming invoice</h2>
+  <future-invoice-component userid="{{$user->id}}"></future-invoice-component>
+</div>
+
+<div class="row m-0 pt-5 pb-5 ">
+<h2 class="mt-5 mb-0" id="subscriptions">Subscriptions</h2>
 	@if(isset($subscriptions->data) && count($subscriptions->data) > 0)
+{{-- 	<button id="show-modal" @click="showModal = true">Show Modal</button>
+  <!-- use the modal component, pass in the prop -->
+  <modal-component v-if="showModal" @close="showModal = false">
+    <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+    <h3 slot="header">custom header</h3>
+  </modal-component> --}}
 	<div class="table-responsive">
 		<table class="table mb-0">
 				<thead>
@@ -26,12 +48,13 @@
 				<tr>
 					<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
 					<td>{{ $subscription->id }}</td>
+
 					@if(isset($subscription->plan))
 						<td>{{ $subscription->plan->amount/100 }} EUR / {{ $subscription->plan->interval }}</td>
 					@else
 					<td>
 						@foreach ($subscription->items->data as $item)
-							{{ $item->plan->amount/100 }} EUR / {{ $item->plan->interval }}
+							{{ $item->plan->amount/100 }} {{ strtoupper($item->plan->currency) }} / {{ $item->plan->interval }}
 							@if(!$loop->last)
 						    	+
 						    @endif
@@ -52,8 +75,10 @@
 			 You have no active subscription to an {{Config('app.name')}} service yet. When you do, it will show up here.
 		</div>
 	@endif
+</div>
 
-	<h2 class="mt-5 mb-0">Payment methods</h2>
+<div class="row m-0 pt-5 pb-5 ">
+	<h2 class="mt-5 mb-0" id="paymentMethods">Payment methods</h2>
 	@if($pmethod && count($pmethod) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -94,8 +119,10 @@
 <button id="card-button" data-secret="{{ $intent->client_secret }}">
     Add card
 </button>
+</div>
 
-    <h2 class="mt-5 mb-0">All invoices</h2>
+<div class="row m-0 pt-5 pb-5 ">
+    <h2 class="mt-5 mb-0" id="invoices">All invoices</h2>
 	@if(count($invoices) > 0)
     <div class="table-responsive">
 		<table class="table mb-0">
@@ -119,7 +146,7 @@
 						    	@endif
 			            	@endforeach
 			            </td>
-			            <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
+			            <td><a href="/invoices/{{ $invoice->id }}/pdf">Download</a></td>
 			        </tr>
 			    @endforeach
 			</tbody>
@@ -130,8 +157,10 @@
 	         There's no invoices to show. When you make a payment to {{config('app.name')}}, it will show here.
 	    </div>
 	@endif
+</div>
 
-    <h2 class="mt-5 mb-0">Discounts</h2>
+<div class="row m-0 pt-5 pb-5 ">
+    <h2 class="mt-5 mb-0" id="discounts">Discounts</h2>
 	@if($discounts && count($discounts) > 0)
     <div class="table-responsive">
 		<table class="table mb-0">
@@ -154,6 +183,7 @@
 	         There's no discounts applied to your account.
 	    </div>
 	@endif
+</div>
 
 @endsection
 @section('footer_scripts')

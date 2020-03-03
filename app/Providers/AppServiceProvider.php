@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
         if ($this->app->isLocal()) {
             $this->app->register(TelescopeServiceProvider::class);
         }

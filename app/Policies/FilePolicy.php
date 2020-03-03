@@ -39,6 +39,9 @@ class FilePolicy
      */
     public function show(User $user, File $file)
     {
+        if ($file->is_public) {
+            return true;
+        }
         if ($file->user_id) {
             return $user->id == $file->user_id;
         }

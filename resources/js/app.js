@@ -85,5 +85,8 @@ const app = new Vue({
     //   return window.scrollY > 200
     // }
   },
-    el: '#app'
+    el: '#app',
+    data: {
+        showModal: false,
+    }
 });

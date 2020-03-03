@@ -117,7 +117,7 @@ Jump to:
 	<div id="card-element"></div>
 </div>
 
-<button id="card-button" data-secret="{{ $intent->client_secret }}">
+<button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
     Add card
 </button>
 </div>

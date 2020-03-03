@@ -32,7 +32,7 @@
                   </table>
                 </div>
             </div>
-            <div v-if="invoice && !loading"  class="text-muted" key="nextpayment">Next invoice will be {{invoice.collection_method === 'charge_automatically' ? 'charged automatically' : 'sent to you for manual payment'}} on {{invoice.next_payment_attempt ? new Date(invoice.next_payment_attempt * 1000) : new Date(invoice.created * 1000)}}. Total may change before payment date.</div>
+            <div v-if="invoice && !loading"  class="text-muted" key="nextpayment">Next invoice will be {{invoice.collection_method === 'charge_automatically' ? 'charged automatically' : 'sent to you for manual payment'}} {{getTimestamp(invoice)}}. Total may change before payment date. <a href="https://blog.mmediagroup.fr/post/see-future-invoice/" target="_BLANK" rel="noopener">Learn more</a></div>
             <div v-else-if="loading" key="loading" class="alert">
               Loading...
             </div>
@@ -59,7 +59,10 @@ export default{
         this.getSub()
     },
     methods: {
-
+      getTimestamp: function(invoice) {
+            var invoice_time = invoice.next_payment_attempt ? new Date(invoice.next_payment_attempt * 1000) : new Date(invoice.created * 1000)
+            return moment(invoice_time).fromNow()
+        },
       formatNumber: function(number, currency) {
         var formatter = new Intl.NumberFormat(undefined, {
           style: 'currency',

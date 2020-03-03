@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 
-@section('title', 'Edit a user')
+@section('title', 'Billing')
 
 @section('above_container')
     <div class="header-section u-bg-primary">

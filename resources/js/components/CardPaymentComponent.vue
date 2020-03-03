@@ -20,7 +20,7 @@ export default {
       props: ['user_id'],
   data () {
     return {
-        stripe_key: process.env.MIX_STRIPE_SECRET,
+      stripe_key: process.env.MIX_STRIPE_SECRET,
       complete: false,
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details

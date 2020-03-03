@@ -15,7 +15,8 @@ Jump to:
     <a href="#subscriptions">subscriptions</a> |
     <a href="#paymentMethods">payment methods</a> |
     <a href="#invoices">invoices</a> |
-    <a href="#discounts">discounts</a>
+    <a href="#discounts">discounts</a>  |
+    <a href="#help">help</a>
 
 <div class="row m-0 pt-5 pb-5 ">
 <h2 class="mt-5 mb-0" id="upcoming">Upcoming invoice</h2>
@@ -166,7 +167,7 @@ Jump to:
 	@endif
 </div>
 
-<div class="row m-0 pt-5 pb-5 ">
+<div class="row m-0 pt-5 pb-5">
     <h2 class="mt-5 mb-0" id="discounts">Discounts</h2>
 	@if($discounts && count($discounts) > 0)
     <div class="table-responsive">
@@ -191,6 +192,11 @@ Jump to:
 	    </div>
 	@endif
 </div>
+
+<div class="row m-0 pt-5 pb-5">
+    <h2 class="mt-5 mb-0" id="help">From our Help Center</h2>
+	<block-post-component category="36"></block-post-component>
+	</div>
 
 @endsection
 @section('footer_scripts')

@@ -12,7 +12,7 @@
     </div>
     <div class="header-section u-bg-primary">
 	    <h2 class="mt-5 mb-0">From our Help Center</h2>
-	    <block-post-component></block-post-component>
+	    <block-post-component category="44"></block-post-component>
 	</div>
 @endsection
 

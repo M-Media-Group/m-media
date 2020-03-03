@@ -21,7 +21,7 @@
 
 <script>
 export default{
-    props: ['url'],
+    props: ['category'],
     data(){
         return{
             loading: false,
@@ -42,7 +42,7 @@ export default{
         delete axios.defaults.headers.common['X-Requested-With'];
         delete axios.defaults.headers.common['X-CSRF-TOKEN'];
 
-        axios.get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?categories=44&_embed',
+        axios.get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?categories='+this.category+'&_embed',
     {
 
         responseType: 'json',

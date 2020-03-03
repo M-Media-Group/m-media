@@ -14,19 +14,25 @@
                           <tbody>
                           <tr v-for="item in invoice.lines.data" :key="item['id']">
                               <td>{{item.description}}</td>
-<!--                               <td class="text-muted">{{item.quantity}}</td>
- -->                              <td>{{formatNumber((item.amount / 100), invoice.currency)}}</td>
+                              <td>{{formatNumber((item.amount / 100), invoice.currency)}}</td>
                           </tr>
                           <tr>
-                              <th>Total</th>
-<!--                               <td></td>
- -->                              <td>{{formatNumber((invoice.total / 100), invoice.currency)}}</td>
+                              <th style="text-align: right;">Subtotal</th>
+                              <td>{{formatNumber((invoice.subtotal / 100), invoice.currency)}}</td>
+                          </tr>
+                          <tr v-if="invoice.discount">
+                              <th style="text-align: right;">Discount</th>
+                              <td>{{invoice.discount.coupon.amount_off ? invoice.discount.coupon.amount_off : invoice.discount.coupon.percent_off + "% off" }}</td>
+                          </tr>
+                          <tr>
+                              <th style="text-align: right;">Total</th>
+                              <th>{{formatNumber((invoice.total / 100), invoice.currency)}}</th>
                           </tr>
                       </tbody>
                   </table>
                 </div>
             </div>
-            <div v-if="invoice && !loading"  class="text-muted" key="nextpayment">Next payment will be {{invoice.collection_method === 'charge_automatically' ? 'charged automatically' : 'sent to you for manual payment'}} on {{ new Date(invoice.next_payment_attempt * 1000)}}. Total may change before payment date.</div>
+            <div v-if="invoice && !loading"  class="text-muted" key="nextpayment">Next invoice will be {{invoice.collection_method === 'charge_automatically' ? 'charged automatically' : 'sent to you for manual payment'}} on {{invoice.next_payment_attempt ? new Date(invoice.next_payment_attempt * 1000) : new Date(invoice.created * 1000)}}. Total may change before payment date.</div>
             <div v-else-if="loading" key="loading" class="alert">
               Loading...
             </div>

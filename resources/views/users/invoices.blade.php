@@ -11,7 +11,7 @@
 
 @section('content')
 Jump to:
-    <a href="#upcoming">upcoming invoices</a> |
+    <a href="#upcoming">upcoming invoice</a> |
     <a href="#subscriptions">subscriptions</a> |
     <a href="#paymentMethods">payment methods</a> |
     <a href="#invoices">invoices</a> |

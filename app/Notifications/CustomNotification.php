@@ -88,7 +88,7 @@ class CustomNotification extends Notification implements ShouldQueue
         return [
             'title' => $this->data['title'],
             'message' => $this->data['message'],
-            'action' => $this->data['action'] ? url($this->data['action']) : null,
+            'action' => isset($this->data['action']) && $this->data['action'] ? url($this->data['action']) : null,
             'action_text' => $this->data['action_text'] ?? null,
             'is_custom' => $this->data['action_text'] ?? true,
         ];
@@ -106,7 +106,7 @@ class CustomNotification extends Notification implements ShouldQueue
         return [
             'title' => $this->data['title'],
             'message' => $this->data['message'],
-            'action' => $this->data['action'] ? url($this->data['action']) : null,
+            'action' => isset($this->data['action']) && $this->data['action'] ? url($this->data['action']) : null,
             'action_text' => $this->data['action_text'] ?? null,
             'is_custom' => $this->data['action_text'] ?? true,
             'type' => 'TRANSACTIONAL',

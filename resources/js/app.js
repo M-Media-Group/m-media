@@ -103,6 +103,6 @@ const app = new Vue({
         Echo.join('online')
             .here(users => (this.online_users = users))
             .joining(user => this.online_users.push(user))
-            .leaving(user => (this.online_users = this.online_users.filter(u => (u.id !== user.id))))
-    }
+            .leaving(user => (this.online_users = this.online_users.filter(u => u.id !== user.id)));
+    },
 });

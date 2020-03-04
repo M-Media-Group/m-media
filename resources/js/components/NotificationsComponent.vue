@@ -13,8 +13,11 @@
                 </div>
                 <p>{{ notification.data.message }}</p>
                 <small class="mt-0"
-                    ><span v-bind:class="{ 'text-primary': !notification.read_at}">{{ timestamp(notification.created_at) }}</span><span v-if="notification.data.action_text"
-                        > · Click to {{ notification.data.action_text }}</span
+                    ><span v-bind:class="{ 'text-primary': !notification.read_at }">{{
+                        timestamp(notification.created_at)
+                    }}</span
+                    ><span v-if="notification.data.action_text">
+                        · Click to {{ notification.data.action_text }}</span
                     ></small
                 >
             </article>

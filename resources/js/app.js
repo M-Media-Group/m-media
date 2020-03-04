@@ -53,16 +53,16 @@ Vue.directive('popover', function(el, binding) {
     });
 });
 
-Vue.directive('scroll', {
-    inserted: function(el, binding) {
-        let f = function(evt) {
-            if (binding.value(evt, el)) {
-                window.removeEventListener('scroll', f);
-            }
-        };
-        window.addEventListener('scroll', f);
-    },
-});
+// Vue.directive('scroll', {
+//     inserted: function(el, binding) {
+//         let f = function(evt) {
+//             if (binding.value(evt, el)) {
+//                 window.removeEventListener('scroll', f);
+//             }
+//         };
+//         window.addEventListener('scroll', f);
+//     },
+// });
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

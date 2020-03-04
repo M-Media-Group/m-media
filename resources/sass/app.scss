@@ -8,7 +8,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~aos/src/sass/aos.scss';
 
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
 .navbar-laravel {
     //background-color: #202325;
@@ -59,8 +59,8 @@ small.text-muted {
 
 body,
 ,
-.navbar-nav>li>.dropdown-menu,
-.navbar-nav>li>.dropdown-menu>.dropdown-item {
+.navbar-nav > li > .dropdown-menu,
+.navbar-nav > li > .dropdown-menu > .dropdown-item {
     //background-color: #202325;
     //color: #fff;
 }
@@ -127,50 +127,71 @@ span.fa {
     font-size: inherit;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: all 0.45s ease-in-out;
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.45s ease-in-out;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateX(-5rem);
+    opacity: 0;
+    transform: translateX(-5rem);
 }
 
 .fade-in-animate {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Self Clearing Goodness */
@@ -179,19 +200,18 @@ span.fa {
     content: none !important;
     display: none;
     clear: unset !important;
-  }
+}
 
-  .header-section
-{
+.header-section {
     box-sizing: border-box;
     width: 100%;
     padding: 13rem 10%;
     text-decoration: none;
 
     //animation-name: example2;
-    animation-duration: .45s;
+    animation-duration: 0.45s;
     animation-timing-function: ease-in-out;
-      transition: all 1.45s ease-in-out;
+    transition: all 1.45s ease-in-out;
 
     color: var(--dark);
     background: var(--white);
@@ -203,125 +223,106 @@ a.header-section:hover {
 
 h1 {
     -webkit-transition: all 0s;
-            transition: all 0s;
+    transition: all 0s;
     //animation-name: example2;
-    animation-duration: .55s;
+    animation-duration: 0.55s;
     animation-timing-function: ease-in-out;
 }
-.header-section h1, .header-section-title
-{
-    margin-bottom: .5rem;
+.header-section h1,
+.header-section-title {
+    margin-bottom: 0.5rem;
     /*    color: #4a4a4a;
 */
 }
 
-.header-section-title
-{
-
+.header-section-title {
 }
 
-h2, p, .button {
+h2,
+p,
+.button {
     -webkit-transition: all 0s;
-            transition: all 0s;
+    transition: all 0s;
     //animation-name: example2;
-    animation-duration: .65s;
+    animation-duration: 0.65s;
     animation-timing-function: ease-in-out;
 }
 
 .button {
     -webkit-transition: all 0.1s;
-            transition: all 0.1s;
+    transition: all 0.1s;
 }
 
-html, body
-{
-    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+html,
+body {
+    font-family: 'Roboto', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     /*    color: #4a4a4a;
 */
 }
 
-@keyframes example
-{
-    from
-    {
+@keyframes example {
+    from {
         transform: translateY(50rem);
         opacity: 0;
     }
-    to
-    {
+    to {
     }
 }
 
-@keyframes example2
-{
-    from
-    {
+@keyframes example2 {
+    from {
         transform: translateX(-5rem);
         opacity: 0;
     }
-    to
-    {
+    to {
     }
 }
 
-.action-section
-{
+.action-section {
     margin-top: -5rem;
     padding: 3.7rem;
     max-width: 700px;
 
     //animation-name: example;
-    animation-duration: .55s;
+    animation-duration: 0.55s;
     animation-timing-function: ease-in-out;
 
     border-radius: 2rem 2rem 0 0;
     background: var(--white);
-    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, .15);
-    -webkit-transition: all .15s;
-    transition: all .15s;
+    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
 }
 
-
-
-.action-section-hover:hover
-{
+.action-section-hover:hover {
     text-decoration: none;
-    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, 0.25);
 }
 
-.round-all-round
-{
-        border-radius: 2rem !important;
+.round-all-round {
+    border-radius: 2rem !important;
 }
-
 
 input,
-textarea
-{
+textarea {
     width: 100%;
 }
 
-.leaflet-container
-{
-    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+.leaflet-container {
+    font-family: 'Roboto', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     z-index: 10;
 }
 
-.leaflet-bar
-{
+.leaflet-bar {
     background: var(--white);
 }
 
-.no-margin
-{
+.no-margin {
     margin: 0;
 }
 
-
-.flex
-{
+.flex {
     display: flex;
     flex-direction: row;
 
@@ -332,10 +333,7 @@ textarea
     align-self: center;
 }
 
-.page-title
-{
-
-
+.page-title {
     display: block;
     overflow: hidden;
 
@@ -343,46 +341,37 @@ textarea
     text-overflow: ellipsis;
 }
 
-.menu-text
-{
-
-
+.menu-text {
     text-decoration: none;
 
     color: var(--white);
 }
 
-.logo-container
-{
+.logo-container {
     padding: 1.5rem;
 
-    -webkit-transition: all .25s;
-            transition: all .25s;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
 
     border-radius: 50%;
     background: #fff;
-    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, .15);
-        cursor: pointer;
+    box-shadow: 0 0 5rem 0 rgba(0, 0, 0, 0.15);
+    cursor: pointer;
     pointer-events: initial;
 }
-.logo-container:hover
-{
+.logo-container:hover {
     border-radius: 25%;
-    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 0 7rem 0 rgba(0, 0, 0, 0.25);
 }
-.logo-container > img
-{
+.logo-container > img {
     display: block;
 }
-.leaflet-bottom
-{
+.leaflet-bottom {
     bottom: 7rem;
 }
 
-
 /*Next*/
-.leaflet-control-geocoder
-{
+.leaflet-control-geocoder {
     z-index: 99;
 }
 .leaflet-bottom.leaflet-left {
@@ -399,32 +388,40 @@ textarea
 }
 
 .dropdown {
-  position: relative;
-/*  display: inline-block;
-*/}
+    position: relative;
+    /*  display: inline-block;
+*/
+}
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--white);
-  min-width: 237px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  top: 6rem;
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 237px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 6rem;
 }
 
 .dropdown-content a {
-  background-color: var(--white);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+    background-color: var(--white);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-.dropdown-content a:hover {background-color: #eb4647; color:var(--white);}
+.dropdown-content a:hover {
+    background-color: #eb4647;
+    color: var(--white);
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
 
 p > img {
     max-height: 200px;
@@ -452,21 +449,22 @@ main img {
 }
 
 .background-filter::before {
-  -webkit-backdrop-filter: blur(13px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
-  backdrop-filter: blur(13px); /* Supported in Chrome 76 */
+    -webkit-backdrop-filter: blur(13px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+    backdrop-filter: blur(13px); /* Supported in Chrome 76 */
 
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%; height: 100%;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .background-filter {
-  position: relative;
+    position: relative;
 }
 
 .background-filter > * {
@@ -475,19 +473,22 @@ main img {
 }
 
 .shadow-filter {
-  -webkit-filter: drop-shadow( 1px 1px 3px rgba(0, 0, 0, .2));
-  filter: drop-shadow( 1px 1px 3px rgba(0, 0, 0, .2));
-  /* Similar syntax to box-shadow */
+    -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+    /* Similar syntax to box-shadow */
 }
 
-.tooltip, .tooltip-inner, .arrow {
+.tooltip,
+.tooltip-inner,
+.arrow {
     font-family: inherit;
     // background-color: var(--white);
     // color: var(--dark);
     opacity: 1;
     font-size: 90%;
 }
-.tooltip, .arrow {
+.tooltip,
+.arrow {
     box-shadow: var(--box-shadow);
 }
 a {

@@ -60,7 +60,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
@@ -176,7 +176,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);

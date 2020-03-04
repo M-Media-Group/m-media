@@ -43,7 +43,7 @@ class PostToBuffer implements ShouldQueue
             $hashtags_array = [];
             preg_match_all('/#(\w+)/', $this->instagramAccount->bufferSentPosts()['updates'][0]['text'], $matches);
             foreach ($matches[1] as $match) {
-                if (!in_array($match, $hashtags_array)) {
+                if (! in_array($match, $hashtags_array)) {
                     array_push($hashtags_array, '#'.$match);
                 }
             }

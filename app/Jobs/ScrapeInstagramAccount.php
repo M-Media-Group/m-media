@@ -74,7 +74,7 @@ class ScrapeInstagramAccount implements ShouldQueue
 
         $account = InstagramAccount::where('instagram_id', $data->id)->orWhere('username', $data->userName)->withCount('scrapes')->first();
 
-        if (!$account || !isset($account->id)) {
+        if (! $account || ! isset($account->id)) {
             $account = InstagramAccount::create(
                 ['username'         => $data->userName,
                     'instagram_id'  => $data->id,
@@ -87,7 +87,7 @@ class ScrapeInstagramAccount implements ShouldQueue
         //loop and proccess the hashtags mentioned in biography
         preg_match_all('/#(\w+)/', $data->biography, $matchesForHashtagsInCaption);
         foreach ($matchesForHashtagsInCaption[1] as $match) {
-            if (!in_array($match, $biography_hashtags)) {
+            if (! in_array($match, $biography_hashtags)) {
                 $biography_hashtags[] .= $match;
             }
         }
@@ -95,7 +95,7 @@ class ScrapeInstagramAccount implements ShouldQueue
         //loop and proccess the users mentioned in biography
         preg_match_all('/@([\w\.]+)/', $data->biography, $matchesForUsersInCaption);
         foreach ($matchesForUsersInCaption[1] as $match) {
-            if (!in_array($match, $biography_users)) {
+            if (! in_array($match, $biography_users)) {
                 $biography_users[] .= $match;
                 // InstagramAccount::firstOrCreate(
                 //     ['username' => $match]
@@ -111,7 +111,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             //loop and proccess the hashtags mentioned in the post
             preg_match_all('/#(\w+)/', $media->caption, $matches);
             foreach ($matches[1] as $match) {
-                if (!in_array($match, $hashtags)) {
+                if (! in_array($match, $hashtags)) {
                     $hashtags[] .= $match;
                 }
             }
@@ -119,7 +119,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             //loop and proccess the users mentioned in the post
             preg_match_all('/@([\w\.]+)/', $media->caption, $matchesForUsers);
             foreach ($matchesForUsers[1] as $match) {
-                if (!in_array($match, $users)) {
+                if (! in_array($match, $users)) {
                     // InstagramAccount::firstOrCreate(
                     //     ['username' => $match]
                     // );
@@ -162,7 +162,7 @@ class ScrapeInstagramAccount implements ShouldQueue
             $website_id = $website->id;
         }
 
-        if ($data->mediaCount && !$data->private) {
+        if ($data->mediaCount && ! $data->private) {
             $avg_dataset_start = \Carbon\Carbon::parse(end($data->medias)->date->date);
             $avg_dataset_end = \Carbon\Carbon::parse(reset($data->medias)->date->date);
         }

@@ -130,7 +130,7 @@ class InstagramAccountController extends Controller
      */
     public function storePost(StoreFile $request, InstagramAccount $instagramAccount)
     {
-        if (!$instagramAccount->buffer_id || !($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
+        if (! $instagramAccount->buffer_id || ! ($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
             return 'false';
         }
 

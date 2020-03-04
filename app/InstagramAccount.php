@@ -39,7 +39,7 @@ class InstagramAccount extends Model
 
     public function bufferProfile()
     {
-        if (!$this->getOriginal('buffer_id')) {
+        if (! $this->getOriginal('buffer_id')) {
             return false;
         }
 
@@ -52,7 +52,7 @@ class InstagramAccount extends Model
 
     public function bufferSentPosts()
     {
-        if (!$this->getOriginal('buffer_id')) {
+        if (! $this->getOriginal('buffer_id')) {
             return false;
         }
 

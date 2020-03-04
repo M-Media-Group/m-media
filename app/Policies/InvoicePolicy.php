@@ -25,7 +25,7 @@ class InvoicePolicy
      */
     public function index(User $user, User $requested_user = null)
     {
-        if (!$requested_user) {
+        if (! $requested_user) {
             return false;
         }
 

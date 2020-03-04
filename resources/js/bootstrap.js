@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -44,7 +43,7 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
 
@@ -53,7 +52,7 @@ window.Echo = new Echo({
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: 'eu',
     encrypted: true,
-    forceTLS: true
+    forceTLS: true,
 });
 
 //import moment from 'moment'

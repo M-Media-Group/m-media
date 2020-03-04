@@ -83,7 +83,7 @@ class CategoryController extends Controller
     public function show(Request $request, $slug)
     {
         $category = Category::where('slug', $slug)->with('incidents')->firstOrFail();
-        if (!$request->user()) {
+        if (! $request->user()) {
             $user_id = null;
         } else {
             $user_id = $request->user()->id;

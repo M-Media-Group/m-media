@@ -75,11 +75,6 @@ export default{
     },
     mounted() {
         //this.getUser()
-        
-Echo.private('App.User.1')
-    .notification((notification) => {
-        console.log(notification.type);
-    });
     },
     methods: {
     newFile(event) {

@@ -44,7 +44,7 @@ export default{
           action: notification.action,
           action_text: notification.action_text,
         },
-        created_at: new Date().toLocaleString()
+        created_at: moment.now()
       })
     });
     },

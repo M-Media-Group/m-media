@@ -23,9 +23,7 @@
                     </a>
                     <a href="/notifications">
                             {{ __('Notifications') }}
-                            @if(Auth::user()->unreadNotifications->count())
-                            <span class="text-primary">({{Auth::user()->unreadNotifications->count()}})</span>
-                            @endif
+                            <notifications-indicator-component userid="{{Auth::id()}}"></notifications-indicator-component>
                     </a>
                     <a href="/my-bots">
                             {{ __('Your bots') }}

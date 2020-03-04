@@ -49,7 +49,7 @@ export default{
        // withCredentials: true,
     }) // change this to post )
         .then(res =>{
-            console.log(res)
+            //console.log(res)
             this.posts = res.data
             this.loading = false
         })

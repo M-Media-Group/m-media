@@ -64,7 +64,7 @@ Vue.directive('scroll', {
 const app = new Vue({
     created () {
         AOS.init({
-            delay: 30,
+            //delay: 30,
             //anchorPlacement:'top-center'
         })
     },

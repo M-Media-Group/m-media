@@ -27,11 +27,12 @@ class StripeWebhookController extends CashierController
             [
 
                 'send_database' => 1,
-                'title' => 'Your need to authorize your recent payment for your ' . config('app.name') . ' invoice.',
-                'message' => 'Your payment of ' . \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_remaining']), $payload['data']['object']['currency']) . ' on ' . \Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i') . ' needs to be authorized. Check your email for more instructions.',
+                'title' => 'Your need to authorize your recent payment for your '.config('app.name').' invoice.',
+                'message' => 'Your payment of '.\Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_remaining']), $payload['data']['object']['currency']).' on '.\Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i').' needs to be authorized. Check your email for more instructions.',
             ]
         )
         );
+
         return response('Webhook Handled', 200);
     }
 
@@ -71,7 +72,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
@@ -187,7 +188,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
@@ -244,8 +245,8 @@ class StripeWebhookController extends CashierController
             Notification::send($user, new CustomNotification([
                 'send_sms' => 1,
                 'action' => null,
-                'title' => 'Hi! Welcome to the ' . config('app.name') . ' family!',
-                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $user->email . " , and you'll be good to go!",
+                'title' => 'Hi! Welcome to the '.config('app.name').' family!',
+                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$user->email." , and you'll be good to go!",
             ]));
         } else {
             $user->save();
@@ -269,13 +270,14 @@ class StripeWebhookController extends CashierController
             [
 
                 'send_database' => 1,
-                'action' => '/users/' . $user->id . '/billing#invoices',
+                'action' => '/users/'.$user->id.'/billing#invoices',
                 'action_text' => 'Go to your invoices',
-                'title' => 'Your ' . config('app.name') . ' invoice has been paid.',
-                'message' => 'Your invoice for ' . \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_paid']), $payload['data']['object']['currency']) . ' has been successfully paid on ' . \Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i') . '. Thank you for your business.',
+                'title' => 'Your '.config('app.name').' invoice has been paid.',
+                'message' => 'Your invoice for '.\Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_paid']), $payload['data']['object']['currency']).' has been successfully paid on '.\Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i').'. Thank you for your business.',
             ]
         )
         );
+
         return response('Webhook Handled', 200);
     }
 
@@ -294,13 +296,14 @@ class StripeWebhookController extends CashierController
             [
 
                 'send_database' => 1,
-                'action' => '/users/' . $user->id . '/billing#invoices',
+                'action' => '/users/'.$user->id.'/billing#invoices',
                 'action_text' => 'Go to your invoices',
-                'title' => 'Your recent payment for your ' . config('app.name') . ' invoice has failed.',
-                'message' => 'Your payment of ' . \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_paid']), $payload['data']['object']['currency']) . ' has failed on ' . \Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i') . '. Contact us for more info.',
+                'title' => 'Your recent payment for your '.config('app.name').' invoice has failed.',
+                'message' => 'Your payment of '.\Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['amount_paid']), $payload['data']['object']['currency']).' has failed on '.\Carbon\Carbon::parse($payload['data']['object']['status_transitions']['paid_at'])->format('l jS \o\f F Y \a\t H:i').'. Contact us for more info.',
             ]
         )
         );
+
         return response('Webhook Handled', 200);
     }
 

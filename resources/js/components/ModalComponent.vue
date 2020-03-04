@@ -1,8 +1,8 @@
 <template>
 <transition name="modal">
-    <div class="modal-mask action-section">
+    <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container card action-section round-all-round action-section-hover">
 
           <div class="modal-header">
             <slot name="header">
@@ -19,7 +19,7 @@
           <div class="modal-footer">
             <slot name="footer">
               default footer
-              <button class="modal-default-button" @click="$emit('close')">
+              <button class="button button-primary" @click="$emit('close')">
                 OK
               </button>
             </slot>

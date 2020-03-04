@@ -18,6 +18,7 @@
        ]
     }
     </script>
+
         <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/bdevices.svg'), url('images/backgrounds/1.svg'), var(--primary);background-position: left, bottom;background-repeat: no-repeat;background-size: cover;">
             <h1 class="header-section-title mb-0">Hi 👋! We're {{config('app.name')}}.</h1>
             <p class="mb-0" data-aos="fade" data-aos-delay="300">We make websites and handle your marketing.</p>

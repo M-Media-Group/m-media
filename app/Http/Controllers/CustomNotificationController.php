@@ -55,7 +55,7 @@ class CustomNotificationController extends Controller
             $users = User::find($request->input('users'));
             Notification::send($users, new CustomNotification($request->input()));
 
-            return redirect('/notifications');
+            return redirect('/custom-notifications/create');
         }
     }
 

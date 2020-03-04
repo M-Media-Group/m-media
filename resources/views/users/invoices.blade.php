@@ -26,14 +26,9 @@ Jump to:
 <div class="row m-0 pt-5 pb-5 ">
 <h2 class="mt-5 mb-0" id="subscriptions">Subscriptions</h2>
 	@if(isset($subscriptions->data) && count($subscriptions->data) > 0)
-{{-- 	<button id="show-modal" @click="showModal = true">Show Modal</button>
-  <!-- use the modal component, pass in the prop -->
+   {{--  <button id="show-modal" @click="showModal = true">Show Modal</button>
   <modal-component v-if="showModal" @close="showModal = false">
-    <!--
-      you can use custom content here to overwrite
-      default content
-    -->
-    <h3 slot="header">custom header</h3>
+    <h3 slot="header">Custom header</h3>
   </modal-component> --}}
 	<div class="table-responsive">
 		<table class="table mb-0">

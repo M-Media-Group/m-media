@@ -8,8 +8,6 @@
 		<p>{{config('app.name')}} customers</p>
 	</div>
 <div class="m-3">
-Online:	<users-online-list-component channel="online"></users-online-list-component>
-
 <h2 class="mt-5 mb-0">{{count($users)}} users</h2>
 	@if($users && count($users) > 0)
 	<div class="table-responsive table-hover">

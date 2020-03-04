@@ -14,9 +14,9 @@
     >
         {{ unreadMessages.length }}
     </span>
-    <span v-else-if="loading" key="loading" class="alert text-muted">
+    <!-- <span v-else-if="loading" key="loading" class="alert text-muted">
         Loading...
-    </span>
+    </span> -->
 </template>
 
 <script>

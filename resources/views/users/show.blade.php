@@ -35,7 +35,7 @@
 
 <div class="row m-0 pt-5 pb-5">
 	<h2 class="mt-5 mb-0" id="data">Customer data</h2>
-	<div class="table-responsive table-hover">
+	<div class="table-responsive table-hover mb-3">
 	    <table class="table mb-0">
 	        <tbody>
 	            <tr>
@@ -60,8 +60,13 @@
 	    </table>
 	</div>
     @can('update', $user)
-        <a class="button button-primary mt-3" href="/users/{{$user->id}}/edit">
+        <a class="button button-primary" href="/users/{{$user->id}}/edit">
             {{ __('Edit account settings') }}
+        </a>
+    @endcan
+    @can('show', $user)
+        <a class="button" href="/users/{{$user->id}}/billing">
+            {{ __('Go to billing') }}
         </a>
     @endcan
 </div>

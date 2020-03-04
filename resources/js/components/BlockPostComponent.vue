@@ -14,54 +14,52 @@
             </div>
           </div>
         </a> -->
-        <li v-for="post in posts" ><a :href="post.link" target="_BLANK" rel="noopener noreferrer" v-html="post.title.rendered"></a></li>
+        <li v-for="post in posts">
+            <a :href="post.link" target="_BLANK" rel="noopener noreferrer" v-html="post.title.rendered"></a>
+        </li>
     </ul>
 </template>
 
-
 <script>
-export default{
+export default {
     props: ['category'],
-    data(){
-        return{
+    data() {
+        return {
             loading: false,
             error: false,
             posts: [],
-        }
+        };
     },
     mounted() {
         //this.getUser()
-        this.getPosts()
+        this.getPosts();
     },
     methods: {
+        getPosts: function() {
+            this.posts = [];
+            this.loading = true;
+            //data.append('_method', 'put'); // add this
+            delete axios.defaults.headers.common['X-Requested-With'];
+            delete axios.defaults.headers.common['X-CSRF-TOKEN'];
 
-    getPosts: function () {
-        this.posts = []
-        this.loading = true
-        //data.append('_method', 'put'); // add this
-        delete axios.defaults.headers.common['X-Requested-With'];
-        delete axios.defaults.headers.common['X-CSRF-TOKEN'];
-
-        axios.get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?categories='+this.category+'&_embed',
-    {
-
-        responseType: 'json',
-       // withCredentials: true,
-    }) // change this to post )
-        .then(res =>{
-            //console.log(res)
-            this.posts = res.data
-            this.loading = false
-        })
-        .catch(error => {
-            console.log(error)
-            this.loading = false
-            this.error = true
-        });
-         //
-           //console.log(error);
-        }
-      }
-    }
-
+            axios
+                .get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?categories=' + this.category + '&_embed', {
+                    responseType: 'json',
+                    // withCredentials: true,
+                }) // change this to post )
+                .then(res => {
+                    //console.log(res)
+                    this.posts = res.data;
+                    this.loading = false;
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.loading = false;
+                    this.error = true;
+                });
+            //
+            //console.log(error);
+        },
+    },
+};
 </script>

@@ -97,5 +97,12 @@ const app = new Vue({
     el: '#app',
     data: {
         showModal: false,
+        online_users: null,
     },
+    mounted() {
+        Echo.join('online')
+            .here(users => (this.online_users = users))
+            .joining(user => this.online_users.push(user))
+            .leaving(user => (this.online_users = this.online_users.filter(u => (u.id !== user.id))))
+    }
 });

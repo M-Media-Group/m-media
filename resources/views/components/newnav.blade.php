@@ -1,9 +1,13 @@
 <nav class="flex" style="position: fixed; left:2rem; right:2rem; top:2rem;z-index: 999;">
     <div class=" flex flex-center dropdown" style="width:initial;">
-        <a href="#" class="logo-container"><img src="/images/logo.png" height="35" alt="{{config('app.name')}} logo"><notifications-indicator-component userid="{{Auth::id()}}" style="position: absolute;
+        <a href="#" class="logo-container"><img src="/images/logo.png" height="35" alt="{{config('app.name')}} logo">
+@auth
+            <notifications-indicator-component userid="{{Auth::id()}}" style="position: absolute;
     right: -1.5rem;
     box-sizing: content-box;
-    border: 5px solid white;"></notifications-indicator-component></a>
+    border: 5px solid white;"></notifications-indicator-component>
+    @endauth
+</a>
         <div class="dropdown-content" style="max-height: 80vh;overflow-y: scroll;">
             <a href="/">Home</a>
             <a href="/web-development">Web Development</a>

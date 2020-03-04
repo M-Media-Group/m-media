@@ -15,6 +15,7 @@
 			<thead>
 				<tr>
 				   <th>ID</th>
+				   <th>Online</th>
 				   <th>Name</th>
 				   <th>Surname</th>
 				   <th>Email</th>
@@ -25,9 +26,11 @@
 				</tr>
 			</thead>
 			<tbody>
+
 			@foreach ($users->sortByDesc('seen_at') as $user)
 				<tr>
 					<td><a href="/users/{{ $user->id }}">{{ $user->id }}</a></td>
+					<td v-bind:class="{'text-primary': !online_users.some(item => item.id === {{$user->id}})}" v-html="online_users.some(item => item.id === {{$user->id}})"></td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->surname }}</td>
 					<td><a class="{{ $user->email_verified_at  ? null : 'text-primary' }}" href="mailto:{{$user->email}}">{{$user->email}}{{ $user->email_verified_at  ? null : ' (Unverified)' }}</a></td>

@@ -13,6 +13,7 @@
         {{session('success')}}
     </div>
 @endif
+<div class="row m-0 pt-5 pb-5">
 <h2 class="mt-5 mb-0">File data</h2>
 <div class="table-responsive table-hover">
         <table class="table mb-0">
@@ -54,6 +55,7 @@
         </table>
     </div>
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this file.</a></p>
+    <div>
         @if (Auth::user()->can('update', $file))
 
 {{--                 <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
@@ -80,4 +82,11 @@
                 </button>
             </form>
         @endif
+    </div>
+    </div>
+    <div class="row m-0 pt-5 pb-5">
+        <h2 class="mt-5 mb-0">People currently viewing this file</h2>
+        <p>You can see who else is on this page with you right now. <a href="https://blog.mmediagroup.fr/post/see-future-invoice/" target="_BLANK" rel="noopener">Learn more</a>.</p>
+<p>The following people are on this page right now: <users-online-list-component channel="files.{{$file->id}}"></users-online-list-component></p>
+</div>
 @endsection

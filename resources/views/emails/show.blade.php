@@ -50,8 +50,20 @@
 	    @if($email->logs->count() > 0)
 	        	@php
 $datasets = [];
+    $array = array();
 
-    $array = [];foreach ($email->logs as $scrape) {array_push($array, ["y" => 1, "x" => $scrape->created_at->toDateString()]);}
+    $base_array = array();
+    foreach ($email->logs as $scrape) {
+	    if(array_key_exists($scrape->created_at->toDateString(),$base_array)) {
+	    	$base_array[$scrape->created_at->toDateString()]++;
+	    } else {
+	    	$base_array[$scrape->created_at->toDateString()] = 1;
+	    }
+    }
+    foreach ($base_array as $key => $val) {
+    	array_push($array, ["y" => $val, "x" => $key]);
+    }
+
     $data = [
     'pointHitRadius' => 20,
     'label' => 'Emails sent',
@@ -100,9 +112,19 @@ array_push($datasets, $data);
 	    <h2 class="mt-5 mb-0" id="emails">Emails received</h2>
 	    @if($email->received_logs->count() > 0)
 	        	@php
-$datasets = [];
+$array = array();
 
-    $array = [];foreach ($email->received_logs as $scrape) {array_push($array, ["y" => 1, "x" => $scrape->created_at->toDateString()]);}
+    $base_array = array();
+    foreach ($email->received_logs as $scrape) {
+	    if(array_key_exists($scrape->created_at->toDateString(),$base_array)) {
+	    	$base_array[$scrape->created_at->toDateString()]++;
+	    } else {
+	    	$base_array[$scrape->created_at->toDateString()] = 1;
+	    }
+    }
+    foreach ($base_array as $key => $val) {
+    	array_push($array, ["y" => $val, "x" => $key]);
+    }
     $data = [
     'pointHitRadius' => 20,
     'label' => 'Emails received',

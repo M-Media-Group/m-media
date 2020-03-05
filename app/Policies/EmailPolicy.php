@@ -24,9 +24,13 @@ class EmailPolicy
      *
      * @return mixed
      */
-    public function index(User $user)
+    public function index(User $user, User $requested_user = null)
     {
-        return false;
+        if (!$requested_user) {
+            return false;
+        }
+
+        return $user->id === $requested_user->id;
     }
 
     /**

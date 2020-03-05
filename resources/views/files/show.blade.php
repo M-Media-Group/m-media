@@ -86,7 +86,7 @@
     </div>
     <div class="row m-0 pt-5 pb-5">
         <h2 class="mt-5 mb-0">People currently viewing this file</h2>
-        <p>You can see who else is on this page with you right now. <a href="https://blog.mmediagroup.fr/post/see-future-invoice/" target="_BLANK" rel="noopener">Learn more</a>.</p>
+        <p>You can see who else is on this page with you right now. <a href="https://blog.mmediagroup.fr/post/m-media-website-update-jazz/" target="_BLANK" rel="noopener">Learn more</a>.</p>
 <p>The following people are on this page right now: <users-online-list-component channel="files.{{$file->id}}"></users-online-list-component></p>
 </div>
 @endsection

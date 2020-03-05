@@ -13,10 +13,15 @@ class EmailLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('index', EmailLog::class);
-        $email_logs = EmailLog::get();
+
+        $search_query = $request->input('q');
+
+        $email_logs = EmailLog::when($search_query, function ($query, $search_query) {
+            return $query->where('subject', 'like', "%{$search_query}%");
+        })->get();
 
         return view('emailLogs.index', compact('email_logs'));
     }
@@ -43,20 +48,20 @@ class EmailLogController extends Controller
         //return $this->email_split($request->input('from'))['email'];
         $request->merge([
             'from_display' => $this->email_split($request->input('email'))['name'],
-            'email'        => $this->email_split($request->input('email'))['email'],
-            'from'         => $this->email_split($request->input('from'))['email'],
-            'reply_to'     => $request->input('reply_to') ? $this->email_split($request->input('reply_to'))['email'] : null,
+            'email' => $this->email_split($request->input('email'))['email'],
+            'from' => $this->email_split($request->input('from'))['email'],
+            'reply_to' => $request->input('reply_to') ? $this->email_split($request->input('reply_to'))['email'] : null,
         ]);
 
         $request->validate([
             'from_display' => 'nullable|string',
-            'email'        => 'required|email',
-            'from'         => 'required|email',
-            'reply_to'     => 'nullable|email',
-            'type'         => 'nullable|string',
-            'status'       => 'nullable|string',
-            'subject'      => 'nullable|string',
-            'aws_id'       => 'required|string',
+            'email' => 'required|email',
+            'from' => 'required|email',
+            'reply_to' => 'nullable|email',
+            'type' => 'nullable|string',
+            'status' => 'nullable|string',
+            'subject' => 'nullable|string',
+            'aws_id' => 'required|string',
         ]);
 
         $email = SaveEmail::dispatchNow($request->only('email'));
@@ -68,15 +73,15 @@ class EmailLogController extends Controller
 
         $log = EmailLog::create(
             [
-                'from_display'      => $request->input('from_display'),
-                'email_id'          => $from_email->id,
-                'notes'             => $request->input('notes'),
-                'type'              => $request->input('type'),
-                'to_email_id'       => $email->id,
+                'from_display' => $request->input('from_display'),
+                'email_id' => $from_email->id,
+                'notes' => $request->input('notes'),
+                'type' => $request->input('type'),
+                'to_email_id' => $email->id,
                 'reply_to_email_id' => optional($reply_to_email)->id,
-                'aws_message_id'    => $request->input('aws_id'),
-                'status'            => $request->input('status'),
-                'subject'           => $request->input('subject'),
+                'aws_message_id' => $request->input('aws_id'),
+                'status' => $request->input('status'),
+                'subject' => $request->input('subject'),
             ]
         );
         //$from_email->logs = EmailLog::where('email_id', $from_email->id)->get();

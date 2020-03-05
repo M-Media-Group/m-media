@@ -26,7 +26,11 @@ class FilePolicy
      */
     public function index(User $user)
     {
-        return false;
+        if (!request()->input('user')) {
+            return false;
+        }
+
+        return $user->id == request()->input('user');
     }
 
     /**

@@ -23,9 +23,19 @@ class FileController extends Controller
      */
     public function index(Request $request)
     {
+        $user = $request->input('user');
+
         $this->authorize('index', File::class);
         //$files = Storage::allFiles('/');
-        $files = File::get();
+        $search_query = $request->input('q');
+        $files = File::when($search_query, function ($query, $search_query) {
+            return $query->where('name', 'like', "%{$search_query}%");
+        })
+            ->when($user, function ($query, $user) {
+                return $query->where('user_id', $user);
+            })
+            ->paginate(10);
+
         $all_users = \App\User::all();
         $users = collect();
 
@@ -123,7 +133,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

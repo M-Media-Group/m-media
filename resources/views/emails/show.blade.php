@@ -112,6 +112,8 @@ array_push($datasets, $data);
 	    <h2 class="mt-5 mb-0" id="emails">Emails received</h2>
 	    @if($email->received_logs->count() > 0)
 	        	@php
+	        	$datasets = [];
+
 $array_two = array();
 
     $base_array_two = array();

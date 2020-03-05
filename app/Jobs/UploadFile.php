@@ -36,7 +36,7 @@ class UploadFile implements ShouldQueue
      */
     public function handle()
     {
-        $path = Storage::putFile('files/' . ($this->request->user()->id ?? 'default'), $this->request->file, $this->request->input('public') ? 'public' : 'private');
+        $path = Storage::putFile('files/'.($this->request->user()->id ?? 'default'), $this->request->file, $this->request->input('public') ? 'public' : 'private');
         $this->request->merge([
             'name' => $this->request->input('title') ?? $this->request->file->getClientOriginalName() ?? null,
             'url' => $path,

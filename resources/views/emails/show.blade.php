@@ -123,7 +123,7 @@ $array_two = array();
 	    }
     }
     foreach ($base_array_two as $key => $val) {
-    	array_push($array, ["y" => $val, "x" => $key]);
+    	array_push($array_two, ["y" => $val, "x" => $key]);
     }
     $data = [
     'pointHitRadius' => 20,

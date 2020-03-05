@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/my-bots';
+    protected $redirectTo = '/notifications';
 
     /**
      * Create a new controller instance.
@@ -52,11 +52,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => ['nullable', 'string', 'max:255'],
-            'surname'  => ['nullable', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', new \Valorin\Pwned\Pwned(), 'confirmed'],
-            'avatar'   => ['image', 'dimensions:min_width=15,max_width=512', 'max:256'],
+            'avatar' => ['image', 'dimensions:min_width=15,max_width=512', 'max:256'],
         ]);
     }
 
@@ -77,9 +77,9 @@ class RegisterController extends Controller
         $user = User::create([
             // 'name' => $data['name'],
             // 'surname' => $data['surname'],
-            'email'    => $data['email'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'avatar'   => $image_path,
+            'avatar' => $image_path,
         ]);
 
         $user->givePermissionTo('apply to report');

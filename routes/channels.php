@@ -22,7 +22,15 @@ Broadcast::channel('online', function ($user) {
 });
 
 Broadcast::channel('files.{fileId}', function ($user, $fileId) {
-    //if ($user->canJoinRoom($roomId)) {
-    return $user->toArray();
-    //}
+    $file = App\File::findOrFail($fileId);
+    if ($user->can('show', $file)) {
+        return $user->toArray();
+    }
+});
+
+Broadcast::channel('users.{userId}', function ($user, $userId) {
+    $user = App\User::findOrFail($userId);
+    if ($user->can('show', $user)) {
+        return $user->toArray();
+    }
 });

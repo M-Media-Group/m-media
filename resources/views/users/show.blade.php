@@ -59,16 +59,18 @@
 	        </tbody>
 	    </table>
 	</div>
-    @can('update', $user)
-        <a class="button button-primary" href="/users/{{$user->id}}/edit">
-            {{ __('Edit account settings') }}
-        </a>
-    @endcan
-    @can('show', $user)
-        <a class="button" href="/users/{{$user->id}}/billing">
-            {{ __('Go to billing') }}
-        </a>
-    @endcan
+	<div>
+	    @can('update', $user)
+	        <a class="button button-primary" href="/users/{{$user->id}}/edit">
+	            {{ __('Edit account settings') }}
+	        </a>
+	    @endcan
+	    @can('show', $user)
+	        <a class="button" href="/users/{{$user->id}}/billing">
+	            {{ __('Go to billing') }}
+	        </a>
+	    @endcan
+	</div>
 </div>
 
 <div class="row m-0 pt-5 pb-5 ">

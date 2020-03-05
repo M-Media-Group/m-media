@@ -6,6 +6,7 @@ use App\File;
 use App\Http\Requests\StoreFile;
 use App\Jobs\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Storage;
 
 class FileController extends Controller
@@ -31,7 +32,7 @@ class FileController extends Controller
         foreach ($all_users as $user) {
             $data = [
                 'full_name' => $user->full_name,
-                'id'        => $user->id,
+                'id' => $user->id,
             ];
             $users->push($data);
         }
@@ -106,14 +107,24 @@ class FileController extends Controller
     {
         //
         $this->authorize('update', $file);
+
+        $current_file_user = $file->user_id;
+
         $request->validate([
             'is_public' => 'nullable|boolean',
-            'user_id'   => 'nullable',
+            'user_id' => 'nullable',
         ]);
 
         $file->update($request->only('is_public', 'user_id'));
+
         if ($request->is_public) {
-            Storage::setVisibility($file->getOriginal('url'), 'is_public' ? 'public' : 'private');
+            Storage::setVisibility($file->getOriginal('url'), $request->is_public ? 'public' : 'private');
+        }
+        if ($request->user_id !== $current_file_user) {
+            $hash = Str::random(40);
+            $new_url = 'files/' . ($request->user_id ?? "default") . '/' . $hash . '.' . $file->extension;
+            $path = Storage::move($file->getOriginal('url'), $new_url);
+            $file->update(['url' => $new_url]);
         }
 
         return $file;

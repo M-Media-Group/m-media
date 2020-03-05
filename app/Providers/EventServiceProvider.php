@@ -47,8 +47,27 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\PasswordReset' => [
             'App\Listeners\LogPasswordReset',
         ],
+
     ];
 
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\PaymentEventSubscriber',
+    ];
+
+/**
+ * Determine if events and listeners should be automatically discovered.
+ *
+ * @return bool
+ */
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
     /**
      * Register any events for your application.
      *

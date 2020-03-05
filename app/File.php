@@ -42,7 +42,11 @@ class File extends Model
 
     public function getIsPublicAttribute()
     {
-        return Storage::getVisibility($this->getOriginal('url')) === 'private' ? 0 : 1;
+        if (file_exists($this->getOriginal('url'))) {
+            return Storage::getVisibility($this->getOriginal('url')) === 'private' ? 0 : 1;
+        } else {
+            return 0;
+        }
     }
 
     public function getTypeAttribute()

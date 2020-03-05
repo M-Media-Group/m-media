@@ -60,7 +60,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
@@ -176,7 +176,7 @@ class StripeWebhookController extends CashierController
             $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
             $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
             $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (!$validNumber) {
+            if (! $validNumber) {
                 return response()->json(['Error' => 'This is not a valid number'], 422);
             }
             $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
@@ -233,8 +233,8 @@ class StripeWebhookController extends CashierController
             $user->notify(new \App\Notifications\CustomNotification([
                 'send_sms' => 1,
                 'action' => null,
-                'title' => 'Hi! Welcome to the ' . config('app.name') . ' family!',
-                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $user->email . " , and you'll be good to go!",
+                'title' => 'Hi! Welcome to the '.config('app.name').' family!',
+                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$user->email." , and you'll be good to go!",
             ]));
         } else {
             $user->save();
@@ -252,16 +252,15 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerDiscountCreated($payload)
     {
-
         $user = User::where('stripe_id', $payload['data']['object']['customer'])->firstOrFail();
 
         $user->notify(new \App\Notifications\CustomNotification([
             'send_database' => 1,
             'title' => 'Awesome! A discount has been applied to your account.',
-            'message' => "A discount of "
-            . ($payload['data']['object']['coupon']['percent_off'] ? $payload['data']['object']['coupon']['percent_off'] . "%" : \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['coupon']['amount_off']), $payload['data']['object']['coupon']['currency'])) . " off "
-            . $payload['data']['object']['coupon']['duration']
-            . " has been applied to your account. From now on, you can now enjoy lower prices for " . config('app.name') . " products and services.",
+            'message' => 'A discount of '
+            .($payload['data']['object']['coupon']['percent_off'] ? $payload['data']['object']['coupon']['percent_off'].'%' : \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['coupon']['amount_off']), $payload['data']['object']['coupon']['currency'])).' off '
+            .$payload['data']['object']['coupon']['duration']
+            .' has been applied to your account. From now on, you can now enjoy lower prices for '.config('app.name').' products and services.',
         ]));
 
         return response('Webhook Handled', 200);
@@ -290,7 +289,6 @@ class StripeWebhookController extends CashierController
      */
     public function handleInvoicePaymentFailed($payload)
     {
-
         event(new \App\Events\PaymentFailed($payload['data']['object']));
 
         return response('Webhook Handled', 200);

@@ -9,6 +9,7 @@ class PaymentFailed
     use SerializesModels;
 
     public $invoice;
+
     /**
      * Create a new event instance.
      *
@@ -18,5 +19,4 @@ class PaymentFailed
     {
         $this->invoice = $invoice;
     }
-
 }

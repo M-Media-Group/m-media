@@ -19,5 +19,4 @@ class PaymentSucceeded
     {
         $this->invoice = $invoice;
     }
-
 }

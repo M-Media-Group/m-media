@@ -114,16 +114,17 @@ class FileController extends Controller
             'is_public' => 'nullable|boolean',
             'user_id' => 'nullable',
         ]);
+        //dd($request->only('is_public', 'user_id'));
 
         $file->update($request->only('is_public', 'user_id'));
 
         if ($request->is_public) {
             Storage::setVisibility($file->getOriginal('url'), $request->is_public ? 'public' : 'private');
         }
-        if ($request->user_id !== $current_file_user) {
+        if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
             $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
-            $path = Storage::disk('s3')->move($file->getOriginal('url'), $new_url);
+            $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }
 

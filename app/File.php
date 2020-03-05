@@ -40,6 +40,11 @@ class File extends Model
         return $this->is_public ? Storage::url($this->getOriginal('url')) : Storage::temporaryUrl($this->getOriginal('url'), now()->addMinutes(5));
     }
 
+    public function getIsPublicAttribute()
+    {
+        return Storage::getVisibility($this->getOriginal('url')) === 'private' ? 0 : 1;
+    }
+
     public function getTypeAttribute()
     {
         $parts = explode('/', $this->mimeType);

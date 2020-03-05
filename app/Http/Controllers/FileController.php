@@ -77,7 +77,7 @@ class FileController extends Controller
      */
     public function show(Request $request, File $file)
     {
-        //return $file;
+        return $file;
         $this->authorize('show', $file);
 
         return view('files.show', compact('file'));

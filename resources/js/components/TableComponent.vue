@@ -9,15 +9,20 @@
             <table class="table mb-0">
                 <thead>
                     <tr>
-                       <th v-for="column in columns" :key="column">{{column}}</th>
-                   </tr>
-               </thead>
-               <tbody>
-                <tr v-for="(row, index) in rows" :key="'row'+index">
-                    <td v-bind:class="{'text-primary': cell.primary}" v-for="(cell, cell_index) in row" v-html="cell.html" :key="'cell'+index+cell_index"></td>
-                </tr>
-               </tbody>
-           </table>
+                        <th v-for="column in columns" :key="column">{{ column }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(row, index) in rows" :key="'row' + index">
+                        <td
+                            v-bind:class="{ 'text-primary': cell.primary }"
+                            v-for="(cell, cell_index) in row"
+                            v-html="cell.html"
+                            :key="'cell' + index + cell_index"
+                        ></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div v-if="pagination">
             <a class="button" href="#">Previous</a>
@@ -39,12 +44,12 @@ export default {
         };
     },
     mounted() {
-        this.pushRow()
+        this.pushRow();
     },
     methods: {
         pushRow: function() {
-            this.rows.push([{html: '<a href="#">hello 1</a>'}])
-        }
+            this.rows.push([{ html: '<a href="#">hello 1</a>' }]);
+        },
     },
 };
 </script>

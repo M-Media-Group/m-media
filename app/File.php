@@ -24,11 +24,16 @@ class File extends Model
         'user_id',
         'is_public',
     ];
-    // protected $appends = ['location'];
+    protected $appends = ['path'];
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->getOriginal('url');
     }
 
     public function getUrlAttribute()
@@ -42,8 +47,8 @@ class File extends Model
 
     public function getIsPublicAttribute()
     {
-        if (Storage::exists($this->url)) {
-            return Storage::getVisibility($this->url) === 'private' ? 0 : 1;
+        if (Storage::exists($this->path)) {
+            return Storage::getVisibility($this->path) === 'private' ? 0 : 1;
         } else {
             return 0;
         }

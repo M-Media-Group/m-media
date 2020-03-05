@@ -112,24 +112,24 @@ array_push($datasets, $data);
 	    <h2 class="mt-5 mb-0" id="emails">Emails received</h2>
 	    @if($email->received_logs->count() > 0)
 	        	@php
-$array = array();
+$array_two = array();
 
-    $base_array = array();
+    $base_array_two = array();
     foreach ($email->received_logs as $scrape) {
-	    if(array_key_exists($scrape->created_at->toDateString(),$base_array)) {
-	    	$base_array[$scrape->created_at->toDateString()]++;
+	    if(array_key_exists($scrape->created_at->toDateString(),$base_array_two)) {
+	    	$base_array_two[$scrape->created_at->toDateString()]++;
 	    } else {
-	    	$base_array[$scrape->created_at->toDateString()] = 1;
+	    	$base_array_two[$scrape->created_at->toDateString()] = 1;
 	    }
     }
-    foreach ($base_array as $key => $val) {
+    foreach ($base_array_two as $key => $val) {
     	array_push($array, ["y" => $val, "x" => $key]);
     }
     $data = [
     'pointHitRadius' => 20,
     'label' => 'Emails received',
     'fill' => false,
-    'data' => $array,
+    'data' => $array_two,
     'yAxisID' => 'A',
      'borderColor' => ['#246EBA'],
         'borderWidth' => 2

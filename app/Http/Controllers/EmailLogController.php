@@ -21,7 +21,9 @@ class EmailLogController extends Controller
 
         $email_logs = EmailLog::when($search_query, function ($query, $search_query) {
             return $query->where('subject', 'like', "%{$search_query}%");
-        })->get();
+        })
+            ->latest()
+            ->paginate(10);
 
         return view('emailLogs.index', compact('email_logs'));
     }

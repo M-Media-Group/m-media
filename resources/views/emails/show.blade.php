@@ -15,6 +15,7 @@
 	@endif
 	<div class="row m-0 pt-5 pb-5 " data-aos="fade">
 		<h2 class="mt-5 mb-0">Email data</h2>
+
 		<div class="table-responsive table-hover">
 	        <table class="table mb-0">
 	            <tbody>
@@ -47,6 +48,25 @@
     <div class="row m-0 pt-5 pb-5 " data-aos="fade">
     	<h2 class="mt-5 mb-0" id="emails">Emails sent</h2>
 	    @if($email->logs->count() > 0)
+	        	@php
+$datasets = [];
+
+    $array = [];foreach ($email->logs as $scrape) {array_push($array, ["y" => 1, "x" => $scrape->created_at->toDateString()]);}
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => 'Emails sent',
+    'fill' => false,
+    'data' => $array,
+    'yAxisID' => 'A',
+     'borderColor' => ['#246EBA'],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+
+
+// }
+@endphp
+        <chart-line-component :data="{{json_encode($datasets)}}" :height="200" style="width: 100%;"></chart-line-component>
 		    <div class="table-responsive table-hover">
 		        <table class="table mb-0 table-sm">
 		            <thead>
@@ -79,6 +99,25 @@
 	<div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	    <h2 class="mt-5 mb-0" id="emails">Emails received</h2>
 	    @if($email->received_logs->count() > 0)
+	        	@php
+$datasets = [];
+
+    $array = [];foreach ($email->received_logs as $scrape) {array_push($array, ["y" => 1, "x" => $scrape->created_at->toDateString()]);}
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => 'Emails received',
+    'fill' => false,
+    'data' => $array,
+    'yAxisID' => 'A',
+     'borderColor' => ['#246EBA'],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+
+
+// }
+@endphp
+        <chart-line-component :data="{{json_encode($datasets)}}" :height="200" style="width: 100%;"></chart-line-component>
 	     <div class="table-responsive table-hover">
 	        <table class="table mb-0 table-sm">
 	            <thead>

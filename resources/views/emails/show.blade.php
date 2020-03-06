@@ -19,6 +19,61 @@
 		<div class="table-responsive table-hover">
 	        <table class="table mb-0">
 	            <tbody>
+	            	<tr>
+	            		@php
+$datasets = [];
+    $array = array();
+
+    $base_array = array();
+    foreach ($email->logs as $scrape) {
+	    if(array_key_exists($scrape->created_at->toDateString(),$base_array)) {
+	    	$base_array[$scrape->created_at->toDateString()]++;
+	    } else {
+	    	$base_array[$scrape->created_at->toDateString()] = 1;
+	    }
+    }
+    foreach ($base_array as $key => $val) {
+    	array_push($array, ["y" => $val, "x" => $key]);
+    }
+
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => 'Emails sent',
+    'fill' => false,
+    'data' => $array,
+    'yAxisID' => 'A',
+     'borderColor' => ['#246EBA'],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+
+$array_two = array();
+
+    $base_array_two = array();
+    foreach ($email->received_logs as $scrape) {
+	    if(array_key_exists($scrape->created_at->toDateString(),$base_array_two)) {
+	    	$base_array_two[$scrape->created_at->toDateString()]++;
+	    } else {
+	    	$base_array_two[$scrape->created_at->toDateString()] = 1;
+	    }
+    }
+    foreach ($base_array_two as $key => $val) {
+    	array_push($array_two, ["y" => $val, "x" => $key]);
+    }
+    $data = [
+    'pointHitRadius' => 20,
+    'label' => 'Emails received',
+    'fill' => false,
+    'data' => $array_two,
+    'yAxisID' => 'A',
+     'borderColor' => ['#eb4647'],
+        'borderWidth' => 2
+    ];
+array_push($datasets, $data);
+// }
+@endphp
+        <chart-line-component :data="{{json_encode($datasets)}}" :height="200" style="width: 100%;"></chart-line-component>
+	            	</tr>
 	                <tr>
 	                    <th>Address</th>
 	                    <td><a target="_BLANK" rel="noopener noreferrer" href="{{ $email->email }}">{{$email->email}}</a></td>
@@ -48,37 +103,6 @@
     <div class="row m-0 pt-5 pb-5 " data-aos="fade">
     	<h2 class="mt-5 mb-0" id="emails">Emails sent</h2>
 	    @if($email->logs->count() > 0)
-	        	@php
-$datasets = [];
-    $array = array();
-
-    $base_array = array();
-    foreach ($email->logs as $scrape) {
-	    if(array_key_exists($scrape->created_at->toDateString(),$base_array)) {
-	    	$base_array[$scrape->created_at->toDateString()]++;
-	    } else {
-	    	$base_array[$scrape->created_at->toDateString()] = 1;
-	    }
-    }
-    foreach ($base_array as $key => $val) {
-    	array_push($array, ["y" => $val, "x" => $key]);
-    }
-
-    $data = [
-    'pointHitRadius' => 20,
-    'label' => 'Emails sent',
-    'fill' => false,
-    'data' => $array,
-    'yAxisID' => 'A',
-     'borderColor' => ['#246EBA'],
-        'borderWidth' => 2
-    ];
-array_push($datasets, $data);
-
-
-// }
-@endphp
-        <chart-line-component :data="{{json_encode($datasets)}}" :height="200" style="width: 100%;"></chart-line-component>
 		    <div class="table-responsive table-hover">
 		        <table class="table mb-0 table-sm">
 		            <thead>
@@ -111,37 +135,6 @@ array_push($datasets, $data);
 	<div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	    <h2 class="mt-5 mb-0" id="emails">Emails received</h2>
 	    @if($email->received_logs->count() > 0)
-	        	@php
-	        	$datasets = [];
-
-$array_two = array();
-
-    $base_array_two = array();
-    foreach ($email->received_logs as $scrape) {
-	    if(array_key_exists($scrape->created_at->toDateString(),$base_array_two)) {
-	    	$base_array_two[$scrape->created_at->toDateString()]++;
-	    } else {
-	    	$base_array_two[$scrape->created_at->toDateString()] = 1;
-	    }
-    }
-    foreach ($base_array_two as $key => $val) {
-    	array_push($array_two, ["y" => $val, "x" => $key]);
-    }
-    $data = [
-    'pointHitRadius' => 20,
-    'label' => 'Emails received',
-    'fill' => false,
-    'data' => $array_two,
-    'yAxisID' => 'A',
-     'borderColor' => ['#246EBA'],
-        'borderWidth' => 2
-    ];
-array_push($datasets, $data);
-
-
-// }
-@endphp
-        <chart-line-component :data="{{json_encode($datasets)}}" :height="200" style="width: 100%;"></chart-line-component>
 	     <div class="table-responsive table-hover">
 	        <table class="table mb-0 table-sm">
 	            <thead>

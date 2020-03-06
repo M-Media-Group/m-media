@@ -19,9 +19,6 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
-                    <iframe src="{{ $file->url }}" allow="fullscreen" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;width:100%;height:400px;"></iframe>
-                </tr>
-                <tr>
                     <th>URL</th>
                     <td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
                 </tr>
@@ -88,8 +85,12 @@
     </div>
     </div>
     <div class="row m-0 pt-5 pb-5">
+        <h2 class="mt-5 mb-0">Preview</h2>
+        <iframe src="{{ $file->url }}" width="100%" height="500" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></iframe>
+    </div>
+    <div class="row m-0 pt-5 pb-5">
         <h2 class="mt-5 mb-0">People currently viewing this file</h2>
         <p>You can see who else is on this page with you right now. <a href="https://blog.mmediagroup.fr/post/m-media-website-update-jazz/" target="_BLANK" rel="noopener">Learn more</a>.</p>
-<p>The following people are on this page right now: <users-online-list-component channel="files.{{$file->id}}"></users-online-list-component></p>
-</div>
+        <p>The following people are on this page right now: <users-online-list-component channel="files.{{$file->id}}"></users-online-list-component></p>
+    </div>
 @endsection

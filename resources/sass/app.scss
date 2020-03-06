@@ -10,6 +10,10 @@
 
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
+#app {
+    overflow: hidden;
+}
+
 .navbar-laravel {
     //background-color: #202325;
     //color: #fff;
@@ -231,6 +235,7 @@ h1 {
 .header-section h1,
 .header-section-title {
     margin-bottom: 0.5rem;
+    word-break: break-word;
     /*    color: #4a4a4a;
 */
 }

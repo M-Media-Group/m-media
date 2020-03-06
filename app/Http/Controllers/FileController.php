@@ -24,19 +24,30 @@ class FileController extends Controller
     public function index(Request $request)
     {
         $user = $request->input('user');
-        $type = $request->input('type');
+        $type = $request->input('extension');
+
+        // since both formats are the same check for both extensions if either exists
+        if ($type) {
+            if (in_array('jpg', $type)) {
+                array_push($type, 'jpeg');
+            } elseif (in_array('jpeg', $type)) {
+                array_push($type, 'jpg');
+            }
+        }
+
         $search_query = $request->input('q');
 
         $this->authorize('index', File::class);
         //$files = Storage::allFiles('/');
         $files = File::when($search_query, function ($query, $search_query) {
-            return $query->where('name', 'like', "%{$search_query}%");
+            return $query->where('name', 'SOUNDS LIKE', $search_query)
+                ->orWhere('name', 'like', "%{$search_query}%");
         })
             ->when($user, function ($query, $user) {
                 return $query->where('user_id', $user);
             })
             ->when($type, function ($query, $type) {
-                return $query->where('mimeType', 'like', "{$type}%");
+                return $query->whereIn('extension', $type);
             })
             ->latest()
             ->paginate(10);
@@ -138,7 +149,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

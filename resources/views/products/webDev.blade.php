@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 @section('title', $title)
 @section('meta_image', $image['url'])
-@section('meta_description', strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) )
+@section('meta_description', strip_tags(Illuminate\Mail\Markdown::parse(str_limit($text, $limit = 150, $end = '...'))) )
 
 @section('above_container')
 
@@ -13,7 +13,7 @@
   "image": [
     "{{$image['url']}}"
    ],
-  "description": "{{ strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) }}",
+  "description": "{{ strip_tags(Illuminate\Mail\Markdown::parse(str_limit($text, $limit = 150, $end = '...'))) }}",
   "brand": {
     "@type": "Thing",
     "name": "{{config('app.name')}}"

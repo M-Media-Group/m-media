@@ -104,7 +104,7 @@ class PhoneLogController extends Controller
         $PhoneLog = PhoneLog::with('phone.defaultForUser')->findOrFail($id);
 
         $request->validate([
-            'notes'    => 'nullable',
+            'notes' => 'nullable',
             'ended_at' => 'nullable',
         ]);
 

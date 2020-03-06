@@ -23,6 +23,7 @@ class Address extends Model
         'notes',
     ];
     // protected $appends = ['location'];
+    protected $hidden = ['location'];
 
     /**
      * The "booting" method of the model.
@@ -33,8 +34,8 @@ class Address extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('area', function (Builder $builder) {
-            $builder->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y, user_id, created_at, updated_at'));
+        static::addGlobalScope('coordinates', function (Builder $builder) {
+            $builder->select()->addSelect(DB::raw('X(`location`) as x, Y(`location`) as y'));
         });
     }
 
@@ -50,6 +51,6 @@ class Address extends Model
 
     // public function getLocationAttribute()
     // {
-    //     return $this->addSelect(DB::raw('id, X(`location`) as x, Y(`location`) as y'));
+    //     return $this->select()->addSelect(DB::raw('X(`location`) as x, Y(`location`) as y'));
     // }
 }

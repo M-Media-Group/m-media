@@ -22,4 +22,9 @@ class Country extends Model
     {
         return $this->hasMany('App\City');
     }
+    public function addresses()
+    {
+        return $this->hasManyThrough('App\Address', 'App\City');
+        //return $this->hasManyThrough('App\Address', 'App\City', 'address_id', 'country_id', 'id', 'id');
+    }
 }

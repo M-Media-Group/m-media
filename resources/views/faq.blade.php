@@ -34,7 +34,7 @@ $data = [
             <dt class="d-inline">{{$key}}</dt>
         </summary>
         <p>
-           @markdown($val)
+{{Illuminate\Mail\Markdown::parse($val)}}
         </p>
     </details>
 @endforeach

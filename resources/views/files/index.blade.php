@@ -8,6 +8,23 @@
 	</div>
 <div class="m-3">
 <h2 class="mt-5 mb-0">{!! $files->total() !!} files</h2>
+<form class="form-group" role="search">
+	<label for="site-search">Search</label>
+	<input type="search" id="site-search" name="q" aria-label="Search through site content" placeholder="Search" value="{{$_GET['q'] ?? ""}}">
+	<input type="hidden" value="{{$_GET['user'] ?? ""}}" name="user">
+
+<div style="display: flex;">
+	<label for="checkboxSvg">SVG</label>
+	<input type="checkbox" id="checkboxSvg" name="extension[]" value="svg" {{isset($_GET['extension']) && in_array('svg', $_GET['extension'])  ? "checked" : '' }}>
+	<label for="checkboxPng">PNG</label>
+	<input type="checkbox" id="checkboxPng" name="extension[]" value="png" {{isset($_GET['extension']) && in_array('png', $_GET['extension'])  ? "checked" : '' }}>
+	<label for="checkboxJpg">JPG</label>
+	<input type="checkbox" id="checkboxJpg" name="extension[]" value="jpg" {{isset($_GET['extension']) && in_array('jpg', $_GET['extension'])  ? "checked" : '' }}>
+	<label for="checkboxPdf">PDF</label>
+	<input type="checkbox" id="checkboxPdf" name="extension[]" value="pdf" {{isset($_GET['extension']) && in_array('pdf', $_GET['extension'])  ? "checked" : '' }}>
+</div>
+	<button type="submit">Search</button>
+</form>
 	@if($files && count($files) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">
@@ -62,7 +79,7 @@
 	{!! $files->appends(request()->except('page'))->links('vendor.pagination.default') !!}
 	@else
 		<div class="alert text-muted">
-			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your {{config('app.name')}} account, you access more and better services via phone, and ensure more security over your account.
+			 There's currently no files matching the request.
 		</div>
 	@endif
 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $title." - Case Study")
 @section('meta_image', $image['url'])
-@section('meta_description', strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) )
+@section('meta_description', strip_tags(Illuminate\Mail\Markdown::parse(str_limit($text, $limit = 150, $end = '...'))) )
 
 @section('sidebar')
 	<h2 class="text-muted">Case study</h2>
@@ -74,14 +74,14 @@
     ],
     "genre":["CASE-STUDIES"],
     "articleSection": "Case Studies",
-    "articleBody": "{{ strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($text)) }}"
+    "articleBody": "{{ strip_tags(Illuminate\Mail\Markdown::parse($text)) }}"
   }
 </script>
 
 <img src="{{$image['url']}}" style="max-height:65vh; min-height: 100px;" alt="{{$title}}" class="mb-5" data-aos="fade">
 <h1 data-aos="fade">{{$title}}</h1>
 
-@markdown($text)
+{{Illuminate\Mail\Markdown::parse($text)}}
 <hr>
 <h2 data-aos="fade">Other case studies</h2>
  <a class="header-section d-block text-center u-bg-primary card mb-5" href="/case-studies/breathe-as-one-festival" data-aos="fade">

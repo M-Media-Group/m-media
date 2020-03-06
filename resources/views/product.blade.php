@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $title)
 @section('meta_image', $image['url'])
-@section('meta_description', strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) )
+@section('meta_description', strip_tags(Illuminate\Mail\Markdown::parse(str_limit($text, $limit = 150, $end = '...'))) )
 
 @section('sidebar')
 	<h2 class="text-muted">{{$price[0]['text']}}</h2>
@@ -26,7 +26,7 @@
   "image": [
     "{{$image['url']}}"
    ],
-  "description": "{{ strip_tags(GrahamCampbell\Markdown\Facades\Markdown::convertToHtml(str_limit($text, $limit = 150, $end = '...'))) }}",
+  "description": "{{ strip_tags(Illuminate\Mail\Markdown::parse(str_limit($text, $limit = 150, $end = '...'))) }}",
   "brand": {
     "@type": "Thing",
     "name": "{{config('app.name')}}"
@@ -54,7 +54,7 @@
 <img src="{{$image['url']}}" style="max-height:65vh; min-height: 100px;" alt="{{$title}}" class="mb-5" data-aos="fade">
 <h1 data-aos="fade">{{$title}}</h1>
 
-@markdown($text)
+{{Illuminate\Mail\Markdown::parse($text)}}
 
 {{-- <div class="card-deck mb-3 text-center">
 	@foreach($price as $price)

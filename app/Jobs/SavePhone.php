@@ -67,17 +67,12 @@ class SavePhone implements ShouldQueue
         $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
         $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
         $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-        if (! $validNumber) {
+        if (!$validNumber) {
             return response()->json(['Error' => 'This is not a valid number.'], 422);
         }
         $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, strtoupper($input['country']));
         $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
         $phoneNumberType = $phoneNumberUtil->getNumberType($phoneNumber);
-        $geolocation = $phoneNumberGeocoder->getDescriptionForNumber(
-            $phoneNumber,
-            $input['language'],
-            $input['region']
-        );
 
         $e164 = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::E164);
         $nationalNumber = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::NATIONAL);
@@ -88,37 +83,34 @@ class SavePhone implements ShouldQueue
         );
         $timezone = \libphonenumber\PhoneNumberToTimeZonesMapper::getInstance()->getTimeZonesForNumber($phoneNumber);
 
-        $countryCode = $phoneNumberUtil->getCountryCodeForRegion($phoneNumberRegion);
-        $country = Country::firstOrCreate(
-            ['iso' => $phoneNumberRegion],
-            ['name' => $geolocation, 'calling_code' => $countryCode]
-        );
+        $country = SaveCountry::dispatchNow($phoneNumberRegion);
+
         if ($this->save == false) {
             $types = PhoneNumberType::values();
             $type = $types[$phoneNumberType];
 
             return [
-                'e164'        => $e164,
-                'number'      => $nationalNumber,
+                'e164' => $e164,
+                'number' => $nationalNumber,
                 'number_type' => $type,
-                'country_id'  => $country->id,
-                'timezone'    => $timezone[0],
+                'country_id' => $country->id,
+                'timezone' => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id'     => null,
-                'is_public'   => 0,
-                'country'     => $country,
+                'user_id' => null,
+                'is_public' => 0,
+                'country' => $country,
             ];
         }
         $phone = Phone::firstOrCreate(
             ['e164' => $e164],
             [
-                'number'      => $nationalNumber,
+                'number' => $nationalNumber,
                 'number_type' => $phoneNumberType,
-                'country_id'  => $country->id,
-                'timezone'    => $timezone[0],
+                'country_id' => $country->id,
+                'timezone' => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id'     => null,
-                'is_public'   => 0,
+                'user_id' => null,
+                'is_public' => 0,
             ]
         )->load('defaultForUser', 'user');
         $phone->country = $country;

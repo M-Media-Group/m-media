@@ -20,7 +20,7 @@
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.25.0",
+        "sass": "^1.26.2",
         "sass-loader": "^7.3.1",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11"
@@ -32,6 +32,7 @@
         "moment": "^2.24.0",
         "pusher-js": "^5.1.1",
         "vue-chartjs": "^3.5.0",
+        "vue-google-autocomplete": "^1.1.0",
         "vue-stripe-elements-plus": "^0.3.2"
     }
 }

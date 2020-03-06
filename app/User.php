@@ -81,6 +81,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Email', 'email', 'email');
     }
 
+    public function shippingAddress()
+    {
+        return $this->hasOne('App\Address', 'id', 'shipping_address_id');
+    }
+
+    public function billingAddress()
+    {
+        return $this->hasOne('App\Address', 'id', 'shipping_address_id');
+    }
+
     // public function seenPosts()
     // {
     //     return $this->belongsToMany('App\Post', 'post_views');
@@ -105,6 +115,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute()
     {
-        return $this->name.' '.$this->surname;
+        return $this->name . ' ' . $this->surname;
     }
 }

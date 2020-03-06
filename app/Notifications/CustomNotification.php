@@ -72,8 +72,7 @@ class CustomNotification extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject($this->data['title'])
             ->greeting($this->data['title'])
-            ->line([$this->data['message']])
-            ->action($this->data['action_text'], url($this->data['action']));
+            ->line([$this->data['message']]);
     }
 
     /**

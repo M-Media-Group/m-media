@@ -6,7 +6,7 @@
 		<p>{{config('app.name')}} Emails</p>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">{{count($email_logs)}} emails</h2>
+<h2 class="mt-5 mb-0">{!! $email_logs->total() !!} emails</h2>
 	@if($email_logs && count($email_logs) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">

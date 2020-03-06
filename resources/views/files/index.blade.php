@@ -27,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach ($files->reverse() as $file)
+			@foreach ($files as $file)
 				<tr>
 
 					<td><a href="/files/{{ $file->id }}">{{ $file->id }}</a></td>

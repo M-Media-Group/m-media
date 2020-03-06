@@ -19,6 +19,9 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
+                    <iframe src="{{ $file->url }}" width="100%" height="400" allow="fullscreen" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></iframe>
+                </tr>
+                <tr>
                     <th>URL</th>
                     <td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
                 </tr>

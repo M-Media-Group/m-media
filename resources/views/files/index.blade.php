@@ -59,7 +59,7 @@
 			</tbody>
 		</table>
 	</div>
-	{!! $files->appends(request()->except('page'))->render() !!}
+	{!! $files->appends(request()->except('page'))->links('vendor.pagination.default') !!}
 	@else
 		<div class="alert text-muted">
 			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your {{config('app.name')}} account, you access more and better services via phone, and ensure more security over your account.

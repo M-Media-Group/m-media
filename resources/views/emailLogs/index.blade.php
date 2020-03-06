@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach ($email_logs->sortByDesc('created_at') as $log)
+			@foreach ($email_logs as $log)
 				<tr>
 					<td><a href="/email-logs/{{ $log->id }}">{{ $log->id }}</a></td>
 					<td>{{ $log->subject }}</td>
@@ -35,6 +35,7 @@
 			@endforeach
 			</tbody>
 		</table>
+		{!! $email_logs->appends(request()->except('page'))->links('vendor.pagination.default') !!}
 	</div>
 	@else
 		<div class="alert text-muted">

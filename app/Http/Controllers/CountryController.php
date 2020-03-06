@@ -15,7 +15,6 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-
         $search_query = $request->input('q');
 
         $countries = Country::when($search_query, function ($query, $search_query) {
@@ -46,7 +45,6 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'iso' => 'string',
         ]);
@@ -102,5 +100,4 @@ class CountryController extends Controller
     {
         //
     }
-
 }

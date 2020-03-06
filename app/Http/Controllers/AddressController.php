@@ -47,7 +47,6 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->authorize('create', Address::class);
 
         $request->validate([
@@ -62,7 +61,6 @@ class AddressController extends Controller
         ]);
 
         return SaveAddress::dispatchNow($request->only('city_name', 'country_id', 'iso', 'address', 'lat', 'lng', 'user_id'));
-
     }
 
     /**
@@ -115,5 +113,4 @@ class AddressController extends Controller
     {
         //
     }
-
 }

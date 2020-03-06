@@ -46,7 +46,7 @@ class SaveCity implements ShouldQueue
         } elseif ($this->iso) {
             $country = SaveCountry::dispatchNow($this->iso);
         } else {
-            abort(422, "No country ID or ISO code provided");
+            abort(422, 'No country ID or ISO code provided');
         }
 
         $city = City::firstOrCreate(
@@ -54,6 +54,5 @@ class SaveCity implements ShouldQueue
         );
 
         return $city->load('country');
-
     }
 }

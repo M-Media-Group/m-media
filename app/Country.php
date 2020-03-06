@@ -22,6 +22,7 @@ class Country extends Model
     {
         return $this->hasMany('App\City');
     }
+
     public function addresses()
     {
         return $this->hasManyThrough('App\Address', 'App\City');

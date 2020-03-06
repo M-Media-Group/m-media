@@ -37,11 +37,11 @@ class SaveCountry implements ShouldQueue
     {
 
         // If ISO is too long or too short abort
-        if (!$this->iso || strlen($this->iso) > 3 || strlen($this->iso) < 2) {
-            abort(422, "The ISO code is invalid");
+        if (! $this->iso || strlen($this->iso) > 3 || strlen($this->iso) < 2) {
+            abort(422, 'The ISO code is invalid');
         }
 
-        $input['name'] = \Locale::getDisplayRegion('-' . $this->iso, 'en');
+        $input['name'] = \Locale::getDisplayRegion('-'.$this->iso, 'en');
 
         // If ISO is invalid getDisplayRegion() will return the same ISO as it was provided with
         if ($this->iso == $input['name']) {

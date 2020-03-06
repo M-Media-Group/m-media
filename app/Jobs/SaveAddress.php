@@ -37,7 +37,6 @@ class SaveAddress implements ShouldQueue
      */
     public function __construct($input)
     {
-
         $this->lng = $input['lng'] ?? null;
         $this->lat = $input['lat'] ?? null;
         $this->user_id = $input['user_id'] ?? null;
@@ -57,23 +56,17 @@ class SaveAddress implements ShouldQueue
      */
     public function handle()
     {
-
         if ($this->lng && $this->lat) {
-
             $geocoded_data = Geocoder::getAddressForCoordinates($this->lat, $this->lng);
 
             $country = SaveCountry::dispatchNow($this->getComponent($geocoded_data['address_components'], 'country', false));
-
         } elseif ($this->address) {
-
             if ($this->country_id) {
                 $country = Country::findOrFail($this->country_id);
-
             } elseif ($this->iso) {
                 $country = SaveCountry::dispatchNow($this->iso);
-
             } else {
-                abort(422, "Some information is missing to determine the country");
+                abort(422, 'Some information is missing to determine the country');
             }
 
             if ($this->city_id) {
@@ -86,36 +79,35 @@ class SaveAddress implements ShouldQueue
                 //     'iso' => $this->iso,
                 // ]);
             } else {
-                abort(422, "Some information is missing to determine the city");
+                abort(422, 'Some information is missing to determine the city');
             }
 
-            $geocoded_data = Geocoder::setLanguage('en-GB')->setCountry($this->iso)->getCoordinatesForAddress($this->address . ", " . $this->city_name);
-
+            $geocoded_data = Geocoder::setLanguage('en-GB')->setCountry($this->iso)->getCoordinatesForAddress($this->address.', '.$this->city_name);
         } else {
-            abort(422, "Some information is missing");
+            abort(422, 'Some information is missing');
         }
 
         if ($geocoded_data['accuracy'] == 'result_not_found') {
-            abort(422, "Address not found");
+            abort(422, 'Address not found');
         }
 
         $this->postal_code = $this->getComponent($geocoded_data['address_components'], 'postal_code');
         $city_name_from_google = $this->getComponent($geocoded_data['address_components'], 'locality');
 
-        if (!$this->postal_code) {
-            abort(422, "Postal code not found");
+        if (! $this->postal_code) {
+            abort(422, 'Postal code not found');
         }
 
-        if (!$city_name_from_google) {
-            abort(422, "Address not found (not in city administrative area)");
+        if (! $city_name_from_google) {
+            abort(422, 'Address not found (not in city administrative area)');
         }
 
         $this->address = $geocoded_data['formatted_address'];
-        $this->address = str_replace(", " . $this->getComponent($geocoded_data['address_components'], 'country'), "", $this->address);
-        $this->address = str_replace(" " . $city_name_from_google, "", $this->address);
-        $this->address = str_replace($this->postal_code, "", $this->address);
+        $this->address = str_replace(', '.$this->getComponent($geocoded_data['address_components'], 'country'), '', $this->address);
+        $this->address = str_replace(' '.$city_name_from_google, '', $this->address);
+        $this->address = str_replace($this->postal_code, '', $this->address);
         $this->address = trim($this->address);
-        $this->address = rtrim($this->address, ",");
+        $this->address = rtrim($this->address, ',');
 
         $this->iso = $country->iso;
         $this->country_id = $country->id;
@@ -133,7 +125,7 @@ class SaveAddress implements ShouldQueue
         $this->city_id = $city->id;
         $this->city_name = $city->name;
 
-        $location = DB::raw("(GeomFromText('POINT(" . $this->lat . ' ' . $this->lng . ")'))");
+        $location = DB::raw("(GeomFromText('POINT(".$this->lat.' '.$this->lng.")'))");
 
         // Removes country, city, and postal code from address string effectively making it into an address line
 
@@ -148,7 +140,6 @@ class SaveAddress implements ShouldQueue
         );
 
         return $address->load('city.country');
-
     }
 
     private function getComponent($address_components, $value, $long = true)
@@ -160,5 +151,4 @@ class SaveAddress implements ShouldQueue
             continue;
         }
     }
-
 }

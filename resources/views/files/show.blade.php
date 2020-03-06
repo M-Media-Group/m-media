@@ -19,7 +19,7 @@
         <table class="table mb-0">
             <tbody>
                 <tr>
-                    <iframe src="{{ $file->url }}" width="100%" height="400" allow="fullscreen" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></iframe>
+                    <iframe src="{{ $file->url }}" allow="fullscreen" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;width:100%;height:400px;"></iframe>
                 </tr>
                 <tr>
                     <th>URL</th>

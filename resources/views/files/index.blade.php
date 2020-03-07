@@ -23,7 +23,7 @@
 	<label for="checkboxPdf">PDF</label>
 	<input type="checkbox" id="checkboxPdf" name="extension[]" value="pdf" {{isset($_GET['extension']) && in_array('pdf', $_GET['extension'])  ? "checked" : '' }}>
 </div>
-	<button type="submit">Search</button>
+	<button type="submit" class="button button-primary">Search</button>
 </form>
 	@if($files && count($files) > 0)
 	<div class="table-responsive table-hover" id="table">

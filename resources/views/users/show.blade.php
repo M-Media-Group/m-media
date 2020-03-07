@@ -4,8 +4,8 @@
 
 @section('above_container')
     <div class="header-section u-bg-primary">
-        <h1>{{ $user->name }} {{ $user->surname }}</h1>
-        <p>{{config('app.name')}} Customer</p>
+        <h1> Hi 👋 {{ $user->name }}!</h1>
+        <p>{{ $user->name }} {{ $user->surname }}</p>
     </div>
 @endsection
 

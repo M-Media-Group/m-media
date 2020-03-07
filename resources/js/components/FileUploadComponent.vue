@@ -18,15 +18,26 @@
 
                     <div class="col-md-6">
                         <input
+                            name="URL"
+                            v-model="upload_url"
+                            v-if="use_url"
+                            id="url"
+                            class="form-control mb-0"
+                            type="url"
+                            placeholder="URL to the file"
+                        />
+                        <input
                             type="file"
                             @change="newFile"
                             name="file"
                             id="file"
                             ref="fileInput"
-                            class="input"
+                            class="form-control mb-0"
                             required
                             autofocus
+                            v-else
                         />
+                        <a href="##" class="small text-muted" v-on:click="use_url = !use_url">{{use_url ? 'Upload a file' : 'Upload via a URL'}}</a>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -110,6 +121,8 @@ export default {
             progress: 0,
             file_url: null,
             file_user_id: null,
+            upload_url: null,
+            use_url: false
         };
     },
     mounted() {
@@ -126,8 +139,12 @@ export default {
         updateFile: function() {
             let data = new FormData();
             this.loading = true;
-            data.append('file', this.avatar);
             data.append('title', this.title);
+            if(this.use_url && this.upload_url) {
+                data.append('url', this.upload_url);
+            } else {
+                data.append('file', this.avatar);
+            }
             let config = {
                 onUploadProgress: progressEvent => {
                     this.progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
@@ -145,9 +162,13 @@ export default {
                     this.file_user_id = res.data.user_id;
                     this.avatar_url = null;
                     this.title = null;
-                    const input = this.$refs.fileInput;
-                    input.type = 'text';
-                    input.type = 'file';
+                    if(!this.use_url && !this.upload_url) {
+                        const input = this.$refs.fileInput;
+                        input.type = 'text';
+                        input.type = 'file';
+                    } else {
+                        this.upload_url = null
+                    }
                 })
                 .catch(error => {
                     this.error = true;

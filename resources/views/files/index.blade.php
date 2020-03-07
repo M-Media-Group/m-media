@@ -30,14 +30,12 @@
 		<table class="table mb-0">
 			<thead>
 				<tr>
-				   <th>ID</th>
 				   <th>Preview</th>
 				   <th>Name</th>
 				   <th>Extension</th>
 				   <th>MIME type</th>
 				   <th>Size</th>
 				   <th>URL</th>
-
 				   <th>Public</th>
 				   <th>User</th>
 				   <th>Created at</th>
@@ -46,10 +44,8 @@
 			<tbody>
 			@foreach ($files as $file)
 				<tr>
-
-					<td><a href="/files/{{ $file->id }}">{{ $file->id }}</a></td>
 					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 100px;" alt="{{ $file->name }}"></td>
-					<td>{{ $file->name }}</td>
+					<td><a href="/files/{{ $file->id }}">{{ $file->name }}</a></td>
 					<td>{{ $file->extension }}</td>
 					<td>{{ $file->mimeType }}</td>
 					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>

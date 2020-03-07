@@ -51,7 +51,7 @@ class UploadFile implements ShouldQueue
             $this->request->file = new \Illuminate\Http\UploadedFile($tempImage, $info['basename']);
         }
 
-        $path = Storage::putFile('files/'.($this->request->user()->id ?? 'default'), $this->request->file, $this->request->input('public') ? 'public' : 'private');
+        $path = Storage::putFile('files/' . ($this->request->user()->id ?? 'default'), $this->request->file, $this->request->input('public') ? 'public' : 'private');
 
         $this->request->merge([
             'name' => $this->request->input('title') ?? $this->request->file->getClientOriginalName() ?? null,
@@ -65,7 +65,7 @@ class UploadFile implements ShouldQueue
 
         $file = File::create($this->request->only('name', 'url', 'extension', 'mimeType', 'size', 'user_id'));
 
-        if ($tempImage) {
+        if (isset($tempImage)) {
             unlink($tempImage);
         }
 

@@ -26,7 +26,7 @@ class EmailPolicy
      */
     public function index(User $user)
     {
-        if (!request()->input('user')) {
+        if (! request()->input('user')) {
             return false;
         }
 

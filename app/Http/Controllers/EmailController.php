@@ -14,7 +14,6 @@ class EmailController extends Controller
      */
     public function index(Request $request)
     {
-
         $user = $request->input('user');
 
         $this->authorize('index', Email::class);

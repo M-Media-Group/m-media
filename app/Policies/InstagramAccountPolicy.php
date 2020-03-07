@@ -26,7 +26,7 @@ class InstagramAccountPolicy
      */
     public function index(User $user)
     {
-        if (!request()->input('user')) {
+        if (! request()->input('user')) {
             return false;
         }
 
@@ -43,7 +43,6 @@ class InstagramAccountPolicy
      */
     public function show(User $user, InstagramAccount $instagram_account)
     {
-
         if ($instagram_account->user_id) {
             return $user->id == $instagram_account->user_id;
         }

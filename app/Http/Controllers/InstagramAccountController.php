@@ -28,7 +28,6 @@ class InstagramAccountController extends Controller
      */
     public function index(Request $request)
     {
-
         $user = $request->input('user');
 
         // $bot = Bot::findOrFail($id);
@@ -68,7 +67,7 @@ class InstagramAccountController extends Controller
         try {
             $client = new Client();
 
-            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token=' . config('blog.buffer.access_token'));
+            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token='.config('blog.buffer.access_token'));
             $statusCode = $response->getStatusCode();
             $data = $response->getBody()->getContents();
 
@@ -137,7 +136,7 @@ class InstagramAccountController extends Controller
      */
     public function storePost(StoreFile $request, InstagramAccount $instagramAccount)
     {
-        if (!$instagramAccount->buffer_id || !($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
+        if (! $instagramAccount->buffer_id || ! ($request->user()->id == $instagramAccount->user_id || $request->user()->id == config('blog.super_admin_id'))) {
             return 'false';
         }
 

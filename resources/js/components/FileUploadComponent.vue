@@ -68,7 +68,7 @@
                 File uploaded!<br />
                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a>
                 <a :href="'/files/' + file_url" class="button">Open file</a>
-                <a class="button" :href="'/files?user='+file_user_id">See all files</a>
+                <a class="button" :href="'/files?user=' + file_user_id">See all files</a>
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
                 File error! {{ error_msg }}<br />

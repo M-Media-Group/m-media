@@ -812,8 +812,8 @@ form {
 }
 
 .card-footer {
-        background: none;
-    border:none;
+    background: none;
+    border: none;
 }
 
 .card > :first-child {
@@ -896,7 +896,6 @@ img {
     max-width: 100%;
     box-sizing: border-box;
 }
-
 
 .table td {
     vertical-align: middle;

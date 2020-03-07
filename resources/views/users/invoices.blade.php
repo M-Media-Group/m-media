@@ -95,6 +95,7 @@ Jump to:
 					<td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
 				</tr>
 				@endforeach
+				@if($sepa_sources)
 				@foreach ($sepa_sources as $method)
 				<tr>
 					<td>{{ $method->sepa_debit->country }} bank account<br/><small class="text-muted">Bank code: {{ $method->sepa_debit->bank_code }}</small></td>
@@ -103,6 +104,7 @@ Jump to:
 					<td>{{$user->card_last_four == $method->sepa_debit->last4 ? 'Primary payment method' : null}}</td>
 				</tr>
 				@endforeach
+				@endif
 				</tbody>
 		</table>
 	</div>

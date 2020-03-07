@@ -121,11 +121,12 @@ Route::group(['middleware' => ['verified']], function () {
         $intent = $user->createSetupIntent([
             'payment_method_types' => ['sepa_debit'],
         ]);
+
         return view('createIban', compact('user', 'intent'));
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
+        return Redirect::to('/users/'.Auth::id().'/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {

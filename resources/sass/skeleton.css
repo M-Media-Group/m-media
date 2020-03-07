@@ -613,11 +613,12 @@ li {
 }
 
 .list-group-item-action {
-           color: var(--dark); /* 1 */
+    color: var(--dark); /* 1 */
 }
-.list-group-item-action:hover, .list-group-item-action:focus {
-        background-color: var(--white);
-        color: inherit; /* 1 */
+.list-group-item-action:hover,
+.list-group-item-action:focus {
+    background-color: var(--white);
+    color: inherit; /* 1 */
 }
 
 /* Code

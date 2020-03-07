@@ -68,6 +68,7 @@
                 File uploaded!<br />
                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a>
                 <a :href="'/files/' + file_url" class="button">Open file</a>
+                <a class="button" :href="'/files?user='+file_user_id">See all files</a>
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
                 File error! {{ error_msg }}<br />
@@ -108,6 +109,7 @@ export default {
             user: null,
             progress: 0,
             file_url: null,
+            file_user_id: null,
         };
     },
     mounted() {
@@ -140,6 +142,7 @@ export default {
                     console.log(res);
                     this.loading = false;
                     this.file_url = res.data.id;
+                    this.file_user_id = res.data.user_id;
                     this.avatar_url = null;
                     this.title = null;
                     const input = this.$refs.fileInput;

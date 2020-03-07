@@ -811,6 +811,11 @@ form {
     padding: 0 3rem;
 }
 
+.card-footer {
+        background: none;
+    border:none;
+}
+
 .card > :first-child {
     padding-top: 3rem;
     padding-bottom: 1rem;
@@ -890,6 +895,11 @@ hr {
 img {
     max-width: 100%;
     box-sizing: border-box;
+}
+
+
+.table td {
+    vertical-align: middle;
 }
 
 /* Clearing

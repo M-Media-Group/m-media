@@ -28,8 +28,8 @@
 
     Jump to:
     <a href="#data">data</a> |
-    <a href="#instagram">Instagram profiles</a> |
     <a href="#websites">websites</a> |
+    <a href="#instagram">Instagram profiles</a> |
     <a href="#emails">email accounts</a> |
     <a href="#files">files</a>
 
@@ -74,33 +74,6 @@
 </div>
 
 <div class="row m-0 pt-5 pb-5 ">
-    <h2 class="mt-5 mb-0" id="instagram">Instagram profiles</h2>
-	@if($user->instagramAccounts && count($user->instagramAccounts) > 0)
-	<div class="table-responsive">
-		<table class="table mb-0">
-				<thead>
-					<tr>
-					   <th>ID</th>
-					   <th>Username</th>
-					</tr>
-				</thead>
-				<tbody>
-			@foreach ($user->instagramAccounts as $account)
-				<tr>
-					<td>{{ $account->id }}</td>
-					<td><a href="/tools/instagram-account-analyzer/{{ $account->username }}">{{ '@'.$account->username }}</a></td>
-				</tr>
-			@endforeach
-			</tbody>
-		</table>
-	</div>
-	@else
-		<div class="alert text-muted">
-			 There's currently no Instagram profiles associated with your account.
-		</div>
-	@endif
-</div>
-<div class="row m-0 pt-5 pb-5 ">
 	<h2 class="mt-5 mb-0" id="websites">Websites</h2>
 	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
@@ -131,63 +104,71 @@
     </a>
 </div>
 
+@if($user->instagram_accounts_count > 0)
 <div class="row m-0 pt-5 pb-5 ">
-	<h2 class="mt-5 mb-0" id="emails">Email accounts</h2>
-	<div class="table-responsive">
-		<table class="table mb-0">
-				<thead>
-					<tr>
-					   <th>ID</th>
-					   <th>Email</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>{{ $user->primaryEmail->id }}</td>
-					<td><a href="/emails/{{ $user->primaryEmail->id }}">{{ $user->primaryEmail->email }}</a></td>
-				</tr>
-			@foreach ($user->emails as $email)
-				<tr>
-					<td>{{ $email->id }}</td>
-					<td><a href="/emails/{{ $email->id }}">{{ $email->email }}</a></td>
-				</tr>
-			@endforeach
-			</tbody>
-		</table>
+	<div class="action-section card round-all-round text-center" data-aos="fade" id="instagram">
+	      <div class="card-body">
+	        <h2 class="card-title">{{$user->instagram_accounts_count}} Instagram {{str_plural("accounts", $user->instagram_accounts_count)}}</h2>
+	        <p class="card-text">Manage Instagram accounts on {{config('app.name')}} associated with you and your business.</p>
+	        	<div class="card-footer">
+	<a class="button button-primary" href="/instagram-accounts?user={{$user->id}}">
+        {{ __('Your Instagram accounts') }}
+    </a>
+	</div>
+	      </div>
 	</div>
 </div>
+@else
+@component('components.customContactCard', ['title' => 'No Instagram accounts', 'id' => 'instagram'])
+    You have no Instagram accounts on {{config('app.name')}} associated with you and your business.
+@endcomponent
+@endif
+
+@if($user->emails_count > 0)
 <div class="row m-0 pt-5 pb-5 ">
-	<h2 class="mt-5 mb-0" id="files">Files</h2>
-	@if($user->files && count($user->files) > 0)
-	<div class="table-responsive">
-		<table class="table mb-0">
-				<thead>
-					<tr>
-					   <th>Preview</th>
-					   <th>Name</th>
-					   <th>Public</th>
-					</tr>
-				</thead>
-				<tbody>
-			@foreach ($user->files as $file)
-				<tr>
-                    <td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 30px;" alt="{{ $file->name }}"></td>
-					<td><a href="/files/{{ $file->id }}">{{ $file->name }}</a></td>
-					<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes' : 'No' }} </td>
-				</tr>
-			@endforeach
-			</tbody>
-		</table>
+	<div class="action-section card round-all-round text-center" data-aos="fade" id="emails">
+	      <div class="card-body">
+	        <h2 class="card-title">{{$user->emails_count}} email {{str_plural("accounts", $user->emails_count)}}</h2>
+	        <p class="card-text">Manage email accounts associated with you and your business on {{config('app.name')}}.</p>
+	        	<div class="card-footer">
+	<a class="button button-primary" href="/emails?user={{$user->id}}">
+        {{ __('Your email accounts') }}
+    </a>
 	</div>
-	@else
-		<div class="alert text-muted">
-			 There's currently no files associated with your account. You can upload and share up to 1gb files with {{config('app.name')}}.
-		</div>
-	@endif
+	      </div>
+	</div>
+</div>
+@else
+@component('components.customContactCard', ['title' => 'No email accounts', 'id' => 'emails'])
+    You have no email accounts on {{config('app.name')}} associated with you.
+@endcomponent
+@endif
+
+@if($user->files_count > 0)
+<div class="row m-0 pt-5 pb-5 ">
+	<div class="action-section card round-all-round text-center" data-aos="fade" id="files">
+{{-- 	      <img src="{{$user->files->where('extension', 'png')->last()->url}}" class="card-img-top" style="max-height: 200px;object-fit: scale-down;" alt="{{Config('app.name')}} Marketing Bot">
+ --}}
+	      <div class="card-body">
+	        <h2 class="card-title">{{$user->files_count}} {{str_plural("files", $user->files_count)}}</h2>
+	        <p class="card-text">Easily share and manage files related to your business on {{config('app.name')}}.</p>
+	        	<div class="card-footer">
+	<a class="button button-primary" href="/files?user={{$user->id}}">
+        {{ __('All your files') }}
+    </a>
 	@can('create', App\File::class)
-        <a class="button button-primary mt-3" href="/files/create">
+        <a class="button button" href="/files/create">
             {{ __('Upload a file') }}
         </a>
     @endcan
+	</div>
+	      </div>
+	</div>
 </div>
+@else
+	@component('components.customContactCard', ['title' => 'No files', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files/create', 'text' => 'Upload your first file']]])
+	    You have no files on {{config('app.name')}} associated with you and your business.
+	@endcomponent
+@endif
+
 @endsection

@@ -26,16 +26,14 @@
 	<button type="submit">Search</button>
 </form>
 	@if($files && count($files) > 0)
-	<div class="table-responsive table-hover">
+	<div class="table-responsive table-hover" id="table">
 		<table class="table mb-0">
 			<thead>
 				<tr>
 				   <th>Preview</th>
 				   <th>Name</th>
 				   <th>Extension</th>
-				   <th>MIME type</th>
 				   <th>Size</th>
-				   <th>URL</th>
 				   <th>Public</th>
 				   <th>User</th>
 				   <th>Created at</th>
@@ -43,16 +41,14 @@
 			</thead>
 			<tbody>
 			@foreach ($files as $file)
-				<tr>
+				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/files/{{ $file->id }}';">
 					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 100px;" alt="{{ $file->name }}"></td>
-					<td><a href="/files/{{ $file->id }}">{{ $file->name }}</a></td>
-					<td>{{ $file->extension }}</td>
-					<td>{{ $file->mimeType }}</td>
+					<td>{{ $file->name }}</td>
+					<td>{{ $file->extension }} <span class="text-muted">({{ $file->mimeType }})</span></td>
 					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
-					<td><a target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">{{ $file->is_public  ? 'Long-lived link' : 'Temporary link' }}</a></td>
 					@can('update file visibility', $file)
 						<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">
-							<checkbox-toggle-component checked="{{$file->is_public ? true : false}}" title="Is public" url="/files/{{$file->id}}" column_title="is_public"></checkbox-toggle-component>
+							<checkbox-toggle-component checked="{{$file->is_public ? true : false}}" title="Is public" url="/files/{{$file->id}}" column_title="is_public" onclick="event.stopPropagation();"></checkbox-toggle-component>
 						</td>
 					@else
 						<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">
@@ -61,7 +57,7 @@
 					@endcan
 					@can('update file user', $file)
 						<td class="text-{{ !$file->user  ? 'primary' : null }}">
-						<select-component :options="{{$users}}" title="Is serviceable" url="/files/{{$file->id}}" column_title="user_id" current_value="{{$file->user_id}}"></select-component>
+						<select-component :options="{{$users}}" title="Is serviceable" url="/files/{{$file->id}}" column_title="user_id" current_value="{{$file->user_id}}" onclick="event.stopPropagation();"></select-component>
 					</td>
 					@else
 						<td class="text-{{ !$file->user  ? 'primary' : null }}">{{$file->user->name}}</td>
@@ -72,7 +68,7 @@
 			</tbody>
 		</table>
 	</div>
-	{!! $files->appends(request()->except('page'))->links('vendor.pagination.default') !!}
+	{!! $files->appends(request()->except('page'))->fragment('table')->links('vendor.pagination.default') !!}
 	@else
 		<div class="alert text-muted">
 			 There's currently no files matching the request.

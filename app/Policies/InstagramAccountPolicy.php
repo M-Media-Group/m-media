@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\File;
+use App\InstagramAccount;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FilePolicy
+class InstagramAccountPolicy
 {
     use HandlesAuthorization;
 
@@ -37,17 +37,15 @@ class FilePolicy
      * Determine whether the user can view the file.
      *
      * @param \App\User $user
-     * @param \App\File $file
+     * @param \App\InstagramAccount $instagram_account
      *
      * @return mixed
      */
-    public function show(User $user, File $file)
+    public function show(User $user, InstagramAccount $instagram_account)
     {
-        if ($file->is_public) {
-            return true;
-        }
-        if ($file->user_id) {
-            return $user->id == $file->user_id;
+
+        if ($instagram_account->user_id) {
+            return $user->id == $instagram_account->user_id;
         }
 
         return false;
@@ -57,14 +55,14 @@ class FilePolicy
      * Determine whether the user can update the file.
      *
      * @param \App\User $user
-     * @param \App\File $file
+     * @param \App\InstagramAccount $instagram_account
      *
      * @return mixed
      */
-    public function update(User $user, File $file)
+    public function update(User $user, InstagramAccount $instagram_account)
     {
-        if ($file->user_id) {
-            return $user->id == $file->user_id;
+        if ($instagram_account->user_id) {
+            return $user->id == $instagram_account->user_id;
         }
 
         return false;
@@ -86,14 +84,14 @@ class FilePolicy
      * Determine whether the user can delete the file.
      *
      * @param \App\User $user
-     * @param \App\File $file
+     * @param \App\InstagramAccount $instagram_account
      *
      * @return mixed
      */
-    public function delete(User $user, File $file)
+    public function delete(User $user, InstagramAccount $instagram_account)
     {
-        if ($file->user_id) {
-            return $user->id == $file->user_id;
+        if ($instagram_account->user_id) {
+            return $user->id == $instagram_account->user_id;
         }
 
         return false;
@@ -104,11 +102,11 @@ class FilePolicy
      * Determine whether the user can restore the file.
      *
      * @param \App\User $user
-     * @param \App\File $file
+     * @param \App\InstagramAccount $instagram_account
      *
      * @return mixed
      */
-    public function restore(User $user, File $file)
+    public function restore(User $user, InstagramAccount $instagram_account)
     {
         return false;
     }
@@ -117,11 +115,11 @@ class FilePolicy
      * Determine whether the user can permanently delete the file.
      *
      * @param \App\User $user
-     * @param \App\File $file
+     * @param \App\InstagramAccount $instagram_account
      *
      * @return mixed
      */
-    public function forceDelete(User $user, File $file)
+    public function forceDelete(User $user, InstagramAccount $instagram_account)
     {
         return false;
     }

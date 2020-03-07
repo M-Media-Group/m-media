@@ -1,4 +1,4 @@
-<nav class="flex" style="position: fixed; left:2rem; right:2rem; top:2rem;z-index: 999;">
+<nav class="flex" style="position: fixed; left:2rem; top:2rem;z-index: 999;width: auto;">
     <div class=" flex flex-center dropdown" style="width:initial;">
         <a href="#" class="logo-container"><img src="/images/logo.png" height="35" alt="{{config('app.name')}} logo">
 @auth

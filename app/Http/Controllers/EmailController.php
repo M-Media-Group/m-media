@@ -12,17 +12,25 @@ class EmailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->authorize('index', File::class);
-        $emails = Email::withCount('logs', 'received_logs')->get();
+
+        $user = $request->input('user');
+
+        $this->authorize('index', Email::class);
+
+        $emails = Email::withCount('logs', 'received_logs')
+            ->when($user, function ($query, $user) {
+                return $query->where('user_id', $user);
+            })->get();
+
         $all_users = \App\User::all();
         $users = collect();
 
         foreach ($all_users as $user) {
             $data = [
                 'full_name' => $user->full_name,
-                'id'        => $user->id,
+                'id' => $user->id,
             ];
             $users->push($data);
         }
@@ -91,9 +99,9 @@ class EmailController extends Controller
     {
         $this->authorize('update', $email);
         $request->validate([
-            'is_public'        => 'nullable|boolean',
+            'is_public' => 'nullable|boolean',
             'can_receive_mail' => 'nullable|boolean',
-            'user_id'          => 'nullable',
+            'user_id' => 'nullable',
         ]);
         $email->update($request->only('can_receive_mail', 'is_public', 'user_id'));
 

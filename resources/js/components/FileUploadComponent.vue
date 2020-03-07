@@ -37,7 +37,9 @@
                             autofocus
                             v-else
                         />
-                        <a href="##" class="small text-muted" v-on:click="use_url = !use_url">{{use_url ? 'Upload a file' : 'Upload via a URL'}}</a>
+                        <a href="##" class="small text-muted" v-on:click="use_url = !use_url">{{
+                            use_url ? 'Upload a file' : 'Upload via a URL'
+                        }}</a>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -122,7 +124,7 @@ export default {
             file_url: null,
             file_user_id: null,
             upload_url: null,
-            use_url: false
+            use_url: false,
         };
     },
     mounted() {
@@ -140,7 +142,7 @@ export default {
             let data = new FormData();
             this.loading = true;
             data.append('title', this.title);
-            if(this.use_url && this.upload_url) {
+            if (this.use_url && this.upload_url) {
                 data.append('url', this.upload_url);
             } else {
                 data.append('file', this.avatar);
@@ -162,12 +164,12 @@ export default {
                     this.file_user_id = res.data.user_id;
                     this.avatar_url = null;
                     this.title = null;
-                    if(!this.use_url && !this.upload_url) {
+                    if (!this.use_url && !this.upload_url) {
                         const input = this.$refs.fileInput;
                         input.type = 'text';
                         input.type = 'file';
                     } else {
-                        this.upload_url = null
+                        this.upload_url = null;
                     }
                 })
                 .catch(error => {

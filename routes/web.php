@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,8 +114,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['verified']], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
-    Route::get('payment-methods/sepa-accounts/create', function (Request $request) {
-        $user = $request->user();
+    Route::get('users/{id}/payment-methods/sepa-accounts/create', function (App\User $user) {
+        //$user = $request->user();
         $intent = $user->createSetupIntent([
             'payment_method_types' => ['sepa_debit'],
         ]);
@@ -126,7 +124,7 @@ Route::group(['middleware' => ['verified']], function () {
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {

@@ -7,8 +7,6 @@
         <h1>Pay with SEPA Direct Debit</h1>
     </div>
 
-
-
 <div class="action-section container row mt-5">
     <div class="col-md-6 d-none">
       <label for="name">

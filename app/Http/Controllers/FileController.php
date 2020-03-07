@@ -25,7 +25,8 @@ class FileController extends Controller
     {
         $user = $request->input('user');
         $type = $request->input('extension');
-
+        $visibility = $request->input('visibility');
+        //dd(isset($visibility));
         // since both formats are the same check for both extensions if either exists
         if ($type) {
             if (in_array('jpg', $type)) {
@@ -45,6 +46,9 @@ class FileController extends Controller
         })
             ->when($user, function ($query, $user) {
                 return $query->where('user_id', $user);
+            })
+            ->when($visibility, function ($query, $visibility) {
+                return $query->where('is_public', $visibility == 'private' ? 0 : 1);
             })
             ->when($type, function ($query, $type) {
                 return $query->whereIn('extension', $type);
@@ -87,8 +91,9 @@ class FileController extends Controller
      */
     public function store(StoreFile $request)
     {
-        $this->authorize('create', File::class);
-        //return $request->user();
+        // NO need for authorize as thats handled by the request StoreFile
+        //$this->authorize('create', File::class);
+
         $data = UploadFile::dispatchNow($request);
 
         return $data;
@@ -149,7 +154,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

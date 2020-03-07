@@ -70,7 +70,7 @@
 					@else
 						<td class="text-{{ !$file->user  ? 'primary' : null }}">{{$file->user->name}}</td>
 					@endcan
-					<td class="text-{{ now()->diffInDays( $file->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $file->created_at->diffForHumans() }}</td>
+					<td class="text-muted">{{ $file->created_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach
 			</tbody>

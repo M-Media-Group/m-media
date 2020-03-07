@@ -42,6 +42,10 @@ class File extends Model
 
     public function getIsPublicAttribute()
     {
+        if (config('filesystems.default') != 's3') {
+            return $this->getOriginal('is_public');
+        }
+
         if (Storage::exists($this->getOriginal('url'))) {
             return Storage::getVisibility($this->getOriginal('url')) === 'private' ? 0 : 1;
         } else {

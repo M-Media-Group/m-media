@@ -95,6 +95,14 @@ Jump to:
 					<td>{{$user->card_last_four == $method->card->last4 ? 'Primary payment method' : null}}</td>
 				</tr>
 				@endforeach
+				@foreach ($sepa_sources as $method)
+				<tr>
+					<td>{{ $method->sepa_debit->country }} bank account<br/><small class="text-muted">Bank code: {{ $method->sepa_debit->bank_code }}</small></td>
+					<td class="text-muted">**** {{ $method->sepa_debit->last4 }}</td>
+					<td></td>
+					<td>{{$user->card_last_four == $method->sepa_debit->last4 ? 'Primary payment method' : null}}</td>
+				</tr>
+				@endforeach
 				</tbody>
 		</table>
 	</div>
@@ -111,12 +119,13 @@ Jump to:
 <div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);">
 	<div id="card-element"></div>
 </div>
-
+<div>
 <button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
     Add card
 </button>
+	<a href="/payment-methods/sepa-accounts/create" class="small text-muted ml-3">Add a SEPA bank account</a>
 </div>
-
+</div>
 <div class="row m-0 pt-5 pb-5 ">
     <h2 class="mt-5 mb-0" id="invoices">All invoices</h2>
 	@if(count($invoices) > 0)
@@ -228,10 +237,14 @@ Jump to:
 	cardButton.addEventListener('click', async (e) => {
 		cardButton.setAttribute("disabled", "disabled");
 		cardButton.innerText = 'Please wait...';
-	    const { setupIntent, error } = await stripe.handleCardSetup(
-	        clientSecret, cardElement
+		const { setupIntent, error } = await stripe.confirmCardSetup(
+	        clientSecret, {
+	            payment_method: {
+	                card: cardElement,
+	                //billing_details: { name: cardHolderName.value }
+	            }
+	        }
 	    );
-
 	    if (error) {
 	        // Display "error.message" to the user...
 	        alert(error.message)

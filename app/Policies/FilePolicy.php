@@ -26,7 +26,7 @@ class FilePolicy
      */
     public function index(User $user)
     {
-        if (! request()->input('user')) {
+        if (!request()->input('user')) {
             return false;
         }
 
@@ -63,6 +63,9 @@ class FilePolicy
      */
     public function update(User $user, File $file)
     {
+        if ($file->user_id && request()->input('user_id') && $file->user_id !== request()->input('user_id')) {
+            return false;
+        }
         if ($file->user_id) {
             return $user->id == $file->user_id;
         }

@@ -42,7 +42,7 @@
 			<tbody>
 			@foreach ($files as $file)
 				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/files/{{ $file->id }}';">
-					<td><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 100px;" alt="{{ $file->name }}"></td>
+					<td style="text-align:center;"><img src="{{ $file->url }}" class="rounded img-thumbnail" style="max-height: 100px;" alt="{{ $file->name }}"></td>
 					<td>{{ $file->name }}</td>
 					<td>{{ $file->extension }} <span class="text-muted">({{ $file->mimeType }})</span></td>
 					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>

@@ -120,6 +120,10 @@ class UserController extends Controller
         $subscriptions = collect();
         $discounts = collect();
         if ($user->stripe_id) {
+            $sepa_sources = \Stripe\PaymentMethod::all([
+                'customer' => $user->stripe_id,
+                'type' => 'sepa_debit',
+            ])->data;
             $pmethod = $user->paymentMethods();
             $stripe_customer = $user->asStripeCustomer();
             $subscriptions = $stripe_customer->subscriptions;
@@ -131,10 +135,10 @@ class UserController extends Controller
         }
 
         $intent = $user->createSetupIntent();
-
+        //return $pmethod;
         //dd($amount_spent);
 
-        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent'));
+        return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent', 'sepa_sources'));
     }
 
     /**
@@ -151,7 +155,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -171,15 +175,18 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     public function updateCard(Request $request, User $user)
     {
+
         $this->authorize('update', $user);
         $stripeToken = $request->input('card_token');
-        $user->updateDefaultPaymentMethod($stripeToken);
-
+        $paymentMethod = $user->updateDefaultPaymentMethod($stripeToken);
+        if ($paymentMethod->type == 'sepa_debit') {
+            $user->update(['card_last_four' => $paymentMethod->sepa_debit->last4, 'card_brand' => "Bank account"]);
+        }
         return $user;
     }
 

@@ -1,7 +1,10 @@
 <div class="row m-0 pt-5 pb-5 ">
     <div class="action-section card round-all-round text-center" data-aos="fade" id="{{$id}}">
+        @if(isset($image))
+        <img src="{{$image}}" class="card-img-top p-0" style="max-height: 175px;object-fit: scale-down;" alt="{{Config('app.name')}}">
+        @endif
           <div class="card-body">
-            <h2 class="card-title">{{$title}}</h2>
+            <h3 class="card-title">{{$title}}</h3>
             <p class="card-text">{{$slot}}</p>
                 <div class="card-footer">
                     @if(isset($buttons))
@@ -15,7 +18,7 @@
                             {{ __('Contact us') }}
                         </a>
                     @endif
-    </div>
+                </div>
           </div>
     </div>
 </div>

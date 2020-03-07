@@ -54,8 +54,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        /*--white: #222;
+    /*:root {
+        --white: #222;
         --black: #fff;
         --dark: #f3f3f3;
         --light: #131313;
@@ -63,8 +63,8 @@
         --filter-darker: brightness(115%);
         --filter-lighter: brightness(85%);
 
-        --box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.3);*/
-    }
+        --box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.3);
+    }*/
 }
 
 @media print {
@@ -505,6 +505,7 @@ input[type='text'],
 input[type='tel'],
 input[type='url'],
 input[type='password'],
+input[type='file'],
 textarea,
 select {
     color: inherit; /* 1 */
@@ -531,6 +532,7 @@ input[type='text'],
 input[type='tel'],
 input[type='url'],
 input[type='password'],
+input[type='file'],
 textarea,
 select {
     -webkit-appearance: none;
@@ -551,10 +553,13 @@ input[type='text']:focus,
 input[type='tel']:focus,
 input[type='url']:focus,
 input[type='password']:focus,
+input[type='file']:focus,
 textarea:focus,
 select:focus {
     border: 1px solid #33c3f0;
     outline: 0;
+    background-color: var(--white);
+    color: inherit; /* 1 */
 }
 
 label,
@@ -605,6 +610,14 @@ ol ul {
 }
 
 li {
+}
+
+.list-group-item-action {
+           color: var(--dark); /* 1 */
+}
+.list-group-item-action:hover, .list-group-item-action:focus {
+        background-color: var(--white);
+        color: inherit; /* 1 */
 }
 
 /* Code
@@ -897,8 +910,14 @@ img {
     box-sizing: border-box;
 }
 
+/* Table
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .table td {
     vertical-align: middle;
+}
+
+.table {
+    color: inherit;
 }
 
 /* Clearing

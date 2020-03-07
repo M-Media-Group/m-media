@@ -76,6 +76,7 @@ class CustomNotification extends Notification implements ShouldQueue
         if ($this->data['action']) {
             $message->action($this->data['action_text'], url($this->data['action']));
         }
+
         return $message;
     }
 

@@ -39,7 +39,7 @@ class LinkPhonesToPrimaryOwners implements ShouldQueue
             $users = \App\User::with('phones', 'primaryPhone')->get();
             foreach ($users as $user) {
                 //dd();
-                if (!$user->phones->contains('id', $user->phone_id)) {
+                if (! $user->phones->contains('id', $user->phone_id)) {
                     $phone = SavePhone::dispatch(['phonenumber' => $user->primaryPhone->e164], true, $user);
                     if ($phone['user_id'] !== $user->id) {
                         $phone->update(['user_id' => $user->id]);

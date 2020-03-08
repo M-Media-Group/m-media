@@ -286,7 +286,7 @@ body {
 
 .action-section {
     margin-top: -5rem;
-    padding: 3.7rem;
+    padding: 1.7rem;
     max-width: 700px;
 
     //animation-name: example;
@@ -298,6 +298,13 @@ body {
     box-shadow: 0 0 5rem 0 rgba(0, 0, 0, 0.15);
     -webkit-transition: all 0.15s;
     transition: all 0.15s;
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+    .action-section {
+        padding: 3.7rem;
+    }
 }
 
 .action-section-hover:hover {

@@ -42,7 +42,7 @@
 
 @if($user->websites_count > 0)
 @component('components.customContactCard', ['title' => $user->websites_count." ".str_plural("website", $user->websites_count), 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
-	    Easily share and manage websites related to your business on {{config('app.name')}}.
+	    See and manage websites related to your business on {{config('app.name')}}.
 	    	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
 		<table class="table mb-0">
@@ -99,19 +99,9 @@
 @endif
 
 @if($user->instagram_accounts_count > 0)
-<div class="row m-0 pt-5 pb-5 ">
-	<div class="action-section card round-all-round text-center" data-aos="fade" id="instagram">
-	      <div class="card-body">
-	        <h2 class="card-title">{{$user->instagram_accounts_count}} Instagram {{str_plural("account", $user->instagram_accounts_count)}}</h2>
-	        <p class="card-text">Manage Instagram accounts on {{config('app.name')}} associated with you and your business.</p>
-	        	<div class="card-footer">
-	<a class="button button-primary" href="/instagram-accounts?user={{$user->id}}">
-        {{ __('Your Instagram accounts') }}
-    </a>
-	</div>
-	      </div>
-	</div>
-</div>
+@component('components.customContactCard', ['title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'buttons' => [['type' => 'primary', 'link' => '/instagram-accounts?user='.$user->id, 'text' => __('Your Instagram accounts')]]])
+	    Manage Instagram accounts on {{config('app.name')}} associated with you and your business.
+	@endcomponent
 @else
 @component('components.customContactCard', ['title' => 'No Instagram accounts', 'id' => 'instagram', 'image' => '/images/polaroid.svg'])
     You have no Instagram accounts on {{config('app.name')}} associated with you and your business.

@@ -78,7 +78,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	    @foreach($phone->logs as $log)
+	    @foreach($phone->logs->reverse() as $log)
 	            <tr>
 	                @if($log->type == 'INBOUND')
 						<td>You called us</td>

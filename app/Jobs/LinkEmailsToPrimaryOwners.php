@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Email;
 use App\Jobs\SaveEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -39,17 +40,14 @@ class LinkEmailsToPrimaryOwners implements ShouldQueue
             $users = \App\User::with('emails', 'primaryEmail')->get();
             foreach ($users as $user) {
                 //dd();
-                if (! $user->primaryEmail) {
+                if (!$user->primaryEmail) {
                     $email = SaveEmail::dispatch(['email' => $user->email], true, $user);
-                } elseif (! $user->emails->contains('email', '=', $user->primaryEmail->email) && $user->email_verified_at) {
-                    $email = SaveEmail::dispatch(['email' => $user->primaryEmail->email], true, $user);
-                    if ($email['user_id'] !== $user->id) {
-                        $email->update(['user_id' => $user->id]);
-                    }
+                } elseif (!$user->emails->contains('email', '=', $user->primaryEmail->email) && $user->email_verified_at) {
+                    Email::where('email', $user->primaryEmail->email)->update(['user_id' => $user->id]);
                 }
             }
 
-            return true;
+            return $users;
         } catch (Exception $e) {
             return $e;
         }

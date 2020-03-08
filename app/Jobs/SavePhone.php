@@ -67,7 +67,7 @@ class SavePhone implements ShouldQueue
         $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
         $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
         $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-        if (! $validNumber) {
+        if (!$validNumber) {
             return response()->json(['Error' => 'This is not a valid number.'], 422);
         }
         $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, strtoupper($input['country']));
@@ -96,7 +96,7 @@ class SavePhone implements ShouldQueue
                 'country_id' => $country->id,
                 'timezone' => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id' => null,
+                'user_id' => $this->user ? $this->user->id : null,
                 'is_public' => 0,
                 'country' => $country,
             ];
@@ -109,7 +109,7 @@ class SavePhone implements ShouldQueue
                 'country_id' => $country->id,
                 'timezone' => $timezone[0],
                 'description' => $phoneNumberToCarrierInfo,
-                'user_id' => null,
+                'user_id' => $this->user ? $this->user->id : null,
                 'is_public' => 0,
             ]
         )->load('defaultForUser', 'user');

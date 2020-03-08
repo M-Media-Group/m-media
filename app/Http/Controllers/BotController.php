@@ -157,7 +157,7 @@ class BotController extends Controller
 
             $obj = json_decode($body);
 
-            return 'ssh -l pi '.$obj->connection->proxyserver.' -p '.$obj->connection->proxyport;
+            return 'ssh -l pi ' . $obj->connection->proxyserver . ' -p ' . $obj->connection->proxyport;
         } catch (Exception $e) {
             return $e;
         }

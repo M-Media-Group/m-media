@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Jobs\SavePhone;
+use App\Phone;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -38,16 +38,11 @@ class LinkPhonesToPrimaryOwners implements ShouldQueue
         try {
             $users = \App\User::with('phones', 'primaryPhone')->get();
             foreach ($users as $user) {
-                //dd();
-                if (! $user->phones->contains('id', $user->phone_id)) {
-                    $phone = SavePhone::dispatch(['phonenumber' => $user->primaryPhone->e164], true, $user);
-                    if ($phone['user_id'] !== $user->id) {
-                        $phone->update(['user_id' => $user->id]);
-                    }
+                if (!$user->phones->contains('id', $user->phone_id)) {
+                    Phone::where('id', $user->phone_id)->update(['user_id' => $user->id]);
                 }
             }
-
-            return true;
+            return $users;
         } catch (Exception $e) {
             return $e;
         }

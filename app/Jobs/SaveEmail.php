@@ -45,7 +45,7 @@ class SaveEmail implements ShouldQueue
     {
         $input = $this->input;
 
-        $domain = 'http://' . substr($input['email'], strpos($input['email'], '@') + 1);
+        $domain = 'http://'.substr($input['email'], strpos($input['email'], '@') + 1);
         $website_url = parse_url($domain);
 
         if ($this->save == false) {

@@ -40,9 +40,9 @@ class LinkEmailsToPrimaryOwners implements ShouldQueue
             $users = \App\User::with('emails', 'primaryEmail')->get();
             foreach ($users as $user) {
                 //dd();
-                if (!$user->primaryEmail) {
+                if (! $user->primaryEmail) {
                     $email = SaveEmail::dispatch(['email' => $user->email], true, $user);
-                } elseif (!$user->emails->contains('email', '=', $user->primaryEmail->email) && $user->email_verified_at) {
+                } elseif (! $user->emails->contains('email', '=', $user->primaryEmail->email) && $user->email_verified_at) {
                     Email::where('email', $user->primaryEmail->email)->update(['user_id' => $user->id]);
                 }
             }

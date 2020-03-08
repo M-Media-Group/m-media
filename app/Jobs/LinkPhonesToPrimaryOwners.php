@@ -38,10 +38,11 @@ class LinkPhonesToPrimaryOwners implements ShouldQueue
         try {
             $users = \App\User::with('phones', 'primaryPhone')->get();
             foreach ($users as $user) {
-                if (!$user->phones->contains('id', $user->phone_id)) {
+                if (! $user->phones->contains('id', $user->phone_id)) {
                     Phone::where('id', $user->phone_id)->update(['user_id' => $user->id]);
                 }
             }
+
             return $users;
         } catch (Exception $e) {
             return $e;

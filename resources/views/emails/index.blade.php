@@ -17,7 +17,7 @@
 				   <th>Can receive email</th>
 				   <th>Public</th>
 				   @endcan
-				   <th>Primary User</th>
+				   <th>Primary user</th>
 				   	@can('update email addresses')
 				   <th>User</th>
 				   @endcan
@@ -28,21 +28,21 @@
 			</thead>
 			<tbody>
 			@foreach ($emails->sortByDesc('logs_count') as $email)
-				<tr>
-					<td><a href="/emails/{{ $email->id }}">{{ $email->email }}</a></td>
+				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/emails/{{ $email->id }}';">
+					<td>{{ $email->email }}</td>
 					@can('update email addresses')
 					<td class="text-{{ $email->can_receive_mail  ? 'muted' : 'primary' }}">
-						<checkbox-toggle-component checked="{{$email->can_receive_mail ? true : false}}" title="Can receive email" url="/emails/{{$email->id}}" column_title="can_receive_mail"></checkbox-toggle-component>
+						<checkbox-toggle-component checked="{{$email->can_receive_mail ? true : false}}" title="Can receive email" url="/emails/{{$email->id}}" column_title="can_receive_mail" onclick="event.stopPropagation();"></checkbox-toggle-component>
 					</td>
 					<td class="text-{{ $email->is_public  ? 'primary' : 'muted' }}">
-						<checkbox-toggle-component checked="{{$email->is_public ? true : false}}" title="Is public" url="/emails/{{$email->id}}" column_title="is_public"></checkbox-toggle-component>
+						<checkbox-toggle-component checked="{{$email->is_public ? true : false}}" title="Is public" url="/emails/{{$email->id}}" column_title="is_public" onclick="event.stopPropagation();"></checkbox-toggle-component>
 					</td>
 					@endcan
 					<td class="text-{{ !$email->defaultForUser  ? 'primary' : null }}">{!! $email->defaultForUser ? '<a href="/users/'.$email->defaultForUser->id.'">'.$email->defaultForUser->name."</a>" : 'No owner' !!}</td>
 									   @can('update email addresses')
 
 					<td class="text-{{ !$email->user  ? 'primary' : null }}">
-						<select-component :options="{{$users}}" title="Is serviceable" url="/emails/{{$email->id}}" column_title="user_id" current_value="{{$email->user_id}}"></select-component>
+						<select-component :options="{{$users}}" title="Is serviceable" url="/emails/{{$email->id}}" column_title="user_id" current_value="{{$email->user_id}}" onclick="event.stopPropagation();"></select-component>
 					</td>
 					@endcan
 					<td>{{ $email->logs_count }}</td>

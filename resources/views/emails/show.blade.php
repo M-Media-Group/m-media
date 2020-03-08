@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section background-filter u-bg-primary" style="background:url({{$email->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section u-bg-primary">
         <h1>{{$email->email}}</h1>
         <p>{{config('app.name')}} email</p>
     </div>

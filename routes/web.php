@@ -124,7 +124,7 @@ Route::group(['middleware' => ['verified']], function () {
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {
@@ -140,6 +140,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('bots', 'BotController');
     Route::resource('files', 'FileController');
     Route::resource('emails', 'EmailController');
+    Route::resource('phones', 'PhoneController');
     Route::resource('email-logs', 'EmailLogController');
     Route::resource('phone-logs', 'PhoneLogController');
     Route::resource('instagram-accounts', 'InstagramAccountController');

@@ -63,8 +63,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $this->authorize('show', $user);
-        $user->load('primaryPhone', 'websites', 'primaryEmail')
-            ->loadCount('files', 'emails', 'instagramAccounts');
+        $user->load('websites')
+            ->loadCount('files', 'emails', 'instagramAccounts', 'bots', 'phones', 'websites');
 
         return view('users.show', ['user' => $user]);
     }
@@ -76,9 +76,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::where('id', urldecode($id))->with('primaryPhone.logs', 'phones.country')->firstOrFail();
         $this->authorize('update', $user);
 
         $roles = Role::get();
@@ -156,7 +155,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -176,7 +175,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     public function updateCard(Request $request, User $user)

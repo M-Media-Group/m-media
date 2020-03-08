@@ -32,15 +32,15 @@
                             {{ __('Notifications') }}
                             <notifications-indicator-component userid="{{Auth::id()}}"></notifications-indicator-component>
                     </a>
-                    <a href="/my-bots">
+                   {{--  <a href="/my-bots">
                             {{ __('Your bots') }}
-                    </a>
+                    </a> --}}
                     <a href="/users/{{ Auth::id() }}/billing">
                             {{ __('Billing') }}
                     </a>
-                    <a href="/users/{{ Auth::id() }}/edit">
+                    {{-- <a href="/users/{{ Auth::id() }}/edit">
                             {{ __('Account settings') }}
-                    </a>
+                    </a> --}}
                     <hr class="mb-0 mt-0">
                     {{-- <div class="ml-4 mt-5 small text-muted">Admin</div> --}}
                     <a href="/files/create">

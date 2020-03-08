@@ -119,6 +119,7 @@ Route::group(['middleware' => ['verified']], function () {
         $intent = $user->createSetupIntent([
             'payment_method_types' => ['sepa_debit'],
         ]);
+
         return view('createIban', compact('user', 'intent'));
     });
 

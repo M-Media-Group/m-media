@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('telescope:prune')->daily();
         $schedule->job(new SyncBots())->hourly()->between('7:00', '23:00');
         $schedule->job(new ScrapeInstagramAccounts())->dailyAt('23:00');
-        $schedule->job(new LinkEmailsToPrimaryOwners())->dailyAt('24:00');
+        $schedule->job(new LinkEmailsToPrimaryOwners())->dailyAt('23:59');
     }
 
     /**
@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

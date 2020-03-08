@@ -123,7 +123,7 @@ Jump to:
 <button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
     Add card
 </button>
-{{-- 	<a href="/users/{{$user->id}}/payment-methods/sepa-accounts/create" class="small text-muted ml-3">Add a SEPA bank account</a>
+{{-- 	<a href="/users/{{$user->id}}/payment-methods/sepas/create" class="small text-muted ml-3">Add a SEPA bank account</a>
  --}}</div>
 </div>
 <div class="row m-0 pt-5 pb-5 ">

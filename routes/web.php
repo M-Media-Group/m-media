@@ -114,12 +114,11 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['verified']], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
-    Route::get('users/{id}/payment-methods/sepa-accounts/create', function (App\User $user) {
+    Route::get('users/{user}/payment-methods/sepas/create', function (App\User $user) {
         //$user = $request->user();
         $intent = $user->createSetupIntent([
             'payment_method_types' => ['sepa_debit'],
         ]);
-
         return view('createIban', compact('user', 'intent'));
     });
 

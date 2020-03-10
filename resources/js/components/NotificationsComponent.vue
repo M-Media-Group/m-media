@@ -11,15 +11,11 @@
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1 mt-0">{{ notification.data.title }}</h5>
                 </div>
-                <p>{{ notification.data.message }}</p>
-                <small class="mt-0"
-                    ><span v-bind:class="{ 'text-primary': !notification.read_at }">{{
+                <small class="mt-0"><span v-bind:class="{ 'text-primary': !notification.read_at }">{{
                         timestamp(notification.created_at)
-                    }}</span
-                    ><span v-if="notification.data.action_text">
-                        · Click to {{ notification.data.action_text }}</span
-                    ></small
-                >
+                    }}</span><span v-if="notification.data.action_text">
+                        · Click to {{ notification.data.action_text }}</span></small>
+                <p>{{ notification.data.message }}</p>
             </article>
         </div>
         <div v-else-if="loading" key="loading" class="alert" data-aos="fade">

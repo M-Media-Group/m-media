@@ -100,6 +100,35 @@ class FileController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeFromEmail(Request $request)
+    {
+        // NO need for authorize as thats handled by the request StoreFile
+        //$this->authorize('create', File::class);
+
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'file' => 'required|file|max:976562',
+            'title' => 'nullable|string|max:191',
+            'public' => 'boolean',
+        ]);
+
+        $user = \App\User::where('email', $request->input('email'))->firstOrFail();
+
+        $request->merge(['user_id' => $user->id]);
+
+        $data = UploadFile::dispatchNow($request);
+
+        return $data;
+
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -154,7 +183,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

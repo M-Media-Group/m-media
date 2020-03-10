@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth:api']], function () {
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>'.$request->input('message', '').'</speak>',
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',
@@ -119,6 +119,8 @@ Route::group(['middleware' => ['client']], function () {
     Route::apiResource('phone-logs', 'PhoneLogController');
 
     Route::apiResource('email-logs', 'EmailLogController');
+
+    Route::post('files/upload-from-email', 'FileController@storeFromEmail');
 
     Route::get('/domains', function ($domain) {
         $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);

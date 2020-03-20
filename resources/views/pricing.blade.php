@@ -7,8 +7,17 @@
         <h1>Pricing</h1>
         <p>Products and services</p>
     </div>
+
 <div class="row m-0 pt-5 pb-5 " data-aos="fade">
+
 	<div class="col-md-12 u-center" style="max-width: 700px;">
+    <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" >
+         We are monitoring the situation regarding the global outbreak of Coronavirus. Our pricing terms for businesses have been relaxed; we're here to help your business get through this. <a href="/contact">Contact us</a> to discuss monthly installments and alternate payment options.
+         <br/><br/>Our Coronavirus live data tracker is <a href="/covid-19">available here</a>.
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
+          </button>
+    </div>
 	<h2 class="mt-5 mb-0">Services</h2>
 	@if($plans && count($plans->data) > 0)
 	<div class="table-responsive">

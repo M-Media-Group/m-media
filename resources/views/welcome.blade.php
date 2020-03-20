@@ -19,13 +19,23 @@
     }
     </script>
 
+    <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" style="position: fixed; bottom: 0;z-index: 999;">
+         We are monitoring the situation regarding the global outbreak of Coronavirus. Our pricing terms for businesses have been relaxed; we're here to help your business get through this. <a href="/contact">Contact us</a> for more info.
+         <br/><br/>Our Coronavirus live data tracker is <a href="/covid-19">available here</a>.
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
+          </button>
+    </div>
         <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/bdevices.svg'), url('images/backgrounds/1.svg'), var(--primary);background-position: left, bottom;background-repeat: no-repeat;background-size: cover;">
             <h1 class="header-section-title mb-0">Hi 👋! We're {{config('app.name')}}.</h1>
             <p class="mb-0" data-aos="fade" data-aos-delay="300">We make websites and handle your marketing.</p>
             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
         </div>
+
+
     <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+
         <div class="col-md-6">
             <h3 class="mt-0" data-aos="fade" data-aos-offset="0" data-aos-delay="500">You want to get your business online.</h3>
             <p style="max-width: 550px;" data-aos="fade">You're here to find out how to get a business website online and in front of your customers. You need a low-cost, quick, and tailored solution.</p>

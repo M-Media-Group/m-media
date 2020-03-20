@@ -20,14 +20,14 @@
     </script>
 
         <div class="header-section" >
-            <h1 class="header-section-title mb-0">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
+            <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
             <p class="mb-0" data-aos="fade" data-aos-delay="300">That's just the cases of Coronavirus that have been confirmed in a laboratory. With news of sketchy reporting and others staying at home, there's more cases out there.</p>
 {{--             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a> --}}
         </div>
     <div class="header-section row m-0" style="background: var(--light);">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade" data-aos-offset="0" data-aos-delay="500"><span class="text-danger">{{number_format($cases['Global']['All']['deaths'])}}</span> have died.</h3>
+            <h3 class="mt-0" data-aos="fade" data-aos-offset="0"><span class="text-danger">{{number_format($cases['Global']['All']['deaths'])}}</span> have died.</h3>
             <p style="max-width: 550px;" data-aos="fade">That's a {{number_format($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed'] * 100)}}% mortality rate. In comparison, the death rate from seasonal flu is typically around 0.1% in the U.S., according to The New York Times. </p>
         </div>
         <div class="col-md-6 mb-5 flex">

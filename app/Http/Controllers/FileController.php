@@ -120,6 +120,10 @@ class FileController extends Controller
 
         $user = \App\User::where('email', $request->input('email'))->firstOrFail();
 
+        if ($user->cant('create', File::class)) {
+            abort(403);
+        }
+
         $request->merge(['user_id' => $user->id]);
 
         $data = UploadFile::dispatchNow($request);
@@ -182,7 +186,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

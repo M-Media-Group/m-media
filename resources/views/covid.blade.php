@@ -27,7 +27,7 @@
         </div>
     <div class="header-section row m-0" style="background: var(--light);">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade" data-aos-offset="0"><span class="text-danger">{{number_format($cases['Global']['All']['deaths'])}}</span> have died.</h3>
+            <h3 class="mt-0" data-aos="fade" data-aos-offset="0"><span class="text-danger">{{number_format($cases['Global']['All']['deaths'])}}</span> people have died.</h3>
             <p style="max-width: 550px;" data-aos="fade">That's a {{number_format($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed'] * 100)}}% mortality rate. In comparison, the death rate from seasonal flu is typically around 0.1% in the U.S., according to The New York Times. </p>
         </div>
         <div class="col-md-6 mb-5 flex">
@@ -39,9 +39,9 @@
 
     <div class="header-section row m-0">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade"><span class="text-primary">{{number_format($cases['Global']['All']['recovered'] / $cases['Global']['All']['confirmed'] * 100)}}%</span> have recovered.</h3>
+            <h3 class="mt-0" data-aos="fade"><span class="text-primary">{{number_format($cases['Global']['All']['recovered'] / $cases['Global']['All']['confirmed'] * 100)}}%</span> people have recovered.</h3>
             <p data-aos="fade">Discharged from hospital and at home, {{number_format($cases['Global']['All']['recovered'])}} people no longer have the Coronavirus.</p>
-            <p data-aos="fade">There's still a risk of re-infection though.</p>
+            <p data-aos="fade">Some sources speculate that a risk of re-infection exists. Research is still being conducted.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
@@ -55,6 +55,7 @@
         <div class="col-md-6">
             <h3 class="mt-0" data-aos="fade"><span class="text-danger">{{number_format($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered'])}}</span> are still being treated.</h3>
             <p data-aos="fade">That's {{number_format(($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered']) / $cases['Global']['All']['confirmed'] * 100)}}% of all cases that are still in hospital right now.</p>
+             <p data-aos="fade">As of today, {{number_format(($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed']) * ($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered']))}} more people are expected to die.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
@@ -101,7 +102,8 @@
     <div class="header-section row m-0" style="background:var(--white);">
         <div class="col-md-6" data-aos="fade">
             <h3 class="mt-0" data-aos="fade">China, where the outbreak is thought to have started, now has <span class="text-danger">{{number_format($cases['China']['All']['confirmed'] - $cases['China']['All']['deaths'] - $cases['China']['All']['recovered'])}}</span> active cases.</h3>
-            <p data-aos="fade">Some sources report that data from China may not be 100% accurate.</p>
+            <p data-aos="fade">To date, China has had {{number_format($cases['China']['All']['confirmed'])}} confirmed cases of the Coronavirus.</p>
+            <p>Some sources report that data from China may not be 100% accurate and estimate the actual figure to be higher.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">

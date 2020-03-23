@@ -91,8 +91,8 @@
                 $history['France']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]) /
                 $history['France']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()] * 100
             ) }}%. More unreported people are likely to be sick at home.</p>
-            <p>The mainland accounts for {{number_format(($cases['France']['France']['confirmed']) / $cases['France']['All']['confirmed'] *100, 2)}}% of all confirmed cases in France.</p>
-        </div>
+{{--             <p>The mainland accounts for {{number_format(($cases['France']['France']['confirmed']) / $cases['France']['All']['confirmed'] *100, 2)}}% of all confirmed cases in France.</p>
+ --}}        </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
 {{--                 <a class="button button-secondary u-center" href="/contact" data-aos="fade">Send us a message</a>

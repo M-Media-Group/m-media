@@ -124,7 +124,7 @@ Route::group(['middleware' => ['verified']], function () {
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {
@@ -152,10 +152,10 @@ Route::get('/', function () {
 
 Route::get('/covid-19', function () {
     $client = new \GuzzleHttp\Client();
-    $request = $client->get('https://covid-api.mmediagroup.fr/v1/cases');
+    $request = $client->get('https://covid-api.mmediagroup.fr/dev/cases');
     $response = json_decode($request->getBody(), true);
     $request = $client->get('https://covid-api.mmediagroup.fr/v1/history?status=Confirmed');
     $response_2 = json_decode($request->getBody(), true);
-
+    //return $response;
     return View::make('covid', ['cases' => $response, 'history' => $response_2]);
 });

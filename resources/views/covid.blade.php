@@ -24,12 +24,12 @@
 
         <div class="header-section" >
             <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
-            <p data-aos="fade" data-aos-delay="300">Since yesterday, that's an increase of {{ number_format(
+            <p data-aos="fade" data-aos-delay="300">Since last week, that's an increase of {{ number_format(
                 $cases['Global']['All']['confirmed'] -
-                ($history['Global']['All']['dates'][Carbon\Carbon::now()->subDays(1)->toDateString()]))
+                ($history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]))
             }} cases, or {{ number_format(
                 ($cases['Global']['All']['confirmed'] -
-                $history['Global']['All']['dates'][Carbon\Carbon::now()->subDays(1)->toDateString()]) /
+                $history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]) /
                 $cases['Global']['All']['confirmed'] * 100
             ) }}%.</p>
             <p class="mb-0" data-aos="fade" data-aos-delay="300">Only cases tested in a laboratory are counted; with news of sketchy reporting and others staying at home, there's more cases out there.</p>
@@ -50,9 +50,9 @@
 
     <div class="header-section row m-0">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade"><span class="text-primary">{{number_format($cases['Global']['All']['recovered'] / $cases['Global']['All']['confirmed'] * 100)}}%</span> people have recovered.</h3>
-            <p data-aos="fade">Discharged from hospital and at home, {{number_format($cases['Global']['All']['recovered'])}} people no longer have the Coronavirus.</p>
-            <p data-aos="fade">Some sources speculate that a risk of re-infection exists. Research is still being conducted.</p>
+            <h3 class="mt-0" data-aos="fade">As of today, <span class="text-danger">{{number_format(($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed']) * ($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered']))}}</span> more people are expected to die.</h3>
+            <p data-aos="fade">Using the mortality rate, this many people are expected to die from Coronavirus in the coming weeks.</p>
+            <p data-aos="fade">Some cases of Coronavirus are not reported, which means the actual mortality rate may be lower.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
@@ -66,7 +66,7 @@
         <div class="col-md-6">
             <h3 class="mt-0" data-aos="fade"><span class="text-danger">{{number_format($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered'])}}</span> are still being treated.</h3>
             <p data-aos="fade">That's {{number_format(($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered']) / $cases['Global']['All']['confirmed'] * 100)}}% of all cases that are still in hospital right now.</p>
-             <p data-aos="fade">As of today, {{number_format(($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed']) * ($cases['Global']['All']['confirmed'] - $cases['Global']['All']['deaths'] - $cases['Global']['All']['recovered']))}} more people are expected to die.</p>
+             <p data-aos="fade"></p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
@@ -106,7 +106,7 @@
 
             <p data-aos="fade">That's {{number_format(($cases['Italy']['All']['confirmed'] - $cases['Italy']['All']['deaths'] - $cases['Italy']['All']['recovered']) / $cases['Italy']['All']['population'] *100, 2)}}% of the population in hospital right now because of the Coronavirus. More unreported people are likely to be sick at home.</p>
 
-            <p data-aos="fade">According to the OECD, Italy has an estimated {{number_format(192548)}} hospital beds that are usually 78.9% occupied. That leaves just {{number_format(($cases['Italy']['All']['population']/1000*3.18) - ($cases['Italy']['All']['population']/1000*3.18 * 0.78))}} hospital beds to deal with the Coronavirus, of which an estimated {{number_format(($cases['Italy']['All']['confirmed'] - $cases['Italy']['All']['deaths'] - $cases['Italy']['All']['recovered']) / (($cases['Italy']['All']['population']/1000*3.18) - ($cases['Italy']['All']['population']/1000*3.18 * 0.78)) * 100)}}% are already in use for this exact purpose.</p>
+            <p data-aos="fade">According to the OECD, Italy has an estimated {{number_format(192548)}} hospital beds that are usually 78.9% occupied. That leaves just {{number_format(($cases['Italy']['All']['population']/1000*3.18) - ($cases['Italy']['All']['population']/1000*3.18 * 0.78))}} hospital beds to deal with the Coronavirus, which means the hospitals are an estimated {{number_format(($cases['Italy']['All']['confirmed'] - $cases['Italy']['All']['deaths'] - $cases['Italy']['All']['recovered']) / (($cases['Italy']['All']['population']/1000*3.18) - ($cases['Italy']['All']['population']/1000*3.18 * 0.78)) * 100)}}% full.</p>
 
             <p>Since last week, there's been a {{ number_format(
                 ($cases['Italy']['All']['confirmed'] -

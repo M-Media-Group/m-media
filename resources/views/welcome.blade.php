@@ -19,7 +19,7 @@
     }
     </script>
 
-    <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" style="position: fixed; bottom: 0;z-index: 999;">
+    <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" style="position: fixed; bottom: 0;z-index: 99;">
          We are monitoring the situation regarding the global outbreak of Coronavirus. Our pricing terms for businesses have been relaxed; we're here to help your business get through this. <a href="/contact">Contact us</a> for more info.
          <br/><br/>Our Coronavirus live data tracker is <a href="/covid-19">available here</a>.
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -22,8 +22,54 @@
     }
     </script>
 
+@php
+$datasets = [];
+
+$array_one = array();
+$base_array_one = array();
+
+foreach ($history['Global']['All']['dates'] as $key => $value) {
+    $base_array_one[$key] = $value;
+}
+foreach ($base_array_one as $key => $val) {
+    array_push($array_one, ["y" => $val, "x" => $key]);
+}
+$data = [
+'pointHitRadius' => 20,
+'label' => 'Confirmed cases (logarithmic)',
+'fill' => false,
+'data' => $array_one,
+'yAxisID' => 'A',
+ 'borderColor' => ['#246eb9'],
+    'borderWidth' => 2
+];
+array_push($datasets, $data);
+
+$array_two = array();
+$base_array_two = array();
+
+foreach ($deaths['Global']['All']['dates'] as $key => $value) {
+    $base_array_two[$key] = $value;
+}
+foreach ($base_array_two as $key => $val) {
+    array_push($array_two, ["y" => $val, "x" => $key]);
+}
+$data = [
+'pointHitRadius' => 20,
+'label' => 'Deaths (logarithmic)',
+'fill' => false,
+'data' => $array_two,
+'yAxisID' => 'B',
+ 'borderColor' => ['#eb4647'],
+    'borderWidth' => 2
+];
+array_push($datasets, $data);
+
+@endphp
+
         <div class="header-section" >
             <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
+            <chart-line-component :data="{{json_encode($datasets)}}" :height="225" style="width: 100%;" class="mt-5 mb-5" scale="logarithmic"></chart-line-component>
             <p data-aos="fade" data-aos-delay="300">Since last week, that's an increase of {{ number_format(
                 $cases['Global']['All']['confirmed'] -
                 ($history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]))

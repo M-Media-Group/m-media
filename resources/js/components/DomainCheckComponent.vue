@@ -127,14 +127,14 @@ export default {
             data.append('file', this.avatar);
             data.append('domain', this.domain);
             let config = {
-                onUploadProgress: progressEvent => {
+                onUploadProgress: (progressEvent) => {
                     this.progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
                 },
             };
             //data.append('_method', 'put'); // add this
             axios
                 .post(this.url, data, config) // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.success = true;
                     this.error = false;
                     console.log(res);
@@ -146,7 +146,7 @@ export default {
                     input.type = 'text';
                     input.type = 'file';
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = true;
                     this.success = false;
                     this.error_msg = error.message;
@@ -163,7 +163,7 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/domains/' + this.domain + '/availability') // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.availability = res.data.availability;
                     this.loading = false;
                     if (res.data.availability == 'AVAILABLE') {
@@ -172,7 +172,7 @@ export default {
                         this.getSuggested();
                     }
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;
@@ -186,11 +186,11 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/domains/' + this.domain + '/suggestions') // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.suggestions = res.data.suggestions;
                     this.loading = false;
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;

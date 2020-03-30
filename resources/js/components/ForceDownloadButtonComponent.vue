@@ -31,10 +31,10 @@ export default {
                 .get(this.url, {
                     responseType: 'arraybuffer',
                 })
-                .then(response => {
+                .then((response) => {
                     this.forceFileDownload(response);
                 })
-                .catch(e => console.log(e));
+                .catch((e) => console.log(e));
         },
     },
 };

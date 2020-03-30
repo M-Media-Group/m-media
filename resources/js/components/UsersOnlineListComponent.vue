@@ -18,9 +18,9 @@ export default {
     mounted() {
         this.users.push(this.me);
         Echo.join(this.channel)
-            .here(users => (this.users = users))
-            .joining(user => this.users.push(user))
-            .leaving(user => (this.users = this.users.filter(u => u.id !== user.id)));
+            .here((users) => (this.users = users))
+            .joining((user) => this.users.push(user))
+            .leaving((user) => (this.users = this.users.filter((u) => u.id !== user.id)));
     },
 };
 </script>

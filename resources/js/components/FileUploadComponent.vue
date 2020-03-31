@@ -148,14 +148,14 @@ export default {
                 data.append('file', this.avatar);
             }
             let config = {
-                onUploadProgress: progressEvent => {
+                onUploadProgress: (progressEvent) => {
                     this.progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
                 },
             };
             //data.append('_method', 'put'); // add this
             axios
                 .post(this.url, data, config) // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.success = true;
                     this.error = false;
                     console.log(res);
@@ -172,7 +172,7 @@ export default {
                         this.upload_url = null;
                     }
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = true;
                     this.success = false;
                     this.error_msg = error.message;
@@ -185,12 +185,12 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/user') // change this to post )
-                .then(res => {
+                .then((res) => {
                     console.log('Go get');
 
                     console.log(res);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 }); //
             //console.log(error);

@@ -34,17 +34,17 @@ export default {
             let data = new FormData();
             data.append(this.title, this.is_servicable ? 1 : 0);
             let config = {
-                onUploadProgress: progressEvent => {
+                onUploadProgress: (progressEvent) => {
                     //this.progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total);
                 },
             };
             data.append('_method', 'patch'); // add this
             axios
                 .post(this.url, data, config) // change this to post )
-                .then(res => {
+                .then((res) => {
                     console.log(res);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.is_servicable = !this.is_servicable;
                 }); //

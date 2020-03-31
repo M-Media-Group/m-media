@@ -49,12 +49,12 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/subscriptions/' + this.subid) // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.subscription = res.data;
                     this.loading = false;
                     console.log(this.subscription);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;

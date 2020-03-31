@@ -47,12 +47,12 @@ export default {
                     responseType: 'json',
                     // withCredentials: true,
                 }) // change this to post )
-                .then(res => {
+                .then((res) => {
                     //console.log(res)
                     this.posts = res.data;
                     this.loading = false;
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;

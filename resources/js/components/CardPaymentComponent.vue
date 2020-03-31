@@ -39,13 +39,13 @@ export default {
             // See https://stripe.com/docs/api#tokens for the token object.
             // See https://stripe.com/docs/api#errors for the error object.
             // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-            createToken().then(data => {
+            createToken().then((data) => {
                 axios
                     .post('/api/users/' + this.user_id + '/update-card', {
                         card_token: data.token.id,
                     })
-                    .then(response => {})
-                    .catch(e => {
+                    .then((response) => {})
+                    .catch((e) => {
                         console.log(e.response.data);
                     });
             });

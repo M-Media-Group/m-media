@@ -91,12 +91,12 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/users/' + this.userid + '/future-invoice') // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.invoice = res.data;
                     this.loading = false;
                     console.log(this.invoice);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;

@@ -18,7 +18,7 @@ window.Vue = require('vue');
  */
 
 const files = require.context('./components', true, /\.vue$/i);
-files.keys().map(key =>
+files.keys().map((key) =>
     Vue.component(
         key
             .split('/')
@@ -101,8 +101,8 @@ const app = new Vue({
     },
     mounted() {
         Echo.join('online')
-            .here(users => (this.online_users = users))
-            .joining(user => this.online_users.push(user))
-            .leaving(user => (this.online_users = this.online_users.filter(u => u.id !== user.id)));
+            .here((users) => (this.online_users = users))
+            .joining((user) => this.online_users.push(user))
+            .leaving((user) => (this.online_users = this.online_users.filter((u) => u.id !== user.id)));
     },
 });

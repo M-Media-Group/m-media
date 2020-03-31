@@ -45,7 +45,7 @@ export default {
 
     mounted() {
         this.getNotifications();
-        Echo.private(`App.User.${this.userid}`).notification(notification => {
+        Echo.private(`App.User.${this.userid}`).notification((notification) => {
             this.notifications.unshift({
                 data: {
                     title: notification.title,
@@ -71,12 +71,12 @@ export default {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/users/' + this.userid + '/notifications') // change this to post )
-                .then(res => {
+                .then((res) => {
                     this.notifications = res.data;
                     this.loading = false;
                     console.log(this.notifications);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                     this.loading = false;
                     this.error = true;

@@ -69,7 +69,7 @@ array_push($datasets, $data);
 
         <div class="header-section" >
             <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
-            <chart-line-component :data="{{json_encode($datasets)}}" :height="225" style="width: 100%;" class="mt-5 mb-5" scale="logarithmic"></chart-line-component>
+            <iframe src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/index.html" width="100%" height="500" frameborder="0" loading="lazy" scrolling="no" style="border:none;"></iframe>
             <p data-aos="fade" data-aos-delay="300">Since last week, that's an increase of {{ number_format(
                 $cases['Global']['All']['confirmed'] -
                 ($history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]))
@@ -83,6 +83,7 @@ array_push($datasets, $data);
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a> --}}
         </div>
     <div class="header-section row m-0" style="background: var(--light);">
+        <chart-line-component :data="{{json_encode($datasets)}}" :height="225" style="width: 100%;" class="mt-5 mb-5" scale="logarithmic"></chart-line-component>
         <div class="col-md-6">
             <h3 class="mt-0" data-aos="fade" data-aos-offset="0"><span class="text-danger">{{number_format($cases['Global']['All']['deaths'])}}</span> people have died.</h3>
             <p style="max-width: 550px;" data-aos="fade">That's a {{number_format($cases['Global']['All']['deaths'] / $cases['Global']['All']['confirmed'] * 100)}}% mortality rate. In comparison, the death rate from seasonal flu is typically around 0.1% in the U.S., according to The New York Times. </p>

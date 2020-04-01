@@ -3,6 +3,65 @@
 @section('title', "Coronavirus COVID-19 tracking")
 @section('meta_description', "Hourly updates on the global Coronavirus COVID-19 epidemic." )
 
+@section('header_scripts')
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.classList%2CObject.assign"></script>
+<link rel="stylesheet" id="covid-map-css-css" href="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/svgMap.css" media="all">
+<script src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/svgMap.js"></script>
+@endsection
+
+@section('footer_scripts')
+<script>
+                async function initLoad() {
+
+    let json = {!! json_encode($cases) !!};
+
+    var items = Object.keys(json).map(function(key, index) {
+      var new_key = json[key]['All']['abbreviation'];
+      var calculated_rate = (json[key]['All']['confirmed'] / json[key]['All']['population']) * 100;
+      return {
+        [new_key]: {
+            confirmed: json[key]['All']['confirmed'],
+            deaths: json[key]['All']['deaths'],
+            population: json[key]['All']['population'],
+            sq_km_area: json[key]['All']['sq_km_area'],
+            population_infected: calculated_rate,
+        }
+    };
+    });
+    object = Object.assign({}, ...items);
+    delete object.undefined
+          console.log(object);
+    var svgMapDataPopulation = {
+      data: {
+        population: {
+          name: 'Population',
+          thousandSeparator: ',',
+        },
+        confirmed: {
+          name: 'Confirmed',
+          thousandSeparator: ',',
+        },
+        deaths: {
+          name: 'Deaths',
+          thousandSeparator: ',',
+        },
+        sq_km_area: {
+          name: 'Square km (area)',
+          thousandSeparator: ',',
+        },
+      },
+      applyData: 'confirmed',
+      values: object,
+    };
+    new svgMap({
+          targetElementID: 'svgMapPopulationFrame',
+          data: svgMapDataPopulation,
+          flagType: 'image',
+        });
+}
+initLoad()
+            </script>
+@endsection
 @section('above_container')
     <script type="application/ld+json">
     {
@@ -69,7 +128,8 @@ array_push($datasets, $data);
 
         <div class="header-section" >
             <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
-            <iframe id="svgMapPopulationFrame" src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/index.html" width="100%" frameborder="0" scrolling="no" style="border:none;"></iframe>
+            {{-- <iframe id="svgMapPopulationFrame" src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/index.html" width="100%" frameborder="0" scrolling="no" style="border:none;"></iframe> --}}
+            <div id="svgMapPopulationFrame" class="mb-3 mt-3"></div>
             <p data-aos="fade" data-aos-delay="300">Since last week, that's an increase of {{ number_format(
                 $cases['Global']['All']['confirmed'] -
                 ($history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]))

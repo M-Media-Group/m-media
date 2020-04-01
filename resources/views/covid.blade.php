@@ -18,6 +18,7 @@
     var items = Object.keys(json).map(function(key, index) {
       var new_key = json[key]['All']['abbreviation'];
       var calculated_rate = (json[key]['All']['confirmed'] / json[key]['All']['population']) * 100;
+      var calculated_mortality_rate = json[key]['All']['comfirmed'] != 0 ? ((json[key]['All']['deaths'] / json[key]['All']['confirmed']) * 100) : 0;
       return {
         [new_key]: {
             confirmed: json[key]['All']['confirmed'],
@@ -25,6 +26,7 @@
             population: json[key]['All']['population'],
             sq_km_area: json[key]['All']['sq_km_area'],
             population_infected: calculated_rate,
+            mortality: calculated_mortality_rate,
         }
     };
     });
@@ -33,10 +35,6 @@
           console.log(object);
     var svgMapDataPopulation = {
       data: {
-        population: {
-          name: 'Population',
-          thousandSeparator: ',',
-        },
         confirmed: {
           name: 'Confirmed',
           thousandSeparator: ',',
@@ -45,9 +43,15 @@
           name: 'Deaths',
           thousandSeparator: ',',
         },
-        sq_km_area: {
-          name: 'Square km (area)',
-          thousandSeparator: ',',
+        mortality: {
+          name: 'Mortality rate',
+          format: '{0}%',
+          floatingNumbers: 1
+        },
+        population_infected: {
+          name: 'Population infection rate',
+          format: '{0}%',
+          floatingNumbers: 1
         },
       },
       applyData: 'confirmed',

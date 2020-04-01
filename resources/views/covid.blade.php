@@ -69,7 +69,7 @@ array_push($datasets, $data);
 
         <div class="header-section" >
             <h1 class="header-section-title">There's <span class="text-danger">{{number_format($cases['Global']['All']['confirmed'])}}</span> confirmed cases of Coronavirus around the world today.</h1>
-            <iframe src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/index.html" width="100%" height="500" frameborder="0" loading="lazy" scrolling="no" style="border:none;"></iframe>
+            <iframe id="svgMapPopulationFrame" src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/index.html" width="100%" frameborder="0" loading="lazy" scrolling="no" style="border:none;"></iframe>
             <p data-aos="fade" data-aos-delay="300">Since last week, that's an increase of {{ number_format(
                 $cases['Global']['All']['confirmed'] -
                 ($history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]))

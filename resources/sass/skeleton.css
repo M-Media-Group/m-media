@@ -911,6 +911,15 @@ img {
     box-sizing: border-box;
 }
 
+#svgMapPopulationFrame {
+    height: 300px;
+}
+@media (min-width: 550px) {
+    #svgMapPopulationFrame {
+        height: 70vh;
+    }
+}
+
 /* Table
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .table td {

@@ -17,8 +17,12 @@
 
     var items = Object.keys(json).map(function(key, index) {
       var new_key = json[key]['All']['abbreviation'];
-      var calculated_rate = (json[key]['All']['confirmed'] / json[key]['All']['population']) * 100;
-      var calculated_mortality_rate = json[key]['All']['comfirmed'] != 0 ? ((json[key]['All']['deaths'] / json[key]['All']['confirmed']) * 100) : 0;
+      var calculated_rate = json[key]['All']['population'] != 0 ? ((json[key]['All']['confirmed'] * 1000 / json[key]['All']['population'])) : 0;
+      // var calculated_rate = json[key]['All']['population'] != 0 ? ((json[key]['All']['confirmed'] / json[key]['All']['population']) * 100)*100 : 0;
+      var calculated_mortality_rate = json[key]['All']['deaths'] != 0 ? ((json[key]['All']['deaths'] / json[key]['All']['confirmed']) * 100) : 0;
+
+      var calculated_area_rate = json[key]['All']['sq_km_area'] != 0 ? ((json[key]['All']['confirmed'] / json[key]['All']['sq_km_area'])) : 0;
+
       return {
         [new_key]: {
             confirmed: json[key]['All']['confirmed'],
@@ -27,6 +31,7 @@
             sq_km_area: json[key]['All']['sq_km_area'],
             population_infected: calculated_rate,
             mortality: calculated_mortality_rate,
+            area_infected: calculated_area_rate,
         }
     };
     });
@@ -49,8 +54,13 @@
           floatingNumbers: 1
         },
         population_infected: {
-          name: 'Population infection rate',
-          format: '{0}%',
+          name: 'Infections per thousand',
+          format: '{0}',
+          floatingNumbers: 1
+        },
+        area_infected: {
+          name: 'Infections per km<sup>2</sup>',
+          format: '{0}',
           floatingNumbers: 1
         },
       },

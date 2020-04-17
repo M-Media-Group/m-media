@@ -138,7 +138,7 @@ export default {
             this.avatar_url = data;
             this.title = this.avatar.name;
         },
-        updateFile: function() {
+        updateFile: function () {
             let data = new FormData();
             this.loading = true;
             data.append('title', this.title);
@@ -181,7 +181,7 @@ export default {
                 }); //
             //console.log(error);
         },
-        getUser: function() {
+        getUser: function () {
             //data.append('_method', 'put'); // add this
             axios
                 .get('/api/user') // change this to post )

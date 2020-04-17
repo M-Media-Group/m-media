@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline;">
+    <div style="display: inline;">
         <button type="submit" class="button" v-on:click="downloadWithAxios">
             Download
         </button>

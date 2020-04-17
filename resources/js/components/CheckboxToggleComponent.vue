@@ -30,7 +30,7 @@ export default {
             this.is_servicable = event.target.checked;
             this.updateInput();
         },
-        updateInput: function() {
+        updateInput: function () {
             let data = new FormData();
             data.append(this.title, this.is_servicable ? 1 : 0);
             let config = {

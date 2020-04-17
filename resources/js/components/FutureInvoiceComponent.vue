@@ -1,5 +1,5 @@
 <template>
-    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%">
+    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%;">
         <div class="table-responsive" v-if="invoice && !loading" key="invoices">
             <div class="table-responsive" v-if="invoice.lines.data" key="items">
                 <table class="table">
@@ -72,13 +72,13 @@ export default {
         this.getSub();
     },
     methods: {
-        getTimestamp: function(invoice) {
+        getTimestamp: function (invoice) {
             var invoice_time = invoice.next_payment_attempt
                 ? new Date(invoice.next_payment_attempt * 1000)
                 : new Date(invoice.created * 1000);
             return moment(invoice_time).fromNow();
         },
-        formatNumber: function(number, currency) {
+        formatNumber: function (number, currency) {
             var formatter = new Intl.NumberFormat(undefined, {
                 style: 'currency',
                 currency: currency,
@@ -86,7 +86,7 @@ export default {
             return formatter.format(number);
         },
 
-        getSub: function() {
+        getSub: function () {
             this.loading = true;
             //data.append('_method', 'put'); // add this
             axios

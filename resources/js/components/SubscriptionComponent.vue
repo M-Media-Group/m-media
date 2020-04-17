@@ -44,7 +44,7 @@ export default {
         this.getSub();
     },
     methods: {
-        getSub: function() {
+        getSub: function () {
             this.loading = true;
             //data.append('_method', 'put'); // add this
             axios

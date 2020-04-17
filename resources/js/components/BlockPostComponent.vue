@@ -35,7 +35,7 @@ export default {
         this.getPosts();
     },
     methods: {
-        getPosts: function() {
+        getPosts: function () {
             this.posts = [];
             this.loading = true;
             //data.append('_method', 'put'); // add this

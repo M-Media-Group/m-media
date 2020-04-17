@@ -3,14 +3,16 @@
         v-if="unreadMessages.length > 0"
         key="notifications"
         class="text-primary"
-        style="background: #246EBA;
-  border-radius: 50%;
-  color: #ffffff !important;
-  display: inline-block;
-  line-height: 1.6em;
-  margin-right: 5px;
-  text-align: center;
-  width: 1.6em; "
+        style="
+            background: #246eba;
+            border-radius: 50%;
+            color: #ffffff !important;
+            display: inline-block;
+            line-height: 1.6em;
+            margin-right: 5px;
+            text-align: center;
+            width: 1.6em;
+        "
     >
         {{ unreadMessages.length }}
     </span>
@@ -32,10 +34,10 @@ export default {
     },
     computed: {
         // a computed getter
-        unreadMessages: function() {
+        unreadMessages: function () {
             // `this` points to the vm instance
             //return this.notifications.split('').reverse().join('')
-            return this.notifications.filter(function(itm) {
+            return this.notifications.filter(function (itm) {
                 return itm.read_at == null;
             });
         },
@@ -55,7 +57,7 @@ export default {
 
             // Otherwise, we need to ask the user for permission
             else if (Notification.permission !== 'denied') {
-                Notification.requestPermission().then(function(permission) {
+                Notification.requestPermission().then(function (permission) {
                     // If the user accepts, let's create a notification
                     if (permission === 'granted') {
                         this.displayNotification(recieved_notification);
@@ -80,7 +82,7 @@ export default {
             var audio = new Audio('/sounds/bell.mp3');
             audio.play();
         },
-        getNotifications: function() {
+        getNotifications: function () {
             this.loading = true;
             //data.append('_method', 'put'); // add this
             axios
@@ -96,7 +98,7 @@ export default {
                     this.error = true;
                 });
         },
-        displayNotification: function(recieved_notification) {
+        displayNotification: function (recieved_notification) {
             new Notification(recieved_notification.title, {
                 body: recieved_notification.message,
                 icon: '/images/logo.png',

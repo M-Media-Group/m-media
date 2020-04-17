@@ -121,7 +121,7 @@ export default {
             this.avatar_url = data;
             this.domain = this.avatar.name;
         },
-        updateFile: function() {
+        updateFile: function () {
             let data = new FormData();
             this.loading = true;
             data.append('file', this.avatar);
@@ -155,7 +155,7 @@ export default {
                 }); //
             //console.log(error);
         },
-        getDomain: function() {
+        getDomain: function () {
             var text = this.domain.match(/([a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i);
             this.domain = text[0];
             this.availability = '';
@@ -180,7 +180,7 @@ export default {
             //
             //console.log(error);
         },
-        getSuggested: function() {
+        getSuggested: function () {
             this.suggestions = [];
             this.loading = true;
             //data.append('_method', 'put'); // add this

@@ -47,7 +47,7 @@ export default {
         this.pushRow();
     },
     methods: {
-        pushRow: function() {
+        pushRow: function () {
             this.rows.push([{ html: '<a href="#">hello 1</a>' }]);
         },
     },

@@ -18,19 +18,11 @@ window.Vue = require('vue');
  */
 
 const files = require.context('./components', true, /\.vue$/i);
-files.keys().map((key) =>
-    Vue.component(
-        key
-            .split('/')
-            .pop()
-            .split('.')[0],
-        files(key).default
-    )
-);
+files.keys().map((key) => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('chart-line-component', require('./components/ChartLineComponent.js').default);
 
-Vue.directive('tooltip', function(el, binding) {
+Vue.directive('tooltip', function (el, binding) {
     $(el).tooltip({
         title: binding.value,
         placement: binding.arg,
@@ -42,7 +34,7 @@ Vue.directive('tooltip', function(el, binding) {
     });
 });
 
-Vue.directive('popover', function(el, binding) {
+Vue.directive('popover', function (el, binding) {
     $(el).popover({
         content: binding.value,
         placement: binding.arg,

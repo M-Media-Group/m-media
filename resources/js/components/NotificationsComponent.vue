@@ -1,5 +1,5 @@
 <template>
-    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%">
+    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%;">
         <div class="list-group" v-if="notifications.length > 0" key="notifications">
             <article
                 v-for="notification in notifications"
@@ -58,15 +58,15 @@ export default {
         });
     },
     methods: {
-        timestamp: function(timestamp) {
+        timestamp: function (timestamp) {
             return moment(timestamp).fromNow();
         },
 
-        redirect: function(notification) {
+        redirect: function (notification) {
             location.href = notification.data.action ? notification.data.action : '#';
         },
 
-        getNotifications: function() {
+        getNotifications: function () {
             this.loading = true;
             //data.append('_method', 'put'); // add this
             axios

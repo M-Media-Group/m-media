@@ -64,7 +64,7 @@
           floatingNumbers: 1
         },
       },
-      applyData: 'confirmed',
+      applyData: 'population_infected',
       values: object,
     };
     new svgMap({

@@ -17,8 +17,9 @@
 {{--             <a href="/automation-bot">Marketing Automation Bot</a>
  --}}{{--            <a href="/print-media">Print Media</a>
  --}}           <hr class="mb-0 mt-0">
-                <a href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener">Blog</a>
-                <a href="/case-studies">Case Studies</a>
+                <a href="https://blog.mmediagroup.fr?utm_source=main_site&utm_medium=menu&utm_campaign=main" target="_BLANK" rel="noopener">Blog</a>
+                <a href="https://blog.mmediagroup.fr/category/partnerships/?utm_source=main_site&utm_medium=menu&utm_campaign=main" rel="noopener">Case Studies</a>
+                <a href="https://blog.mmediagroup.fr/category/m-media-help-center/?utm_source=main_site&utm_medium=menu&utm_campaign=main" rel="noopener">Help Center</a>
                 <hr class="mb-0 mt-0">
                 @guest
                     <a href="/contact">Contact us</a>

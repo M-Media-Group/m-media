@@ -14,7 +14,8 @@
        "https://twitter.com/MMediaFr",
        "https://opencollective.com/m-media",
        "https://www.linkedin.com/company/m-media-group",
-       "https://www.youtube.com/channel/UCXvMLmK312CfJOg8PrIhFvA"
+       "https://www.youtube.com/channel/UCXvMLmK312CfJOg8PrIhFvA",
+       "https://profiles.wordpress.org/mmediagroup/"
        ]
     }
     </script>

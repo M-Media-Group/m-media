@@ -73,8 +73,8 @@
                 {{ __('Get help') }}
             </a>
         @endif
-        <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
-        @can('delete', $file)
+{{--         <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
+ --}}        @can('delete', $file)
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')

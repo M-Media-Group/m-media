@@ -48,7 +48,12 @@ Route::post('/contact', function (Request $request) {
 
     $phone = null;
     if ($request->input('phone')) {
-        $phone = App\Jobs\SavePhone::dispatchNow($request->input('phone'));
+        $input['phonenumber'] = $request->input('phone');
+        $phone = App\Jobs\SavePhone::dispatchNow($input);
+        if (!isset($phone->e164)) {
+            abort(422, 'The phone number is invalid');
+        }
+        $phone = $phone->e164;
     }
 
     Notification::route('mail', $request->input('email'))->notify(new App\Notifications\CustomNotification(

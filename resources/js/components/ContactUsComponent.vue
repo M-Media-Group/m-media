@@ -10,7 +10,6 @@
                 key="1"
                 class="mb-0"
             >
-
                 <div class="form-group row">
                     <label for="file" class="col-md-4 col-form-label text-md-right">Your first name</label>
 
@@ -110,7 +109,7 @@
             </div>
             <div class="alert alert-success" role="alert" v-show="success" key="3">
                 Message sent!<br />
-<!--                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a> -->
+                <!--                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a> -->
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
                 File error! {{ error_msg }}<br />
@@ -163,7 +162,7 @@ export default {
                     console.log(res);
                     this.loading = false;
                     this.title = null;
-                    dataLayer.push({'event': 'contact'});
+                    dataLayer.push({ event: 'contact' });
                 })
                 .catch((error) => {
                     this.error = true;

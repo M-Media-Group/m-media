@@ -73,11 +73,12 @@
                 {{ __('Get help') }}
             </a>
         @endif
+        <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
         @can('delete', $file)
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever.');">
+                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever. Deleting this file is permanent.');">
                     {{ __('Delete file') }}
                 </button>
             </form>
@@ -86,7 +87,7 @@
     </div>
     <div class="row m-0 pt-5 pb-5">
         <h2 class="mt-5 mb-0">Preview</h2>
-        <iframe src="{{ $file->url }}" width="100%" height="500" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></iframe>
+        <embed src="{{ $file->url }}" height="500" width="100%" style="object-fit: contain;" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></embed>
     </div>
     <div class="row m-0 pt-5 pb-5">
         <h2 class="mt-5 mb-0">People currently viewing this file</h2>

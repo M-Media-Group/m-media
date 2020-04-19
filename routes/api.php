@@ -41,7 +41,7 @@ Route::post('/contact', function (Request $request) {
         'name' => 'required|max:55',
         'surname' => 'required|max:55',
         'email' => 'required|email',
-        'phone' => 'nullable|alpha_num|min:5|max:31',
+        'phone' => 'nullable|min:5|max:31',
         'message' => 'required',
     ]);
     $user = \App\User::where('id', config('blog.super_admin_id'))->firstOrFail();

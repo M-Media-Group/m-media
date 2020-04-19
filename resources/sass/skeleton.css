@@ -526,7 +526,6 @@ select {
 }
 
 /* Removes awkward default styles on some inputs for iOS */
-.form-control,
 input[type='email'],
 input[type='number'],
 input[type='search'],

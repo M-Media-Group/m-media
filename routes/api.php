@@ -38,17 +38,24 @@ Route::get('/', function () {
 
 Route::post('/contact', function (Request $request) {
     $request->validate([
-        'name' => 'bail|required|max:25',
-        'surname' => 'bail|required|max:25',
-        'email' => 'bail|required|email',
+        'name' => 'required|max:55',
+        'surname' => 'required|max:55',
+        'email' => 'required|email',
+        'phone' => 'nullable|alpha_num|min:5|max:31',
         'message' => 'required',
     ]);
     $user = \App\User::where('id', config('blog.super_admin_id'))->firstOrFail();
+
+    $phone = null;
+    if ($request->input('phone')) {
+        $phone = App\Jobs\SavePhone::dispatchNow($request->input('phone'));
+    }
+
     Notification::route('mail', $request->input('email'))->notify(new App\Notifications\CustomNotification(
         [
             'send_email' => 1,
-            'title' => 'Hi '.$request->input('name').'!',
-            'message' => "Thanks for messaging us! We've received your message and we'll be getting back to you as soon as possible.",
+            'title' => 'Hi ' . $request->input('name') . '!',
+            'message' => "Thanks for messaging us! We've received your message and we'll be getting back to you as soon as possible on this email address.",
         ]
     ));
 
@@ -56,8 +63,8 @@ Route::post('/contact', function (Request $request) {
         [
             'send_email' => 1,
             'send_database' => 1,
-            'title' => 'New contact request from '.$request->input('name').' '.$request->input('surname'),
-            'message' => 'Email: '.$request->input('email')."\n\n Phone: ".$request->input('phone')."\n\n Message: ".$request->input('message'),
+            'title' => 'New contact request from ' . $request->input('name') . ' ' . $request->input('surname'),
+            'message' => 'Email: ' . $request->input('email') . "\n\n Phone: " . $phone . "\n\n Message: " . $request->input('message'),
         ]
     ));
 });
@@ -113,7 +120,7 @@ Route::group(['middleware' => ['auth:api']], function () {
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>'.$request->input('message', '').'</speak>',
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',

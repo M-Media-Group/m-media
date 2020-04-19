@@ -46,7 +46,8 @@ Route::post('/contact', function (Request $request) {
     $user = \App\User::where('id', config('blog.super_admin_id'))->firstOrFail();
     Notification::route('mail', $request->input('email'))->notify(new App\Notifications\CustomNotification(
         [
-            'title' => 'Hi '.$request->input('name').'!',
+            'send_email' => 1,
+            'title' => 'Hi ' . $request->input('name') . '!',
             'message' => "Thanks for messaging us! We've received your message and we'll be getting back to you as soon as possible.",
         ]
     ));
@@ -55,8 +56,8 @@ Route::post('/contact', function (Request $request) {
         [
             'send_email' => 1,
             'send_database' => 1,
-            'title' => 'New contact request from '.$request->input('name').' '.$request->input('surname'),
-            'message' => 'Email: '.$request->input('email')."\n\n Phone: ".$request->input('phone')."\n\n Message: ".$request->input('message'),
+            'title' => 'New contact request from ' . $request->input('name') . ' ' . $request->input('surname'),
+            'message' => 'Email: ' . $request->input('email') . "\n\n Phone: " . $request->input('phone') . "\n\n Message: " . $request->input('message'),
         ]
     ));
 });
@@ -112,7 +113,7 @@ Route::group(['middleware' => ['auth:api']], function () {
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>'.$request->input('message', '').'</speak>',
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',

@@ -33,6 +33,7 @@
         "pusher-js": "^5.1.1",
         "vue-chartjs": "^3.5.0",
         "vue-google-autocomplete": "^1.1.0",
-        "vue-stripe-elements-plus": "^0.3.2"
+        "vue-stripe-elements-plus": "^0.3.2",
+        "vue-textarea-autosize": "^1.1.1"
     }
 }

@@ -42,16 +42,21 @@
     <div class="mt-1">
         <div class="form-group row mb-0">
             <div class="col-md-12">
+                @guest
+                <contact-us-component></contact-us-component>
+                @else
                 <p class="mb-0">{{config('app.name')}}</p>
                 <p>06230 Villefranche sur Mer, France</p>
 
                 <p class="mb-0">+33 4 86 06 08 59</p>
                 <p>contact@mmediagroup.fr</p>
+
                 <div class="flex" style="flex-wrap: wrap;">
 		            <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
 		            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}">Messenger</a>
 		            <a class="button" href="tel:+33486060859">Call</a>
 		        </div>
+                @endguest
             </div>
         </div>
     </div>

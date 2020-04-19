@@ -6,8 +6,11 @@
 
 require('./bootstrap');
 import AOS from 'aos';
+import TextareaAutosize from 'vue-textarea-autosize';
 
 window.Vue = require('vue');
+
+Vue.use(TextareaAutosize);
 
 /**
  * The following block of code may be used to automatically register your

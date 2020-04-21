@@ -43,8 +43,9 @@
         <div class="form-group row mb-0">
             <div class="col-md-12">
                 @guest
-                <contact-us-component></contact-us-component>
-                @else
+                <request-website-component></request-website-component>
+{{--                 <contact-us-component></contact-us-component>
+ --}}                @else
                 <p class="mb-0">{{config('app.name')}}</p>
                 <p>06230 Villefranche sur Mer, France</p>
 

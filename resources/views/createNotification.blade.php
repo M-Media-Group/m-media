@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <label for="message" class="col-md-4 col-form-label text-md-right">{{ __('Message') }}</label>
                     <div class="col-md-6">
-                        <textarea id="message" autocomplete="off" minlength="1" name="message" placeholder="Message" class="form-control"></textarea>
+                        <textarea-autosize id="message" autocomplete="off" minlength="1" name="message" placeholder="Message" class="form-control"></textarea-autosize>
                     </div>
                 </div>
 

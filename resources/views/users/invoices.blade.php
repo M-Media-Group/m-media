@@ -116,7 +116,7 @@ Jump to:
 
 <!-- Stripe Elements Placeholder -->
 <label class="mt-4 mb-0">Add a new card</label>
-<div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);">
+<div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);padding: .375rem .75rem;">
 	<div id="card-element"></div>
 </div>
 <div>

@@ -25,6 +25,16 @@ $data = [
 "I don't live in Monaco or the French Riviera. Can I still work with you?" => "Absolutely! We can provide our digital marketing services to anyone, anywhere. Some of our physical-location based marketing services may not be available though.",
 
 "Do I even need to market myself online?" => "It depends. Generally yes, but depending on who you're marketing to and the industry you're in, the amount of online marketing efforts will differ. Our [on-request consulting services](/contact) can help you decide what your next steps should be.",
+
+"What are your contact details?" => "<p class='mb-0'>".config('app.name')."</p>
+                <p>06230 Villefranche sur Mer, France</p>
+                <p class='mb-0'>+33 4 86 06 08 59</p>
+                <p>contact@mmediagroup.fr</p>
+                <div class='flex' style='flex-wrap: wrap;'>
+                    <a class='button button-secondary' href='mailto:contact@mmediagroup.fr'>Email</a>
+                    <a class='button' rel='noopener' href=".config('blog.messenger_url').">Messenger</a>
+                    <a class='button' href='tel:+33486060859'>Call</a>
+                </div>"
 ];
 @endphp
 

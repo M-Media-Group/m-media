@@ -135,7 +135,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There are no coupons to show for {{Config('app.name')}}.
+			 There are no coupons to show for {{config('app.name')}}.
 		</div>
 	@endif
 

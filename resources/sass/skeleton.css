@@ -927,16 +927,14 @@ img {
 }
 
 .custom-range::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 2rem; /* Set a specific slider handle width */
-  height: 2rem; /* Slider handle height */
-  margin-top:-0.79rem;
-  line-height: 0;
-  border-radius: 100%;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 2rem; /* Set a specific slider handle width */
+    height: 2rem; /* Slider handle height */
+    margin-top: -0.79rem;
+    line-height: 0;
+    border-radius: 100%;
 }
-
-
 
 /* Table
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

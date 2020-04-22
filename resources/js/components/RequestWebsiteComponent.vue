@@ -162,11 +162,11 @@
                             id="phone"
                             class="form-control mb-0"
                             type="tel"
-                            placeholder="Phone number (optional)"
+                            placeholder="Country code & phone number"
                             data-hj-whitelist
                         />
                         <span class="text-muted small"
-                            >Your phone number helps us verify who you are. You don't have to provide it, but if you do,
+                            >Include your country code starting with a plus sign (+). Your phone number helps us verify who you are. You don't have to provide it, but if you do,
                             we promise not to call you without your consent.</span
                         >
                     </div>
@@ -210,7 +210,7 @@
         </div>
         <div v-show="error" key="4">
             <div class="alert alert-danger" role="alert">
-                Uh oh! Looks like something went wrong. {{ error_msg }}
+                Uh oh! <div class="w-100 mt-5" v-html="error_msg"></div>
                 <br />
                 <a href="#" class="button button-primary" v-on:click.prevent="error = false">Try again</a>
             </div>
@@ -290,8 +290,11 @@ export default {
                 .catch((error) => {
                     this.error = true;
                     this.success = false;
-                    this.error_msg = error.message;
-                    console.log(error);
+                    this.error_msg = Object.entries(error.response.data.errors)
+                                      .map(([error_name, error_value], i) => `<p class="mb-0">${error_name}: ${error_value[0]}</p>`)
+                                      .join('\n');
+                    console.log(this.error_msg);
+                    //console.log(error.response.data.errors);
                     this.loading = false;
                 }); //
             //console.log(error);

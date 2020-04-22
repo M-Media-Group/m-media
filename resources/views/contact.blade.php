@@ -38,7 +38,7 @@
 @section('above_container')
 <div class="header-section u-bg-primary">
     <h1>{{ __('Contact us') }}</h1>
-    <p>We make websites and handle your marketing.</p>
+    <p>Tell us a little about your needs.</p>
 </div>
 <div class="action-section container mt-n5">
     <div class="mt-1">

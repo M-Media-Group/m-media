@@ -16,7 +16,7 @@ $data = [
 
 'Can you guarantee my website will be number 1 on Google?' => "No. There is no way to absolutely guarantee that you're number 1 on Google; it's all up to their algorithms. That being said, we not only optimize your website to rank well on Google, but also add your business to Google Business, Google Search Console, and Facebook Business platforms.",
 
-"What programming languages do you use?" => " We use PHP on Nginx servers for the back-end using the Laravel framework. For the front end, we'll use either Blade, VueJS, or a combination of both, along with HTML, CSS, and JavaScript.",
+"What programming languages do you use?" => " We use PHP on Nginx servers for the back-end using the Laravel framework or WordPress CMS, depending on what makes more sense for your business. For the front end, we'll use either Blade, VueJS, or a combination of both, along with HTML, CSS, and JavaScript.",
 
 "Can I cancel my contract at any time?" => "Yes. Contracts can be canceled at any time and will be active until the end of their billing period. See our [pricing](/pricing) page for more info on costs, discounts, and billing periods.",
 
@@ -39,7 +39,7 @@ $data = [
 @endphp
 
 @foreach($data as $key => $val)
-    <details>
+    <details class="mb-5">
         <summary>
             <dt class="d-inline">{{$key}}</dt>
         </summary>

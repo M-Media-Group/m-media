@@ -31,6 +31,7 @@
                             autocomplete="off"
                             required
                             autofocus
+                            data-hj-whitelist
                         />
                     </div>
                 </div>
@@ -48,9 +49,29 @@
                             class="form-control"
                             name="business_description"
                             required
+                            data-hj-whitelist
                         ></textarea-autosize>
                     </div>
                 </div>
+                <!-- <div class="form-group row">
+                    <label for="business_title" class="col-md-12 col-form-label">Your business size</label>
+                    <div class="col-md-12">
+                        <div class="text-center">{{business_size == 1 ? 'Just me' : business_size >= 99 ? '100 or more people' : business_size+" people"}}</div>
+                        <input
+                            name="business_title"
+                            v-model="business_size"
+                            id="business_title"
+                            class="custom-range"
+                            type="range"
+                            placeholder="What do customers know you as?"
+                            step="1"
+                            min="1"
+                            max="100"
+                            autocomplete="off"
+                            required
+                        />
+                    </div>
+                </div> -->
             </div>
 
             <div v-if="current_tab == 1" key="tab_1">
@@ -70,6 +91,7 @@
                             placeholder="Name"
                             required
                             autofocus
+                            data-hj-whitelist
                         />
                     </div>
                 </div>
@@ -84,6 +106,7 @@
                             type="text"
                             placeholder="Last name"
                             required
+                            data-hj-whitelist
                         />
                     </div>
                 </div>
@@ -107,6 +130,7 @@
                             placeholder="Email address"
                             required
                             autofocus
+                            data-hj-whitelist
                         />
                     </div>
                 </div>
@@ -121,6 +145,7 @@
                             class="form-control"
                             placeholder="Describe your needs in more detail and send us any questions you may have."
                             required
+                            data-hj-whitelist
                         />
                     </div>
                 </div>
@@ -138,6 +163,7 @@
                             class="form-control mb-0"
                             type="tel"
                             placeholder="Phone number (optional)"
+                            data-hj-whitelist
                         />
                         <span class="text-muted small"
                             >Your phone number helps us verify who you are. You don't have to provide it, but if you do,
@@ -221,6 +247,7 @@ export default {
             progress: 0,
             business_title: '',
             business_description: '',
+            business_size: 1,
             email: '',
             phone: '',
             message: '',

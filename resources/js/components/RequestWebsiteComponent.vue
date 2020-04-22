@@ -166,8 +166,9 @@
                             data-hj-whitelist
                         />
                         <span class="text-muted small"
-                            >Include your country code starting with a plus sign (+). Your phone number helps us verify who you are. You don't have to provide it, but if you do,
-                            we promise not to call you without your consent.</span
+                            >Include your country code starting with a plus sign (+). Your phone number helps us verify
+                            who you are. You don't have to provide it, but if you do, we promise not to call you without
+                            your consent.</span
                         >
                     </div>
                 </div>
@@ -210,7 +211,8 @@
         </div>
         <div v-show="error" key="4">
             <div class="alert alert-danger" role="alert">
-                Uh oh! <div class="w-100 mt-5" v-html="error_msg"></div>
+                Uh oh!
+                <div class="w-100 mt-5" v-html="error_msg"></div>
                 <br />
                 <a href="#" class="button button-primary" v-on:click.prevent="error = false">Try again</a>
             </div>
@@ -291,8 +293,8 @@ export default {
                     this.error = true;
                     this.success = false;
                     this.error_msg = Object.entries(error.response.data.errors)
-                                      .map(([error_name, error_value], i) => `<p class="mb-0">${error_name}: ${error_value[0]}</p>`)
-                                      .join('\n');
+                        .map(([error_name, error_value], i) => `<p class="mb-0">${error_name}: ${error_value[0]}</p>`)
+                        .join('\n');
                     console.log(this.error_msg);
                     //console.log(error.response.data.errors);
                     this.loading = false;

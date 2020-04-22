@@ -51,9 +51,9 @@ Route::post('/contact', function (Request $request) {
         $input['phonenumber'] = $request->input('phone');
         try {
             $phone = App\Jobs\SavePhone::dispatchNow($input);
-            if (!isset($phone->e164)) {
+            if (! isset($phone->e164)) {
                 abort(422);
-                // $phone = $request->input('phone');
+            // $phone = $request->input('phone');
             } else {
                 $phone = $phone->e164;
             }
@@ -66,7 +66,7 @@ Route::post('/contact', function (Request $request) {
     Notification::route('mail', $request->input('email'))->notify(new App\Notifications\CustomNotification(
         [
             'send_email' => 1,
-            'title' => 'Hi ' . $request->input('name') . '!',
+            'title' => 'Hi '.$request->input('name').'!',
             'message' => "Thanks for messaging us! We've received your message and we'll be getting back to you as soon as possible on this email address.",
         ]
     ));
@@ -75,8 +75,8 @@ Route::post('/contact', function (Request $request) {
         [
             'send_email' => 1,
             'send_database' => 1,
-            'title' => 'New contact request from ' . $request->input('name') . ' ' . $request->input('surname'),
-            'message' => 'Email: ' . $request->input('email') . "\n\n Phone: " . $phone . "\n\n Message: " . $request->input('message'),
+            'title' => 'New contact request from '.$request->input('name').' '.$request->input('surname'),
+            'message' => 'Email: '.$request->input('email')."\n\n Phone: ".$phone."\n\n Message: ".$request->input('message'),
         ]
     ));
 });
@@ -132,7 +132,7 @@ Route::group(['middleware' => ['auth:api']], function () {
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
+                    'message' => '<speak>'.$request->input('message', '').'</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',

@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700,900&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 // Variables
 @import 'variables';
@@ -8,7 +9,61 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~aos/dist/aos.css';
 
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+:root {
+    --white: #fff;
+    --black: #131313;
+    --dark: #222;
+    --light: #f3f3f3;
+    --gray: #555;
+
+    --primary: #{$blue};
+    // --primary-darker: #2565aa;
+    --primary-darker: #{darken($blue, 5%)};
+    --primary-text-contrast: #ffffff;
+
+    --secondary: #{$red};
+    --secondary-darker: #{darken($red, 5%)};
+    --secondary-text-contrast: #ffffff;
+
+    --filter-darker: brightness(85%);
+    --filter-lighter: brightness(115%);
+
+    --link: var(--dark);
+    --link-darker: var(--black);
+
+    --border-radius: 1rem;
+    --box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
+
+    /*Line length control for text*/
+    --max-text-width: 63rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    /*:root {
+        --white: #222;
+        --black: #fff;
+        --dark: #f3f3f3;
+        --light: #131313;
+
+        --filter-darker: brightness(115%);
+        --filter-lighter: brightness(85%);
+
+        --box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.3);
+    }*/
+}
+
+@media print {
+    :root {
+        --white: #fff;
+        --black: #131313;
+        --dark: #000;
+        --light: #fff;
+        --box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+    @page {
+        margin: 0;
+    }
+}
 
 #app {
     overflow: hidden;

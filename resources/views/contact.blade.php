@@ -40,7 +40,7 @@
     <h1>{{ __('Contact us') }}</h1>
     <p>Tell us a little about your needs.</p>
 </div>
-<div class="action-section container mt-n5">
+<div class="action-section container mt-n5" data-aos="fade">
     <div class="mt-1">
         <div class="form-group row mb-0">
             <div class="col-md-12">

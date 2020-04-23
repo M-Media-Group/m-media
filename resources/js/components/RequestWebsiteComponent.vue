@@ -284,6 +284,7 @@ export default {
                 '\n\n Message: ' +
                 this.message;
             data.append('message', message_to_send);
+            window.scrollTo(0, 0);
 
             //data.append('_method', 'put'); // add this
             axios

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -20,13 +21,13 @@ mix.sass('resources/sass/app.scss', 'public/css').styles([
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/skeleton.css'
 ], 'public/css/all.css');
 if (mix.inProduction()) {
-    mix.version();
+    mix.version().purgeCss();
 }
 //mix.browserSync('https://mmedia:7890');
 mix.options({
   extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
 //  processCssUrls: true, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
-  //purifyCss: true, // Remove unused CSS selectors.
+  purifyCss: true, // Remove unused CSS selectors.
 //  uglify: {}, // Uglify-specific options. https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
 //  postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 });

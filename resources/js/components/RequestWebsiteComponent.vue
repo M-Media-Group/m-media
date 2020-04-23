@@ -89,6 +89,7 @@
                             class="form-control"
                             type="text"
                             placeholder="Name"
+                            maxlength="55"
                             required
                             autofocus
                             data-hj-whitelist
@@ -105,6 +106,7 @@
                             class="form-control"
                             type="text"
                             placeholder="Last name"
+                            maxlength="55"
                             required
                             data-hj-whitelist
                         />
@@ -144,6 +146,7 @@
                             id="message"
                             class="form-control"
                             placeholder="Describe your needs in more detail and send us any questions you may have."
+                            minlength="10"
                             required
                             data-hj-whitelist
                         />
@@ -163,6 +166,9 @@
                             class="form-control mb-0"
                             type="tel"
                             placeholder="Country code & phone number"
+                            maxlength="31"
+                            minlength="5"
+                            pattern="[\+]*{4,31}"
                             data-hj-whitelist
                         />
                         <span class="text-muted small"
@@ -214,7 +220,7 @@
                 Uh oh!
                 <div class="w-100 mt-5" v-html="error_msg"></div>
                 <br />
-                <a href="#" class="button button-primary" v-on:click.prevent="error = false">Try again</a>
+                <a href="#" class="button button-primary" v-on:click.prevent="error = false">Go back</a>
             </div>
             <br />
             <div class="form-group row mb-0">

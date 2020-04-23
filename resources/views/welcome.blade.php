@@ -28,7 +28,7 @@
           </button>
     </div>
         <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/bdevices.svg'), url('images/backgrounds/1.svg'), var(--primary);background-position: left, bottom;background-repeat: no-repeat;background-size: cover;">
-            <h1 class="header-section-title mb-0">Hi 👋! We're {{config('app.name')}}.</h1>
+            <h1 class="header-section-title mb-0 aos-init aos-animate">Hi 👋! We're {{config('app.name')}}.</h1>
             <p class="mb-0" data-aos="fade" data-aos-delay="300">We make websites and handle your marketing.</p>
             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>

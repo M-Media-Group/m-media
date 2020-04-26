@@ -8,6 +8,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~aos/dist/aos.css';
+@import '~leaflet/dist/leaflet.css';
 
 :root {
     --white: #fff;
@@ -124,34 +125,17 @@ body,
     //color: #fff;
 }
 
-// .leafelt-control a, .leaflet-bar a, .leaflet-bar a:hover, .leaflet-bar-part, .leaflet-control-geocoder-icon, .leaflet-control-fullscreen-button {
-//  background-color: #202325 !important;
-//  color: #fff !important;
-// }
-
-.leaflet-control-geocoder-alternatives li,
 .card {
     color: #202325;
     text-decoration: none;
 }
 
-// .leaflet-popup-tip, .leaflet-popup-content-wrapper {
-//  background-color: #343a40!important;
-//  color: #fff!important;
-// }
-.leaflet-container {
-    font-size: 0.8rem !important;
-}
 
 span.fa {
     color: #404040;
 }
 
-.leaflet-pane {
-    img {
-        position: absolute;
-    }
-}
+
 
 .footer {
     background-color: $blue;
@@ -380,15 +364,6 @@ textarea {
     width: 100%;
 }
 
-.leaflet-container {
-    font-family: 'Roboto', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    z-index: 10;
-}
-
-.leaflet-bar {
-    background: var(--white);
-}
-
 .no-margin {
     margin: 0;
 }
@@ -437,17 +412,8 @@ textarea {
 .logo-container > img {
     display: block;
 }
-.leaflet-bottom {
-    bottom: 7rem;
-}
 
 /*Next*/
-.leaflet-control-geocoder {
-    z-index: 99;
-}
-.leaflet-bottom.leaflet-left {
-    bottom: 5rem;
-}
 
 .dynamic-images {
     position: relative;

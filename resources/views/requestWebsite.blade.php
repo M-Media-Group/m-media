@@ -11,6 +11,11 @@
 <div>
     <div class="action-section container">
         <div class="mt-5">
+            <h2>Request website</h2>
+            <map-component></map-component>
+        </div>
+        <div class="mt-5">
+            <h2>Request website</h2>
             <request-website-component></request-website-component>
         </div>
     </div>

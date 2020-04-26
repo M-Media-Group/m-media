@@ -12,6 +12,8 @@
     "devDependencies": {
         "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
+        "browser-sync": "^2.26.7",
+        "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^5.2.1",
         "jquery": "^3.5.0",
         "laravel-mix": "^4.1.4",
@@ -20,7 +22,7 @@
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.26.3",
+        "sass": "^1.26.5",
         "sass-loader": "^7.3.1",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11"
@@ -30,11 +32,17 @@
         "chart.js": "^2.9.3",
         "laravel-echo": "^1.7.0",
         "laravel-mix-purgecss": "^5.0.0-rc.2",
+        "leaflet": "^1.6.0",
+        "leaflet-geosearch": "^2.7.0",
         "moment": "^2.24.0",
         "pusher-js": "^5.1.1",
         "vue-chartjs": "^3.5.0",
         "vue-google-autocomplete": "^1.1.0",
         "vue-stripe-elements-plus": "^0.3.2",
-        "vue-textarea-autosize": "^1.1.1"
+        "vue-textarea-autosize": "^1.1.1",
+        "vue2-leaflet": "^2.5.2",
+        "vue2-leaflet-geosearch": "^1.0.6",
+        "vue2-leaflet-locatecontrol": "^1.0.1",
+        "vue2-leaflet-markercluster": "^3.1.0"
     }
 }

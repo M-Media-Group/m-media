@@ -124,7 +124,7 @@ Route::group(['middleware' => ['verified']], function () {
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {
@@ -150,9 +150,9 @@ Route::get('/', function () {
     return View::make('welcome');
 });
 
-// Route::get('/request-website', function () {
-//     return View::make('requestWebsite');
-// });
+Route::get('/components', function () {
+    return View::make('requestWebsite');
+});
 
 Route::get('/covid-19', function () {
     $client = new \GuzzleHttp\Client();

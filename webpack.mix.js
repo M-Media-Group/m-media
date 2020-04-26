@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
-require('laravel-mix-purgecss');
+const path = require('path');
+
+// require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,7 +14,7 @@ require('laravel-mix-purgecss');
  |
  */
 
-mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'axios', 'bootstrap', 'jquery']);
+mix.sourceMaps().js('resources/js/app.js', 'public/js').extract();
 mix.sass('resources/sass/app.scss', 'public/css').styles([
         'resources/sass/app.css',
     'resources/sass/normalize.css',
@@ -21,13 +23,29 @@ mix.sass('resources/sass/app.scss', 'public/css').styles([
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/skeleton.css'
 ], 'public/css/all.css');
 if (mix.inProduction()) {
-    mix.version().purgeCss();
+    mix.version();
+    // .purgeCss()
+} else {
+	//mix.browserSync('https://mmedia:7891');
 }
-//mix.browserSync('https://mmedia:7890');
+// mix.webpackConfig({
+// resolve: {
+//     alias: {
+//         'leaflet':  path.resolve(
+//             __dirname,
+//             'node_modules/leaflet/'
+//         )
+//      }
+//    }
+// });
 mix.options({
-  extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
+	extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
 //  processCssUrls: true, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
-  purifyCss: true, // Remove unused CSS selectors.
+	purifyCss: {
+	    purifyOptions: {
+	        whitelist: ['*leaflet*', '*aos*']
+	    },
+	}
 //  uglify: {}, // Uglify-specific options. https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
 //  postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 });

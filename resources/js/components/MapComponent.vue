@@ -1,7 +1,8 @@
 <template>
-    <v-map :zoom="10" :center="initialLocation" style="width: 100%; height: 70vh;">
-        <v-tilelayer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-        <v-locatecontrol :options="locateOptions"></v-locatecontrol>
+    <v-map :zoom="13" :center="initialLocation" style="width: 100%; height: 70vh; border-radius: var(--border-radius);z-index: 1;">
+        <img src="/images/vendor/leaflet/dist/marker-icon-2x.png" class="map-marker-centered">
+        <v-tilelayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"></v-tilelayer>
+        <v-locatecontrol :options="allLocateOptions"></v-locatecontrol>
         <v-geosearch :options="geosearchOptions"></v-geosearch>
     </v-map>
 </template>
@@ -30,15 +31,18 @@ export default {
     data() {
         return {
             initialLocation: [43.704, 7.3111],
-            locateOptions: {
+            allLocateOptions: {
+              locateOptions: {
                 enableHighAccuracy: true,
+              },
             },
             geosearchOptions: {
                 // Important part Here
                 provider: new OpenStreetMapProvider(),
-                style: 'bar',
+                style: 'button',
                 autoClose: true,
                 showPopup: true,
+                showMarker: false,
                 keepResult: true,
                 marker: {
                     icon: greenIcon,
@@ -51,4 +55,14 @@ export default {
 </script>
 <style scoped>
 @import 'https://unpkg.com/leaflet-geosearch@2.6.0/assets/css/leaflet.css';
+img.map-marker-centered{
+  width: 25px;
+  height: 41px;
+  position: absolute;
+  z-index: 999;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 41px);
+  transition: all 0.4s ease;
+  object-fit: contain;
+}
 </style>

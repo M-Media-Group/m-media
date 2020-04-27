@@ -1,12 +1,12 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
-@section('title', "Create notification")
+@section('title', "VueJS Components")
 @section('meta_description', "This ".config('app.name')." tool will let admins notify ".config('app.name')." users." )
 
 @section('above_container')
 <div class="header-section u-bg-primary">
-    <h1>{{ __("Let's make a webiste") }}</h1>
-    <p>Tell us a little about your needs.</p>
+    <h1>{{ __("VueJS Components") }}</h1>
+    <p>Demo</p>
 </div>
 <div>
     <div class="action-section container">

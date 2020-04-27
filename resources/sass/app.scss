@@ -541,3 +541,7 @@ a {
     //color: var(--link);
     text-decoration: underline;
 }
+
+div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch > form {
+    max-width: 500px;
+}

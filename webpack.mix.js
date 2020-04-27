@@ -39,7 +39,7 @@ if (mix.inProduction()) {
 //    }
 // });
 mix.options({
-	extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
+	//extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
 //  processCssUrls: true, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
 	purifyCss: {
 	    purifyOptions: {

@@ -8,7 +8,8 @@
 <script>
 import { LMap, LTileLayer } from "vue2-leaflet";
 import { latLng, Icon, icon } from 'leaflet';
-import Vue2LeafletLocatecontrol from 'vue2-leaflet-locatecontrol';
+import Vue2LeafletLocatecontrol from 'vue2-leaflet-locatecontrol/Vue2LeafletLocatecontrol';
+
 export default {
   components: {
     "v-map": LMap,
@@ -22,7 +23,6 @@ export default {
   }
 }
 </script>
-
 <style>
 @import "~leaflet/dist/leaflet.css";
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";

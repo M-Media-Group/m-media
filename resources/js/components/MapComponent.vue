@@ -1,7 +1,7 @@
 <template>
     <v-map :zoom="10" :center="initialLocation" style="width: 100%; height: 70vh;">
         <v-tilelayer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-        <v-locatecontrol :options="locateOptions" ></v-locatecontrol>
+        <v-locatecontrol :options="locateOptions"></v-locatecontrol>
         <v-geosearch :options="geosearchOptions"></v-geosearch>
     </v-map>
 </template>
@@ -31,7 +31,7 @@ export default {
         return {
             initialLocation: [43.704, 7.3111],
             locateOptions: {
-              enableHighAccuracy: true,
+                enableHighAccuracy: true,
             },
             geosearchOptions: {
                 // Important part Here

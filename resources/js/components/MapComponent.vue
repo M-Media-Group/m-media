@@ -3,6 +3,7 @@
         :zoom="13"
         :center="initialLocation"
         style="width: 100%; height: 70vh; border-radius: var(--border-radius); z-index: 1;"
+        ref="map"
     >
         <img src="/images/vendor/leaflet/dist/marker-icon-2x.png" class="map-marker-centered" />
         <v-tilelayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"></v-tilelayer>
@@ -55,6 +56,9 @@ export default {
             },
         };
     },
+     mounted () {
+      // console.log(this.$refs.map.mapObject.locate());
+     }
 };
 </script>
 <style scoped>

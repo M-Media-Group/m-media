@@ -12,11 +12,7 @@
 
 	<div class="col-md-12 u-center" style="max-width: 700px;">
     <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" >
-         We are monitoring the situation regarding the global outbreak of Coronavirus. Our pricing terms for businesses have been relaxed; we're here to help your business get through this. <a href="/contact">Contact us</a> to discuss monthly installments and alternate payment options.
-         <br/><br/>Our Coronavirus live data tracker is <a href="/covid-19">available here</a>.
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
-          </button>
+         <b>New:</b> <a href="#finance">Financing options</a> available, including interest free options.
     </div>
 	<h2 class="mt-5 mb-0">Services</h2>
 	@if($plans && count($plans->data) > 0)
@@ -39,6 +35,11 @@
 				</tr>
 				@endif
 			@endforeach
+			<tr>
+				<td>Facebook Ad Management<br/><small>Full plan</small></td>
+				<td>5.6% of generated ad revenue less ad expenses / ad account<br/><small>Per month</small></td>
+				<td><a href="/contact">{{ __('Contact us') }}</a></td>
+			</tr>
 			</tbody>
 		</table>
 	</div>
@@ -48,6 +49,7 @@
 		</div>
 	@endif
 	<p class="text-muted">Example: A service that costs 12 EUR / hour and is billed once a month, means that if you use 2 hours of the service in the first week of a given month and another 2 hours during the last week of the same month, you'll be billed €12 * 4 hours, or €48, at the end of the month.</p>
+	<p class="text-muted">Facebook Ad Management example: You spend 100 EUR in a given month on Facebook ads, bringing you 500 EUR in revenue. You will be billed (500 – 100) * 5.6%, or 22.40 EUR, at the end of the month.</p>
 	<p class="text-muted">Pricing is based per unit and units cannot be divided. As an example, website maintenance is charged by the hour. Replacing a picture might take 30 minutes, but you'll still be billed the hour. That's why its a good idea to consolidate your requests; if you send us two or three pictures to change, it's the same price as changing one.</p>
 	</div>
 </div>
@@ -104,8 +106,7 @@
 	@endif
 	<p class="text-muted">Example: You pay 30% upfront for a website. During the development process, you close your business and no longer need a website. Development stops and you are not obliged to pay the remaining 70%.</p>
 	<p class="text-muted">Other factors may increase overall cost. For example, pricing above assumes support in only one language. Adding additional features is billed according to the Website Maintenance service.</p>
-
-</div>
+	</div>
 </div>
 <div class="row m-0 pt-5 pb-5 " data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
@@ -143,4 +144,40 @@
 	<p class="text-muted">Discounts are not cumulative. If you are eligible for multiple discounts, only the discount with the highest reduction applies.</p>
 	</div>
 </div>
+
+<div class="row m-0 pt-5 pb-5 " style="background:var(--white);" data-aos="fade">
+	<div class="col-md-12 u-center" style="max-width: 700px;">
+	<h2 class="mt-5 mb-0" id="finance">Financing options</h2>
+	<div class="table-responsive">
+		<table class="table">
+				<thead>
+					<tr>
+						<th>Product or service</th>
+					   <th>Option</th>
+					   <th>Contact</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				<tr>
+					<td>Website Development<br/><small>All sites</small></td>
+					<td>6 months interest free<br/><small>30% upfront, 70% over 5 months</small></td>
+					<td><a href="/contact">{{ __('Contact us') }}</a></td>
+				</tr>
+
+				<tr>
+					<td>Website Development<br/><small>Site with blog, e-commerce, or custom business logic</small></td>
+					<td>11 months at 5% interest<br/><small>30% upfront, 70% over 10 months</small></td>
+					<td><a href="/contact">{{ __('Contact us') }}</a></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<p class="text-muted">Example: You comission a website and opt in for the 11 month financing option. You pay 30% of the value of the website upfront, and development work starts. Over the next 10 months, you are billed 7% of the value of the website each month, so that after 11 months you have paid for the website in full. In addition, each payment of 7% has an interest charge of 5% (calculated from the 7%, not from the total value).</p>
+	<p class="text-muted">Contracts that are benefiting from financing plans can not be terminated mid-way, unless the contract stipulates otherwise.</p>
+	<p class="text-muted"><a href="https://blog.mmediagroup.fr/post/m-media-launches-financing-options/" target="_BLANK" rel="noopener">Read more</a> about the newly added financing options.</p>
+	</div>
+</div>
+
 @endsection

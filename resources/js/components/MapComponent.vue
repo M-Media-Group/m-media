@@ -56,9 +56,9 @@ export default {
             },
         };
     },
-     mounted () {
-      // console.log(this.$refs.map.mapObject.locate());
-     }
+    mounted() {
+        // console.log(this.$refs.map.mapObject.locate());
+    },
 };
 </script>
 <style scoped>

@@ -59,7 +59,7 @@ class ScrapeInstagramAccount implements ShouldQueue
         $avg_dataset_end = null;
 
         try {
-            $cachePool = new FilesystemAdapter('Instagram', 0);
+            $cachePool = new FilesystemAdapter('Instagram', 0, storage_path('app'));
 
             $api = new Api($cachePool);
             $api->login(config('blog.instagram_username'), config('blog.instagram_password'));

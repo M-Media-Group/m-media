@@ -8,11 +8,11 @@ use App\User;
 use App\Website;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Instagram\Api;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class ScrapeInstagramAccount implements ShouldQueue
 {
@@ -60,6 +60,7 @@ class ScrapeInstagramAccount implements ShouldQueue
 
         try {
             $cachePool = new FilesystemAdapter('Instagram', 0, __DIR__ . '/../cache');
+            $cachePool = cache('key', 0);
 
             $api = new Api($cachePool);
             $api->login(config('blog.instagram_username'), config('blog.instagram_password'));

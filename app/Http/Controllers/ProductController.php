@@ -388,6 +388,6 @@ Contact us and have a chat about what we can do for you and your business. We do
             ],
         ];
 
-        return view('products.emails', $data);
+        return view('products.webDev', $data);
     }
 }

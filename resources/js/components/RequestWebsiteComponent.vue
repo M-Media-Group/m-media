@@ -13,7 +13,7 @@
  -->
             <div v-if="current_tab == 0" key="tab_0">
                 <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/tabletshop.svg" style="height: 100%; margin: 0 auto;" alt="" />
+                    <img src="/images/tabletshop.svg" style="height: 100%; margin: 0 auto;" alt="Shop" />
                 </div>
 
                 <div class="form-group row">
@@ -76,7 +76,7 @@
 
             <div v-if="current_tab == 1" key="tab_1">
                 <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/people.svg" style="height: 100%; margin: 0 auto;" alt="" />
+                    <img src="/images/people.svg" style="height: 100%; margin: 0 auto;" alt="People" />
                 </div>
 
                 <div class="form-group row">
@@ -116,7 +116,7 @@
 
             <div v-if="current_tab == 2" key="tab_2">
                 <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/emails.svg" style="height: 100%; margin: 0 auto;" alt="" />
+                    <img src="/images/emails.svg" style="height: 100%; margin: 0 auto;" alt="Emails" />
                 </div>
 
                 <div class="form-group row">

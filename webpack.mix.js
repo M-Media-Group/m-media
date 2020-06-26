@@ -3,6 +3,11 @@ const mix = require('laravel-mix');
 
 // require('laravel-mix-purgecss');
 
+const webpack = require('webpack');
+
+require('laravel-mix-bundle-analyzer');
+
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -14,7 +19,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.sourceMaps().js('resources/js/app.js', 'public/js').extract();
+mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'jquery', 'bootstrap', 'moment', 'pusher-js']);
 mix.sass('resources/sass/app.scss', 'public/css').styles([
         'resources/sass/app.css',
     'resources/sass/normalize.css',
@@ -26,6 +31,9 @@ if (mix.inProduction()) {
     mix.version();
     // .purgeCss()
 } else {
+	    mix.bundleAnalyzer({
+	    	analyzerPort: 8145,
+	    });
 	//mix.browserSync('https://mmedia:7891');
 }
 // mix.webpackConfig({

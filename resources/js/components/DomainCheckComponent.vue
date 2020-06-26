@@ -53,6 +53,7 @@
             </form>
             <div class="alert alert-secondary" v-if="availability && availability !== 'AVAILABLE'" key="availnotice">
                 <a :href="'/tools/website-debugger/' + domain">{{ domain }}</a> is {{ availability.toLowerCase() }}
+                <span v-if="transferability && transferability == 'TRANSFERABLE'">, but if you already own it you can transfer it to M Media.</span>
             </div>
             <div
                 class="table-responsive"
@@ -104,6 +105,7 @@ export default {
             loading: false,
             error: false,
             availability: '',
+            transferability: '',
             success: false,
             user: null,
             progress: 0,
@@ -169,7 +171,31 @@ export default {
                     if (res.data.availability == 'AVAILABLE') {
                         this.success = true;
                     } else {
+                        this.checkIfTransferable();
                         this.getSuggested();
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.loading = false;
+                    this.error = true;
+                });
+            //
+            //console.log(error);
+        },
+        checkIfTransferable: function () {
+            var text = this.domain.match(/([a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i);
+            this.domain = text[0];
+            this.transferability = '';
+            this.loading = true;
+            //data.append('_method', 'put'); // add this
+            axios
+                .get('/api/domains/' + this.domain + '/transferability') // change this to post )
+                .then((res) => {
+                    this.transferability = res.data.transferability;
+                    this.loading = false;
+                    if (res.data.transferability == 'TRANSFERABLE') {
+                        this.success = true;
                     }
                 })
                 .catch((error) => {

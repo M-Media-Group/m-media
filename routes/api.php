@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,92 +11,17 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::get('/', function () {
-    $routeCollection = Route::getRoutes();
-    $middlewareName = 'api';
-    $routeHasFilter = collect();
-
-    foreach ($routeCollection as $route) {
-        $middleware = $route->middleware();
-        if (count($middleware) > 0) {
-            if (in_array($middlewareName, $middleware)) {
-                $routeHasFilter->push($route);
-            }
-        }
-    }
-
-    return $routeHasFilter;
-
-    $result = $routeHasFilter->map(function ($route) {
-        return $route->only(['uri', 'methods']);
-    });
-
-    return $result;
-});
-
-Route::post('/contact', function (Request $request) {
-    $request->validate([
-        'name' => 'required|max:55',
-        'surname' => 'required|max:55',
-        'email' => 'required|email',
-        'phone' => 'nullable|min:5|max:31',
-        'message' => 'required',
-    ]);
-    $user = \App\User::where('id', config('blog.super_admin_id'))->firstOrFail();
-    App\Jobs\SaveEmail::dispatch(['email' => $request->input('email')], true);
-    $phone = null;
-    if ($request->input('phone')) {
-        $input['phonenumber'] = $request->input('phone');
-        try {
-            $phone = App\Jobs\SavePhone::dispatchNow($input);
-            if (! isset($phone->e164)) {
-                abort(422);
-            // $phone = $request->input('phone');
-            } else {
-                $phone = $phone->e164;
-            }
-        } catch (Exception $e) {
-            throw Illuminate\Validation\ValidationException::withMessages(['phone' => "The phone number doesn't look right. Please check your number and include the country code, starting with a plus sign (+)."]);
-            // $phone = $request->input('phone');
-        }
-    }
-
-    Notification::route('mail', $request->input('email'))->notify(new App\Notifications\CustomNotification(
-        [
-            'send_email' => 1,
-            'title' => 'Hi '.$request->input('name').'!',
-            'message' => "Thanks for messaging us! We've received your message and we'll be getting back to you as soon as possible on this email address.",
-        ]
-    ));
-
-    return $user->notify(new App\Notifications\CustomNotification(
-        [
-            'send_email' => 1,
-            'send_database' => 1,
-            'title' => 'New contact request from '.$request->input('name').' '.$request->input('surname'),
-            'message' => 'Email: '.$request->input('email')."\n\n Phone: ".$phone."\n\n Message: ".$request->input('message'),
-        ]
-    ));
-});
+Route::post('/contact', 'HomeController@sendContactRequest');
 
 //Route::get('categories', 'CategoryController@index');
 
-Route::get('/domains/{domain}/transferability', function ($domain) {
-    $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+Route::get('/domains/{domain}/transferability', 'DomainController@checkTransferability');
 
-    return response()->json(['transferability' => $sms->checkDomainTransferability(['DomainName' => $domain])->get('Transferability')['Transferable']]);
-});
-
-Route::get('/domains/{domain}/availability', function ($domain) {
-    $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
-
-    return response()->json(['availability' => $sms->checkDomainAvailability(['DomainName' => $domain])->get('Availability')]);
-});
+Route::get('/domains/{domain}/availability', 'DomainController@checkAvailability');
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('/user', 'UserController@showSelf');
+
     Route::apiResource('files', 'FileController');
 
     Route::apiResource('bots', 'BotController');
@@ -118,57 +41,14 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/users/{user}/update-card', 'UserController@updateCard');
 
-    Route::get('/domains/{domain}/suggestions', function ($domain) {
-        $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
-        $list = $sms->GetDomainSuggestions(['DomainName' => $domain, 'OnlyAvailable' => true, 'SuggestionCount' => 50])->get('SuggestionsList');
-        $new_list = [];
-        foreach ($list as $item) {
-            //$new_list[strstr($item['DomainName'], '.')][]['domain'] = $item['DomainName'];
-            $new_list[] = ['domain' => $item['DomainName'], 'tld' => strstr($item['DomainName'], '.')];
-        }
+    Route::get('/domains/{domain}/suggestions', 'DomainController@suggest');
 
-        return response()->json(['suggestions' => $new_list]);
-    });
+    Route::post('/domains/{domain}/transfer', 'DomainController@transfer');
 
-    Route::post('/domains/{domain}/transfer', function ($domain) {
-        return App\Jobs\TransferDomain::dispatchNow($domain, \App\User::first());
-    });
+    Route::post('/phones/{phone}/call', 'PhoneController@call');
 
-    Route::post('/phones/{phone}/call', function (App\Phone $phone, Request $request) {
-        if (Gate::denies('call', $phone)) {
-            abort(403, 'Unauthorized action.');
-        }
-        $client = AWS::createClient('Connect', ['region' => 'eu-central-1']);
+    Route::post('users/{id}/notifications', 'UserController@notifications');
 
-        return response()->json([
-            'availability' => $client->startOutboundVoiceContact([
-                'Attributes' => [
-                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>'.$request->input('message', '').'</speak>',
-                    'transfer' => $request->input('transfer', 'false'),
-                ],
-                //'ClientToken' => '<string>',
-                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
-                'DestinationPhoneNumber' => $phone->e164, // REQUIRED
-                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
-                'QueueId' => config('aws.connect.QueueId'),
-                //'SourcePhoneNumber' => '<string>',
-            ]),
-        ]);
-    });
-
-    Route::get('users/{id}/notifications', function (Request $request, $id) {
-        $user = App\User::findOrFail($id);
-
-        if ($request->user()->cant('show', $user)) {
-            abort(403, 'Unauthorized action.');
-        }
-
-        $notifications = $user->notifications;
-        //$user->unreadNotifications->markAsRead();
-
-        return $notifications;
-    });
 });
 
 Route::group(['middleware' => ['client']], function () {
@@ -178,9 +58,5 @@ Route::group(['middleware' => ['client']], function () {
 
     Route::post('files/upload-from-email', 'FileController@storeFromEmail');
 
-    Route::get('/domains', function ($domain) {
-        $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
-
-        return $sms->listDomains()->get('Domains');
-    });
+    Route::get('/domains', 'DomainController@index');
 });

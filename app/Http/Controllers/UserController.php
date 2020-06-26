@@ -69,6 +69,11 @@ class UserController extends Controller
         return view('users.show', ['user' => $user]);
     }
 
+    public function showSelf(Request $request)
+    {
+        return $request->user();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -155,7 +160,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -175,7 +180,20 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
+    }
+
+    public function notifications(Request $request, User $user)
+    {
+
+        if ($request->user()->cant('show', $user)) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $notifications = $user->notifications;
+        //$user->unreadNotifications->markAsRead();
+
+        return $notifications;
     }
 
     public function updateCard(Request $request, User $user)

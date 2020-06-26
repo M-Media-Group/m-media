@@ -25,6 +25,7 @@ class CustomNotificationController extends Controller
         // $this->authorize('index', Bot::class);
         // $users = User::get();
         // return view('createNotification', compact('users'));
+        return view('notifications');
     }
 
     /**

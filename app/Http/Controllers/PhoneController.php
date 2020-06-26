@@ -74,6 +74,30 @@ class PhoneController extends Controller
         return view('phones.show', compact('phone'));
     }
 
+    public function call(Phone $phone, Request $request)
+    {
+        if (Gate::denies('call', $phone)) {
+            abort(403, 'Unauthorized action.');
+        }
+        $client = AWS::createClient('Connect', ['region' => 'eu-central-1']);
+
+        return response()->json([
+            'availability' => $client->startOutboundVoiceContact([
+                'Attributes' => [
+                    'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
+                    'transfer' => $request->input('transfer', 'false'),
+                ],
+                //'ClientToken' => '<string>',
+                'ContactFlowId' => config('aws.connect.ContactFlowId'), // REQUIRED
+                'DestinationPhoneNumber' => $phone->e164, // REQUIRED
+                'InstanceId' => config('aws.connect.InstanceId'), // REQUIRED
+                'QueueId' => config('aws.connect.QueueId'),
+                //'SourcePhoneNumber' => '<string>',
+            ]),
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

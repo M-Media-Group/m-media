@@ -17,45 +17,26 @@
 //     return view('print');
 // });
 
-Route::get('/web-development/entrepreneurs', function () {
-    return view('entrepreneur');
-});
+Route::get('/web-development/entrepreneurs', 'HomeController@entrepreneur');
 // Route::get('/web-development/restaurateurs', function () {
 //     return view('restaurateur');
 // });
 
-Route::get('/instagram', function () {
-    return view('instagram');
-});
+Route::get('/instagram', 'HomeController@instagram');
 
-Route::get('/sitemap', function () {
-    return view('sitemap');
-});
+Route::get('/sitemap', 'HomeController@sitemap');
 
-Route::get('/frequently-asked-questions', function () {
-    return view('faq');
-});
+Route::get('/frequently-asked-questions', 'HomeController@faq');
 
-Route::get('/pricing', function () {
-    \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-    $plans = \Stripe\Plan::all(['expand' => ['data.product']]);
-    $products = \Stripe\Sku::all(['expand' => ['data.product']]);
-    $coupons = \Stripe\Coupon::all();
-    // return \Stripe\Price::all(['expand' => ['data.product']]);
-    return view('pricing', compact('plans', 'products', 'coupons'));
-});
+Route::get('/pricing', 'HomeController@pricing');
 
-Route::get('/case-studies', function () {
-    return view('caseStudies');
-});
+Route::get('/case-studies', 'HomeController@caseStudies');
 
 // Route::get('/mail', function () {
 //     return new App\Mail\BotOffline();
 // });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'HomeController@contact');
 
 Route::get('/web-development', 'ProductController@webdev');
 
@@ -75,17 +56,11 @@ Route::get('/case-studies/breathe-as-one-festival', 'CaseStudyController@breathe
 
 Route::get('/case-studies/nicolas-pisani-real-estate-agents', 'CaseStudyController@nicolasPisani');
 
-Route::get('/privacy-policy', function () {
-    return view('privacy');
-});
+Route::get('/privacy-policy', 'HomeController@privacy');
 
-Route::get('/terms-and-conditions', function () {
-    return view('toc');
-});
+Route::get('/terms-and-conditions', 'HomeController@toc');
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', 'HomeController@about');
 
 Route::post(
     'stripe/webhook',
@@ -94,9 +69,8 @@ Route::post(
 
 Auth::routes(['register' => false, 'verify' => true]);
 
-Route::get('/tools/instagram-account-analyzer', function () {
-    return view('instagramAccountSelector');
-});
+Route::get('/tools/instagram-account-analyzer', 'InstagramScrapeController@showSelector');
+
 Route::get('/tools/instagram-account-analyzer/{username}', 'InstagramScrapeController@index')->middleware('throttle:10,1');
 
 Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->middleware('throttle:10,1');
@@ -104,9 +78,9 @@ Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->mi
 Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/notifications', function () {
-        return view('notifications');
-    });
+
+    Route::get('/notifications', 'CustomNotificationController@index');
+
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
 });
@@ -114,22 +88,16 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['verified']], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
-    Route::get('users/{user}/payment-methods/sepas/create', function (App\User $user) {
-        //$user = $request->user();
-        $intent = $user->createSetupIntent([
-            'payment_method_types' => ['sepa_debit'],
-        ]);
+    // Route::get('users/{user}/payment-methods/sepas/create', function (App\User $user) {
+    //     $intent = $user->createSetupIntent([
+    //         'payment_method_types' => ['sepa_debit'],
+    //     ]);
+    //     return view('createIban', compact('user', 'intent'));
+    // });
 
-        return view('createIban', compact('user', 'intent'));
-    });
+    Route::get('/my-account/billing', 'HomeController@billing');
 
-    Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
-    });
-
-    Route::get('/domains/check-availability', function () {
-        return view('domains.checkAvailability');
-    });
+    Route::get('/domains/check-availability', 'HomeController@domainAvailability');
 
     Route::get('invoices/{id}/pdf', 'InvoiceController@redirectToStripeInvoice');
     Route::get('bots/{id}/connect', 'BotController@connect');
@@ -146,22 +114,8 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('instagram-accounts', 'InstagramAccountController');
 });
 
-Route::get('/', function () {
-    return View::make('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
-Route::get('/components', function () {
-    return View::make('requestWebsite');
-});
+Route::get('/components', 'HomeController@components');
 
-Route::get('/covid-19', function () {
-    $client = new \GuzzleHttp\Client();
-    $request = $client->get('https://covid-api.mmediagroup.fr/v1/cases');
-    $response = json_decode($request->getBody(), true);
-    $request = $client->get('https://covid-api.mmediagroup.fr/v1/history?status=confirmed');
-    $response_2 = json_decode($request->getBody(), true);
-    $request = $client->get('https://covid-api.mmediagroup.fr/v1/history?status=deaths');
-    $response_3 = json_decode($request->getBody(), true);
-    //return $response;
-    return View::make('covid', ['cases' => $response, 'history' => $response_2, 'deaths' => $response_3]);
-});
+Route::get('/covid-19', 'HomeController@covid');

@@ -24,13 +24,13 @@ class InstagramScrapeController extends Controller
     public function index(Request $request, $username)
     {
         $scraped_data = InstagramAccount::where('username', $username)->with(['latestScrape', 'scrapes'])->withCount('scrapes')->first();
-        if (! isset($scraped_data->latestScrape) || $request->input('force') == true) {
-            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, ! $request->input('force'));
+        if (!isset($scraped_data->latestScrape) || $request->input('force') == true) {
+            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, !$request->input('force'));
             //$data['account']->scrapes_count = 1;
-            return redirect('/instagram-accounts/'.$data['account']['id']);
+            return redirect('/instagram-accounts/' . $data['account']['id']);
         }
 
-        return redirect('/instagram-accounts/'.$scraped_data->id);
+        return redirect('/instagram-accounts/' . $scraped_data->id);
     }
 
     /**
@@ -54,6 +54,18 @@ class InstagramScrapeController extends Controller
     {
         $this->authorize('create', Bot::class);
         //return SyncBots::dispatchNow();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showSelector($id)
+    {
+        return view('instagramAccountSelector');
     }
 
     /**
@@ -157,7 +169,7 @@ class InstagramScrapeController extends Controller
 
             $obj = json_decode($body);
 
-            return 'ssh -l pi '.$obj->connection->proxyserver.' -p '.$obj->connection->proxyport;
+            return 'ssh -l pi ' . $obj->connection->proxyserver . ' -p ' . $obj->connection->proxyport;
         } catch (Exception $e) {
             return $e;
         }

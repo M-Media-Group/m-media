@@ -38,6 +38,12 @@ if (mix.inProduction()) {
 //      }
 //    }
 // });
+mix.webpackConfig({
+  plugins: [
+   // reduce bundle size by ignoring moment js local files
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+  ]
+});
 mix.options({
 	//extractVueStyles: true, // Extract .vue component styling to file, rather than inline.
 //  processCssUrls: true, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.

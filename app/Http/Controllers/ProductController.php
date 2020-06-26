@@ -27,19 +27,19 @@ class ProductController extends Controller
             'title' => 'Marketing Automation Bot',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 73,
-                    'type'  => 'subscription',
-                    'text'  => '€73',
+                    'type' => 'subscription',
+                    'text' => '€73',
                 ],
             ],
             'subtext' => '2 week delivery time',
-            'text'    => "Our number 1 seller - a micro computer pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
+            'text' => "Our number 1 seller - a micro computer pre-installed with M Media software and services ready to automate your digital and physical tasks for your business! Required for some subscription services.
 
 
 M Media uses the automation bot for a range of services including to [engage with your customers on Instagram](/instagram-engagement) so you can focus on running your business.
@@ -81,19 +81,19 @@ Whether you're upgrading to a newer version of the bot or have switched systems 
             'title' => 'Instagram progress monitoring',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 5,
-                    'type'  => 'subscription',
-                    'text'  => '€5 a month',
+                    'type' => 'subscription',
+                    'text' => '€5 a month',
                 ],
             ],
             'subtext' => 'Daily Instagram stats',
-            'text'    => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
+            'text' => "This M Media service provides daily tracking of the amount of followers you have, and the amount of profiles you're following.
 
 
 We'll also track your follower to following ratio, and your engagement health. You'll get daily M Media suggestions to improve your performance on Instagram.
@@ -121,19 +121,19 @@ If your account is already being tracked and you do not want us to store any mor
             'title' => 'Instagram Engagement',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 17,
-                    'type'  => 'subscription',
-                    'text'  => 'From €17 a month',
+                    'type' => 'subscription',
+                    'text' => 'From €17 a month',
                 ],
             ],
             'subtext' => 'This service is temporarily unavailable',
-            'text'    => "M Media uses the [automation bot](/automation-bot) to handle your likes, follows, comments, and unfollows on Instagram, so you can focus on running your business.
+            'text' => "M Media uses the [automation bot](/automation-bot) to handle your likes, follows, comments, and unfollows on Instagram, so you can focus on running your business.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the repetitive but very important engagement on Instagram. It doesn't make mistakes, and it doesn't get sick.
 
@@ -213,19 +213,19 @@ As with all of our monthly subscriptions, you can cancel this service at any tim
             'title' => 'Instagram Content Management',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 147,
-                    'type'  => 'subscription',
-                    'text'  => 'From €147 a month',
+                    'type' => 'subscription',
+                    'text' => 'From €147 a month',
                 ],
             ],
             'subtext' => '+ Free progress reports',
-            'text'    => "M Media uses analytics data to understand the best times to post your content to Instagram, and then does exactly that.
+            'text' => "M Media uses analytics data to understand the best times to post your content to Instagram, and then does exactly that.
 
 You'll get an extra employee that works 365 days a year, 24 hours a day, doing all the things you hate. It doesn't make mistakes, and it doesn't get sick.
 
@@ -282,19 +282,19 @@ As with all of our monthly subscriptions, you can cancel this service at any tim
             'title' => 'Product Packaging',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 15,
-                    'type'  => 'subscription',
-                    'text'  => '€1,13 - €10 per box',
+                    'type' => 'subscription',
+                    'text' => '€1,13 - €10 per box',
                 ],
             ],
             'subtext' => '1 month delivery time',
-            'text'    => "A micro computer pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
+            'text' => "A micro computer pre-installed with M Media software and services - ready to automate digital and physical tasks at your place of business! Required for some subscription services.
 
 
 Forget chasing clients for payments, sending invoices, manually ordering stock and shipping out orders, emails, and interacting with your followers on Instagram. With us, that's all handled by robots.
@@ -315,19 +315,19 @@ You'll get an extra employee that works 365 days a year, 24 hours a day, doing a
             'title' => 'Web Development',
             'price' => [
                 [
-                    'plan'     => 'basic',
+                    'plan' => 'basic',
                     'currency' => [
-                        'name'   => 'Euro',
+                        'name' => 'Euro',
                         'symbol' => '€',
-                        'ISO'    => 'EUR',
+                        'ISO' => 'EUR',
                     ],
                     'value' => 999,
-                    'type'  => 'subscription',
-                    'text'  => 'Tailored pricing',
+                    'type' => 'subscription',
+                    'text' => 'Tailored pricing',
                 ],
             ],
             'subtext' => '+ Free website analytics',
-            'text'    => "
+            'text' => "
 You visit hundreds of sites a day. Yet, you remember just a handful of them. You remember them because they are useful, they work, and they are the answer to what you are looking for in a given moment. They are simple in their usage, and complex in their potential. Most importantly, you don't have to think about how to use them or how they work. They just do.
 
 That's what we make - unobtrusive, elegant, and functional websites that complement your brand and satisfy your customers needs.
@@ -388,6 +388,6 @@ Contact us and have a chat about what we can do for you and your business. We do
             ],
         ];
 
-        return view('products.webDev', $data);
+        return view('products.emails', $data);
     }
 }

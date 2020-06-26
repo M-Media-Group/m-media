@@ -24,13 +24,13 @@ class InstagramScrapeController extends Controller
     public function index(Request $request, $username)
     {
         $scraped_data = InstagramAccount::where('username', $username)->with(['latestScrape', 'scrapes'])->withCount('scrapes')->first();
-        if (! isset($scraped_data->latestScrape) || $request->input('force') == true) {
-            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, ! $request->input('force'));
+        if (!isset($scraped_data->latestScrape) || $request->input('force') == true) {
+            $data = ScrapeInstagramAccount::dispatchNow($username, $request->user() ?? null, !$request->input('force'));
             //$data['account']->scrapes_count = 1;
-            return redirect('/instagram-accounts/'.$data['account']['id']);
+            return redirect('/instagram-accounts/' . $data['account']['id']);
         }
 
-        return redirect('/instagram-accounts/'.$scraped_data->id);
+        return redirect('/instagram-accounts/' . $scraped_data->id);
     }
 
     /**
@@ -96,7 +96,7 @@ class InstagramScrapeController extends Controller
         $PhoneLog = PhoneLog::findOrFail($id);
 
         $request->validate([
-            'notes'    => 'nullable',
+            'notes' => 'nullable',
             'ended_at' => 'nullable',
         ]);
 
@@ -119,10 +119,10 @@ class InstagramScrapeController extends Controller
 
         try {
             $headers = [
-                'Content-Type'  => 'application/json',
-                'AccessToken'   => 'key',
+                'Content-Type' => 'application/json',
+                'AccessToken' => 'key',
                 'Authorization' => 'Bearer token',
-                'developerkey'  => config('blog.remoteit.developerkey'),
+                'developerkey' => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -139,10 +139,10 @@ class InstagramScrapeController extends Controller
 
             //# Get devices
             $headers = [
-                'Content-Type'  => 'application/json',
-                'token'         => $obj->token,
+                'Content-Type' => 'application/json',
+                'token' => $obj->token,
                 'Authorization' => 'Bearer token',
-                'developerkey'  => config('blog.remoteit.developerkey'),
+                'developerkey' => config('blog.remoteit.developerkey'),
             ];
             $client = new Client([
                 'headers' => $headers,
@@ -150,14 +150,14 @@ class InstagramScrapeController extends Controller
 
             $response = $client->request('POST', 'https://api.remot3.it/apv/v27/device/connect', [RequestOptions::JSON => [
                 'deviceaddress' => $bot->address,
-                'wait'          => true,
+                'wait' => true,
             ]]);
             $statusCode = $response->getStatusCode();
             $body = $response->getBody()->getContents();
 
             $obj = json_decode($body);
 
-            return 'ssh -l pi '.$obj->connection->proxyserver.' -p '.$obj->connection->proxyport;
+            return 'ssh -l pi ' . $obj->connection->proxyserver . ' -p ' . $obj->connection->proxyport;
         } catch (Exception $e) {
             return $e;
         }

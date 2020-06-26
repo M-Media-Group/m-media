@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
-use App\Phone;
 use App\User;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
-use Password;
 
 class StripeWebhookController extends CashierController
 {
@@ -33,74 +30,10 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerUpdated($payload)
     {
+
         if ($payload['data']['object']['phone']) {
-            $user = User::firstOrCreate(['stripe_id' => $payload['data']['object']['id']], [
-                'email' => $payload['data']['object']['email'],
-                'password' => 'notset',
-            ]);
-            $created = $user->wasRecentlyCreated;
-            $input = [];
             $input['phonenumber'] = $payload['data']['object']['phone'];
-            $input['country'] = null;
-            $input['language'] = 'en';
-            $input['region'] = null;
-
-            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            $phoneNumberGeocoder = \libphonenumber\geocoding\PhoneNumberOfflineGeocoder::getInstance();
-
-            $validNumber = false;
-            $validNumberForRegion = false;
-            $possibleNumber = false;
-            $isPossibleNumberWithReason = null;
-            $geolocation = null;
-            $phoneNumberToCarrierInfo = null;
-            $timezone = null;
-
-            $phoneNumber = $phoneNumberUtil->parse($input['phonenumber'], $input['country'], null, true);
-            $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
-            $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
-            $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (! $validNumber) {
-                return response()->json(['Error' => 'This is not a valid number'], 422);
-            }
-            $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
-            $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
-            $phoneNumberType = $phoneNumberUtil->getNumberType($phoneNumber);
-            $geolocation = $phoneNumberGeocoder->getDescriptionForNumber(
-                $phoneNumber,
-                $input['language'],
-                $input['region']
-            );
-
-            $e164 = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::E164);
-            $nationalNumber = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::NATIONAL);
-
-            $phoneNumberToCarrierInfo = \libphonenumber\PhoneNumberToCarrierMapper::getInstance()->getNameForNumber(
-                $phoneNumber,
-                $input['language']
-            );
-            $timezone = \libphonenumber\PhoneNumberToTimeZonesMapper::getInstance()->getTimeZonesForNumber($phoneNumber);
-
-            $countryCode = $phoneNumberUtil->getCountryCodeForRegion($phoneNumberRegion);
-            $country = Country::firstOrCreate(
-                ['iso' => $phoneNumberRegion],
-                ['name' => $geolocation, 'calling_code' => $countryCode]
-            );
-            $phone = Phone::firstOrCreate(
-                ['e164' => $e164],
-                [
-                    'number' => $nationalNumber,
-                    //   'possibleNumber' => $possibleNumber,
-                    //   'validNumber' => $validNumber,
-                    //    'validNumberForRegion' => $validNumberForRegion,
-                    'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
-                    'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
-                ]
-            );
+            $phone = App\Jobs\SavePhone::dispatchNow($input);
         } else {
             $phone = (object) [];
             $phone->id = null;
@@ -123,7 +56,7 @@ class StripeWebhookController extends CashierController
         ]);
         //$payload['data']['default_source'];
         //return;
-        return response($user, 200);
+        return response('Webhook Handled', 200);
     }
 
     /**
@@ -135,7 +68,7 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerDeleted($payload)
     {
-        // Handle The Event
+        return response('Webhook Handled', 200);
     }
 
     /**
@@ -155,69 +88,10 @@ class StripeWebhookController extends CashierController
         $created = $user->wasRecentlyCreated;
 
         if ($payload['data']['object']['phone']) {
-            $input = [];
             $input['phonenumber'] = $payload['data']['object']['phone'];
-            $input['country'] = null;
-            $input['language'] = 'en';
-            $input['region'] = null;
-
-            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            $phoneNumberGeocoder = \libphonenumber\geocoding\PhoneNumberOfflineGeocoder::getInstance();
-
-            $validNumber = false;
-            $validNumberForRegion = false;
-            $possibleNumber = false;
-            $isPossibleNumberWithReason = null;
-            $geolocation = null;
-            $phoneNumberToCarrierInfo = null;
-            $timezone = null;
-
-            $phoneNumber = $phoneNumberUtil->parse($input['phonenumber'], $input['country'], null, true);
-            $possibleNumber = $phoneNumberUtil->isPossibleNumber($phoneNumber);
-            $isPossibleNumberWithReason = $phoneNumberUtil->isPossibleNumberWithReason($phoneNumber);
-            $validNumber = $phoneNumberUtil->isValidNumber($phoneNumber);
-            if (! $validNumber) {
-                return response()->json(['Error' => 'This is not a valid number'], 422);
-            }
-            $validNumberForRegion = $phoneNumberUtil->isValidNumberForRegion($phoneNumber, $input['country']);
-            $phoneNumberRegion = $phoneNumberUtil->getRegionCodeForNumber($phoneNumber);
-            $phoneNumberType = $phoneNumberUtil->getNumberType($phoneNumber);
-            $geolocation = $phoneNumberGeocoder->getDescriptionForNumber(
-                $phoneNumber,
-                $input['language'],
-                $input['region']
-            );
-
-            $e164 = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::E164);
-            $nationalNumber = $phoneNumberUtil->format($phoneNumber, \libphonenumber\PhoneNumberFormat::NATIONAL);
-
-            $phoneNumberToCarrierInfo = \libphonenumber\PhoneNumberToCarrierMapper::getInstance()->getNameForNumber(
-                $phoneNumber,
-                $input['language']
-            );
-            $timezone = \libphonenumber\PhoneNumberToTimeZonesMapper::getInstance()->getTimeZonesForNumber($phoneNumber);
-
-            $countryCode = $phoneNumberUtil->getCountryCodeForRegion($phoneNumberRegion);
-            $country = Country::firstOrCreate(
-                ['iso' => $phoneNumberRegion],
-                ['name' => $geolocation, 'calling_code' => $countryCode]
-            );
-            $phone = Phone::firstOrCreate(
-                ['e164' => $e164],
-                [
-                    'number' => $nationalNumber,
-                    //   'possibleNumber' => $possibleNumber,
-                    //   'validNumber' => $validNumber,
-                    //    'validNumberForRegion' => $validNumberForRegion,
-                    'number_type' => $phoneNumberType,
-                    'country_id' => $country->id,
-                    'timezone' => $timezone[0],
-                    'description' => $phoneNumberToCarrierInfo,
-                    'user_id' => $user->id,
-                    'is_public' => 0,
-                ]
-            );
+            $phone = App\Jobs\SavePhone::dispatchNow($input);
         } else {
+            $phone = (object) [];
             $phone->id = null;
         }
 
@@ -226,16 +100,12 @@ class StripeWebhookController extends CashierController
         $user->phone_id = $phone->id;
 
         if ($created) {
-            $token = Password::getRepository()->create($user);
-            $user->sendPasswordResetNotification($token);
+            // $token = Password::getRepository()->create($user);
+            // $user->sendPasswordResetNotification($token);
+            event(new \Illuminate\Auth\Events\Registered($user));
             $user->email_verified_at = now();
             $user->save();
-            $user->notify(new \App\Notifications\CustomNotification([
-                'send_sms' => 1,
-                'action' => null,
-                'title' => 'Hi! Welcome to the '.config('app.name').' family!',
-                'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$user->email." , and you'll be good to go!",
-            ]));
+
         } else {
             $user->save();
         }
@@ -255,12 +125,13 @@ class StripeWebhookController extends CashierController
         $user = User::where('stripe_id', $payload['data']['object']['customer'])->firstOrFail();
 
         $user->notify(new \App\Notifications\CustomNotification([
+            'send_email' => 1,
             'send_database' => 1,
             'title' => 'Awesome! A discount has been applied to your account.',
             'message' => 'A discount of '
-            .($payload['data']['object']['coupon']['percent_off'] ? $payload['data']['object']['coupon']['percent_off'].'%' : \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['coupon']['amount_off']), $payload['data']['object']['coupon']['currency'])).' off '
-            .$payload['data']['object']['coupon']['duration']
-            .' has been applied to your account. From now on, you can now enjoy lower prices for '.config('app.name').' products and services.',
+            . ($payload['data']['object']['coupon']['percent_off'] ? $payload['data']['object']['coupon']['percent_off'] . '%' : \Laravel\Cashier\Cashier::formatAmount(($payload['data']['object']['coupon']['amount_off']), $payload['data']['object']['coupon']['currency'])) . ' off '
+            . $payload['data']['object']['coupon']['duration']
+            . ' has been applied to your account. From now on, you can now enjoy lower prices for ' . config('app.name') . ' products and services.',
         ]));
 
         return response('Webhook Handled', 200);
@@ -303,7 +174,7 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerSubscriptionUpdated($payload)
     {
-        // Handle The Event
+        return response('Webhook Handled', 200);
     }
 
     /**
@@ -315,6 +186,6 @@ class StripeWebhookController extends CashierController
      */
     public function handleCustomerSubscriptionDeleted($payload)
     {
-        // Handle The Event
+        return response('Webhook Handled', 200);
     }
 }

@@ -41,7 +41,7 @@ Route::get('/pricing', function () {
     $plans = \Stripe\Plan::all(['expand' => ['data.product']]);
     $products = \Stripe\Sku::all(['expand' => ['data.product']]);
     $coupons = \Stripe\Coupon::all();
-    //return $coupons;
+    // return \Stripe\Price::all(['expand' => ['data.product']]);
     return view('pricing', compact('plans', 'products', 'coupons'));
 });
 
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['verified']], function () {
     });
 
     Route::get('/my-account/billing', function () {
-        return Redirect::to('/users/'.Auth::id().'/billing', 301);
+        return Redirect::to('/users/' . Auth::id() . '/billing', 301);
     });
 
     Route::get('/domains/check-availability', function () {

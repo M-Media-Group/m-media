@@ -22,7 +22,7 @@
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "league/flysystem-cached-adapter": "~1.0",
-        "pgrimaud/instagram-user-feed": "^5.0",
+        "pgrimaud/instagram-user-feed": "^6.0",
         "pusher/pusher-php-server": "~4.0",
         "spatie/geocoder": "^3.7",
         "spatie/laravel-image-optimizer": "^1.5",

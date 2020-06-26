@@ -22,7 +22,7 @@ Vue.use(TextareaAutosize);
 
 const files = require.context('./', true, /\.vue$/i, 'lazy').keys();
 
-files.forEach(file => {
+files.forEach((file) => {
     Vue.component(file.split('/').pop().split('.')[0], () => import(`${file}` /*webpackChunkName: “[request]” */));
 });
 // Vue.component('chart-line-component', require('./components/ChartLineComponent.js').default);
@@ -31,7 +31,7 @@ files.forEach(file => {
 //     require(['./components/ChartLineComponent.js'], resolve).default
 // });
 
-Vue.component('chart-line-component', () => import('./components/ChartLineComponent.js') )
+Vue.component('chart-line-component', () => import('./components/ChartLineComponent.js'));
 
 Vue.directive('tooltip', function (el, binding) {
     $(el).tooltip({

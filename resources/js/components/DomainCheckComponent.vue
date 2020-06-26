@@ -53,7 +53,9 @@
             </form>
             <div class="alert alert-secondary" v-if="availability && availability !== 'AVAILABLE'" key="availnotice">
                 <a :href="'/tools/website-debugger/' + domain">{{ domain }}</a> is {{ availability.toLowerCase() }}
-                <span v-if="transferability && transferability == 'TRANSFERABLE'">, but if you already own it you can transfer it to M Media.</span>
+                <span v-if="transferability && transferability == 'TRANSFERABLE'"
+                    >, but if you already own it you can transfer it to M Media.</span
+                >
             </div>
             <div
                 class="table-responsive"

@@ -85,7 +85,7 @@ class PhoneController extends Controller
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
+                    'message' => '<speak>'.$request->input('message', '').'</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',

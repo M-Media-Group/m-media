@@ -26,6 +26,7 @@ class DomainController extends Controller
     public function index()
     {
         $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+
         return $sms->listDomains()->get('Domains');
     }
 
@@ -58,12 +59,14 @@ class DomainController extends Controller
     public function checkAvailability($domain)
     {
         $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+
         return response()->json(['availability' => $sms->checkDomainAvailability(['DomainName' => $domain])->get('Availability')]);
     }
 
     public function checkTransferability($domain)
     {
         $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
+
         return response()->json(['transferability' => $sms->checkDomainTransferability(['DomainName' => $domain])->get('Transferability')['Transferable']]);
     }
 

@@ -78,7 +78,6 @@ Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->mi
 Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/notifications', 'CustomNotificationController@index');
 
     Route::get('/home', 'HomeController@index')->name('home');

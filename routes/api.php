@@ -83,10 +83,6 @@ Route::post('/contact', function (Request $request) {
 
 //Route::get('categories', 'CategoryController@index');
 
-Route::post('/domains/{domain}/transfer', function ($domain) {
-    return App\Jobs\TransferDomain::dispatchNow($domain, \App\User::first());
-});
-
 Route::get('/domains/{domain}/transferability', function ($domain) {
 
     $sms = AWS::createClient('Route53Domains', ['region' => 'us-east-1']);
@@ -133,6 +129,10 @@ Route::group(['middleware' => ['auth:api']], function () {
         }
 
         return response()->json(['suggestions' => $new_list]);
+    });
+
+    Route::post('/domains/{domain}/transfer', function ($domain) {
+        return App\Jobs\TransferDomain::dispatchNow($domain, \App\User::first());
     });
 
     Route::post('/phones/{phone}/call', function (App\Phone $phone, Request $request) {

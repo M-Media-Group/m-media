@@ -43,15 +43,15 @@ class PostToBuffer implements ShouldQueue
             $hashtags_array = [];
             preg_match_all('/#(\w+)/', $this->instagramAccount->bufferSentPosts()['updates'][0]['text'], $matches);
             foreach ($matches[1] as $match) {
-                if (!in_array($match, $hashtags_array)) {
-                    array_push($hashtags_array, '#' . $match);
+                if (! in_array($match, $hashtags_array)) {
+                    array_push($hashtags_array, '#'.$match);
                 }
             }
             $hashtags = implode(' ', $hashtags_array);
         }
         $data = [
             'profile_ids' => [$this->instagramAccount->buffer_id],
-            'text' => $this->file->name . ' ' . $hashtags,
+            'text' => $this->file->name.' '.$hashtags,
             'shorten' => false,
             'media' => [
                 'photo' => $this->file->url,
@@ -60,7 +60,7 @@ class PostToBuffer implements ShouldQueue
 
         $client = new Client();
 
-        return $client->request('POST', 'https://api.bufferapp.com/1/updates/create.json?access_token=' . config('blog.buffer.access_token'), [
+        return $client->request('POST', 'https://api.bufferapp.com/1/updates/create.json?access_token='.config('blog.buffer.access_token'), [
             'form_params' => $data,
         ]);
     }

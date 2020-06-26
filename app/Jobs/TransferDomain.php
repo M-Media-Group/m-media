@@ -40,7 +40,6 @@ class TransferDomain implements ShouldQueue
      */
     public function handle()
     {
-
         $site_contact = [ // REQUIRED
             'AddressLine1' => config('blog.address'),
             // 'AddressLine2' => '<string>',
@@ -103,7 +102,8 @@ class TransferDomain implements ShouldQueue
         $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
         $phoneNumber = $phoneNumberUtil->parse($number);
         $country_code = $phoneNumber->getCountryCode();
-        $just_number = str_replace('+' . $country_code, '', $number);
-        return '+' . $country_code . '.' . $just_number;
+        $just_number = str_replace('+'.$country_code, '', $number);
+
+        return '+'.$country_code.'.'.$just_number;
     }
 }

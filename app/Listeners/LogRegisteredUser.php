@@ -28,8 +28,8 @@ class LogRegisteredUser
         $event->user->notify(new \App\Notifications\CustomNotification([
             'send_sms' => 1,
             'action' => null,
-            'title' => 'Hi! Welcome to the ' . config('app.name') . ' family!',
-            'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, " . $event->user->email . " , and you'll be good to go!",
+            'title' => 'Hi! Welcome to the '.config('app.name').' family!',
+            'message' => "You're only a step away from completing your account. Just set your account password by following the link we've already sent to your email address, ".$event->user->email." , and you'll be good to go!",
         ]));
     }
 }

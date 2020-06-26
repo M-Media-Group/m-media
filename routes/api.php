@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::post('/phones/{phone}/call', 'PhoneController@call');
 
-    Route::post('users/{id}/notifications', 'UserController@notifications');
+    Route::get('users/{user}/notifications', 'UserController@notifications');
 });
 
 Route::group(['middleware' => ['client']], function () {

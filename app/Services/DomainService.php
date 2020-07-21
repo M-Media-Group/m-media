@@ -9,7 +9,6 @@ use Iodev\Whois\Factory;
 
 class DomainService
 {
-
     protected $original_url;
     protected $url;
     protected $domain;
@@ -24,16 +23,18 @@ class DomainService
     private function isRegistered()
     {
         $whois = Factory::get()->createWhois();
-        return !$whois->isDomainAvailable($this->domain);
+
+        return ! $whois->isDomainAvailable($this->domain);
     }
 
     public function getDnsInfo()
     {
-        if (!$this->isRegistered()) {
+        if (! $this->isRegistered()) {
             return abort(404);
         }
         $host = $this->domain;
-        return dns_get_record(rtrim($host, '.') . '.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
+
+        return dns_get_record(rtrim($host, '.').'.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
     }
 
     public function getWhois()
@@ -46,7 +47,7 @@ class DomainService
             // }
 
             $info = $whois->loadDomainInfo($host);
-            if (!$info) {
+            if (! $info) {
                 return abort(404, 'Domain is not registered');
             }
             $data = [
@@ -65,11 +66,9 @@ class DomainService
 
             return $data;
         } catch (ConnectionException $e) {
-            return abort(422, "Disconnect or connection timeout");
-
+            return abort(422, 'Disconnect or connection timeout');
         } catch (ServerMismatchException $e) {
-            return abort(422, "TLD server (.com for google.com) not found in current server hosts");
-
+            return abort(422, 'TLD server (.com for google.com) not found in current server hosts');
         } catch (WhoisException $e) {
             return abort(500, "Whois server responded with error '{$e->getMessage()}'");
         }
@@ -114,6 +113,7 @@ class DomainService
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $this->original_url, $regs)) {
             return $regs['domain'];
         }
+
         return $url;
     }
 

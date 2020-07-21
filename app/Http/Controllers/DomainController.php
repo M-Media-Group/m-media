@@ -94,13 +94,14 @@ class DomainController extends Controller
     public function whois($url)
     {
         $domain = new DomainService($url);
-        return $domain->getWhois();
 
+        return $domain->getWhois();
     }
 
     public function dnsInfo($url)
     {
         $domain = new DomainService($url);
+
         return $domain->getDnsInfo();
     }
 

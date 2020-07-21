@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.19.2",
         "bootstrap": "^4.5.0",
-        "browser-sync": "^2.26.7",
+        "browser-sync": "^2.26.10",
         "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^5.2.1",
         "jquery": "^3.5.1",
@@ -22,14 +22,14 @@
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.26.9",
+        "sass": "^1.26.10",
         "sass-loader": "^7.3.1",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/preset-env": "^7.10.3",
+        "@babel/preset-env": "^7.10.4",
         "aos": "^3.0.0-beta.6",
         "chart.js": "^2.9.3",
         "laravel-echo": "^1.8.0",

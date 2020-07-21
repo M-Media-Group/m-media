@@ -17,6 +17,10 @@ Route::post('/contact', 'HomeController@sendContactRequest');
 
 Route::get('/domains/{domain}/transferability', 'DomainController@checkTransferability');
 
+Route::get('/domains/{domain}/whois', 'DomainController@whois');
+
+Route::get('/domains/{domain}/dns-info', 'DomainController@dnsInfo');
+
 Route::get('/domains/{domain}/availability', 'DomainController@checkAvailability');
 
 Route::group(['middleware' => ['auth:api']], function () {

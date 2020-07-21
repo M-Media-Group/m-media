@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DomainService;
 use App\Website;
 use AWS;
 use Illuminate\Http\Request;
@@ -90,9 +91,17 @@ class DomainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Website $website)
+    public function whois($url)
     {
-        //
+        $domain = new DomainService($url);
+        return $domain->getWhois();
+
+    }
+
+    public function dnsInfo($url)
+    {
+        $domain = new DomainService($url);
+        return $domain->getDnsInfo();
     }
 
     /**

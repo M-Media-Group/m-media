@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Phone;
+use Gate;
 use Illuminate\Http\Request;
 
 class PhoneController extends Controller
@@ -85,7 +86,7 @@ class PhoneController extends Controller
             'availability' => $client->startOutboundVoiceContact([
                 'Attributes' => [
                     'name' => $phone->primaryUser ? $phone->primaryUser->name : $phone->user->name,
-                    'message' => '<speak>'.$request->input('message', '').'</speak>',
+                    'message' => '<speak>' . $request->input('message', '') . '</speak>',
                     'transfer' => $request->input('transfer', 'false'),
                 ],
                 //'ClientToken' => '<string>',

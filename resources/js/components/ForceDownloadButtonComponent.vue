@@ -1,8 +1,6 @@
 <template>
-    <div style="display: inline;">
-        <button type="submit" class="button" v-on:click="downloadWithAxios">
-            Download
-        </button>
+    <div style="display: inline">
+        <button type="submit" class="button" v-on:click="downloadWithAxios">Download</button>
     </div>
 </template>
 

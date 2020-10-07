@@ -79,9 +79,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="alert alert-info" role="alert" v-show="loading" key="2">
-                Checking...
-            </div>
+            <div class="alert alert-info" role="alert" v-show="loading" key="2">Checking...</div>
             <div class="row" key="5">
                 <div class="col-md-8 offset-md-4 text-muted">
                     <a

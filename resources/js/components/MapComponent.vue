@@ -2,7 +2,7 @@
     <v-map
         :zoom="13"
         :center="initialLocation"
-        style="width: 100%; height: 70vh; border-radius: var(--border-radius); z-index: 1;"
+        style="width: 100%; height: 70vh; border-radius: var(--border-radius); z-index: 1"
         ref="map"
     >
         <img src="/images/vendor/leaflet/dist/marker-icon-2x.png" class="map-marker-centered" />

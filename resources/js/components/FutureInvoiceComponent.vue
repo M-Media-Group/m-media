@@ -1,5 +1,5 @@
 <template>
-    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%;">
+    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%">
         <div class="table-responsive" v-if="invoice && !loading" key="invoices">
             <div class="table-responsive" v-if="invoice.lines.data" key="items">
                 <table class="table">
@@ -17,11 +17,11 @@
                             <td>{{ formatNumber(item.amount / 100, invoice.currency) }}</td>
                         </tr>
                         <tr>
-                            <th style="text-align: right;">Subtotal</th>
+                            <th style="text-align: right">Subtotal</th>
                             <td>{{ formatNumber(invoice.subtotal / 100, invoice.currency) }}</td>
                         </tr>
                         <tr v-if="invoice.discount">
-                            <th style="text-align: right;">Discount</th>
+                            <th style="text-align: right">Discount</th>
                             <td>
                                 {{
                                     invoice.discount.coupon.amount_off
@@ -31,7 +31,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="text-align: right;">Total</th>
+                            <th style="text-align: right">Total</th>
                             <th>{{ formatNumber(invoice.total / 100, invoice.currency) }}</th>
                         </tr>
                     </tbody>
@@ -48,12 +48,8 @@
             {{ getTimestamp(invoice) }}. Total may change before payment date.
             <a href="https://blog.mmediagroup.fr/post/see-future-invoice/" target="_BLANK" rel="noopener">Learn more</a>
         </div>
-        <div v-else-if="loading" key="loading" class="alert">
-            Loading...
-        </div>
-        <div v-else class="alert text-muted" key="error">
-            You have no upcoming invoice.
-        </div>
+        <div v-else-if="loading" key="loading" class="alert">Loading...</div>
+        <div v-else class="alert text-muted" key="error">You have no upcoming invoice.</div>
     </transition-group>
 </template>
 

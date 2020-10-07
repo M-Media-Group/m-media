@@ -23,7 +23,6 @@ class CreateAdAccountsTable extends Migration
 
             $table->foreign('ad_account_platform_id')->references('id')->on('ad_account_platforms')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-
         });
     }
 

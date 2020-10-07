@@ -409,7 +409,7 @@ Contact us and have a chat about what we can do for you and your business. We do
                 ],
             ],
             'subtext' => 'Advertise on Google and Facebook ad platforms',
-            'text' => "",
+            'text' => '',
             'image' => [
                 'url' => '/images/heartweb.svg',
             ],

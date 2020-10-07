@@ -72,10 +72,10 @@ class AdAccountController extends Controller
     {
         $this->authorize('show', $adAccount);
         $ads = null;
-        if ($adAccount->platform->name == "Google Ads") {
+        if ($adAccount->platform->name == 'Google Ads') {
             $ads = $this->getGoogleData($adAccount);
             $data_to_return = ['account' => $adAccount, 'ads' => $ads];
-        } elseif ($adAccount->platform->name == "Facebook Ads") {
+        } elseif ($adAccount->platform->name == 'Facebook Ads') {
             $ads = $this->getFacebookData($adAccount);
             $data_to_return = ['account' => $adAccount, 'ads' => $ads];
         } else {
@@ -86,6 +86,7 @@ class AdAccountController extends Controller
             return $data_to_return;
         } else {
             $ads = collect($ads);
+
             return view('adAccounts.show', compact('adAccount', 'ads'));
         }
     }
@@ -106,13 +107,13 @@ class AdAccountController extends Controller
         $fetched_data = $googleAds->report()
             ->from('AD_PERFORMANCE_REPORT')
             ->select(
-                "AllConversionRate",
-                "AllConversions",
-                "AllConversionValue",
-                "AverageCpc",
-                "CampaignId",
-                "Clicks",
-                "Cost",
+                'AllConversionRate',
+                'AllConversions',
+                'AllConversionValue',
+                'AverageCpc',
+                'CampaignId',
+                'Clicks',
+                'Cost',
                 'Id',
                 'ImageAdUrl',
                 'Impressions',
@@ -134,13 +135,14 @@ class AdAccountController extends Controller
                 'currency' => $ad->currency,
                 'conversions' => (int) $ad->allConv,
                 'conversion_rate' => $ad->allConvRate,
-                'image_url' => $ad->imageAdURL == "--" ? null : $ad->imageAdURL,
+                'image_url' => $ad->imageAdURL == '--' ? null : $ad->imageAdURL,
                 'impressions' => (int) $ad->impressions,
-                'is_active' => $ad->adState == "enabled" && $ad->campaignState == "enabled" && $ad->adGroupState == "enabled" ? 1 : 0,
+                'is_active' => $ad->adState == 'enabled' && $ad->campaignState == 'enabled' && $ad->adGroupState == 'enabled' ? 1 : 0,
                 'created_at' => null,
             ];
             $ads->push($ad_array);
         }
+
         return $ads;
     }
 
@@ -159,7 +161,7 @@ class AdAccountController extends Controller
         //return $per;
         // $campaigns = FacebookAds::insights($per, 'act_' . $adAccount->external_account_id, 'ad', ["date_preset" => "lifetime", "time_increment" => "all_days", "fields" => ["account_id", "account_name", "clicks", "conversions", "spend", "impressions", "ad_name", "purchase_roas", "account_currency", "frequency"]]);
         //return dd($campaigns);
-        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_' . $adAccount->external_account_id)->ads(['name',
+        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_'.$adAccount->external_account_id)->ads(['name',
             'account_id',
             'account_status',
             'balance',
@@ -216,11 +218,12 @@ class AdAccountController extends Controller
                 'conversion_rate' => null,
                 'image_url' => null,
                 'impressions' => (int) $ad->__get('insights')['data'][0]['impressions'],
-                'is_active' => $ad->__get('effective_status') == "ACTIVE" ? 1 : 0,
+                'is_active' => $ad->__get('effective_status') == 'ACTIVE' ? 1 : 0,
                 'created_at' => \Carbon\Carbon::parse($ad->__get('created_time')),
             ];
             $ads->push($ad_array);
         }
+
         return $ads;
     }
 

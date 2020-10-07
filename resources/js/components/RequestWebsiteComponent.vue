@@ -12,8 +12,8 @@
             <!--             <transition-group name="fade">
  -->
             <div v-if="current_tab == 0" key="tab_0">
-                <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/tabletshop.svg" style="height: 100%; margin: 0 auto;" alt="Shop" />
+                <div style="height: 250px; margin: 0 auto; display: flex">
+                    <img src="/images/tabletshop.svg" style="height: 100%; margin: 0 auto" alt="Shop" />
                 </div>
 
                 <div class="form-group row">
@@ -75,8 +75,8 @@
             </div>
 
             <div v-if="current_tab == 1" key="tab_1">
-                <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/people.svg" style="height: 100%; margin: 0 auto;" alt="People" />
+                <div style="height: 250px; margin: 0 auto; display: flex">
+                    <img src="/images/people.svg" style="height: 100%; margin: 0 auto" alt="People" />
                 </div>
 
                 <div class="form-group row">
@@ -115,8 +115,8 @@
             </div>
 
             <div v-if="current_tab == 2" key="tab_2">
-                <div style="height: 250px; margin: 0 auto; display: flex;">
-                    <img src="/images/emails.svg" style="height: 100%; margin: 0 auto;" alt="Emails" />
+                <div style="height: 250px; margin: 0 auto; display: flex">
+                    <img src="/images/emails.svg" style="height: 100%; margin: 0 auto" alt="Emails" />
                 </div>
 
                 <div class="form-group row">
@@ -185,14 +185,10 @@
                     <button type="submit" class="button button-primary u-full-width" v-if="current_tab == 2">
                         Send message
                     </button>
-                    <button type="submit" class="button button-primary u-full-width" v-else>
-                        Next
-                    </button>
+                    <button type="submit" class="button button-primary u-full-width" v-else>Next</button>
                 </div>
                 <div class="col-md-6 order-md-6" v-bind:style="{ visibility: current_tab == 0 ? 'hidden' : 'initial' }">
-                    <a class="button u-full-width" @click="current_tab -= 1">
-                        Back
-                    </a>
+                    <a class="button u-full-width" @click="current_tab -= 1"> Back </a>
                 </div>
             </div>
             <!--             </transition-group>
@@ -231,7 +227,7 @@
                     <p class="mb-0">+33 4 86 06 08 59</p>
                     <p>contact@mmediagroup.fr</p>
 
-                    <div class="flex" style="flex-wrap: wrap;">
+                    <div class="flex" style="flex-wrap: wrap">
                         <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
                         <a class="button" href="tel:+33486060859">Call</a>
                     </div>

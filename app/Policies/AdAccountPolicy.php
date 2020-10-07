@@ -26,7 +26,7 @@ class AdAccountPolicy
      */
     public function index(User $user)
     {
-        if (!request()->input('user')) {
+        if (! request()->input('user')) {
             return false;
         }
 
@@ -43,7 +43,6 @@ class AdAccountPolicy
      */
     public function show(User $user, AdAccount $AdAccount)
     {
-
         if ($AdAccount->user_id) {
             return $user->id == $AdAccount->user_id;
         }

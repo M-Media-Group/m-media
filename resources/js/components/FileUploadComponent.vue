@@ -11,7 +11,7 @@
                 class="mb-0"
             >
                 <div class="row mb-3" v-show="avatar_url">
-                    <img class="u-center" :src="avatar_url" style="max-height: 100px;" />
+                    <img class="u-center" :src="avatar_url" style="max-height: 100px" />
                 </div>
                 <div class="form-group row">
                     <label for="file" class="col-md-4 col-form-label text-md-right">File</label>
@@ -58,9 +58,7 @@
                 </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="button button-primary">
-                            Upload
-                        </button>
+                        <button type="submit" class="button button-primary">Upload</button>
                     </div>
                 </div>
             </form>

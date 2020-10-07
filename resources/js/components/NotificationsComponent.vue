@@ -1,10 +1,10 @@
 <template>
-    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%;">
+    <transition-group name="fade" mode="out-in" tag="div" style="width: 100%">
         <div class="list-group" v-if="notifications.length > 0" key="notifications">
             <article
                 v-for="notification in notifications"
                 class="list-group-item list-group-item-action action-section round-all-round mt-5"
-                style="cursor: pointer;"
+                style="cursor: pointer"
                 data-aos="fade"
                 @click="redirect(notification)"
             >
@@ -22,12 +22,8 @@
                 <p>{{ notification.data.message }}</p>
             </article>
         </div>
-        <div v-else-if="loading" key="loading" class="alert" data-aos="fade">
-            Loading...
-        </div>
-        <div v-else class="alert text-muted" key="error">
-            You have no notifications.
-        </div>
+        <div v-else-if="loading" key="loading" class="alert" data-aos="fade">Loading...</div>
+        <div v-else class="alert text-muted" key="error">You have no notifications.</div>
     </transition-group>
 </template>
 

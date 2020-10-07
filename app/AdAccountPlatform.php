@@ -29,5 +29,4 @@ class AdAccountPlatform extends Model
     {
         return $this->hasMany('App\AdAccount');
     }
-
 }

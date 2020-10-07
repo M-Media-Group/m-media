@@ -29,5 +29,4 @@ class AdAccount extends Model
     {
         return $this->belongsTo('App\User');
     }
-
 }

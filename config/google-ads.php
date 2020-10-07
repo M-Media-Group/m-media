@@ -2,7 +2,7 @@
 
 return [
     //Environment=> test/production
-    'env' => 'test',
+    'env' => 'production',
     //Google Ads
     'production' => [
         'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN'),

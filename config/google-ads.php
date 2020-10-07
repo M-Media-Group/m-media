@@ -5,12 +5,12 @@ return [
     'env' => 'test',
     //Google Ads
     'production' => [
-        'developerToken' => 'YOUR-DEV-TOKEN',
-        'clientCustomerId' => 'CLIENT-CUSTOMER-ID',
-        'userAgent' => 'YOUR-NAME',
-        'clientId' => 'CLIENT-ID',
-        'clientSecret' => 'CLIENT-SECRET',
-        'refreshToken' => 'REFRESH-TOKEN',
+        'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN'),
+        'clientCustomerId' => env('GOOGLE_ADS_CUSTOMER_ID'),
+        'userAgent' => env('APP_NAME'),
+        'clientId' => env('GOOGLE_ADS_CLIENT_ID'),
+        'clientSecret' => env('GOOGLE_ADS_CLIENT_SECRET'),
+        'refreshToken' => env('GOOGLE_ADS_REFRESH_TOKEN'),
     ],
     'test' => [
         'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN'),

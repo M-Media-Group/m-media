@@ -3,7 +3,7 @@
 @section('above_container')
     <div class="header-section u-bg-primary">
         <h1>{{$adAccount->name}}</h1>
-        <h2>{{config('app.name')}} Ad Account</h2>
+        <h2>{{config('app.name')}} Ad account</h2>
     </div>
 @endsection
 
@@ -13,7 +13,7 @@
         {{session('success')}}
     </div>
 @endif
-<h2 class="mt-5 mb-0">Ad Account data</h2>
+<h2 class="mt-5 mb-0">Ad account data</h2>
 <div class="table-responsive table-hover">
         <table class="table mb-0">
             <tbody>
@@ -62,7 +62,7 @@
             </a>
         @endif
 
-         <h2 class="mt-5 mb-0" id="adAccounts">Ads</h2>
+         <h2 class="mt-5 mb-0" id="adAccounts">{{ $ads->count() }} ads</h2>
 	    @if($ads->count() > 0)
 	     <div class="table-responsive table-hover">
 	        <table class="table mb-0 table-sm">
@@ -78,7 +78,7 @@
 	                </tr>
 	            </thead>
 	            <tbody>
-	    @foreach($ads->sortByDesc('created_at') as $ad)
+	    @foreach($ads->sortByDesc('is_active') as $ad)
 	            <tr>
                     <td class="text-{{ $ad->is_active  ? 'primary' : 'muted' }}">{{ $ad->is_active  ? 'Yes' : 'No' }} </td>
                     <td>{{$ad->name}} <span class="text-muted">{{$ad->id}}</span></td>
@@ -99,7 +99,7 @@
 	         </tbody>
              <tfoot>
                 <tr>
-                    <td>Totals</td>
+                    <td>Averages, Total</td>
                     <td></td>
 {{--                     <td>{{ number_format( $ads->sum('impressions') ) }}</td>
                     <td>{{ number_format( $ads->sum('clicks') ) }}</td> --}}

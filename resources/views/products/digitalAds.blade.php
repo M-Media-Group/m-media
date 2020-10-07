@@ -85,7 +85,7 @@
     <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-12">
             <div class="u-limit-max-width u-center">
-{{--               <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;"> --}}
+              <img src="/images/logos.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="width: 100%;max-height:70px;object-fit:cover;">
               <h3 class="mt-0 tect-center">Our customers trust us with over 15k EUR in ad budgets.</h3>
            </div>
             <p class="u-center">To date, we've been entrusted with over 15,000 EUR of customers hard earned money to spend on advertising their business.</p>

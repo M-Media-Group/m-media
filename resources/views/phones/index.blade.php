@@ -2,12 +2,12 @@
 
 @section('above_container')
 	<div class="header-section u-bg-primary">
-		<h1>AdAccounts</h1>
-		<p>{{config('app.name')}} AdAccounts</p>
+		<h1>phones</h1>
+		<p>{{config('app.name')}} phones</p>
 	</div>
 <div class="m-3">
-<h2 class="mt-5 mb-0">{{count($AdAccounts)}} AdAccounts</h2>
-	@if($AdAccounts && count($AdAccounts) > 0)
+<h2 class="mt-5 mb-0">{{count($phones)}} phones</h2>
+	@if($phones && count($phones) > 0)
 	<div class="table-responsive table-hover">
 		<table class="table mb-0">
 			<thead>
@@ -15,7 +15,7 @@
 				   <th>Name</th>
 				   <th>Type</th>
 				   <th>Primary user</th>
-				   	@can('update AdAccount addresses')
+				   	@can('update phone addresses')
 				   <th>User</th>
 				   @endcan
 				   <th>Calls & messages</th>
@@ -23,19 +23,19 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach ($AdAccounts->sortByDesc('logs_count') as $AdAccount)
-				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/AdAccounts/{{ $AdAccount->id }}';">
-					<td>{{ $AdAccount->e164 }}</td>
-					<td>{{ $AdAccount->number_type }}</td>
-					<td class="text-{{ !$AdAccount->defaultForUser  ? 'primary' : null }}">{!! $AdAccount->defaultForUser ? '<a href="/users/'.$AdAccount->defaultForUser->id.'">'.$AdAccount->defaultForUser->name."</a>" : 'No owner' !!}</td>
-									   @can('update AdAccount addresses')
+			@foreach ($phones->sortByDesc('logs_count') as $phone)
+				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/phones/{{ $phone->id }}';">
+					<td>{{ $phone->e164 }}</td>
+					<td>{{ $phone->number_type }}</td>
+					<td class="text-{{ !$phone->defaultForUser  ? 'primary' : null }}">{!! $phone->defaultForUser ? '<a href="/users/'.$phone->defaultForUser->id.'">'.$phone->defaultForUser->name."</a>" : 'No owner' !!}</td>
+									   @can('update phone addresses')
 
-					<td class="text-{{ !$AdAccount->user  ? 'primary' : null }}">
-						<select-component :options="{{$users}}" title="Is serviceable" url="/AdAccounts/{{$AdAccount->id}}" column_title="user_id" current_value="{{$AdAccount->user_id}}" onclick="event.stopPropagation();"></select-component>
+					<td class="text-{{ !$phone->user  ? 'primary' : null }}">
+						<select-component :options="{{$users}}" title="Is serviceable" url="/phones/{{$phone->id}}" column_title="user_id" current_value="{{$phone->user_id}}" onclick="event.stopPropagation();"></select-component>
 					</td>
 					@endcan
-					<td>{{ $AdAccount->logs_count }}</td>
-					<td class="text-{{ now()->diffInDays( $AdAccount->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $AdAccount->created_at->diffForHumans() }}</td>
+					<td>{{ $phone->logs_count }}</td>
+					<td class="text-{{ now()->diffInDays( $phone->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $phone->created_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach
 			</tbody>
@@ -43,7 +43,7 @@
 	</div>
 	@else
 		<div class="alert text-muted">
-			 There's currently no AdAccount numbers associated with your account. When you asscociate a AdAccount number with your {{config('app.name')}} account, you access more and better services via AdAccount, and ensure more security over your account.
+			 There's currently no phone numbers associated with your account. When you asscociate a phone number with your {{config('app.name')}} account, you access more and better services via phone, and ensure more security over your account.
 		</div>
 	@endif
 </div>

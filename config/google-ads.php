@@ -4,15 +4,13 @@ return [
     //Environment=> test/production
     'env' => env('APP_ENV'),
     //Google Ads
-
-    // Issue with caching config, reported here: https://github.com/Edujugon/laravel-google-ads/issues/47
     'production' => [
-        'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN', config('google-ads.test.developerToken')),
-        'clientCustomerId' => env('GOOGLE_ADS_CUSTOMER_ID', config('google-ads.test.clientCustomerId')),
+        'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN'),
+        'clientCustomerId' => env('GOOGLE_ADS_CUSTOMER_ID'),
         'userAgent' => env('APP_NAME'),
-        'clientId' => env('GOOGLE_ADS_CLIENT_ID', config('google-ads.test.clientId')),
-        'clientSecret' => env('GOOGLE_ADS_CLIENT_SECRET', config('google-ads.test.clientSecret')),
-        'refreshToken' => env('GOOGLE_ADS_REFRESH_TOKEN', config('google-ads.test.refreshToken')),
+        'clientId' => env('GOOGLE_ADS_CLIENT_ID'),
+        'clientSecret' => env('GOOGLE_ADS_CLIENT_SECRET'),
+        'refreshToken' => env('GOOGLE_ADS_REFRESH_TOKEN'),
     ],
     'local' => [
         'developerToken' => env('GOOGLE_ADS_DEVELOPER_TOKEN'),

@@ -6,11 +6,19 @@
         "framework",
         "laravel"
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mwargan/laravel-facebook-ads"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3.9",
         "aws/aws-sdk-php-laravel": "^3.4",
         "donatello-za/rake-php-plus": "^1.0",
+        "edbizarro/laravel-facebook-ads": "dev-master",
+        "edujugon/laravel-google-ads": "^2.1",
         "fideloper/proxy": "^4.0",
         "giggsey/libphonenumber-for-php": "^8.10",
         "graham-campbell/markdown": "^11.2",

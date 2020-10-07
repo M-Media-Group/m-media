@@ -11,7 +11,7 @@
         <div class="dropdown-content" style="max-height: 80vh;overflow-y: scroll;">
             <a href="/">Home</a>
             <a href="/web-development">Web Development</a>
-            <a href="/instagram">Instagram Solutions</a>
+            <a href="/digital-ads">Digital Advertising</a>
             <a href="/pricing">Pricing</a>
 
 {{--             <a href="/automation-bot">Marketing Automation Bot</a>

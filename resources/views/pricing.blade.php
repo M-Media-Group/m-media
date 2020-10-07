@@ -36,7 +36,7 @@
 				@endif
 			@endforeach
 			<tr>
-				<td>Facebook Ad Management<br/><small>Full plan</small></td>
+				<td>Digital Ad Management<br/><small>Full plan</small></td>
 				<td>5.6% of generated ad revenue less ad expenses / ad account<br/><small>Per month</small></td>
 				<td><a href="/contact">{{ __('Contact us') }}</a></td>
 			</tr>
@@ -49,7 +49,7 @@
 		</div>
 	@endif
 	<p class="text-muted">Example: A service that costs 12 EUR / hour and is billed once a month, means that if you use 2 hours of the service in the first week of a given month and another 2 hours during the last week of the same month, you'll be billed €12 * 4 hours, or €48, at the end of the month.</p>
-	<p class="text-muted">Facebook Ad Management example: You spend 100 EUR in a given month on Facebook ads, bringing you 500 EUR in revenue. You will be billed (500 – 100) * 5.6%, or 22.40 EUR, at the end of the month.</p>
+	<p class="text-muted">Digital Ad Management example: You spend 100 EUR in a given month on Facebook ads, bringing you 500 EUR in revenue. You will be billed (500 – 100) * 5.6%, or 22.40 EUR, at the end of the month.</p>
 	<p class="text-muted">Pricing is based per unit and units cannot be divided. As an example, website maintenance is charged by the hour. Replacing a picture might take 30 minutes, but you'll still be billed the hour. That's why its a good idea to consolidate your requests; if you send us two or three pictures to change, it's the same price as changing one.</p>
 	</div>
 </div>

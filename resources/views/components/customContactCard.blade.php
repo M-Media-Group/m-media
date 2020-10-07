@@ -14,7 +14,7 @@
                         </a>
                         @endforeach
                     @else
-                        <a class="button button-secondary" href="/contact">
+                        <a class="button button-primary" href="/contact">
                             {{ __('Contact us') }}
                         </a>
                     @endif

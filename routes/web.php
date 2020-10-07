@@ -40,6 +40,8 @@ Route::get('/contact', 'HomeController@contact');
 
 Route::get('/web-development', 'ProductController@webdev');
 
+Route::get('/digital-ads', 'ProductController@digitalads');
+
 Route::get('/instagram-engagement', 'ProductController@engagement');
 
 Route::get('/instagram-content-management', 'ProductController@contentCreation');
@@ -103,6 +105,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('bots/{id}/contact-user', 'BotController@contactUser');
     Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');
     Route::resource('custom-notifications', 'CustomNotificationController');
+    Route::resource('ad-accounts', 'AdAccountController');
     Route::resource('roles', 'RoleController');
     Route::resource('bots', 'BotController');
     Route::resource('files', 'FileController');

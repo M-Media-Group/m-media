@@ -11,6 +11,10 @@
 <div>
     <div class="action-section container">
         <div class="mt-5">
+            <h2>Ad account notifications website</h2>
+            {{-- <ads-component adaccountid="1"></ads-component> --}}
+        </div>
+        <div class="mt-5">
             <h2>Request website</h2>
             <map-component></map-component>
         </div>

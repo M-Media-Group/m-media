@@ -26,6 +26,8 @@ Route::get('/domains/{domain}/availability', 'DomainController@checkAvailability
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', 'UserController@showSelf');
 
+    Route::apiResource('ad-accounts', 'AdAccountController');
+
     Route::apiResource('files', 'FileController');
 
     Route::apiResource('bots', 'BotController');
@@ -33,6 +35,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('users', 'UserController');
 
     Route::apiResource('invoices', 'InvoiceController');
+
+    Route::apiResource('phones', 'PhoneController');
 
     Route::apiResource('countries', 'CountryController');
 

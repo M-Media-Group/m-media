@@ -78,6 +78,16 @@
 	@endcomponent
 @endif
 
+@if($user->ad_accounts_count > 0)
+@component('components.customContactCard', ['title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/ad-accounts?user='.$user->id, 'text' => __('All your ad accounts')], ['link' => '/contact', 'text' => __('Link a new ad account')]]])
+	    Easily see data related to your ad accounts linked to your {{config('app.name')}} account.
+	@endcomponent
+@else
+	@component('components.customContactCard', ['title' => 'No ad accounts', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/contact', 'text' => 'Link an advertising platform'], ['type' => '', 'link' => '/digital-ads', 'text' => 'Learn more']]])
+	    You have no ad accounts on {{config('app.name')}} associated with you and your business.
+	@endcomponent
+@endif
+
 @if($user->emails_count > 0)
 @component('components.customContactCard', ['title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'buttons' => [['type' => 'primary', 'link' => '/emails?user='.$user->id, 'text' => __('Your email accounts')]]])
 	    Manage email accounts associated with you and your business on {{config('app.name')}}.

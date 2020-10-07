@@ -390,4 +390,31 @@ Contact us and have a chat about what we can do for you and your business. We do
 
         return view('products.webDev', $data);
     }
+
+    public function digitalads(Request $request)
+    {
+        $data = [
+            'title' => 'Advertising on the web',
+            'price' => [
+                [
+                    'plan' => 'basic',
+                    'currency' => [
+                        'name' => 'Euro',
+                        'symbol' => '€',
+                        'ISO' => 'EUR',
+                    ],
+                    'value' => 5,
+                    'type' => 'subscription',
+                    'text' => 'Tailored pricing',
+                ],
+            ],
+            'subtext' => 'Advertise on Google and Facebook ad platforms',
+            'text' => "",
+            'image' => [
+                'url' => '/images/heartweb.svg',
+            ],
+        ];
+
+        return view('products.digitalAds', $data);
+    }
 }

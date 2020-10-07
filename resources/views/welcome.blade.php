@@ -50,13 +50,13 @@
 
     <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade">You're looking to reach people on Instagram.</h3>
-            <p data-aos="fade">You'd like to run ads and engage with your target audience on Instagram. You need someone to post regularly and write captions with hashtags.</p>
+            <h3 class="mt-0" data-aos="fade">You're looking to reach people on Google and YouTube with ads.</h3>
+            <p data-aos="fade">You'd like to run ads and engage with your target audience on big ad platforms. You need someone to create and manage campaigns and ads.</p>
             <p data-aos="fade">That's what we do.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/instagram" data-aos="fade">Explore our Instagram solutions</a>
+                <a class="button button-secondary u-center" href="/digital-ads" data-aos="fade">Explore our digital ad solutions</a>
             </div>
         </div>
     </div>
@@ -65,12 +65,12 @@
  <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6">
             <h3 class="mt-0" data-aos="fade">You'd like to be visible on Facebook.</h3>
-            <p data-aos="fade">You've discovered that your clients are Facebook users, and you'd like someone to keep them engaged with a Facebook page and some Facebook ads.</p>
+            <p data-aos="fade">You've discovered that your clients are Facebook users, and you'd like someone to keep them engaged with targeted and optimized Facebook ads.</p>
             <p data-aos="fade">That's us.</p>
         </div>
         <div class="col-md-6 mb-5 flex">
             <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/contact" data-aos="fade">Talk to us</a>
+                <a class="button button-secondary u-center" href="/digital-ads" data-aos="fade">Talk to us</a>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
     <div class="header-section row m-0" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <div class="col-md-6" data-aos="fade">
             <h3 class="mt-0" data-aos="fade">You'd like some help on your digital strategy.</h3>
-            <p data-aos="fade">You're not 100% sure if Instagram or Facebook are the right solutions for you, or you can't decide how much of your business logic should be online.</p>
+            <p data-aos="fade">You're not 100% sure if digital ads are the right solution for you, or you can't decide how much of your business logic should be online.</p>
             <p data-aos="fade">We can help.</p>
         </div>
         <div class="col-md-6 mb-5 flex">

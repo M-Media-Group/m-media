@@ -110,7 +110,7 @@
                 <img src="/images/seo.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
            </div>
             <h3 class="mt-0 u-center" data-aos="fade-up">See what works.</h3>
-            <p class="u-center" data-aos="fade-up">By advertising with us, you'll be able to attribute your sales to the ads that inspired them. You'll be able to tell whether your ads are working or not, in simple business terms.</p>
+            <p class="u-center" data-aos="fade-up">By advertising with us, you'll be able to attribute your sales to the ads that inspired them. Tell whether your ads are working or not, in simple business terms.</p>
         </div>
     </div>
 
@@ -123,7 +123,15 @@
             <p>Our service optimises audience targeting options and makes ad-creatives suggestions as new data flows in. From day 1, your ads only get better and better by the week.</p>
         </div>
     </div>
-
+    <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+        <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+            <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
+        </div>
+        <div class="col-md-6 order-md-6" data-aos="fade-right">
+            <h3 class="mt-0">Pay only for ads that work.</h3>
+            <p>We charge only when your ad generates a useful engagement for your business, like a mailing-list signup or a purchase. If your ads don't sell, you don't pay.</p>
+        </div>
+    </div>
  <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">

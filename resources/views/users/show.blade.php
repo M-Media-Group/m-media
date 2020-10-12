@@ -122,10 +122,6 @@
 @component('components.customContactCard', ['title' => $user->bots_count.' ' .str_plural("bot", $user->bots_count), 'id' => 'bots', 'buttons' => [['type' => 'primary', 'link' => '/my-bots', 'text' => __('Your bots')]]])
 	    Manage physical marketing automation bots associated with your business on {{config('app.name')}}.
 	@endcomponent
-@else
-@component('components.customContactCard', ['title' => 'No bots', 'id' => 'bots', 'image' => '/images/box.png'])
-    Order a new Marketing Automation Bot from {{Config('app.name')}} loaded with custom-coded automations and scripts to make your business marketing life easier, faster, and cheaper.
-@endcomponent
 @endif
 
 @endsection

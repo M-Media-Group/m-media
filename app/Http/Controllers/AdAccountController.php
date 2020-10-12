@@ -121,7 +121,8 @@ class AdAccountController extends Controller
                 'Status',
                 'AccountCurrencyCode',
                 'CampaignStatus',
-                'AdGroupStatus'
+                'AdGroupStatus',
+                'Labels'
             )
             ->getAsObj();
         //dd($fetched_data->result);
@@ -161,7 +162,7 @@ class AdAccountController extends Controller
         //return $per;
         // $campaigns = FacebookAds::insights($per, 'act_' . $adAccount->external_account_id, 'ad', ["date_preset" => "lifetime", "time_increment" => "all_days", "fields" => ["account_id", "account_name", "clicks", "conversions", "spend", "impressions", "ad_name", "purchase_roas", "account_currency", "frequency"]]);
         //return dd($campaigns);
-        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_'.$adAccount->external_account_id)->ads(['name',
+        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_' . $adAccount->external_account_id)->ads(['name',
             'account_id',
             'account_status',
             'balance',
@@ -169,6 +170,7 @@ class AdAccountController extends Controller
             'campaign_id',
             'effective_status',
             'created_time',
+            'adlabels',
             // 'insights{impressions, clicks, conversions}',
             'insights.fields(impressions, outbound_clicks, actions, action_values, conversion_values, conversions, spend, account_currency, website_ctr).date_preset(lifetime).time_increment(all_days)',
         ]);
@@ -185,7 +187,7 @@ class AdAccountController extends Controller
         // unset($newObj);
 
         // $campaigns->all(['name'], 'act_<AD_ACCOUNT_ID>');
-        //return ($fetched_data);
+        return ($fetched_data);
         foreach ($fetched_data as $ad) {
             //var_dump($ad->__get('insights')['data'][0]['clicks']);
             $conversions_count = 0;

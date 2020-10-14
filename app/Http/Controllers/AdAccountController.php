@@ -162,7 +162,7 @@ class AdAccountController extends Controller
         //return $per;
         // $campaigns = FacebookAds::insights($per, 'act_' . $adAccount->external_account_id, 'ad', ["date_preset" => "lifetime", "time_increment" => "all_days", "fields" => ["account_id", "account_name", "clicks", "conversions", "spend", "impressions", "ad_name", "purchase_roas", "account_currency", "frequency"]]);
         //return dd($campaigns);
-        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_' . $adAccount->external_account_id)->ads(['name',
+        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_'.$adAccount->external_account_id)->ads(['name',
             'account_id',
             'account_status',
             'balance',

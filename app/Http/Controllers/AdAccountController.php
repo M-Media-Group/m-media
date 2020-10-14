@@ -187,7 +187,7 @@ class AdAccountController extends Controller
         // unset($newObj);
 
         // $campaigns->all(['name'], 'act_<AD_ACCOUNT_ID>');
-        return ($fetched_data);
+        //return ($fetched_data);
         foreach ($fetched_data as $ad) {
             //var_dump($ad->__get('insights')['data'][0]['clicks']);
             $conversions_count = 0;

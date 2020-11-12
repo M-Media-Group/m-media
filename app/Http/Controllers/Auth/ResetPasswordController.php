@@ -36,4 +36,18 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Get a validator for an incoming  request.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function rules()
+    {
+        return [
+            'password' => ['required', 'string', 'min:6', new \Valorin\Pwned\Pwned(), 'confirmed'],
+        ];
+    }
 }

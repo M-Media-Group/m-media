@@ -118,6 +118,6 @@ Route::group(['middleware' => ['verified']], function () {
 
 Route::get('/', 'HomeController@welcome');
 
-Route::get('/components', 'HomeController@components');
+// Route::get('/components', 'HomeController@components');
 
 Route::get('/covid-19', 'HomeController@covid');

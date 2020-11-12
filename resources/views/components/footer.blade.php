@@ -4,7 +4,7 @@
 		  var myDynamicManifest = {
 		    "name": "{{ config('app.name') }}",
 		    "short_name": "{{ config('app.name') }}",
-		    "description": "We make websites and handle your marketing on the French Riviera.",
+		    "description": "We make websites and handle marketing for entrepreneurs, artists, and small businesses.",
 		    "start_url": "{{ config('app.url') }}",
 		    "background_color": "#f3f3f3",
 		    "theme_color": "#eb4647",

@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('title', "Frequently Asked Questions")
-@section('meta_description', "Some common questions regarding web development and marketing services for people in Monaco and the French Riviera." )
+@section('meta_description', "Some common questions regarding web development and marketing services for entrepreneurs and small businesses." )
 
 @section('above_container')
 

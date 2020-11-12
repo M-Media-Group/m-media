@@ -20,33 +20,35 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        'Illuminate\Auth\Events\Attempting' => [
-            'App\Listeners\LogAuthenticationAttempt',
-        ],
+        #Apparently the following events/listeners are already loaded somewhere and don't need to be done here
 
-        'Illuminate\Auth\Events\Authenticated' => [
-            'App\Listeners\LogAuthenticated',
-        ],
+        // 'Illuminate\Auth\Events\Attempting' => [
+        //     'App\Listeners\LogAuthenticationAttempt',
+        // ],
 
-        'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogSuccessfulLogin',
-        ],
+        // 'Illuminate\Auth\Events\Authenticated' => [
+        //     'App\Listeners\LogAuthenticated',
+        // ],
 
-        'Illuminate\Auth\Events\Failed' => [
-            'App\Listeners\LogFailedLogin',
-        ],
+        // 'Illuminate\Auth\Events\Login' => [
+        //     'App\Listeners\LogSuccessfulLogin',
+        // ],
 
-        'Illuminate\Auth\Events\Logout' => [
-            'App\Listeners\LogSuccessfulLogout',
-        ],
+        // 'Illuminate\Auth\Events\Failed' => [
+        //     'App\Listeners\LogFailedLogin',
+        // ],
 
-        'Illuminate\Auth\Events\Lockout' => [
-            'App\Listeners\LogLockout',
-        ],
+        // 'Illuminate\Auth\Events\Logout' => [
+        //     'App\Listeners\LogSuccessfulLogout',
+        // ],
 
-        'Illuminate\Auth\Events\PasswordReset' => [
-            'App\Listeners\LogPasswordReset',
-        ],
+        // 'Illuminate\Auth\Events\Lockout' => [
+        //     'App\Listeners\LogLockout',
+        // ],
+
+        // 'Illuminate\Auth\Events\PasswordReset' => [
+        //     'App\Listeners\LogPasswordReset',
+        // ],
 
     ];
 

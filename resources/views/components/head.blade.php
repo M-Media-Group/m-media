@@ -2,13 +2,13 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
 
-<title>@yield('title', 'Marketing and Web Development on the French Riviera') | {{ config('app.name') }}</title>
+<title>@yield('title', 'Marketing and Web Development for Entrepreneurs, Artists, and Small Businesses') | {{ config('app.name') }}</title>
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <meta name="keywords" content="{{ config('app.name') }},{{ config('blog.country_name') }},{{ config('blog.area_name') }},@yield('meta_keywords')">
-<meta name="description" property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle your marketing on the French Riviera. SEO friendly, responsive, and tailored websites built for you in Monaco and around.')">
+<meta name="description" property="og:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle marketing for artists, entrepreneurs, and small businesses. SEO friendly, responsive, and tailored websites built for you in Monaco, the French Riviera, or anywhere.')">
 <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 <meta name="robots" content="index,follow">
 <meta name="googlebot" content="index,follow">
@@ -28,11 +28,11 @@
 <meta property='article:publisher' content='{{ config('app.url') }}' />
 
 <meta name="twitter:card" content="summary">
-{{--     <meta name="twitter:site" content="@site_account">
-<meta name="twitter:creator" content="@individual_account">
-<meta name="twitter:url" content="https://example.com/page.html"> --}}
+<meta name="twitter:site" content="@MMediaFr">
+{{-- <meta name="twitter:creator" content="@individual_account">
+ --}}{{-- <meta name="twitter:url" content="https://example.com/page.html"> --}}
 <meta name="twitter:title" content="@yield('title', config('app.name'))">
-<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle your marketing on the French Riviera. SEO friendly, responsive, and tailored websites built for you in Monaco and around.')">
+<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle marketing for artists, entrepreneurs, and small businesses. SEO friendly, responsive, and tailored websites built for you in Monaco, the French Riviera, or anywhere.')">
 <meta name="twitter:image" content="@yield('meta_image', config('blog.logo_url'))">
 
 <meta name="theme-color" content="#eb4647">

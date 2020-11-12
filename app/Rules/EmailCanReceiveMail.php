@@ -30,6 +30,7 @@ class EmailCanReceiveMail implements Rule
         if (str_replace($stopwords, '', $email_username) == $email_username) {
             return true;
         }
+
         return false;
     }
 

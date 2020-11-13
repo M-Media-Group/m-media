@@ -23,6 +23,7 @@
         "giggsey/libphonenumber-for-php": "^8.10",
         "graham-campbell/markdown": "^11.2",
         "io-developer/php-whois": "^4.0",
+        "jenssegers/agent": "^2.6",
         "laravel/cashier": "^10.2",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.2",

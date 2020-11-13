@@ -41,7 +41,6 @@ class CreateAuthenticationEventsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('email_id')->references('id')->on('emails')->onDelete('set null');
-
         });
     }
 

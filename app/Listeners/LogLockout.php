@@ -35,7 +35,7 @@ class LogLockout
         $device = $agent->device();
 
         $email = \App\Jobs\SaveEmail::dispatchNow([
-            "email" => $event->request->email,
+            'email' => $event->request->email,
         ]);
 
         AuthenticationEvent::create([

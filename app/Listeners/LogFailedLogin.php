@@ -34,7 +34,7 @@ class LogFailedLogin
         $device = $agent->device();
 
         $email = \App\Jobs\SaveEmail::dispatchNow([
-            "email" => $event->credentials["email"],
+            'email' => $event->credentials['email'],
         ]);
 
         $data = [

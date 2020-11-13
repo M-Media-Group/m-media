@@ -105,15 +105,22 @@
 
 var element = document.getElementById("file_header");
 
-element.addEventListener('mousedown', function(event) {
+var exposeBackground = function (event) {
     element.classList.remove("background-filter");
     element.style.color = "transparent"
-});
+};
 
-element.addEventListener('mouseup', function(event) {
+var obscureBackground = function (event) {
     element.classList.add("background-filter");
     element.style.color = null
-});
+};
+
+element.addEventListener('touchstart', exposeBackground, false);
+element.addEventListener('mousedown', exposeBackground, false);
+
+element.addEventListener('touchend', obscureBackground, false);
+element.addEventListener('mouseup', obscureBackground, false);
+
 
 </script>
 @endsection

@@ -1,13 +1,14 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div id="file_header" class="header-section u-bg-primary background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
         <h1>{{$file->name}}</h1>
         <p>{{config('app.name')}} file</p>
     </div>
 @endsection
 
 @section('content')
+
 @if (session('success'))
     <div class="alert alert-success">
         {{session('success')}}
@@ -56,20 +57,23 @@
     </div>
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this file.</a></p>
     <div>
+        <a class="button button-primary" target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">
+                {{ __('Open file') }}
+            </a>
         @if (Auth::user()->can('update', $file))
 
 {{--                 <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
  --}}            @if($file->is_public)
-                <a class="button button-primary" href="/contact">
-                    {{ __('Make private') }}
+                <a class="button" href="/contact">
+                    {{ __('Request to make private') }}
                 </a>
             @else
-            <a class="button button-primary" href="/contact">
-                {{ __('Make public') }}
+            <a class="button" href="/contact">
+                {{ __('Request to make public') }}
             </a>
             @endif
         @else
-            <a class="button button-primary" href="/contact">
+            <a class="button" href="/contact">
                 {{ __('Get help') }}
             </a>
         @endif
@@ -85,13 +89,31 @@
         @endif
     </div>
     </div>
-    <div class="row m-0 pt-5 pb-5">
+    <div class="row m-0 pt-5 pb-5 d-none">
         <h2 class="mt-5 mb-0">Preview</h2>
         <embed src="{{ $file->url }}" height="500" width="100%" style="object-fit: contain;" title="{{$file->name}}" frameborder="0" loading="lazy" style="border:none;"></embed>
     </div>
-    <div class="row m-0 pt-5 pb-5">
+    <div class="row m-0 pt-5 pb-5 d-none">
         <h2 class="mt-5 mb-0">People currently viewing this file</h2>
         <p>You can see who else is on this page with you right now. <a href="https://blog.mmediagroup.fr/post/m-media-website-update-jazz/" target="_BLANK" rel="noopener">Learn more</a>.</p>
         <p>The following people are on this page right now: <users-online-list-component channel="files.{{$file->id}}"></users-online-list-component></p>
     </div>
+@endsection
+
+@section('footer_scripts')
+<script type="text/javascript">
+
+var element = document.getElementById("file_header");
+
+element.addEventListener('mousedown', function(event) {
+    element.classList.remove("background-filter");
+    element.style.color = "transparent"
+});
+
+element.addEventListener('mouseup', function(event) {
+    element.classList.add("background-filter");
+    element.style.color = null
+});
+
+</script>
 @endsection

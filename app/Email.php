@@ -40,4 +40,9 @@ class Email extends Model
     {
         return $this->hasMany('App\EmailLog', 'to_email_id', 'id');
     }
+
+    public function authenticationEvents()
+    {
+        return $this->hasMany('App\AuthenticationEvent');
+    }
 }

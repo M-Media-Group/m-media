@@ -24,4 +24,14 @@ class AuthenticationEvent extends Model
     protected $casts = [
         'browser_languages' => 'json',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function email()
+    {
+        return $this->belongsTo('App\Email');
+    }
 }

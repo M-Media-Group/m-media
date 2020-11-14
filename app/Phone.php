@@ -68,7 +68,7 @@ class Phone extends Model
 
     public function getNumberTypeAttribute()
     {
-        if (!$this->getOriginal('number_type')) {
+        if (! $this->getOriginal('number_type')) {
             return;
         }
         $types = PhoneNumberType::values();

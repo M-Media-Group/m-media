@@ -67,7 +67,7 @@ class InstagramAccountController extends Controller
         try {
             $client = new Client();
 
-            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token=' . config('blog.buffer.access_token'));
+            $response = $client->request('GET', 'https://api.bufferapp.com/1/profiles.json?access_token='.config('blog.buffer.access_token'));
             $statusCode = $response->getStatusCode();
             $data = $response->getBody()->getContents();
 
@@ -136,7 +136,7 @@ class InstagramAccountController extends Controller
      */
     public function storePost(StoreFile $request, InstagramAccount $instagramAccount)
     {
-        if (!$instagramAccount->buffer_id || !($request->user()->id == $instagramAccount->user_id || $request->user()->isSuperAdmin())) {
+        if (! $instagramAccount->buffer_id || ! ($request->user()->id == $instagramAccount->user_id || $request->user()->isSuperAdmin())) {
             return 'false';
         }
 

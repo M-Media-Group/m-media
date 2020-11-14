@@ -125,11 +125,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute()
     {
-        return $this->name . ' ' . $this->surname;
+        return $this->name.' '.$this->surname;
     }
 
     /**
-     * The attribute when the customer last sent a communication message to us
+     * The attribute when the customer last sent a communication message to us.
      *
      * @var array
      */
@@ -141,11 +141,12 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($last_contact_date_phone > $last_contact_date_email) {
             return $last_contact_date_phone;
         }
+
         return $last_contact_date_email;
     }
 
     /**
-     * The attribute when the customer last received a message from us
+     * The attribute when the customer last received a message from us.
      *
      * @var array
      */
@@ -157,6 +158,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($last_contact_date_phone > $last_contact_date_email) {
             return $last_contact_date_phone;
         }
+
         return $last_contact_date_email;
     }
 }

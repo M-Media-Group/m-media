@@ -77,7 +77,7 @@ class ScrapeWebsite implements ShouldQueue
                 'id' => $website->id,
                 'scheme' => $website->scheme,
                 'host' => $website->host,
-                'url' => $website->scheme . '://' . $website->host,
+                'url' => $website->scheme.'://'.$website->host,
                 'user_id' => $website->user_id,
                 'is_scrapeable' => $website->is_scrapeable,
                 'created_at' => $website->created_at,
@@ -114,24 +114,24 @@ class ScrapeWebsite implements ShouldQueue
             return $url;
         }
         $local_parsed_url = parse_url($url);
-        if (!isset($local_parsed_url['host'])) {
-            if (!isset($local_parsed_url['path'])) {
+        if (! isset($local_parsed_url['host'])) {
+            if (! isset($local_parsed_url['path'])) {
                 $local_parsed_url['path'] = null;
             }
-            if (!isset($this->website_url['host']) || $local_parsed_url['path'] == $this->website_url['host']) {
+            if (! isset($this->website_url['host']) || $local_parsed_url['path'] == $this->website_url['host']) {
                 $local_parsed_url['host'] = $local_parsed_url['path'];
                 $local_parsed_url['path'] = null;
             } else {
                 $local_parsed_url['host'] = $this->website_url['host'];
             }
         }
-        if (!isset($local_parsed_url['scheme']) && $check_for_https) {
+        if (! isset($local_parsed_url['scheme']) && $check_for_https) {
             $local_parsed_url['scheme'] = 'http';
 
             if ($default_https || $this->supportsHttps($url)) {
                 $local_parsed_url['scheme'] = 'https';
             }
-        } elseif (!isset($local_parsed_url['scheme'])) {
+        } elseif (! isset($local_parsed_url['scheme'])) {
             if ($default_https) {
                 $local_parsed_url['scheme'] = 'https';
             }
@@ -143,14 +143,14 @@ class ScrapeWebsite implements ShouldQueue
     private function supportsHttps($url)
     {
         $local_parsed_url = parse_url($url);
-        if (!isset($local_parsed_url['scheme'])) {
-            $file = 'https://' . $url;
+        if (! isset($local_parsed_url['scheme'])) {
+            $file = 'https://'.$url;
 
             //$time_start_1 = microtime(true);
             $file_headers = @get_headers($file);
             //$this->load_times->push(microtime(true) - $time_start_1);
 
-            if (!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+            if (! $file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
                 return false;
             } else {
                 return true;
@@ -182,7 +182,7 @@ class ScrapeWebsite implements ShouldQueue
         $info = $whois->loadDomainInfo($host);
 
         //Sometimes need to restart it
-        if (!$info) {
+        if (! $info) {
             sleep(2);
             $info = $whois->loadDomainInfo($host);
         }
@@ -213,6 +213,6 @@ class ScrapeWebsite implements ShouldQueue
 
     private function getDnsInfo($host)
     {
-        return dns_get_record(rtrim($host, '.') . '.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
+        return dns_get_record(rtrim($host, '.').'.', DNS_A + DNS_CNAME + DNS_HINFO + DNS_CAA + DNS_MX + DNS_NS + DNS_PTR + DNS_SOA + DNS_TXT + DNS_AAAA + DNS_SRV + DNS_NAPTR);
     }
 }

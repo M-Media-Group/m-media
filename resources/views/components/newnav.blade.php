@@ -121,3 +121,38 @@
         </div>
     </div>
 </nav>
+
+{{-- <nav class="p-3 flex" style="position: fixed; left:0; bottom:0;right:0;z-index: 1001;width: auto;background: white;justify-content: space-around;">
+    <a href="https://blog.mmediagroup.fr/category/m-media-help-center/?utm_source=main_site&utm_medium=menu&utm_campaign=main" rel="noopener">Help Center</a>
+    @guest
+        <a href="/contact">Contact us</a>
+        <a href="/login">Login</a>
+    @else
+        <a href="/users/{{Auth::id()}}">
+                {{ __('Your profile') }}
+        </a>
+        <a href="/notifications">
+                {{ __('Notifications') }}
+                <notifications-indicator-component userid="{{Auth::id()}}"></notifications-indicator-component>
+        </a>
+
+        <a href="/users/{{ Auth::id() }}/billing">
+                {{ __('Billing') }}
+        </a>
+        <a href="/files/create">
+                {{ __('Share files') }}
+        </a>
+        <a href="/domains/check-availability">
+                {{ __('Register domains') }}
+        </a>
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    @endguest
+</nav> --}}

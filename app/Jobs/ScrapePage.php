@@ -70,16 +70,16 @@ class ScrapePage implements ShouldQueue
         try {
             $this->website = (object) ScrapeWebsite::dispatchNow($this->url);
         } catch (\Exception $e) {
-            return response()->json(['Error' => 'Scraping website: '.$e->getMessage()], 422);
+            return response()->json(['Error' => 'Scraping website: ' . $e->getMessage()], 422);
         }
         //$data = $this->website->getData();
         //return dd($this->website->Error);
 
         if ($this->page) {
-            $this->page = '/'.ltrim($this->page, '/');
-            $this->url = $this->website->url.$this->page;
-        //This elseif isn't fully checking if the domain is not registered or something else happened
-        } elseif (! isset($this->website->url)) {
+            $this->page = '/' . ltrim($this->page, '/');
+            $this->url = $this->website->url . $this->page;
+            //This elseif isn't fully checking if the domain is not registered or something else happened
+        } elseif (!isset($this->website->url)) {
             return response()->json(['Error' => 'This domain is not registered'], 422);
         } else {
             //return dd($this->website);
@@ -90,7 +90,7 @@ class ScrapePage implements ShouldQueue
             $context = stream_context_create(
                 [
                     'http' => [
-                        'header' => 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'.
+                        'header' => 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36' .
                         'Accept-language: en',
                         'follow_location' => false,
                     ],
@@ -103,7 +103,7 @@ class ScrapePage implements ShouldQueue
         } catch (\Exception $e) {
             return $this->website;
 
-            return response()->json(['Error' => 'Fetching page: '.$e->getMessage()], 422);
+            return response()->json(['Error' => 'Fetching page: ' . $e->getMessage()], 422);
         }
 
         try {
@@ -111,10 +111,10 @@ class ScrapePage implements ShouldQueue
 
             if ($headers->reponse_code == 301 || $headers->reponse_code == 302 || $headers->reponse_code == 303) {
                 //return var_dump($headers);
-                return response()->json(['Error' => '('.$headers->reponse_code.') The page redirects to '.$headers->Location], 422);
+                return response()->json(['Error' => '(' . $headers->reponse_code . ') The page redirects to ' . $headers->Location], 422);
             }
-            if (! $headers->reponse_code || $headers->reponse_code !== 200) {
-                return response()->json(['Error' => 'The page responded with a '.$headers->reponse_code.' response code'], 422);
+            if (!$headers->reponse_code || $headers->reponse_code !== 200) {
+                return response()->json(['Error' => 'The page responded with a ' . $headers->reponse_code . ' response code'], 422);
             }
 
             $size = strlen($sites_html);
@@ -134,8 +134,8 @@ class ScrapePage implements ShouldQueue
                 }
 
                 $data = (object) [
-                    'position'   => $value,
-                    'node_name'  => $meta->nodeName,
+                    'position' => $value,
+                    'node_name' => $meta->nodeName,
                     'node_value' => $meta->nodeValue,
                     'attributes' => $attributes,
                 ];
@@ -161,22 +161,22 @@ class ScrapePage implements ShouldQueue
                     }
                     $data = (object) [
                         'position' => $value,
-                        'content'  => $content,
+                        'content' => $content,
                         'meta_tag' => [
                             'attribute_title' => $attribute_title,
                             'attribute_value' => $attribute_value,
-                            'is_required'     => 0,
-                            'is_depreciated'  => 0,
-                            'is_recommended'  => 0,
-                            'content_type'    => 'string',
-                            'description'     => null,
+                            'is_required' => 0,
+                            'is_depreciated' => 0,
+                            'is_recommended' => 0,
+                            'content_type' => 'string',
+                            'description' => null,
                         ],
                     ];
                     $meta_tags->push($data);
                 } elseif ($meta->nodeName == 'img') {
 
                     //skip images with no source
-                    if (! $meta->getAttribute('src')) {
+                    if (!$meta->getAttribute('src')) {
                         continue;
                     }
 
@@ -184,7 +184,7 @@ class ScrapePage implements ShouldQueue
 
                     //check if link is relative
                     $is_relative = false;
-                    if (! isset($img_parsed_url['host'])) {
+                    if (!isset($img_parsed_url['host'])) {
                         $is_relative = true;
                     }
 
@@ -202,33 +202,33 @@ class ScrapePage implements ShouldQueue
                         $input['phonenumber'] = ltrim($meta->getAttribute('href'), 'tel:');
                         $phone = SavePhone::dispatchNow($input);
                         $data = [
-                            'position'    => $value,
-                            'phone'       => $phone,
-                            'value'       => trim($meta->textContent),
+                            'position' => $value,
+                            'phone' => $phone,
+                            'value' => trim($meta->textContent),
                             'is_internal' => $is_internal,
-                            'url'         => $parsed_url_2,
+                            'url' => $parsed_url_2,
                         ];
                         array_push($phones, $data);
                     } elseif (stripos($meta->getAttribute('href'), 'mailto:') !== false) {
                         $data = [
-                            'position'    => $value,
-                            'src'         => $parsed_url_2['path'],
-                            'value'       => trim($meta->textContent),
+                            'position' => $value,
+                            'src' => $parsed_url_2['path'],
+                            'value' => trim($meta->textContent),
                             'is_internal' => $is_internal,
-                            'url'         => $parsed_url_2,
+                            'url' => $parsed_url_2,
                         ];
                         array_push($emails, $data);
                     } else {
                         $data = [
-                            'position'    => $value,
-                            'src'         => trim($meta->getAttribute('href')),
-                            'value'       => trim($meta->textContent),
-                            'title'       => $meta->getAttribute('title') ?? null,
-                            'rel'         => $meta->getAttribute('rel') ?? null,
-                            'target'      => $meta->getAttribute('target') ?? null,
+                            'position' => $value,
+                            'src' => trim($meta->getAttribute('href')),
+                            'value' => trim($meta->textContent),
+                            'title' => $meta->getAttribute('title') ?? null,
+                            'rel' => $meta->getAttribute('rel') ?? null,
+                            'target' => $meta->getAttribute('target') ?? null,
                             'is_internal' => $is_internal,
-                            'url'         => $this->formatUrl($meta->getAttribute('href')),
-                            'website_id'  => $is_internal ? $this->website->id : null,
+                            'url' => $this->formatUrl($meta->getAttribute('href')),
+                            'website_id' => $is_internal ? $this->website->id : null,
                         ];
                         $links->push($data);
                     }
@@ -268,16 +268,16 @@ class ScrapePage implements ShouldQueue
             if ($image) {
                 $img_parsed_url = parse_url($image);
                 $is_relative = false;
-                if (! isset($img_parsed_url['host'])) {
+                if (!isset($img_parsed_url['host'])) {
                     $is_relative = true;
                 }
                 array_push($images, ['position' => $value, 'src' => $image, 'alt' => 'og:image', 'is_relative' => $is_relative]);
             }
 
             // Sort the phrases by score and return the scores
-            if (stripos($lang, 'en') !== false || stripos($lang, 'ALL') !== false || ! $lang) {
+            if (stripos($lang, 'en') !== false || stripos($lang, 'ALL') !== false || !$lang) {
                 $lang = 'en_US';
-                $text = $title.'. '.implode(', ', $ps);
+                $text = $title . '. ' . implode(', ', $ps);
                 $rake = RakePlus::create($text ?? $description, $lang, 2);
                 $keywords = $rake->sortByScore('desc')->scores();
                 foreach ($keywords as $keyword => $value) {
@@ -296,11 +296,11 @@ class ScrapePage implements ShouldQueue
 
             $website = $this->website;
             $page = (object) [
-                'page_id'       => null,
-                'path'          => $this->page,
-                'url'           => $this->url,
+                'page_id' => null,
+                'path' => $this->page,
+                'url' => $this->url,
                 'is_scrapeable' => 1,
-                'is_homepage'   => ! $this->page,
+                'is_homepage' => !$this->page,
             ];
 
             //return $elements;
@@ -331,24 +331,24 @@ class ScrapePage implements ShouldQueue
     {
         $local_parsed_url = parse_url($url);
 
-        if (! isset($local_parsed_url['host'])) {
-            if (! isset($local_parsed_url['path'])) {
+        if (!isset($local_parsed_url['host'])) {
+            if (!isset($local_parsed_url['path'])) {
                 $local_parsed_url['path'] = null;
             }
-            if ($local_parsed_url['path'] == $this->website->host || ! $this->website->host) {
+            if ($local_parsed_url['path'] == $this->website->host || !$this->website->host) {
                 $local_parsed_url['host'] = $local_parsed_url['path'];
                 $local_parsed_url['path'] = null;
             } else {
                 $local_parsed_url['host'] = $this->website->host;
             }
         }
-        if (! isset($local_parsed_url['scheme']) && $check_for_https) {
+        if (!isset($local_parsed_url['scheme']) && $check_for_https) {
             if ($this->supportsHttps($url) || $default_https == true) {
                 $local_parsed_url['scheme'] = 'https';
             } else {
                 $local_parsed_url['scheme'] = 'http';
             }
-        } elseif (! isset($local_parsed_url['scheme'])) {
+        } elseif (!isset($local_parsed_url['scheme'])) {
             if ($default_https == true) {
                 $local_parsed_url['scheme'] = 'https';
             } else {
@@ -361,7 +361,7 @@ class ScrapePage implements ShouldQueue
 
     private function urlIsInternal($parsed_url_2)
     {
-        if (! isset($parsed_url_2['host'])) {
+        if (!isset($parsed_url_2['host'])) {
             return true;
         } elseif ($parsed_url_2['host'] == $this->website->host || ltrim($parsed_url_2['host'], 'www.') == $this->website->host) {
             return true;
@@ -373,14 +373,14 @@ class ScrapePage implements ShouldQueue
     private function supportsHttps($url)
     {
         $local_parsed_url = parse_url($url);
-        if (! isset($local_parsed_url['scheme'])) {
-            $file = 'https://'.$url;
+        if (!isset($local_parsed_url['scheme'])) {
+            $file = 'https://' . $url;
 
             //$time_start_1 = microtime(true);
             $file_headers = @get_headers($file);
             //$this->load_times->push(microtime(true) - $time_start_1);
 
-            if (! $file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+            if (!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
                 return false;
             } else {
                 return true;

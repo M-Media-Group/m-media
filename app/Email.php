@@ -41,6 +41,16 @@ class Email extends Model
         return $this->hasMany('App\EmailLog', 'to_email_id', 'id');
     }
 
+    public function latestLog()
+    {
+        return $this->hasOne('App\EmailLog')->latest();
+    }
+
+    public function latestReceivedLog()
+    {
+        return $this->hasOne('App\EmailLog', 'to_email_id', 'id')->latest();
+    }
+
     public function authenticationEvents()
     {
         return $this->hasMany('App\AuthenticationEvent');

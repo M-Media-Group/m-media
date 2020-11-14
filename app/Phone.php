@@ -56,9 +56,19 @@ class Phone extends Model
         return $this->hasMany('App\PhoneLog');
     }
 
+    public function latestLog()
+    {
+        return $this->hasOne('App\PhoneLog')->where('type', 'INBOUND')->latest();
+    }
+
+    public function latestReceivedLog()
+    {
+        return $this->hasOne('App\PhoneLog')->where('type', '!=', 'INBOUND')->latest();
+    }
+
     public function getNumberTypeAttribute()
     {
-        if (! $this->getOriginal('number_type')) {
+        if (!$this->getOriginal('number_type')) {
             return;
         }
         $types = PhoneNumberType::values();

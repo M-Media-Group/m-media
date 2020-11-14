@@ -125,6 +125,38 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute()
     {
-        return $this->name.' '.$this->surname;
+        return $this->name . ' ' . $this->surname;
+    }
+
+    /**
+     * The attribute when the customer last sent a communication message to us
+     *
+     * @var array
+     */
+    public function getLastOutboundContactAtAttribute()
+    {
+        $last_contact_date_phone = $this->primaryPhone && $this->primaryPhone->latestReceivedLog ? $this->primaryPhone->latestReceivedLog->created_at : null;
+        $last_contact_date_email = $this->primaryEmail && $this->primaryEmail->latestReceivedLog ? $this->primaryEmail->latestReceivedLog->created_at : null;
+
+        if ($last_contact_date_phone > $last_contact_date_email) {
+            return $last_contact_date_phone;
+        }
+        return $last_contact_date_email;
+    }
+
+    /**
+     * The attribute when the customer last received a message from us
+     *
+     * @var array
+     */
+    public function getLastInboundContactAtAttribute()
+    {
+        $last_contact_date_phone = $this->primaryPhone && $this->primaryPhone->latestLog ? $this->primaryPhone->latestLog->created_at : null;
+        $last_contact_date_email = $this->primaryEmail && $this->primaryEmail->latestLog ? $this->primaryEmail->latestLog->created_at : null;
+
+        if ($last_contact_date_phone > $last_contact_date_email) {
+            return $last_contact_date_phone;
+        }
+        return $last_contact_date_email;
     }
 }

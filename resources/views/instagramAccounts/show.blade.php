@@ -255,7 +255,7 @@
     @endif
 @else
 <h2 class="mt-5 mb-0">Instagram content management</h2>
-@if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::id() == config('blog.super_admin_id'))))
+@if(isset($buffer) && $buffer && (Auth::user() && (Auth::id() == $account->user_id || Auth::user()->isSuperAdmin())))
     @can('create', File::class)
         <file-upload-component url="/instagram-accounts/{{$account->id}}/instagram-posts"></file-upload-component>
     @endif

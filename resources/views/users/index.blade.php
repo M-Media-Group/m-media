@@ -23,6 +23,8 @@
 				   <th>Stripe ID</th>
 				   <th>Devices</th>
 				   <th>Seen</th>
+				   <th>Last time we contacted the customer</th>
+				   <th>Last time the customer contacted us</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +41,16 @@
 					<td class="{{ $user->stripe_id ? null : 'text-primary' }}"><a target="_BLANK" rel="noopener noreferrer" {!! $user->stripe_id ? 'href="https://dashboard.stripe.com/customers/'.$user->stripe_id.'"' : null !!}>{{ $user->stripe_id  ? $user->stripe_id : 'No Stripe ID' }}</a></td>
 					<td class="text-{{ $user->bots_count == 0  ? 'primary' : 'muted'}}">{{ $user->bots_count }}</td>
 					<td class="text-{{ now()->diffInDays( $user->seen_at ) > 30  ? 'primary' : 'muted'}}">{{ $user->seen_at->diffForHumans() }}</td>
+					@if($user->last_outbound_contact_at)
+						<td class="text-{{ now()->diffInDays( $user->last_outbound_contact_at ) > 150  ? 'primary' : 'muted'}}">{{ $user->last_outbound_contact_at->diffForHumans() }}</td>
+					@else
+						<td>No record</td>
+					@endif
+					@if($user->last_inbound_contact_at)
+						<td class="text-{{ now()->diffInDays( $user->last_inbound_contact_at ) > 150  ? 'primary' : 'muted'}}">{{ $user->last_inbound_contact_at->diffForHumans() }}</td>
+					@else
+						<td>No record</td>
+					@endif
 				</tr>
 			@endforeach
 			</tbody>

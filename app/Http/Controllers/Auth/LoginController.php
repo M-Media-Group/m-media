@@ -49,13 +49,11 @@ class LoginController extends Controller
      */
     public function credentials(Request $request)
     {
-
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ]);
 
         return $request->only('email', 'password');
-
     }
 }

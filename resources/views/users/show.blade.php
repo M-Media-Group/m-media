@@ -41,7 +41,7 @@
 
 
 @if($user->websites_count > 0)
-@component('components.customContactCard', ['title' => $user->websites_count." ".str_plural("website", $user->websites_count), 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
+@component('components.customContactCard', ['image' => '/images/icons/website.svg', 'title' => $user->websites_count." ".str_plural("website", $user->websites_count), 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
 	    See and manage websites related to your business on {{config('app.name')}}.
 	    	@if($user->websites && count($user->websites) > 0)
 	<div class="table-responsive">
@@ -54,7 +54,9 @@
 				<tbody>
 			@foreach ($user->websites as $website)
 				<tr>
-					<td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td>
+{{-- 					<td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td>
+ --}}
+					<td><a href="https://{{ $website->host }}">{{ $website->host }}</a></td>
 				</tr>
 			@endforeach
 			</tbody>
@@ -63,47 +65,47 @@
 	@endif
 	@endcomponent
 @else
-	@component('components.customContactCard', ['title' => 'No websites', 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
+	@component('components.customContactCard', ['image' => '/images/icons/website.svg', 'title' => 'No websites', 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
 	    You have no websites on {{config('app.name')}} associated with you or your business.
 	@endcomponent
 @endif
 
 @if($user->files_count > 0)
-@component('components.customContactCard', ['title' => $user->files_count." ".str_plural("file", $user->files_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files?user='.$user->id, 'text' => __('All your files')], ['link' => '/files/create', 'text' => __('Upload a file')]]])
+@component('components.customContactCard', ['image' => '/images/icons/files-empty.svg', 'title' => $user->files_count." ".str_plural("file", $user->files_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files?user='.$user->id, 'text' => __('All your files')], ['link' => '/files/create', 'text' => __('Upload a file')]]])
 	    Easily share and manage files related to your business on {{config('app.name')}}.
 	@endcomponent
 @else
-	@component('components.customContactCard', ['title' => 'No files', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files/create', 'text' => 'Upload your first file']]])
+	@component('components.customContactCard', ['image' => '/images/icons/files-empty.svg', 'title' => 'No files', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files/create', 'text' => 'Upload your first file']]])
 	    You have no files on {{config('app.name')}} associated with you and your business.
 	@endcomponent
 @endif
 
 @if($user->ad_accounts_count > 0)
-@component('components.customContactCard', ['title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/ad-accounts?user='.$user->id, 'text' => __('All your ad accounts')], ['link' => '/contact', 'text' => __('Link a new ad account')]]])
+@component('components.customContactCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/ad-accounts?user='.$user->id, 'text' => __('All your ad accounts')], ['link' => '/contact', 'text' => __('Link a new ad account')]]])
 	    Easily see data related to your ad accounts linked to your {{config('app.name')}} account.
 	@endcomponent
 @else
-	@component('components.customContactCard', ['title' => 'No ad accounts', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/contact', 'text' => 'Link an advertising platform'], ['type' => '', 'link' => '/digital-ads', 'text' => 'Learn more']]])
+	@component('components.customContactCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => 'No ad accounts', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/contact', 'text' => 'Link an advertising platform'], ['type' => '', 'link' => '/digital-ads', 'text' => 'Learn more']]])
 	    You have no ad accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
 @endif
 
 @if($user->emails_count > 0)
-@component('components.customContactCard', ['title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'buttons' => [['type' => 'primary', 'link' => '/emails?user='.$user->id, 'text' => __('Your email accounts')]]])
+@component('components.customContactCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'buttons' => [['type' => 'primary', 'link' => '/emails?user='.$user->id, 'text' => __('Your email accounts')]]])
 	    Manage email accounts associated with you and your business on {{config('app.name')}}.
 	@endcomponent
 @else
-@component('components.customContactCard', ['title' => 'No email accounts', 'id' => 'emails', 'image' => '/images/emails.svg'])
+@component('components.customContactCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => 'No email accounts', 'id' => 'emails', 'image' => '/images/emails.svg'])
     You have no email accounts on {{config('app.name')}} associated with you.
 @endcomponent
 @endif
 
 @if($user->phones_count > 0)
-@component('components.customContactCard', ['title' => $user->phones_count.' phone ' .str_plural("number", $user->phones_count), 'id' => 'phones', 'buttons' => [['type' => 'primary', 'link' => '/phones?user='.$user->id, 'text' => __('Your phone numbers')]]])
+@component('components.customContactCard', ['image' => '/images/icons/phone.svg', 'title' => $user->phones_count.' phone ' .str_plural("number", $user->phones_count), 'id' => 'phones', 'buttons' => [['type' => 'primary', 'link' => '/phones?user='.$user->id, 'text' => __('Your phone numbers')]]])
 	    Manage phone numbers associated with you and your business on {{config('app.name')}}.
 	@endcomponent
 @else
-@component('components.customContactCard', ['title' => 'No phone accounts', 'id' => 'phones'])
+@component('components.customContactCard', ['image' => '/images/icons/phone.svg', 'title' => 'No phone accounts', 'id' => 'phones'])
     You have no phone numbers on {{config('app.name')}} associated with you.
 @endcomponent
 @endif
@@ -113,7 +115,7 @@
 	    Manage Instagram accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
 @else
-@component('components.customContactCard', ['title' => 'No Instagram accounts', 'id' => 'instagram', 'image' => '/images/polaroid.svg'])
+@component('components.customContactCard', ['title' => 'No Instagram accounts', 'id' => 'instagram', 'image' => '/images/icons/instagram.svg'])
     You have no Instagram accounts on {{config('app.name')}} associated with you and your business.
 @endcomponent
 @endif

@@ -135,7 +135,7 @@ span.fa {
 }
 
 .footer {
-    background-color: $blue;
+    background-color: var(--primary);
     color: #fff !important;
 }
 
@@ -457,8 +457,8 @@ textarea {
 }
 
 .dropdown-content a:hover {
-    background-color: #eb4647;
-    color: var(--white);
+    background-color: var(--secondary);
+    color: var(--secondary-text-contrast);
 }
 
 .dropdown:hover .dropdown-content {

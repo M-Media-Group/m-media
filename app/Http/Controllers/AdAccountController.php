@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\AdAccount;
 use Edbizarro\LaravelFacebookAds\Facades\FacebookAds;
 use Edujugon\GoogleAds\GoogleAds;
+use FacebookAds\Object\Ad;
+use FacebookAds\Object\Fields\AdFields;
+use FacebookAds\Object\Fields\AdLabelFields;
 use Illuminate\Http\Request;
 
 class AdAccountController extends Controller
@@ -128,6 +131,10 @@ class AdAccountController extends Controller
         //dd($fetched_data->result);
         $ads = collect();
         foreach ($fetched_data->result as $ad) {
+            $managed_by_mmedia = false;
+            if (strpos(json_encode($ad->labels), "managed_by_mmedia")) {
+                $managed_by_mmedia = true;
+            }
             $ad_array = (object) [
                 'id' => $ad->adID,
                 'name' => $ad->adGroup,
@@ -140,6 +147,7 @@ class AdAccountController extends Controller
                 'impressions' => (int) $ad->impressions,
                 'is_active' => $ad->adState == 'enabled' && $ad->campaignState == 'enabled' && $ad->adGroupState == 'enabled' ? 1 : 0,
                 'created_at' => null,
+                'is_managed_by_mmedia' => $managed_by_mmedia,
             ];
             $ads->push($ad_array);
         }
@@ -162,7 +170,7 @@ class AdAccountController extends Controller
         //return $per;
         // $campaigns = FacebookAds::insights($per, 'act_' . $adAccount->external_account_id, 'ad', ["date_preset" => "lifetime", "time_increment" => "all_days", "fields" => ["account_id", "account_name", "clicks", "conversions", "spend", "impressions", "ad_name", "purchase_roas", "account_currency", "frequency"]]);
         //return dd($campaigns);
-        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_'.$adAccount->external_account_id)->ads(['name',
+        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_' . $adAccount->external_account_id)->ads(['name',
             'account_id',
             'account_status',
             'balance',
@@ -172,7 +180,7 @@ class AdAccountController extends Controller
             'created_time',
             'adlabels',
             // 'insights{impressions, clicks, conversions}',
-            'insights.fields(impressions, outbound_clicks, actions, action_values, conversion_values, conversions, spend, account_currency, website_ctr).date_preset(lifetime).time_increment(all_days)',
+            'insights.fields( impressions, outbound_clicks, actions, action_values, conversion_values, conversions, spend, account_currency, website_ctr).date_preset(lifetime).time_increment(all_days)',
         ]);
 
         // $newObj = (object) [];
@@ -188,7 +196,9 @@ class AdAccountController extends Controller
 
         // $campaigns->all(['name'], 'act_<AD_ACCOUNT_ID>');
         //return ($fetched_data);
+        // dd($fetched_data);
         foreach ($fetched_data as $ad) {
+
             //var_dump($ad->__get('insights')['data'][0]['clicks']);
             $conversions_count = 0;
 
@@ -207,8 +217,15 @@ class AdAccountController extends Controller
             } catch (\Exception $e) {
                 continue;
             }
-
             $clicks = isset($ad->__get('insights')['data'][0]['outbound_clicks']) ? (int) $ad->__get('insights')['data'][0]['outbound_clicks'][0]['value'] : null;
+
+            $managed_by_mmedia = false;
+            if (strpos(json_encode($ad->__get('adlabels') ?? []), "managed_by_mmedia")) {
+                $managed_by_mmedia = true;
+            }
+            // if (in_array("managed_by_mmedia", $ad->__get('adlabels') ?? [])) {
+            //     $managed_by_mmedia = true;
+            // }
 
             $ad_array = (object) [
                 'id' => $ad->__get('id'),
@@ -222,11 +239,37 @@ class AdAccountController extends Controller
                 'impressions' => (int) $ad->__get('insights')['data'][0]['impressions'],
                 'is_active' => $ad->__get('effective_status') == 'ACTIVE' ? 1 : 0,
                 'created_at' => \Carbon\Carbon::parse($ad->__get('created_time')),
+                'is_managed_by_mmedia' => $managed_by_mmedia,
             ];
             $ads->push($ad_array);
         }
 
         return $ads;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\AdAccount  $adAccount
+     * @return \Illuminate\Http\Response
+     */
+    public function updateFacebookAdTags($id)
+    {
+        FacebookAds::init(config('facebook-ads.refresh_token'));
+
+        $ad = new Ad($id);
+
+        $fields = array(
+        );
+        $params = array(
+            // AdFields::NAME => 'My new AdSet name',
+            AdFields::ADLABELS => array(
+                array(AdLabelFields::NAME => 'managed_by_mmedia'),
+            ),
+        );
+        $ad->updateSelf($fields, $params);
+
+        return response()->json($ad);
     }
 
     /**

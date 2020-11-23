@@ -22,7 +22,7 @@
                     <td>{{$adAccount->platform->name}}</td>
                 </tr>
                 <tr>
-                    <th>Managed by M Media</th>
+                    <th>Managed by {{ config('app.name') }}</th>
                     <td class="text-{{ $adAccount->is_managed  ? 'muted' : 'primary' }}">{{ $adAccount->is_managed  ? 'Yes' : 'No' }} </td>
                 </tr>
 
@@ -68,20 +68,24 @@
 	        <table class="table mb-0 table-sm">
 	            <thead>
 	                <tr>
-                       <th>Delivering</th>
                        <th>Name</th>
 {{--                        <th>Impressions</th>
                        <th>Clicks</th> --}}
 	                   <th>Click through rate</th>
                        <th>Cost per click</th>
 	                   <th>Cost</th>
+                       <th>Is M Media ad</th>
+                       <th>Created at</th>
 	                </tr>
 	            </thead>
 	            <tbody>
-	    @foreach($ads->sortByDesc('is_active') as $ad)
+	    @foreach($ads->sortByDesc('created_at') as $ad)
 	            <tr>
-                    <td class="text-{{ $ad->is_active  ? 'primary' : 'muted' }}">{{ $ad->is_active  ? 'Yes' : 'No' }} </td>
-                    <td>{{$ad->name}} <span class="text-muted">{{$ad->id}}</span></td>
+                    <td>
+                        @if($ad->is_active)
+                            <div class="text-primary" style="background: var(--primary);border-radius: 50%;display: inline-block;height:1rem;margin-right: 5px;width: 1rem;"></div>
+                        @endif
+                        {{$ad->name}} <span class="text-muted">{{$ad->id}}</span></td>
 {{--                     <td>{{ number_format($ad->impressions) }}</td>
                     <td>{{ number_format($ad->clicks) }}</td> --}}
                     @if($ad->clicks > 10)
@@ -93,6 +97,23 @@
                     @endif
 
                     <td>{{ \Laravel\Cashier\Cashier::formatAmount((int) ($ad->cost * 100), $ad->currency) }}</td>
+                    @if($ad->is_managed_by_mmedia)
+                        <td class="text-primary">Yes</td>
+                    @elseif($adAccount->platform->name == "Facebook Ads")
+                        @can('update ad', $ad)
+                        <td>
+                            <form action="/ad-platforms/facebook/ads/{{$ad->id}}/update-tags" method="post">
+                                @csrf
+                                <button type="submit" class="button button-primary">Mark as M Media ad</button>
+                            </form>
+                        </td>
+                        @else
+                            <td class="text-muted">No</td>
+                        @endcan
+                    @else
+                        <td class="text-muted">No</td>
+                    @endif
+                    <td class="text-muted">{{ optional($ad->created_at)->diffForHumans() }}</td>
 	            </tr>
 	    @endforeach
 
@@ -100,7 +121,6 @@
              <tfoot>
                 <tr>
                     <td>Averages, Total</td>
-                    <td></td>
 {{--                     <td>{{ number_format( $ads->sum('impressions') ) }}</td>
                     <td>{{ number_format( $ads->sum('clicks') ) }}</td> --}}
                     @if($ads->sum('impressions') > 100)
@@ -114,11 +134,15 @@
                     <td>-</td>
                     @endif
                     <td>{{ \Laravel\Cashier\Cashier::formatAmount((int) ($ads->sum('cost') * 100), $ads->first()->currency) }}</td>
+                    <td> </td>
+                    <td> </td>
                 </tr>
             </tfoot>
 	        </table>
 	    </div>
-        <p class="mb-5 text-muted">The costs indicate what you paid to {{ $adAccount->platform->name }}, not us.</p>
+        <p class="text-muted mb-0">* The costs indicate what you paid to {{ $adAccount->platform->name }}, not us.</p>
+        <p class="mb-5 text-muted">* Ads with a <span class="text-primary" style="background: var(--primary);border-radius: 50%;display: inline-block;height:1rem;width: 1rem;"></span> symbol are currently delivering.</p>
+
 	    @else
 	        <div class="alert text-muted">
 	             There's no ads to show right now.

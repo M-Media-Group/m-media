@@ -132,7 +132,7 @@ class AdAccountController extends Controller
         $ads = collect();
         foreach ($fetched_data->result as $ad) {
             $managed_by_mmedia = false;
-            if (strpos(json_encode($ad->labels), "managed_by_mmedia")) {
+            if (strpos(json_encode($ad->labels), 'managed_by_mmedia')) {
                 $managed_by_mmedia = true;
             }
             $ad_array = (object) [
@@ -170,7 +170,7 @@ class AdAccountController extends Controller
         //return $per;
         // $campaigns = FacebookAds::insights($per, 'act_' . $adAccount->external_account_id, 'ad', ["date_preset" => "lifetime", "time_increment" => "all_days", "fields" => ["account_id", "account_name", "clicks", "conversions", "spend", "impressions", "ad_name", "purchase_roas", "account_currency", "frequency"]]);
         //return dd($campaigns);
-        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_' . $adAccount->external_account_id)->ads(['name',
+        $fetched_data = FacebookAds::adAccounts()->get(['account_id', 'balance', 'name', 'owner', 'amount_spent'], 'act_'.$adAccount->external_account_id)->ads(['name',
             'account_id',
             'account_status',
             'balance',
@@ -220,7 +220,7 @@ class AdAccountController extends Controller
             $clicks = isset($ad->__get('insights')['data'][0]['outbound_clicks']) ? (int) $ad->__get('insights')['data'][0]['outbound_clicks'][0]['value'] : null;
 
             $managed_by_mmedia = false;
-            if (strpos(json_encode($ad->__get('adlabels') ?? []), "managed_by_mmedia")) {
+            if (strpos(json_encode($ad->__get('adlabels') ?? []), 'managed_by_mmedia')) {
                 $managed_by_mmedia = true;
             }
             // if (in_array("managed_by_mmedia", $ad->__get('adlabels') ?? [])) {
@@ -259,14 +259,14 @@ class AdAccountController extends Controller
 
         $ad = new Ad($id);
 
-        $fields = array(
-        );
-        $params = array(
+        $fields = [
+        ];
+        $params = [
             // AdFields::NAME => 'My new AdSet name',
-            AdFields::ADLABELS => array(
-                array(AdLabelFields::NAME => 'managed_by_mmedia'),
-            ),
-        );
+            AdFields::ADLABELS => [
+                [AdLabelFields::NAME => 'managed_by_mmedia'],
+            ],
+        ];
         $ad->updateSelf($fields, $params);
 
         return response()->json($ad);

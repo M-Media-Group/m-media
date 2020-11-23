@@ -111,7 +111,7 @@
 @endif
 
 @if($user->instagram_accounts_count > 0)
-@component('components.customContactCard', ['title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'buttons' => [['type' => 'primary', 'link' => '/instagram-accounts?user='.$user->id, 'text' => __('Your Instagram accounts')]]])
+@component('components.customContactCard', ['image' => '/images/icons/instagram.svg', 'title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'buttons' => [['type' => 'primary', 'link' => '/instagram-accounts?user='.$user->id, 'text' => __('Your Instagram accounts')]]])
 	    Manage Instagram accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
 @else
@@ -121,7 +121,7 @@
 @endif
 
 @if($user->bots_count > 0)
-@component('components.customContactCard', ['title' => $user->bots_count.' ' .str_plural("bot", $user->bots_count), 'id' => 'bots', 'buttons' => [['type' => 'primary', 'link' => '/my-bots', 'text' => __('Your bots')]]])
+@component('components.customContactCard', ['image' => '/images/pi-top.png', 'title' => $user->bots_count.' ' .str_plural("bot", $user->bots_count), 'id' => 'bots', 'buttons' => [['type' => 'primary', 'link' => '/my-bots', 'text' => __('Your bots')]]])
 	    Manage physical marketing automation bots associated with your business on {{config('app.name')}}.
 	@endcomponent
 @endif

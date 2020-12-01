@@ -1,6 +1,6 @@
 @extends('layouts.clean')
 
-@section('meta_image', '/images/home_meta_image.png')
+@section('meta_image', '/images/home_meta_image.jpg')
 
 @section('header_scripts')
 <style type="text/css">

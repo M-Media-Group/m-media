@@ -24,7 +24,7 @@
 
 
 		<!-- STAY - Scripts -->
-		<script src="https://js.stripe.com/v3/"></script>
+		<script src="https://js.stripe.com/v3/" async></script>
 
 {{-- 		<script src="{{ mix('js/manifest.js') }}"></script>
  --}}

@@ -32,7 +32,7 @@
 {{-- <meta name="twitter:creator" content="@individual_account">
  --}}{{-- <meta name="twitter:url" content="https://example.com/page.html"> --}}
 <meta name="twitter:title" content="@yield('title', config('app.name'))">
-<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'.We make websites and handle marketing for artists, entrepreneurs, and small businesses. SEO friendly, responsive, and tailored websites built for you in Monaco, the French Riviera, or anywhere.')">
+<meta name="twitter:description" content="@yield('meta_description', 'Hi! We\'re '.config('app.name') .'. We make websites and handle marketing for artists, entrepreneurs, and small businesses. SEO friendly, responsive, and tailored websites built for you in Monaco, the French Riviera, or anywhere.')">
 <meta name="twitter:image" content="@yield('meta_image', config('blog.logo_url'))">
 
 <meta name="theme-color" content="#eb4647">

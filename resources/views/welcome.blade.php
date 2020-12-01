@@ -54,12 +54,12 @@
         </div>
 
 
-    <div class="header-section row m-0" style="background: #fff;background-position: bottom;background-repeat: no-repeat;background-size: cover;min-height:68rem;">
+    <div class="header-section row m-0" style="background: url('images/backgrounds/paris.svg') var(--white);background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:68rem;">
 
         <div class="col-md-12 text-center">
             <p class="mb-0 mt-3 mx-auto  m-text-label" data-aos="fade" data-aos-delay="150" style="max-width:43rem">Honest audience</p>
             <h2 class="header-section-title aos-init aos-animate mx-auto mt-0 mb-5 text-title-heading" data-aos="fade" >Reach genuine people that care</h2>
-            <img src="/images/globe-europe.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px; opacity: 50%;" data-aos="fade" data-aos-delay="300">
+            <img src="/images/globe-europe.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px; opacity: 35%;" data-aos="fade" data-aos-delay="300">
             <p class="mb-3 mt-3 mx-auto m-text-body" data-aos="fade" data-aos-delay="300" style="max-width:43rem">With over 7 billion people, tastes are bound to be different. By looking at your existing fans, together we’ll be able to reach similar people that will respect and amplify your vision.</p>
         </div>
     </div>
@@ -88,7 +88,7 @@
     </div>
 </div>
 
- <div class="header-section row m-0 text-center" style="background: url('images/backgrounds/paris.svg') var(--white);background-position: center bottom;background-repeat: no-repeat;background-size: cover;">
+ <div class="header-section row m-0 text-center" style="background-position: center bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-12">
         <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">Lets talk</p>
         <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">If you don't ask, <br/>you won't know</h3>

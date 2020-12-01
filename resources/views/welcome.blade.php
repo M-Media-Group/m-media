@@ -13,11 +13,11 @@
     }
 
     .no-webp .looking-up-background {
-        background:url('images/person_looking_up.jpg') var(--primary);
+        background:url('images/person_looking_up.jpg') white;
     }
 
     .webp .looking-up-background {
-        background:url('images/person_looking_up.webp') var(--primary);
+        background:url('images/person_looking_up.webp') white;
     }
 </style>
 @endsection

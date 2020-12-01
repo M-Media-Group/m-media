@@ -88,7 +88,7 @@
     </div>
 </div>
 
- <div class="header-section row m-0 text-center" style="background: #fff;background-position: center bottom;background-repeat: no-repeat;background-size: cover;">
+ <div class="header-section row m-0 text-center" style="background: url('images/backgrounds/paris.svg') var(--white);background-position: center bottom;background-repeat: no-repeat;background-size: cover;">
     <div class="col-md-12">
         <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">Lets talk</p>
         <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">If you don't ask, <br/>you won't know</h3>

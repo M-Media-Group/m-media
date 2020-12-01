@@ -19,7 +19,7 @@ require('laravel-mix-bundle-analyzer');
  |
  */
 
-mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'jquery', 'bootstrap', 'moment', 'pusher-js']);
+mix.sourceMaps().js('resources/js/app.js', 'public/js');
 mix.sass('resources/sass/app.scss', 'public/css').styles([
         'resources/sass/app.css',
     'resources/sass/normalize.css',

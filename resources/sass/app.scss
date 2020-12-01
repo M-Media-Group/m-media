@@ -61,6 +61,7 @@
         --light: #fff;
         --box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
     }
+
     @page {
         margin: 0;
     }
@@ -119,8 +120,8 @@ small.text-muted {
 
 body,
 ,
-.navbar-nav > li > .dropdown-menu,
-.navbar-nav > li > .dropdown-menu > .dropdown-item {
+.navbar-nav>li>.dropdown-menu,
+.navbar-nav>li>.dropdown-menu>.dropdown-item {
     //background-color: #202325;
     //color: #fff;
 }
@@ -163,6 +164,7 @@ span.fa {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .blockquote {
     font-size: inherit;
 }
@@ -176,16 +178,24 @@ span.fa {
     position: absolute;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */
+    {
     opacity: 0;
     transform: translateX(-5rem);
 }
 
 .fade-in-animate {
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s; /* Firefox < 16 */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera < 12.1 */
+    -webkit-animation: fadein 2s;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s;
+    /* Firefox < 16 */
+    -ms-animation: fadein 2s;
+    /* Internet Explorer */
+    -o-animation: fadein 2s;
+    /* Opera < 12.1 */
     animation: fadein 2s;
 }
 
@@ -193,6 +203,7 @@ span.fa {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -203,6 +214,7 @@ span.fa {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -213,6 +225,7 @@ span.fa {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -223,6 +236,7 @@ span.fa {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -233,6 +247,7 @@ span.fa {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -272,6 +287,7 @@ h1 {
     animation-duration: 0.55s;
     animation-timing-function: ease-in-out;
 }
+
 .header-section h1,
 .header-section-title {
     margin-bottom: 0.5rem;
@@ -280,8 +296,7 @@ h1 {
 */
 }
 
-.header-section-title {
-}
+.header-section-title {}
 
 h2,
 p,
@@ -311,8 +326,8 @@ body {
         transform: translateY(50rem);
         opacity: 0;
     }
-    to {
-    }
+
+    to {}
 }
 
 @keyframes example2 {
@@ -320,8 +335,8 @@ body {
         transform: translateX(-5rem);
         opacity: 0;
     }
-    to {
-    }
+
+    to {}
 }
 
 .action-section {
@@ -402,11 +417,13 @@ textarea {
     cursor: pointer;
     pointer-events: initial;
 }
+
 .logo-container:hover {
     border-radius: 25%;
     box-shadow: 0 0 7rem 0 rgba(0, 0, 0, 0.25);
 }
-.logo-container > img {
+
+.logo-container>img {
     display: block;
 }
 
@@ -417,7 +434,8 @@ textarea {
     width: 100%;
     height: 150px;
 }
-.dynamic-images > img {
+
+.dynamic-images>img {
     position: absolute;
 }
 
@@ -440,11 +458,13 @@ textarea {
 .dropdown-content::-webkit-scrollbar {
     width: 0.5rem;
 }
+
 .dropdown-content::-webkit-scrollbar-thumb {
     background-color: var(--dark);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
 }
+
 .dropdown-content::-webkit-scrollbar-track {
     background-color: var(--light);
 }
@@ -469,7 +489,7 @@ textarea {
     background-color: #3e8e41;
 }
 
-p > img {
+p>img {
     max-height: 200px;
 }
 
@@ -495,8 +515,10 @@ main img {
 }
 
 .background-filter::before {
-    -webkit-backdrop-filter: blur(13px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
-    backdrop-filter: blur(13px); /* Supported in Chrome 76 */
+    -webkit-backdrop-filter: blur(13px);
+    /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+    backdrop-filter: blur(13px);
+    /* Supported in Chrome 76 */
 
     content: '';
     display: block;
@@ -513,7 +535,7 @@ main img {
     position: relative;
 }
 
-.background-filter > * {
+.background-filter>* {
     position: relative;
     text-shadow: 0 0 1px rgb(117, 117, 117);
 }
@@ -533,15 +555,45 @@ main img {
     opacity: 1;
     font-size: 90%;
 }
+
 .tooltip,
 .arrow {
     box-shadow: var(--box-shadow);
 }
+
 a {
     //color: var(--link);
     text-decoration: underline;
 }
 
-div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch > form {
+div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch>form {
     max-width: 500px;
+}
+
+.text-title-heading {
+    font-weight: bold;
+    font-size: 4.2rem;
+    letter-spacing: 0;
+    text-align: center;
+    max-width: 43rem
+}
+
+.m-text-body,
+.m-text-label {
+    // font-family: Roboto-Medium;
+
+    // color: #383333;
+    text-align: center;
+    max-width: 43rem;
+    // font-weight: 700;
+}
+
+.m-text-label {
+    font-weight: 700;
+}
+
+.m-text-body {
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    line-height: 2.8rem;
 }

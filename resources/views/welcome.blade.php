@@ -26,88 +26,51 @@
             <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
           </button>
     </div>
-        <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/bdevices.svg'), url('images/backgrounds/1.svg'), var(--primary);background-position: left, bottom;background-repeat: no-repeat;background-size: cover;">
-            <h1 class="header-section-title mb-0 aos-init aos-animate">Hi 👋! We're {{config('app.name')}}.</h1>
-            <p class="mb-0" data-aos="fade" data-aos-delay="300">We make websites and handle your marketing.</p>
+        <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/background_sky.jpg') var(--primary);background-position: right, bottom;background-repeat: no-repeat;background-size: cover;min-height:73rem;">
+            <h1 class="header-section-title aos-init aos-animate text-title-heading" style="text-align: left;">Lets tell your story, <br/>together.</h1>
+            <p class="mb-3 mt-3 m-text-body" data-aos="fade" data-aos-delay="300" style="text-align: left;">Marketing can be tricky, so it’s best to leave it to those that know what they are doing. That way, you tell your story while we get the listeners.</p>
             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
         </div>
 
 
-    <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section row m-0" style="background: #fff;background-position: bottom;background-repeat: no-repeat;background-size: cover;min-height:68rem;">
 
-        <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade" data-aos-offset="0">You want to get your business online.</h3>
-            <p style="max-width: 550px;" data-aos="fade">You're here to find out how to get a business website online and in front of your customers. You need a low-cost, quick, and tailored solution.</p>
-            <p data-aos="fade">We're here to help.</p>
-        </div>
-        <div class="col-md-6 mb-5 flex">
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/web-development" data-aos="fade">See our website creation offer</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-section row m-0 with-bg-dec" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade">You're looking to reach people on Google and YouTube with ads.</h3>
-            <p data-aos="fade">You'd like to run ads and engage with your target audience on big ad platforms. You need someone to create and manage campaigns and ads.</p>
-            <p data-aos="fade">That's what we do.</p>
-        </div>
-        <div class="col-md-6 mb-5 flex">
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/digital-ads" data-aos="fade">Explore our digital ad solutions</a>
-            </div>
-        </div>
-    </div>
-
-
- <div class="header-section row m-0" style="background: url('images/backgrounds/1-white.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6">
-            <h3 class="mt-0" data-aos="fade">You'd like to be visible on Facebook.</h3>
-            <p data-aos="fade">You've discovered that your clients are Facebook users, and you'd like someone to keep them engaged with targeted and optimized Facebook ads.</p>
-            <p data-aos="fade">That's us.</p>
-        </div>
-        <div class="col-md-6 mb-5 flex">
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/digital-ads" data-aos="fade">Talk to us</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-section row m-0" style="background: url('images/backgrounds/1.svg'), var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6" data-aos="fade">
-            <h3 class="mt-0" data-aos="fade">You'd like some help on your digital strategy.</h3>
-            <p data-aos="fade">You're not 100% sure if digital ads are the right solution for you, or you can't decide how much of your business logic should be online.</p>
-            <p data-aos="fade">We can help.</p>
-        </div>
-        <div class="col-md-6 mb-5 flex">
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="/contact" data-aos="fade">Send us a message</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-section row m-0" style="background: url('images/backgrounds/1-blue.svg'), var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6" data-aos="fade">
-            <h3 class="mt-0" data-aos="fade">You'd like to know more about who we are.</h3>
-            <p style="max-width: 550px;" data-aos="fade">You're intrigued with our offers but you'd still like to read up about who we are.</p>
-            <p data-aos="fade">Not a problem.</p>
-        </div>
-        <div class="col-md-6 mb-5 flex">
-            <div class="flex" style="flex-wrap: wrap;">
-                <a class="button button-secondary u-center" href="https://blog.mmediagroup.fr" target="_BLANK" rel="noopener" data-aos="fade">Explore our blog</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-section u-bg-primary row m-0">
         <div class="col-md-12 text-center">
-            <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
-                <a class="button button-secondary" href="/contact" data-aos="fade">Let's talk :)</a>
-                <a class="button button-secondary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
-            </div>
+            <p class="mb-0 mt-3 mx-auto  m-text-label" data-aos="fade" data-aos-delay="150" style="max-width:43rem">Honest audience</p>
+            <h2 class="header-section-title aos-init aos-animate mx-auto mt-0 mb-5 text-title-heading" data-aos="fade" >Reach genuine people that care</h2>
+            <img src="/images/globe-europe.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px; opacity: 50%;" data-aos="fade" data-aos-delay="300">
+            <p class="mb-3 mt-3 mx-auto m-text-body" data-aos="fade" data-aos-delay="300" style="max-width:43rem">With over 7 billion people, tastes are bound to be different. By looking at your existing fans, together we’ll be able to reach similar people that will respect and amplify your vision.</p>
         </div>
     </div>
+
+    <div class="header-section row m-0 with-bg-dec pb-0" style="background: var(--white);background-position: left bottom;background-repeat: no-repeat;background-size: contain;">
+
+        <div class="col-md-6 order-md-2">
+            <p class="mb-0 mt-3 m-text-label" data-aos="fade" data-aos-delay="150">Deep feedback</p>
+            <h3 class="mt-0 text-title-heading" data-aos="fade" data-aos-delay="50">Get fans to take meaningful action towards your goals</h3>
+            <p data-aos="fade" class="m-text-body" data-aos="fade" data-aos-delay="300">Enable people to resonate, engage, and trade with your brand online. Guide them towards your project goals by tailoring your digital presence to what your fans need.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="/images/person_pointing.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width " style="max-width: 100%;" data-aos="fade">
+        </div>
+    </div>
+
+
+ <div class="header-section row m-0 text-center" style="background: url('images/person_looking_up.jpg'), var(--light);background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:108rem;">
+    <div class="col-md-12">
+        <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">Be there when they look for you</h3>
+        <p data-aos="fade" class="mx-auto m-text-body" data-aos-delay="300">People are looking for something all the time. Ocassionally, they'll even look for something that you're well versed in. Be there when that happens.</p>
+    </div>
+</div>
+
+ <div class="header-section row m-0 text-center" style="background: #fff;background-position: center bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="col-md-12">
+        <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">Lets talk</p>
+        <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">If you don't ask, <br/>you won't know</h3>
+        <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Talk to an expert now</a>
+        <p data-aos="fade" class="mx-auto m-text-body" data-aos-delay="300">We’re very responsive by email. We’re in Europe, so we’re probably awake when you are. Lets get to know each other.</p>
+    </div>
+</div>
 
 @endsection

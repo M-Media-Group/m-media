@@ -50,8 +50,8 @@
     </div>
         <div class="header-section u-bg-primary with-bg-dec primary-header-background" style="background-position: right, bottom;background-repeat: no-repeat;background-size: cover;min-height:73rem;">
             <h1 class="header-section-title aos-init aos-animate text-title-heading" style="text-align: left;">Lets tell your story, <br/>together.</h1>
-            <p class="mb-3 mt-3 m-text-body" data-aos="fade" data-aos-delay="300" style="text-align: left;">Digital marketing can be tricky, so it’s best to leave it to those that know what they are doing. Focus on telling your story, and we'll get the listeners.</p>
-            <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
+            <p class="mb-3 mt-3 m-text-body" data-aos="fade" style="text-align: left;">Digital marketing can be tricky, so it’s best to leave it to those that know what they are doing. Focus on telling your story, and we'll get the listeners.</p>
+            <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="200">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a>
         </div>
 

@@ -120,8 +120,8 @@ small.text-muted {
 
 body,
 ,
-.navbar-nav>li>.dropdown-menu,
-.navbar-nav>li>.dropdown-menu>.dropdown-item {
+.navbar-nav > li > .dropdown-menu,
+.navbar-nav > li > .dropdown-menu > .dropdown-item {
     //background-color: #202325;
     //color: #fff;
 }
@@ -181,8 +181,7 @@ span.fa {
 .fade-enter,
 .fade-leave-to
 
-/* .fade-leave-active below version 2.1.8 */
-    {
+/* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateX(-5rem);
 }
@@ -296,7 +295,8 @@ h1 {
 */
 }
 
-.header-section-title {}
+.header-section-title {
+}
 
 h2,
 p,
@@ -327,7 +327,8 @@ body {
         opacity: 0;
     }
 
-    to {}
+    to {
+    }
 }
 
 @keyframes example2 {
@@ -336,7 +337,8 @@ body {
         opacity: 0;
     }
 
-    to {}
+    to {
+    }
 }
 
 .action-section {
@@ -423,7 +425,7 @@ textarea {
     box-shadow: 0 0 7rem 0 rgba(0, 0, 0, 0.25);
 }
 
-.logo-container>img {
+.logo-container > img {
     display: block;
 }
 
@@ -435,7 +437,7 @@ textarea {
     height: 150px;
 }
 
-.dynamic-images>img {
+.dynamic-images > img {
     position: absolute;
 }
 
@@ -489,7 +491,7 @@ textarea {
     background-color: #3e8e41;
 }
 
-p>img {
+p > img {
     max-height: 200px;
 }
 
@@ -535,7 +537,7 @@ main img {
     position: relative;
 }
 
-.background-filter>* {
+.background-filter > * {
     position: relative;
     text-shadow: 0 0 1px rgb(117, 117, 117);
 }
@@ -566,7 +568,7 @@ a {
     text-decoration: underline;
 }
 
-div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch>form {
+div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch > form {
     max-width: 500px;
 }
 
@@ -575,7 +577,7 @@ div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch>form {
     font-size: 4.2rem;
     letter-spacing: 0;
     text-align: center;
-    max-width: 43rem
+    max-width: 43rem;
 }
 
 .m-text-body,

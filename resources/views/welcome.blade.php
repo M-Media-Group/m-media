@@ -1,5 +1,25 @@
 @extends('layouts.clean')
 
+@section('header_scripts')
+<style type="text/css">
+    .no-webp .primary-header-background {
+        background:url('images/background_sky.jpg') var(--primary);
+    }
+
+    .webp .primary-header-background {
+        background:url('images/background_sky.webp') var(--primary);
+    }
+
+    .no-webp .looking-up-background {
+        background:url('images/person_looking_up.jpg') var(--primary);
+    }
+
+    .webp .looking-up-background {
+        background:url('images/person_looking_up.webp') var(--primary);
+    }
+</style>
+@endsection
+
 @section('above_container')
     <script type="application/ld+json">
     {
@@ -26,7 +46,7 @@
             <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
           </button>
     </div>
-        <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/background_sky.jpg') var(--primary);background-position: right, bottom;background-repeat: no-repeat;background-size: cover;min-height:73rem;">
+        <div class="header-section u-bg-primary with-bg-dec primary-header-background" style="background-position: right, bottom;background-repeat: no-repeat;background-size: cover;min-height:73rem;">
             <h1 class="header-section-title aos-init aos-animate text-title-heading" style="text-align: left;">Lets tell your story, <br/>together.</h1>
             <p class="mb-3 mt-3 m-text-body" data-aos="fade" data-aos-delay="300" style="text-align: left;">Marketing can be tricky, so it’s best to leave it to those that know what they are doing. That way, you tell your story while we get the listeners.</p>
             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
@@ -52,12 +72,16 @@
             <p data-aos="fade" class="m-text-body" data-aos="fade" data-aos-delay="300">Enable people to resonate, engage, and trade with your brand online. Guide them towards your project goals by tailoring your digital presence to what your fans need.</p>
         </div>
         <div class="col-md-6 order-md-1">
-            <img src="/images/person_pointing.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width " style="max-width: 100%;" data-aos="fade">
+            <picture>
+                <source type="image/webp" srcset="/images/person_pointing.webp">
+                <source type="image/png" srcset="/images/person_pointing.png">
+                <img src="/images/person_pointing.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width " style="max-width: 100%;" data-aos="fade">
+            </picture>
         </div>
     </div>
 
 
- <div class="header-section row m-0 text-center" style="background: url('images/person_looking_up.jpg'), var(--light);background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:108rem;">
+ <div class="header-section row m-0 text-center looking-up-background" style="background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:108rem;">
     <div class="col-md-12">
         <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">Be there when they look for you</h3>
         <p data-aos="fade" class="mx-auto m-text-body" data-aos-delay="300">People are looking for something all the time. Ocassionally, they'll even look for something that you're well versed in. Be there when that happens.</p>

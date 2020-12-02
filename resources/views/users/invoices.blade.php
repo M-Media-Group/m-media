@@ -129,8 +129,7 @@ Jump to:
 <div class="row m-0 pt-5 pb-5 ">
     <h2 class="mt-5 mb-0" id="invoices">All invoices</h2>
 	@if(count($invoices) > 0)
-    <div class="table-responsive">
-		<table class="table mb-0">
+		<table class="table mb-0 table-responsive">
 				<thead>
 			     <tr>
 				   <th>Date</th>
@@ -140,13 +139,24 @@ Jump to:
 				</thead>
 				<tbody>
 			    @foreach ($invoices as $invoice)
-
 			        <tr>
-			            <td>{{ $invoice->date()->toFormattedDateString() }}</td>
 			            <td>
-			            	@foreach ($invoice->subscriptions() as $subscription)
+			            	{{ $invoice->date()->toFormattedDateString() }}
+			            	@if ($invoice->amount_paid !== $invoice->amount_due && $invoice->attempt_count >= 1)
+						        <br/><span class="text-danger">Payment overdue</span>
+						    @endif
+			            </td>
+			            <td>
+{{-- 			            	@foreach ($invoice->subscriptions() as $subscription)
 			            		{{$subscription->description}}
 			            		@if(!$loop->last)
+						    		+
+						    	@endif
+			            	@endforeach --}}
+
+			            	@foreach($invoice->lines->data as $line_item)
+			            	{{$line_item->description}}
+				            	@if(!$loop->last)
 						    		+
 						    	@endif
 			            	@endforeach
@@ -155,8 +165,7 @@ Jump to:
 			        </tr>
 			    @endforeach
 			</tbody>
-			</table>
-		</div>
+		</table>
 		@php
 		$amount_spent = 0;
         foreach ($invoices as $invoice) {

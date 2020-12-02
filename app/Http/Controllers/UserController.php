@@ -136,12 +136,11 @@ class UserController extends Controller
             // Cancel invoice code example
             //             $subscriptions = $user->asStripeCustomer()->subscriptions->retrieve('sub_DrywzCY3ajr2uu')->cancel();
 
-            $invoices = $user->invoices();
+            $invoices = $user->invoicesIncludingPending();
         }
 
         $intent = $user->createSetupIntent();
         //return $pmethod;
-        //dd($amount_spent);
 
         return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent', 'sepa_sources'));
     }
@@ -160,7 +159,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -180,7 +179,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     public function notifications(User $user, Request $request)

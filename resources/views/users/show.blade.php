@@ -124,5 +124,7 @@
 	@endcomponent
 @component('components.customSmallCard', ['image' => '/images/icons/settings-solid.svg', 'title' => 'Account settings', 'id' => 'settings', 'link' => '/users/'.$user->id.'/edit' ])
 	@endcomponent
+@component('components.customSmallCard', ['image' => '/images/icons/key-security.svg', 'title' => 'Login history', 'id' => 'settings', 'link' => '/authentication-events?user='.$user->id ])
+	@endcomponent
 </div>
 @endsection

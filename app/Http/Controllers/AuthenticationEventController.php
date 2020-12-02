@@ -12,9 +12,17 @@ class AuthenticationEventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->input('user');
+
+        $this->authorize('index', AuthenticationEvent::class);
+
+        $authentication_events = AuthenticationEvent::when($user, function ($query, $user) {
+            return $query->where('user_id', $user);
+        })->get();
+
+        return view('authenticationEvents.index', compact('authentication_events'));
     }
 
     /**

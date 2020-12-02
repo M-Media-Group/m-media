@@ -93,4 +93,8 @@
 	</div>
 	</form>
 
+<div class="row m-0 pt-5 pb-5">
+    <h2 class="mt-5 mb-0" id="help">From our Help Center</h2>
+	<block-post-component category="35"></block-post-component>
+</div>
 @endsection

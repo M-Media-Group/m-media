@@ -150,5 +150,15 @@
 	    @endif
 	    <a href="#app">Jump to top</a>
 
-
+<div class="row m-0 pt-5 pb-5">
+    <h2 class="mt-5 mb-0" id="help">From our Help Center</h2>
+    @if($adAccount->platform->name == "Facebook Ads")
+        <block-post-component category="53"></block-post-component>
+    @elseif($adAccount->platform->name == "Google Ads")
+        <block-post-component category="286"></block-post-component>
+    @else
+        <block-post-component category="53"></block-post-component>
+        <block-post-component category="286"></block-post-component>
+    @endif
+</div>
 @endsection

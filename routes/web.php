@@ -114,6 +114,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('email-logs', 'EmailLogController');
     Route::resource('phone-logs', 'PhoneLogController');
     Route::resource('instagram-accounts', 'InstagramAccountController');
+    Route::resource('authentication-events', 'AuthenticationEventController');
     Route::post('/ad-platforms/facebook/ads/{id}/update-tags', 'AdAccountController@updateFacebookAdTags');
 });
 

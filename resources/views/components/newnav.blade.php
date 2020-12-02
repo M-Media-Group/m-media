@@ -58,6 +58,7 @@
                             {{ __('Website debugger') }}
                     </a> --}}
                     <hr class="mb-0 mt-0">
+                    @can('manage users')
                     @can('index', App\User::class)
                         <a href="/users">
                             {{ __('Users') }}
@@ -105,6 +106,7 @@
                         <a href="/custom-notifications/create">
                             {{ __('Notify users') }}
                         </a>
+                    @endcan
                     @endcan
                     <a href="/contact">Contact us</a>
                     <hr class="mb-0 mt-0">

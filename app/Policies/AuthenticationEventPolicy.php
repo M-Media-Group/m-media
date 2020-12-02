@@ -26,7 +26,7 @@ class AuthenticationEventPolicy
      */
     public function index(User $user)
     {
-        if (!request()->input('user')) {
+        if (! request()->input('user')) {
             return false;
         }
 
@@ -43,7 +43,6 @@ class AuthenticationEventPolicy
      */
     public function show(User $user, AuthenticationEvent $authentication_event)
     {
-
         return false;
     }
 

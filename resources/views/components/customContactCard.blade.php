@@ -1,5 +1,5 @@
 <div class="row m-0 pt-5 pb-5 ">
-    <div class="action-section card round-all-round text-center" data-aos="fade" id="{{$id}}">
+    <div class="action-section card round-all-round text-center" data-aos="fade" data-aos-anchor-placement="top-bottom" id="{{$id}}">
         @if(isset($image))
         <img src="{{$image}}" class="card-img-top p-0" style="max-height: 135px;object-fit: scale-down;margin-bottom:-1rem;" alt="{{Config('app.name')}}">
         @endif

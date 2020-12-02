@@ -1,5 +1,5 @@
 <div class="row m-0 pt-3 pb-3 ">
-    <a class="action-section card round-all-round text-center p-4" data-aos="fade" id="{{$id}}" href="{{$link}}">
+    <a class="action-section card round-all-round text-center p-4 w-100" data-aos="fade" data-aos-anchor-placement="top-bottom" id="{{$id}}" href="{{$link}}">
           <div class="card-body row p-0 m-0">
             <div class="col-2 my-auto">
             @if(isset($image))

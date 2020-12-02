@@ -18,7 +18,7 @@ require('laravel-mix-bundle-analyzer');
  | file for the application as well as bundling up all the JS files.
  |
  */
-// If using async components, remove extract
+// If using async components, remove extract, apparently the two don't work together. Currently using extract because not sure of cache busting with async components
 mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'jquery', 'bootstrap', 'moment', 'pusher-js']);
 mix.sass('resources/sass/app.scss', 'public/css').styles([
         'resources/sass/app.css',

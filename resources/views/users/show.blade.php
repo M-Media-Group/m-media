@@ -11,6 +11,7 @@
 
 @section('content')
 
+<div style="margin-top:-10rem;" class="pb-5">
     @if(!$user->email_verified_at)
 	    <div class="alert alert-danger text-muted">
 	         Please verify your email address for full access to your account.
@@ -26,20 +27,11 @@
 	    </div>
     @endif
 
-    Jump to:
-    <a href="#data">data</a> |
-    <a href="#websites">websites</a> |
-    <a href="#files">files</a> |
-    <a href="#emails">email accounts</a> |
-    <a href="#phones">phone numbers</a> |
-    <a href="#instagram">Instagram profiles</a> |
-    <a href="#bots">bots</a>
-
-@component('components.customContactCard', ['title' => $user->name." ". $user->surname, 'id' => 'data', 'buttons' => [['type' => 'primary', 'link' => '/users/'.$user->id."/billing", 'text' => __('Go to billing')], ['link' => '/users/'.$user->id.'/edit', 'text' => __('Edit account settings')]]])
-	    Welcome back {{$user->name}}!<br/><br/>Quickly access important things relating to your {{config('app.name')}} account here or keep scrolling for other important stuff.
+@component('components.customContactCard', ['title' => $user->name." ". $user->surname, 'id' => 'data'])
+	    Welcome back {{$user->name}}!<br/><br/>Quickly access important things relating to your {{config('app.name')}} account here.
 	@endcomponent
 
-
+<div class="d-none">
 @if($user->websites_count > 0)
 @component('components.customContactCard', ['image' => '/images/icons/website.svg', 'title' => $user->websites_count." ".str_plural("website", $user->websites_count), 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
 	    See and manage websites related to your business on {{config('app.name')}}.
@@ -54,8 +46,8 @@
 				<tbody>
 			@foreach ($user->websites as $website)
 				<tr>
-{{-- 					<td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td>
- --}}
+					{{-- <td><a href="/tools/website-debugger/{{ $website->host }}">{{ $website->host }}</a></td> --}}
+
 					<td><a href="https://{{ $website->host }}">{{ $website->host }}</a></td>
 				</tr>
 			@endforeach
@@ -69,9 +61,10 @@
 	    You have no websites on {{config('app.name')}} associated with you or your business.
 	@endcomponent
 @endif
+</div>
 
 @if($user->files_count > 0)
-@component('components.customContactCard', ['image' => '/images/icons/files-empty.svg', 'title' => $user->files_count." ".str_plural("file", $user->files_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files?user='.$user->id, 'text' => __('All your files')], ['link' => '/files/create', 'text' => __('Upload a file')]]])
+@component('components.customSmallCard', ['image' => '/images/icons/files-empty.svg', 'title' => $user->files_count." ".str_plural("file", $user->files_count), 'id' => 'files', 'link' => '/files?user='.$user->id])
 	    Easily share and manage files related to your business on {{config('app.name')}}.
 	@endcomponent
 @else
@@ -81,7 +74,7 @@
 @endif
 
 @if($user->ad_accounts_count > 0)
-@component('components.customContactCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/ad-accounts?user='.$user->id, 'text' => __('All your ad accounts')], ['link' => '/contact', 'text' => __('Link a new ad account')]]])
+@component('components.customSmallCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'link' => '/ad-accounts?user='.$user->id])
 	    Easily see data related to your ad accounts linked to your {{config('app.name')}} account.
 	@endcomponent
 @else
@@ -91,7 +84,7 @@
 @endif
 
 @if($user->emails_count > 0)
-@component('components.customContactCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'buttons' => [['type' => 'primary', 'link' => '/emails?user='.$user->id, 'text' => __('Your email accounts')]]])
+@component('components.customSmallCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'link' => '/emails?user='.$user->id, ])
 	    Manage email accounts associated with you and your business on {{config('app.name')}}.
 	@endcomponent
 @else
@@ -101,7 +94,7 @@
 @endif
 
 @if($user->phones_count > 0)
-@component('components.customContactCard', ['image' => '/images/icons/phone.svg', 'title' => $user->phones_count.' phone ' .str_plural("number", $user->phones_count), 'id' => 'phones', 'buttons' => [['type' => 'primary', 'link' => '/phones?user='.$user->id, 'text' => __('Your phone numbers')]]])
+@component('components.customSmallCard', ['image' => '/images/icons/phone.svg', 'title' => $user->phones_count.' phone ' .str_plural("number", $user->phones_count), 'id' => 'phones', 'link' => '/phones?user='.$user->id])
 	    Manage phone numbers associated with you and your business on {{config('app.name')}}.
 	@endcomponent
 @else
@@ -111,7 +104,7 @@
 @endif
 
 @if($user->instagram_accounts_count > 0)
-@component('components.customContactCard', ['image' => '/images/icons/instagram.svg', 'title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'buttons' => [['type' => 'primary', 'link' => '/instagram-accounts?user='.$user->id, 'text' => __('Your Instagram accounts')]]])
+@component('components.customSmallCard', ['image' => '/images/icons/instagram.svg', 'title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'link' => '/instagram-accounts?user='.$user->id])
 	    Manage Instagram accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
 @else
@@ -121,9 +114,15 @@
 @endif
 
 @if($user->bots_count > 0)
-@component('components.customContactCard', ['image' => '/images/pi-top.png', 'title' => $user->bots_count.' ' .str_plural("bot", $user->bots_count), 'id' => 'bots', 'buttons' => [['type' => 'primary', 'link' => '/my-bots', 'text' => __('Your bots')]]])
+@component('components.customSmallCard', ['image' => '/images/pi-top.png', 'title' => $user->bots_count.' ' .str_plural("bot", $user->bots_count), 'id' => 'bots', 'link' => '/my-bots'])
 	    Manage physical marketing automation bots associated with your business on {{config('app.name')}}.
 	@endcomponent
 @endif
 
+<h2 class="mt-5 mb-0" id="subscriptions">More rescources</h2>
+@component('components.customSmallCard', ['image' => '/images/icons/euro.svg', 'title' => 'Billing and payments', 'id' => 'payment', 'link' => '/users/'.$user->id."/billing" ])
+	@endcomponent
+@component('components.customSmallCard', ['image' => '/images/icons/settings-solid.svg', 'title' => 'Account settings', 'id' => 'settings', 'link' => '/users/'.$user->id.'/edit' ])
+	@endcomponent
+</div>
 @endsection

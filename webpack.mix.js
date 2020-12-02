@@ -18,8 +18,8 @@ require('laravel-mix-bundle-analyzer');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
-mix.sourceMaps().js('resources/js/app.js', 'public/js');
+// If using async components, remove extract
+mix.sourceMaps().js('resources/js/app.js', 'public/js').extract(['vue', 'jquery', 'bootstrap', 'moment', 'pusher-js']);
 mix.sass('resources/sass/app.scss', 'public/css').styles([
         'resources/sass/app.css',
     'resources/sass/normalize.css',

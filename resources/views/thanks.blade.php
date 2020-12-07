@@ -2,7 +2,7 @@
 
 @section('meta_image', '/images/covid-page/news.jpg')
 @section('title', "Thank you developers")
-@section('meta_description', "A lot of people have helped make 2020 at least somewhat survivable. One of the many great but unsung hero's have been developers, and for that we say thanks." )
+@section('meta_description', "A lot of people have helped make 2020 somewhat bearable. One of the many great but unsung hero's have been developers, and for that we say thanks." )
 
 @section('header_scripts')
 <style type="text/css">

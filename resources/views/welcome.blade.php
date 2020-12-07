@@ -94,8 +94,8 @@
     <div class="col-md-12">
         <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">Lets talk</p>
         <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">If you don't ask, <br/>you won't know</h3>
-        <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Talk to an expert now</a>
-        <p data-aos="fade" class="mx-auto m-text-body" data-aos-delay="300">We’re very responsive by email. We’re in Europe, so we’re probably awake when you are. Lets get to know each other.</p>
+        <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Talk to a marketing pro →</a>
+        <p data-aos="fade" class="mx-auto m-text-body" data-aos-delay="300">We’re <i>very responsive</i> by email. We’re in Europe, so we’re probably awake when you are. Lets get to know each other.</p>
     </div>
 </div>
 

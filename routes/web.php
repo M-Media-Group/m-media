@@ -18,9 +18,6 @@
 // });
 
 Route::get('/web-development/entrepreneurs', 'HomeController@entrepreneur');
-// Route::get('/web-development/restaurateurs', function () {
-//     return view('restaurateur');
-// });
 
 Route::get('/instagram', 'HomeController@instagram');
 
@@ -123,3 +120,7 @@ Route::get('/', 'HomeController@welcome');
 // Route::get('/components', 'HomeController@components');
 
 Route::get('/covid-19', 'HomeController@covid');
+
+Route::get('/2020/thank-you-developers', function () {
+    return view('thanks');
+});

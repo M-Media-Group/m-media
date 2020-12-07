@@ -185,7 +185,7 @@
                     <button type="submit" class="button button-primary u-full-width" v-if="current_tab == 2">
                         Send message
                     </button>
-                    <button type="submit" class="button button-primary u-full-width" v-else>Next</button>
+                    <button type="submit" class="button button-primary u-full-width" v-else>Next →</button>
                 </div>
                 <div class="col-md-6 order-md-6" v-bind:style="{ visibility: current_tab == 0 ? 'hidden' : 'initial' }">
                     <a class="button u-full-width" @click="current_tab -= 1"> Back </a>

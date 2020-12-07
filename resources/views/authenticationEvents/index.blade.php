@@ -12,7 +12,6 @@
 		<table class="table mb-0">
 			<thead>
 				<tr>
-				   <th>ID</th>
 				   <th>Platform</th>
 				   <th>Device</th>
 				   <th>Browser</th>
@@ -24,7 +23,6 @@
 			<tbody>
 			@foreach ($authentication_events->sortByDesc('created_at') as $log)
 				<tr>
-					<td><a href="/authentication-events/{{ $log->id }}">{{ $log->id }}</a></td>
 					<td>{{ $log->platform }}</td>
 					<td>{{ $log->device }}</td>
 					<td>{{ $log->browser }}</td>

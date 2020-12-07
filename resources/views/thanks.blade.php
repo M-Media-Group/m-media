@@ -10,7 +10,8 @@
     }
 
     .webp .primary-header-background {
-        background:url('/images/background_sky.webp') var(--primary);
+        background:url('/images/covid-page/hobbies.jpg') var(--primary);
+        background-position: center, bottom;
     }
 
     .no-webp .looking-up-background {

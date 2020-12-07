@@ -580,6 +580,12 @@ div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch > form {
     max-width: 43rem;
 }
 
+@media (max-width: 750px) {
+    .text-title-heading {
+      font-size: 3.2rem;
+    }
+}
+
 .m-text-body,
 .m-text-label {
     // font-family: Roboto-Medium;

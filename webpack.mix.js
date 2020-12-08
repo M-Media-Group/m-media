@@ -1,11 +1,12 @@
 const mix = require('laravel-mix');
 //const path = require('path');
 
-require('laravel-mix-purgecss');
+ require('laravel-mix-purgecss');
 
-const webpack = require('webpack');
+// const webpack = require('webpack');
 
-require('laravel-mix-bundle-analyzer');
+// require('laravel-mix-bundle-analyzer');
+require('laravel-mix-workbox');
 
 
 /*
@@ -27,7 +28,14 @@ mix.sass('resources/sass/app.scss', 'public/css').styles([
     'resources/sass/skeleton.css',
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/normalize.css',
     // 'https://gitcdn.link/repo/M-Media-Group/Snippet-CSS/master/css/skeleton.css'
-], 'public/css/all.css');
+], 'public/css/all.css').purgeCss().injectManifest({
+      swSrc: './resources/js/service-worker.js'
+    });
+mix.webpackConfig({
+    output: {
+        publicPath: '', // fixes the output bug
+    },
+});
 if (mix.inProduction()) {
     mix.version();
     // .purgeCss()

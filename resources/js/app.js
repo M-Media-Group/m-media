@@ -10,6 +10,14 @@ import TextareaAutosize from 'vue-textarea-autosize';
 
 import Vue from 'vue';
 
+import {Workbox} from 'workbox-window';
+
+if ('serviceWorker' in navigator) {
+  const wb = new Workbox('/service-worker.js');
+
+  wb.register();
+}
+
 window.Vue = Vue;
 
 Vue.use(TextareaAutosize);

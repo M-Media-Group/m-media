@@ -8,7 +8,9 @@ require('./bootstrap');
 import AOS from 'aos';
 import TextareaAutosize from 'vue-textarea-autosize';
 
-window.Vue = require('vue');
+import Vue from 'vue';
+
+window.Vue = Vue;
 
 Vue.use(TextareaAutosize);
 
@@ -23,7 +25,7 @@ Vue.use(TextareaAutosize);
 const files = require.context('./', true, /\.vue$/i, 'lazy').keys();
 
 files.forEach((file) => {
-    Vue.component(file.split('/').pop().split('.')[0], () => import(`${file}` /*webpackChunkName: “[request]” */));
+    Vue.component(file.split('/').pop().split('.')[0], () => import(`${file}`));
 });
 // Vue.component('chart-line-component', require('./components/ChartLineComponent.js').default);
 

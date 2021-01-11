@@ -56,33 +56,17 @@
         </table>
     </div>
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this file.</a></p>
-    <div>
+    <div class="w-100">
         <a class="button button-primary" target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">
                 {{ __('Open file') }}
             </a>
-        @if (Auth::user()->can('update', $file))
 
-{{--                 <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
- --}}            @if($file->is_public)
-                <a class="button" href="/contact">
-                    {{ __('Request to make private') }}
-                </a>
-            @else
-            <a class="button" href="/contact">
-                {{ __('Request to make public') }}
-            </a>
-            @endif
-        @else
-            <a class="button" href="/contact">
-                {{ __('Get help') }}
-            </a>
-        @endif
 {{--         <force-download-button-component url="{{ $file->url }}"></force-download-button-component>
  --}}        @can('delete', $file)
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever. Deleting this file is permanent.');">
+                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever. Deleting this file is permanent. Anywhere this file is referenced, like your WordPress websites, will no longer show this file.');">
                     {{ __('Delete file') }}
                 </button>
             </form>

@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        //Apparently the following events/listeners are already loaded somewhere and don't need to be done here
+        //Apparently the following events/listeners are already autodiscovered - used here only for reference
 
         // 'Illuminate\Auth\Events\Attempting' => [
         //     'App\Listeners\LogAuthenticationAttempt',

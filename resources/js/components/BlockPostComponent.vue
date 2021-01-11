@@ -43,7 +43,7 @@ export default {
             delete axios.defaults.headers.common['X-CSRF-TOKEN'];
 
             axios
-                .get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?categories=' + this.category + '&_embed', {
+                .get('https://blog.mmediagroup.fr/wp-json/wp/v2/posts?parent_category=' + this.category + '&_embed', {
                     responseType: 'json',
                     // withCredentials: true,
                 }) // change this to post )

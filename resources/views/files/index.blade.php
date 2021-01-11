@@ -46,7 +46,7 @@
 					<td>{{ $file->name }}</td>
 					<td>{{ $file->extension }} <span class="text-muted">({{ $file->mimeType }})</span></td>
 					<td class="text-{{ ($file->size / 1000) >= 5000  ? 'primary' : 'muted' }}">{{ number_format(round($file->size / 1000, 0)) }} Kb</td>
-					@can('update file visibility', $file)
+					@can('update', $file)
 						<td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">
 							<checkbox-toggle-component checked="{{$file->is_public ? true : false}}" title="Is public" url="/files/{{$file->id}}" column_title="is_public" onclick="event.stopPropagation();"></checkbox-toggle-component>
 						</td>

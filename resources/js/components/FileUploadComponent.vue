@@ -91,7 +91,7 @@
                     <span
                         class="label label-default"
                         v-tooltip:top="
-                            'Each URL generated to your file is only valid for five minutes. If you want your file public with long-lived URLs, contact us.'
+                            'Each URL generated to your file is only valid for five minutes. If you want your file to be publicly accessible and with long-lived URLs, go to Your Profile, then All Files, then for the file you want public check the Public option box.'
                         "
                         >Your file is private by default.</span
                     >

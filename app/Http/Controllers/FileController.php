@@ -53,11 +53,15 @@ class FileController extends Controller
             ->when($type, function ($query, $type) {
                 return $query->whereIn('extension', $type);
             })
-            ->latest()
-            ->paginate(10);
+            ->latest();
+
+        if ($request->is('api*')) {
+            return response()->json($files->get());
+        }
 
         $all_users = \App\User::all();
         $users = collect();
+        $files = $files->paginate(10);
 
         foreach ($all_users as $user) {
             $data = [
@@ -66,8 +70,8 @@ class FileController extends Controller
             ];
             $users->push($data);
         }
-
         return view('files.index', compact('files', 'users'));
+
     }
 
     /**
@@ -186,7 +190,7 @@ class FileController extends Controller
 
         if ($request->user_id && $request->user_id !== $current_file_user) {
             $hash = Str::random(40);
-            $new_url = 'files/'.($request->user_id ?? 'default').'/'.$hash.'.'.$file->extension;
+            $new_url = 'files/' . ($request->user_id ?? 'default') . '/' . $hash . '.' . $file->extension;
             $path = Storage::move($file->getOriginal('url'), $new_url);
             $file->update(['url' => $new_url]);
         }

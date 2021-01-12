@@ -152,7 +152,8 @@ array_push($datasets, $data);
                 $history['Global']['All']['dates'][Carbon\Carbon::now()->subWeeks(1)->toDateString()]) /
                 $cases['Global']['All']['confirmed'] * 100
             ) }}%.</p>
-            <p class="mb-0" data-aos="fade" data-aos-delay="300">Only cases tested in a laboratory are counted; with news of sketchy reporting and others staying at home, there's more cases out there.</p>
+            <p  data-aos="fade" data-aos-delay="300">Only cases tested in a laboratory are counted; with news of sketchy reporting and others staying at home, there's more cases out there.</p>
+            <a class="button button-secondary" href="https://github.com/sponsors/M-Media-Group?o=esb" rel="noopener" data-aos="fade">Donate to the API</a>
 {{--             <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="500">Talk to an expert now</a>
             <a class="button button-secondary text-white d-none" href="/case-studies">See case studies</a> --}}
         </div>
@@ -286,7 +287,9 @@ array_push($datasets, $data);
                 <h3 class="mt-0" data-aos="fade">This live data was pulled from our public COVID-19 API</h3>
                 <p data-aos="fade" data-aos-delay="300">Using information from Johns Hopkins University</p>
                 <p data-aos="fade" data-aos-delay="400" class="small">Data updated every hour</p>
-                <a class="button button-secondary" href="https://blog.mmediagroup.fr/post/m-media-launches-covid-19-api/" rel="noopener" data-aos="fade">Read about the API</a>
+                <a class="button button-secondary" href="https://github.com/sponsors/M-Media-Group?o=esb" rel="noopener" data-aos="fade">Donate to the project</a>
+                <a class="button button-primary" href="https://blog.mmediagroup.fr/post/m-media-launches-covid-19-api/" rel="noopener" data-aos="fade">Read about the API</a>
+                <p data-aos="fade" data-aos-delay="400" class="small mt-3">This API has now been called over <a href="https://blog.mmediagroup.fr/post/m-media-coronavirus-api-passes-1-million-requests/" rel="noopener" data-aos="fade">1.5m times</a></p>
             </div>
         </div>
     </div>

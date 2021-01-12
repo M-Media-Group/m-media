@@ -126,5 +126,9 @@
 	@endcomponent
 @component('components.customSmallCard', ['image' => '/images/icons/key-security.svg', 'title' => 'Login history', 'id' => 'settings', 'link' => '/authentication-events?user='.$user->id ])
 	@endcomponent
+
+    <h2 class="mt-5 mb-0">From our Help Center</h2>
+    <block-post-component category="35"></block-post-component>
+
 </div>
 @endsection

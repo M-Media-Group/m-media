@@ -48,16 +48,18 @@
                 <request-website-component></request-website-component>
 {{--                 <contact-us-component></contact-us-component>
  --}}                @else
-                <p class="mb-0">{{config('app.name')}}</p>
-                <p>06230 Villefranche sur Mer, France</p>
-
+                <p class="mb-0">contact@mmediagroup.fr</p>
                 <p class="mb-0">+33 4 86 06 08 59</p>
-                <p>contact@mmediagroup.fr</p>
+                <div class="small text-muted">
+                    <p class="mb-0">{{config('app.name')}}</p>
+                    <p>06230 Villefranche sur Mer, France</p>
+                </div>
 
                 <div class="flex" style="flex-wrap: wrap;">
 		            <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
-		            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}">Messenger</a>
+		            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}" style="color: #006AFF;border-color: #006AFF; ">Messenger</a>
 		            <a class="button" href="tel:+33486060859">Call</a>
+                    <a class="button" href="https://wa.me/+33486060859" style="color: #25D366; border-color: #25D366;">WhatsApp</a>
 		        </div>
                 @endguest
             </div>

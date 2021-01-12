@@ -19,7 +19,7 @@
                         · Click to {{ notification.data.action_text }}</span
                     ></small
                 >
-                <p style="white-space: pre;">{{ notification.data.message }}</p>
+                <p style="white-space: pre-wrap;">{{ notification.data.message }}</p>
             </article>
         </div>
         <div v-else-if="loading" key="loading" class="alert" data-aos="fade">Loading...</div>

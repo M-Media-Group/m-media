@@ -20,7 +20,7 @@ class NotifyUsersOfUnreadNotifications extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Notify users of notifications they are missing';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class NotifyUsersOfUnreadNotifications extends Command
     {
         {
 
-            $users = User::whereBetween('seen_at', [Carbon::now()->subDays(90)->toDateString(), Carbon::now()->subHours(72)->toDateString()])
+            $users = User::whereBetween('seen_at', [Carbon::now()->subDays(90)->toDateString(), Carbon::now()->subHours(24)->toDateString()])
                 ->whereHas('unreadNotifications')
                 ->withCount('unreadNotifications')
                 ->get();
@@ -55,7 +55,6 @@ class NotifyUsersOfUnreadNotifications extends Command
                     'message' => "While you were away, new notifications about your business and account were shared with you. Check out what they are to make sure you don't miss anything important.",
                 ]));
             }
-            $this->info($users);
 
             $this->info('Sent emails: ' . count($users));
         }

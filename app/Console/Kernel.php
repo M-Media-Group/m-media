@@ -31,6 +31,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //     ->everyMinute();
+        $schedule->command('command:notify-users-of-new-files')->dailyAt('19:00');
+        $schedule->command('command:notify-users-of-unread-notifications')->mondays()->at('10:00');
         $schedule->command('passport:purge')->daily();
         $schedule->command('telescope:prune')->daily();
         $schedule->job(new SyncBots())->hourly()->between('7:00', '23:00');

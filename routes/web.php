@@ -76,14 +76,14 @@ Route::get('/tools/website-debugger/{url}', 'WebsiteScrapeController@index')->mi
 
 Route::get('/tools/phone-debugger/{number}', 'PhoneLogController@index');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', App\Http\Middleware\UpdateUserLastSeen::class]], function () {
     Route::get('/notifications', 'CustomNotificationController@index');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
 });
 
-Route::group(['middleware' => ['verified']], function () {
+Route::group(['middleware' => ['verified', App\Http\Middleware\UpdateUserLastSeen::class]], function () {
     Route::get('my-bots', 'UserController@myBots');
     Route::get('users/{id}/billing', 'UserController@invoices');
     // Route::get('users/{user}/payment-methods/sepas/create', function (App\User $user) {

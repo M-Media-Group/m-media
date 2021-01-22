@@ -99,4 +99,8 @@
     </div>
 </div>
 
+
+
+<news-slider-component></news-slider-component>
+
 @endsection

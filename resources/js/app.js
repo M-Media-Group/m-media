@@ -10,6 +10,8 @@ import TextareaAutosize from 'vue-textarea-autosize';
 
 import Vue from 'vue';
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 import {Workbox} from 'workbox-window';
 
 if ('serviceWorker' in navigator) {
@@ -21,6 +23,8 @@ if ('serviceWorker' in navigator) {
 window.Vue = Vue;
 
 Vue.use(TextareaAutosize);
+
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 /**
  * The following block of code may be used to automatically register your

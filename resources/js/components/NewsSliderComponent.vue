@@ -1,12 +1,12 @@
 <template>
     <swiper ref="mySwiper" :options="swiperOptions">
-        <swiper-slide v-for="post in news" >
-            <div class="header-section row m-0 text-center u-bg-primary with-bg-dec u-bg-blur" :style="(post['_embedded']['wp:featuredmedia'] ? 'background: url('+post['_embedded']['wp:featuredmedia'][0].source_url+') rgba(36,110,185,0.50);background-blend-mode: multiply;' : '')+' background-position: center top;background-repeat: no-repeat;background-size: cover;height:100%;'">
+        <swiper-slide v-for="post in news">
+            <div class="header-section row m-0 text-center u-bg-primary with-bg-dec u-bg-blur" :style="(post['_embedded']['wp:featuredmedia'] ? 'background: url('+post['_embedded']['wp:featuredmedia'][0].source_url+') rgba(36,110,185,0.55);background-blend-mode: multiply;' : '')+' background-position: center top;background-repeat: no-repeat;background-size: cover;height:100%;'">
                 <div class="col-md-12">
-                    <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">News</p>
+                    <p class="mb-0 mt-3 m-text-label mx-auto" data-aos="fade" data-aos-delay="150">{{post['_embedded']['wp:term'][0][0].name}}</p>
                     <h3 class="mt-0 mx-auto text-title-heading" data-aos="fade">{{post.title.rendered}}</h3>
                     <div data-aos="fade" class="mx-auto m-text-body d-none d-md-block mb-n3" data-aos-delay="300" v-html="post.excerpt.rendered"></div>
-                    <a class="button button-secondary mt-0 mb-5" :href="post.link" target="_BLANK" data-aos="fade" data-aos-delay="300">Read the full article</a>
+                    <a class="button button-secondary mt-0 mb-0" :href="post.link" target="_BLANK" >Read the full article</a>
                 </div>
             </div>
         </swiper-slide>
@@ -21,8 +21,9 @@ export default {
     data() {
         return {
             swiperOptions: {
-                autoHeight: true,
+                // autoHeight: true,
                 loop: true,
+                cssMode: true,
                 preloadImages: false,
                 pagination: {
                     el: '.swiper-pagination',
@@ -33,6 +34,9 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+                mousewheel: {
+                    forceToAxis: true,
+                  },
                 // Some Swiper option/callback...
             },
             news: [],
@@ -47,6 +51,11 @@ export default {
     mounted() {
         // console.log('Current Swiper instance object', this.swiper)
         this.getNews()
+        // this.swiper.pagination.update()
+        this.$nextTick(() => {
+          // Make sure you are doing it in next tick, otherwise it won't work
+          setTimeout(() => this.slider.navigation.update(), 0)
+       })
     },
     methods: {
         getNews: function() {
@@ -81,3 +90,8 @@ export default {
 }
 
 </script>
+<style>
+.swiper-slide {
+    height: auto;
+}
+</style>

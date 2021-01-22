@@ -849,8 +849,8 @@ form {
 }
 
 .u-bg-blur:before {
-  -webkit-backdrop-filter: blur(1rem); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
-  backdrop-filter: blur(1rem); /* Supported in Chrome 76 */
+  -webkit-backdrop-filter: blur(1.5rem); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: blur(1.5rem); /* Supported in Chrome 76 */
 
   content: "";
   display: block;

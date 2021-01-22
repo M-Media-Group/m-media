@@ -10,21 +10,26 @@ import TextareaAutosize from 'vue-textarea-autosize';
 
 import Vue from 'vue';
 
-import VueAwesomeSwiper from 'vue-awesome-swiper'
+import { Swiper as SwiperClass, Pagination, Navigation, Mousewheel, Autoplay } from 'swiper/swiper.esm'
+import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
 
-import {Workbox} from 'workbox-window';
+SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay])
+Vue.use(getAwesomeSwiper(SwiperClass))
+const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
+
+
+import { Workbox } from 'workbox-window';
 
 if ('serviceWorker' in navigator) {
-  const wb = new Workbox('/service-worker.js');
+    const wb = new Workbox('/service-worker.js');
 
-  wb.register();
+    wb.register();
 }
 
 window.Vue = Vue;
 
 Vue.use(TextareaAutosize);
 
-Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 /**
  * The following block of code may be used to automatically register your
@@ -47,26 +52,24 @@ files.forEach((file) => {
 
 Vue.component('chart-line-component', () => import('./components/ChartLineComponent.js'));
 
-Vue.directive('tooltip', function (el, binding) {
+Vue.directive('tooltip', function(el, binding) {
     $(el).tooltip({
         title: binding.value,
         placement: binding.arg,
         trigger: 'hover',
         boundary: 'window',
         container: 'body',
-        template:
-            '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',
+        template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',
     });
 });
 
-Vue.directive('popover', function (el, binding) {
+Vue.directive('popover', function(el, binding) {
     $(el).popover({
         content: binding.value,
         placement: binding.arg,
         boundary: 'window',
         container: 'body',
-        template:
-            '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
+        template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
     });
 });
 

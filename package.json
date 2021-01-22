@@ -36,7 +36,7 @@
         "leaflet-geosearch": "^2.7.0",
         "moment": "^2.29.1",
         "pusher-js": "^5.1.1",
-        "swiper": "^5.4.2",
+        "swiper": "^6.4.8",
         "vue-awesome-swiper": "^4.1.1",
         "vue-chartjs": "^3.5.1",
         "vue-google-autocomplete": "^1.1.0",

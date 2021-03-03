@@ -7,6 +7,26 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.classList%2CObject.assign"></script>
 <link rel="stylesheet" id="covid-map-css-css" href="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/svgMap.css" media="all">
 <script src="https://mmedia-storage-bucket.s3.eu-west-3.amazonaws.com/public_shared_assets/covid-map/svgMap.js"></script>
+<style type="text/css">
+
+  #svgMapPopulationFrame {
+      height: 300px;
+      margin-bottom: 3rem;
+  }
+
+  @media (min-width: 550px) {
+      #svgMapPopulationFrame {
+          height: 70vh;
+      }
+  }
+
+  #svgMapPopulationFrame,
+  #svgMapPopulationFrame > div.svgMap-map-wrapper {
+      max-width: 100% !important;
+      width: 100%;
+  }
+
+</style>
 @endsection
 
 @section('footer_scripts')

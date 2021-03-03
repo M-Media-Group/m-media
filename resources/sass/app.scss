@@ -516,26 +516,6 @@ div.geosearch.leaflet-bar.leaflet-control.leaflet-control-geosearch>form {
         margin-bottom: 0;
     }
 }
-
-// SVG COVID MAP
-
-#svgMapPopulationFrame {
-    height: 300px;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 550px) {
-    #svgMapPopulationFrame {
-        height: 70vh
-    }
-}
-
-#svgMapPopulationFrame,
-#svgMapPopulationFrame>.svgMap-map-wrapper {
-    max-width: 100%;
-    width: 100%;
-}
-
 // spacing
 
 .pt-5 {

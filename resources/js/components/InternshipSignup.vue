@@ -16,32 +16,32 @@
                 <h2 style="margin-top:10rem;">What’s your interest?</h2>
                 <div class="form-group row card flex" style="margin-bottom:1.5rem;">
                     <div class="radio-input">
-                        <input id="web_dev_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="web_dev">
+                        <input id="web_dev_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="Web development">
                     </div>
                     <label for="web_dev_input" class="col-form-label">
                         Web development
                         <br/>
-                        <span class="text-muted">You like code, and want to polish your HTML, CSS, and JS skills - sprinkled with some PHP.</span>
+                        <span class="text-muted" style="font-weight: initial;">You like code, and want to polish your HTML, CSS, and JS skills - sprinkled with some PHP.</span>
                     </label>
                 </div>
                 <div class="form-group row card flex" style="margin-bottom:1.5rem;">
                     <div class="radio-input">
-                        <input id="web_design_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="design">
+                        <input id="web_design_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="Web design">
                     </div>
                     <label for="web_design_input" class="col-form-label">
                         Web design
                         <br/>
-                        <span class="text-muted">You love to draw, are interested in UX and UI, and have a great eye for design.</span>
+                        <span class="text-muted" style="font-weight: initial;">You love to draw, are interested in UX and UI, and have a great eye for design.</span>
                     </label>
                 </div>
                 <div class="form-group row card flex" style="margin-bottom:1.5rem;">
                     <div class="radio-input">
-                        <input id="marketing_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="marketing">
+                        <input id="marketing_input" type="radio" autocomplete="off" placeholder="send_sms" class="form-control" name="interest" v-model="interest" required value="Marketing">
                     </div>
                     <label for="marketing_input" class="col-form-label">
                         Marketing
                         <br/>
-                        <span class="text-muted">You know what people are interested in, and can define, plan for, and target them effectively.</span>
+                        <span class="text-muted" style="font-weight: initial;">You know what people are interested in, and can define, plan for, and target them effectively.</span>
                     </label>
                 </div>
             </div>
@@ -97,11 +97,11 @@
                 <div style="height: 250px; margin: 0 auto; display: flex; margin-top:3rem;">
                     <img src="/images/internship/cv_upload.svg" style="height: 100%; margin: 0 auto;" alt="Shop" />
                 </div>
-                <h2>Awesome you’re almost done!</h2>
+                <h2>Awesome, you’re almost done!</h2>
                 <p>Submit your CV with a phone number and email address. If we’re interested, we’ll be in touch!</p>
                 <label for="cv_file" class="twelve columns col-form-label">Your CV (PDF)</label>
                 <div class="twelve columns">
-                    <input name="cv_file" @change="newFile" id="cv_file" class="form-control" type="file" placeholder="Write your answer here" autocomplete="off" required autofocus data-hj-whitelist />
+                    <input name="cv_file" @change="newFile" id="cv_file" class="form-control" type="file" placeholder="Write your answer here" autocomplete="off" required autofocus data-hj-whitelist accept=".pdf" />
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
             <div class="form-group row invert-columns" key="tab_buttons" v-if="current_tab !== 7">
                 <div class="six columns">
                     <button type="submit" class="button button-primary u-full-width" v-if="current_tab === 6">
-                        Apply to an M Media internship
+                        Apply for an M Media internship
                     </button>
                     <button type="submit" class="button button-primary u-full-width" v-else-if="current_tab === 0">Apply now →</button>
                     <button type="submit" class="button button-primary u-full-width" v-else @click="time_left = 60">Next →</button>
@@ -126,32 +126,19 @@
             <!--             </transition-group>
  -->
         </form>
-        <div class="alert alert-info" role="alert" v-show="loading" key="2">
-            Please wait. Your message is being sent...
+        <div class="u-center" role="alert" v-show="loading" key="2">
+            Please wait. Your application is being sent...
         </div>
-        <div class="alert alert-success" role="alert" v-show="success" key="3">
-            Message sent! We'll be reaching out to you shortly on your email address.<br />
-            <!--                 <a href="#" class="button button-primary" v-on:click.prevent="success = false">Upload another file</a> -->
+        <div class="u-center" role="alert" v-show="success" key="3">
+            <h2>Application sent!</h2>
+            <p>If we're interested, we'll be reaching out to you shortly on your email address.</p>
         </div>
         <div v-show="error" key="4">
-            <div class="alert alert-danger" role="alert">
+            <div class="u-center" role="alert">
                 Uh oh!
                 <div class="w-100 mt-5" v-html="error_msg"></div>
                 <br />
                 <a href="#" class="button button-primary" v-on:click.prevent="error = false">Go back</a>
-            </div>
-            <br />
-            <div class="form-group row mb-0">
-                <div class="twelve columns">
-                    <label class="mb-0">You can also contact us here</label>
-                    <p>06230 Villefranche sur Mer, France</p>
-                    <p class="mb-0">+33 4 86 06 08 59</p>
-                    <p>contact@mmediagroup.fr</p>
-                    <div class="flex" style="flex-wrap: wrap">
-                        <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Email</a>
-                        <a class="button" href="tel:+33486060859">Call</a>
-                    </div>
-                </div>
             </div>
         </div>
         <!--         </transition-group>

@@ -23,11 +23,11 @@ class InternshipController extends Controller
     public function store(StoreFile $request)
     {
     	$request->validate([
-            'interest' => 'required',
-            'question_1' => 'required|string',
-            'question_2' => 'required|string',
-            'question_3' => 'required|string',
-            'file' => 'required|file|mimes:pdf|max:976562',
+            'interest' => 'required|max:25',
+            'question_1' => 'required|string|max:15',
+            'question_2' => 'required|string|max:15',
+            'question_3' => 'required|string|max:15',
+            'file' => 'required|file|mimes:pdf|max:10240',
         ]);
 
     	$data = UploadFile::dispatchNow($request);
@@ -38,10 +38,10 @@ class InternshipController extends Controller
             [
                 'send_email' => 1,
                 'send_database' => 1,
-                'title' => 'New internship request',
+                'title' => 'Internship request for '.strtolower($request->input('interest')),
                 'action_text' => 'Open the CV',
                 'action' => $data->url,
-                'message' => "Interest: " . $request->input('interest') . "\n\nQ1: " . $request->input('question_1') . "\n\nQ2: " . $request->input('question_2') . "\n\nQ3: " . $request->input('question_3'),
+                'message' => "Interest: " . $request->input('interest') . "\n\nQ1: " . $request->input('question_1') . "\nQ2: " . $request->input('question_2') . "\nQ3: " . $request->input('question_3'),
             ]
         ));
 

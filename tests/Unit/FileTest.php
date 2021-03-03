@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class FileTest extends TestCase
 {
@@ -35,6 +37,23 @@ class FileTest extends TestCase
 
         $response_api = $this->getJson('/api/files/' . $file->id);
         $response_api->assertStatus(401);
+    }
+
+    public function testCreateFile()
+    {
+        $user = \App\User::with('files')->firstOrFail();
+
+        Storage::fake('local');
+        $file = UploadedFile::fake()->create('file.pdf');
+
+        $data = array(
+            'title' => 'Test title',
+            'file' => $file,
+            'public' => false,
+        );
+
+        $response = $this->actingAs($user, 'api')->post('/api/files', $data);
+        $response->assertStatus(201);
     }
 
 }

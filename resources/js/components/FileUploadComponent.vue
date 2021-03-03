@@ -14,16 +14,17 @@
                     <img class="u-center" :src="avatar_url" style="max-height: 100px" />
                 </div>
                 <div class="form-group row">
-                    <label for="file" class="col-md-4 col-form-label text-md-right">File</label>
+                    <label for="file" class="four columns col-form-label u-right-text-on-desktop">File</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="URL"
                             v-model="upload_url"
                             v-if="use_url"
                             id="url"
-                            class="form-control mb-0"
+                            class="form-control"
                             type="url"
+                            style="margin-bottom: 0;"
                             placeholder="URL to the file"
                         />
                         <input
@@ -32,9 +33,10 @@
                             name="file"
                             id="file"
                             ref="fileInput"
-                            class="form-control mb-0"
+                            class="form-control"
                             required
                             autofocus
+                            style="margin-bottom: 0;"
                             v-else
                         />
                         <a href="##" class="small text-muted" v-on:click="use_url = !use_url">{{
@@ -43,9 +45,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
+                    <label for="title" class="four columns col-form-label u-right-text-on-desktop">Title</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="title"
                             v-model="title"
@@ -57,7 +59,7 @@
                     </div>
                 </div>
                 <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="eight columns offset-by-four">
                         <button type="submit" class="button button-primary">Upload</button>
                     </div>
                 </div>
@@ -87,7 +89,7 @@
                 <a href="/contact" class="button">Contact us for help</a>
             </div>
             <div class="row" key="5">
-                <div class="col-md-8 offset-md-4 text-muted">
+                <div class="eight columns offset-by-four text-muted">
                     <span
                         class="label label-default"
                         v-tooltip:top="

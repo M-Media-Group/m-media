@@ -3,11 +3,11 @@
         <transition-group name="fade" mode="out-in">
             <div class="alert alert-success" role="alert" v-show="success" key="3">
                 <strong>{{ domain }}</strong> is available!<br /><br />
-                <a href="/contact" class="button button-secondary">Contact M Media</a>
+                <a href="/contact" class="button button-primary">Contact M Media</a>
                 <a href="#" class="button" v-on:click.prevent="success = false">Try another domain</a>
             </div>
             <div class="alert alert-danger" role="alert" v-show="error" key="4">
-                This top-level domain (extension) is unsupported by M Media - {{ error_msg }}<br />
+                This top-level domain (extension) is unsupported by M Media - {{ error_msg == false ? "" : error_msg }}<br />
                 <a href="#" class="button button-primary" v-on:click.prevent="error = false">Try another domain</a>
                 <a
                     href="https://blog.mmediagroup.fr/post/top-level-domains-on-m-media/"
@@ -27,9 +27,9 @@
                 class="mb-0"
             >
                 <div class="form-group row">
-                    <label for="domain" class="col-md-4 col-form-label text-md-right">Domain</label>
+                    <label for="domain" class="four columns col-form-label u-right-text-on-desktop">Domain</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="domain"
                             v-model="domain"
@@ -44,14 +44,14 @@
                     </div>
                 </div>
                 <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="eight columns offset-by-four">
                         <button type="submit" class="button button-primary" :disabled="loading">
                             Check availability
                         </button>
                     </div>
                 </div>
             </form>
-            <div class="alert alert-secondary" v-if="availability && availability !== 'AVAILABLE'" key="availnotice">
+            <div class="alert alert-info" v-if="availability && availability !== 'AVAILABLE'" key="availnotice">
                 <a :href="'/tools/website-debugger/' + domain">{{ domain }}</a> is {{ availability.toLowerCase() }}
                 <span v-if="transferability && transferability == 'TRANSFERABLE'"
                     >, but if you already own it you can transfer it to M Media.</span
@@ -81,7 +81,7 @@
             </div>
             <div class="alert alert-info" role="alert" v-show="loading" key="2">Checking...</div>
             <div class="row" key="5">
-                <div class="col-md-8 offset-md-4 text-muted">
+                <div class="eight columns offset-by-four text-muted">
                     <a
                         href="https://blog.mmediagroup.fr/post/check-if-domain-available-on-m-media/"
                         target="_BLANK"
@@ -110,6 +110,7 @@ export default {
             user: null,
             progress: 0,
             suggestions: [],
+            error_msg: false
         };
     },
     mounted() {

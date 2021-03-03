@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div id="file_header" class="header-section u-bg-primary background-filter" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div id="file_header" class="header-section bg-secondary bg-blur" style="background:url({{$file->url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
         <h1>{{$file->name}}</h1>
         <p>{{config('app.name')}} file</p>
     </div>
@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <th>Is public</th>
-                    <td class="text-{{ $file->is_public  ? 'primary' : 'muted' }}">{{ $file->is_public  ? 'Yes, URL never expires' : 'No, URL expires after 5 minutes' }} </td>
+                    <td class="text-{{ $file->is_public  ? 'secondary' : 'muted' }}">{{ $file->is_public  ? 'Yes, URL never expires' : 'No, URL expires after 5 minutes' }} </td>
                 </tr>
                 <tr>
                     <th>Extension</th>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <th>Owned by</th>
-                    <td class="text-{{ !$file->user  ? 'primary' : null }}">{!! $file->user ? '<a href="/users/'.$file->user->id.'">'.$file->user->name."</a>" : 'No owner' !!}</td>
+                    <td class="text-{{ !$file->user  ? 'secondary' : null }}">{!! $file->user ? '<a href="/users/'.$file->user->id.'">'.$file->user->name."</a>" : 'No owner' !!}</td>
                 </tr>
 
                 <tr>
@@ -57,7 +57,7 @@
     </div>
     <p class="mb-5"><a href="/contact">Contact us if you need to change info about this file.</a></p>
     <div class="w-100">
-        <a class="button button-primary" target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">
+        <a class="button button-secondary" target="_BLANK" rel="noopener noreferrer" href="{{ $file->url }}">
                 {{ __('Open file') }}
             </a>
 
@@ -66,7 +66,7 @@
             <form class="d-inline" method="POST" action="/files/{{$file->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this file forever. Deleting this file is permanent. Anywhere this file is referenced, like your WordPress websites, will no longer show this file.');">
+                <button type="submit" class="button button-primary" onclick="return confirm('Please confirm you want to delete this file forever. Deleting this file is permanent. Anywhere this file is referenced, like your WordPress websites, will no longer show this file.');">
                     {{ __('Delete file') }}
                 </button>
             </form>
@@ -90,12 +90,12 @@
 var element = document.getElementById("file_header");
 
 var exposeBackground = function (event) {
-    element.classList.remove("background-filter");
+    element.classList.remove("bg-blur");
     element.style.color = "transparent"
 };
 
 var obscureBackground = function (event) {
-    element.classList.add("background-filter");
+    element.classList.add("bg-blur");
     element.style.color = null
 };
 

@@ -59,8 +59,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Styles -->
 <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-<link href="{{ mix('css/all.css') }}" rel="stylesheet">
-
+{{-- <link href="{{ mix('css/all.css') }}" rel="stylesheet">
+ --}}
 <link rel="manifest" id="manifest">
 {{-- Check for support of WebP images and add class if supported. BTW - https://squoosh.app is an awesome tool for this --}}
 <script>/*! modernizr 3.6.0 (Custom Build) | MIT *

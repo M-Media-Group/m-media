@@ -15,7 +15,7 @@
                 <tbody>
                     <tr v-for="(row, index) in rows" :key="'row' + index">
                         <td
-                            v-bind:class="{ 'text-primary': cell.primary }"
+                            v-bind:class="{ 'text-secondary': cell.primary }"
                             v-for="(cell, cell_index) in row"
                             v-html="cell.html"
                             :key="'cell' + index + cell_index"

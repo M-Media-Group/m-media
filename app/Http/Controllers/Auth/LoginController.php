@@ -56,4 +56,21 @@ class LoginController extends Controller
 
         return $request->only('email', 'password');
     }
+
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return Response
+     */
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended($this->redirectTo);
+        }
+    }
 }

@@ -1,10 +1,10 @@
 @extends('layouts.clean', ['background_image' => "/images/background.jpg"])
 
 @section('above_container')
-<div class="header-section u-bg-primary">
+<div class="header-section bg-secondary">
     <h1>{{ $client->name }} is requesting access your {{ config('app.name') }} account.</h1>
 </div>
-<div class="action-section container" data-aos="fade">
+<div class="action-section card" data-aos="fade">
     <div class="mt-5">
           <!-- Scope List -->
         @if (count($scopes) > 0)
@@ -30,7 +30,7 @@
 
                 <input type="hidden" name="state" value="{{ $request->state }}">
                 <input type="hidden" name="client_id" value="{{ $client->id }}">
-                <button type="submit" class="button button-secondary">Authorize</button>
+                <button type="submit" class="button button-primary">Authorize</button>
             </form>
              <!-- Cancel Button -->
             <form method="post" action="{{ route('passport.authorizations.deny') }}" style="display:inline-block;">

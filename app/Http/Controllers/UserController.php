@@ -54,6 +54,26 @@ class UserController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAndSubscribeToInsta(Request $request)
+    {
+        //
+        $user = User::firstOrCreate(['email' => $request->email],
+            [
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'password' => 'notset',
+            ]
+        );
+        $instagram = ScrapeInstagramAccount::dispatchNow($username, $user);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param \App\User $user
@@ -145,6 +165,13 @@ class UserController extends Controller
         return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent', 'sepa_sources'));
     }
 
+    public function createSepaPaymentMethod($user) {
+            $intent = $user->createSetupIntent([
+                'payment_method_types' => ['sepa_debit'],
+            ]);
+            return view('createSepaPaymentMethod', compact('user', 'intent'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -159,7 +186,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'surname' => ['sometimes', 'required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
 
         //invalidate email if is new and require re-confirmation
@@ -179,7 +206,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect('/users/'.urlencode($request->user()->id).'/edit');
+        return redirect('/users/' . urlencode($request->user()->id) . '/edit');
     }
 
     public function notifications(User $user, Request $request)

@@ -36,40 +36,35 @@
 @endauth
 
 @section('above_container')
-<div class="header-section u-bg-primary">
+<div class="header-section bg-secondary">
     <h1>{{ __('Contact us') }}</h1>
     <p>Tell us a little about your needs.</p>
 </div>
-<div class="action-section container mt-n5" data-aos="fade">
-    <div class="mt-1">
-        <div class="form-group row mb-0">
-            <div class="col-md-12">
-                @guest
-                <request-website-component></request-website-component>
-{{--                 <contact-us-component></contact-us-component>
- --}}                @else
-                <p class="mb-0">contact@mmediagroup.fr</p>
-                <p class="mb-0">+33 4 86 06 08 59</p>
-                <div class="small text-muted">
-                    <p class="mb-0">{{config('app.name')}}</p>
-                    <p>06230 Villefranche sur Mer, France</p>
-                </div>
-
-                <div class="flex" style="flex-wrap: wrap;">
-		            <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
-		            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}" style="color: #006AFF;border-color: #006AFF; ">Messenger</a>
-		            <a class="button" href="tel:+33486060859">Call</a>
-                    <a class="button" href="https://wa.me/+33486060859" style="color: #25D366; border-color: #25D366;">WhatsApp</a>
-		        </div>
-                @endguest
-            </div>
+<div class="action-section card mt-n5" data-aos="fade">
+    <div class="form-group row mb-0">
+        <div class="twelve columns">
+            @guest
+            <request-website-component></request-website-component>
+           @else
+                <address>
+                    contact@mmediagroup.fr<br>
+                    +33 4 86 06 08 59
+                  <div class="small text-muted">
+                        {{config('app.name')}}<br>
+                        06230 Villefranche sur Mer, France
+                  </div>
+                </address>
+            <div class="flex" style="flex-wrap: wrap; margin-top: 1rem;">
+	            <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Email</a>
+	            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}" style="color: #006AFF;border-color: #006AFF; ">Messenger</a>
+	            <a class="button" href="tel:+33486060859">Call</a>
+                <a class="button" href="https://wa.me/+33486060859" style="color: #25D366; border-color: #25D366;">WhatsApp</a>
+	        </div>
+            @endguest
         </div>
     </div>
-    {{-- <div class="card-footer text-muted text-center">
-        <a href="/register">Don't have an account? Sign up!</a>
-    </div> --}}
 </div>
-<div class="header-section u-bg-primary">
+<div class="header-section bg-secondary">
     <p class="u-max-full-width" data-aos="fade" data-aos-duration="1000" data-aos-offset="0">Based in 🇫🇷 {{config('blog.country_name')}}.</p><p class="u-max-full-width" data-aos="fade" data-aos-duration="1000" data-aos-offset="250">
 {{--         Made by 🇵🇱 Poles.<br/><br/>
  --}}    Works with 🇦🇫 🇦🇽 🇦🇱 🇩🇿 🇦🇸 🇦🇩 🇦🇴 🇦🇮 🇦🇶 🇦🇬 🇦🇷 🇦🇲 🇦🇼 🇦🇺 🇦🇹 🇦🇿 🇧🇸 🇧🇭 🇧🇩 🇧🇧 🇧🇾 🇧🇪 🇧🇿 🇧🇯 🇧🇲 🇧🇹 🇧🇴 🇧🇦 🇧🇼 🇧🇷 🇮🇴 🇻🇬 🇧🇳 🇧🇬 🇧🇫 🇧🇮 🇰🇭 🇨🇲 🇨🇦 🇮🇨 🇨🇻 🇧🇶 🇰🇾 🇨🇫 🇹🇩 🇨🇱 🇨🇳 🇨🇽 🇨🇨 🇨🇴 🇰🇲 🇨🇬 🇨🇩 🇨🇰 🇨🇷 🇨🇮 🇭🇷 🇨🇺 🇨🇼 🇨🇾 🇨🇿 🇩🇰 🇩🇯 🇩🇲 🇩🇴 🇪🇨 🇪🇬 🇸🇻 🇬🇶 🇪🇷 🇪🇪 🇪🇹 🇪🇺 🇫🇰 🇫🇴 🇫🇯 🇫🇮 🇫🇷 🇬🇫 🇵🇫 🇹🇫 🇬🇦 🇬🇲 🇬🇪 🇩🇪 🇬🇭 🇬🇮 🇬🇷 🇬🇱 🇬🇩 🇬🇵 🇬🇺 🇬🇹 🇬🇬 🇬🇳 🇬🇼 🇬🇾 🇭🇹 🇭🇳 🇭🇰 🇭🇺 🇮🇸 🇮🇳 🇮🇩 🇮🇷 🇮🇶 🇮🇪 🇮🇲 🇮🇱 🇮🇹 🇯🇲 🇯🇵 🇯🇪 🇯🇴 🇰🇿 🇰🇪 🇰🇮 🇽🇰 🇰🇼 🇰🇬 🇱🇦 🇱🇻 🇱🇧 🇱🇸 🇱🇷 🇱🇾 🇱🇮 🇱🇹 🇱🇺 🇲🇴 🇲🇰 🇲🇬 🇲🇼 🇲🇾 🇲🇻 🇲🇱 🏳️‍🌈 🇲🇹 🇲🇭 🇲🇶 🇲🇷 🇲🇺 🇾🇹 🇲🇽 🇫🇲 🇲🇩 🇲🇨 🇲🇳 🇲🇪 🇲🇸 🇲🇦 🇲🇿 🇲🇲 🇳🇦 🇳🇷 🇳🇵 🇳🇱 🇳🇨 🇳🇿 🇳🇮 🇳🇪 🇳🇬 🇳🇺 🇳🇫 🇰🇵 🇲🇵 🇳🇴 🇴🇲 🇵🇰 🇵🇼 🇵🇸 🇵🇦 🇵🇬 🇵🇾 🇵🇪 🇵🇭 🇵🇳 🇵🇱 🇵🇹 🇵🇷 🇶🇦 🇷🇪 🇷🇴 🇷🇺 🇷🇼 🇼🇸 🇸🇲 🇸🇦 🇸🇳 🇷🇸 🇸🇨 🇸🇱 🇸🇬 🇸🇽 🇸🇰 🇸🇮 🇬🇸 🇸🇧 🇸🇴 🇿🇦 🇰🇷 🇸🇸 🇪🇸 🇱🇰 🇧🇱 🇸🇭 🇰🇳 🇱🇨 🇵🇲 🇻🇨 🇸🇩 🇸🇷 🇸🇿 🇸🇪 🇨🇭 🇸🇾 🇹🇼 🇹🇯 🇹🇿 🇹🇭 🇹🇱 🇹🇬 🇹🇰 🇹🇴 🇹🇹 🇹🇳 🇹🇷 🇹🇲 🇹🇨 🇹🇻 🇻🇮 🇺🇬 🇺🇦 🇦🇪 🇬🇧 🇺🇸 🇺🇾 🇺🇿 🇻🇺 🇻🇦 🇻🇪 🇻🇳 🇼🇫 🇪🇭 🇾🇪 🇿🇲 🇿🇼 everyone.</p>

@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Bots</h1>
 		<p>{{config('app.name')}} bots</p>
 	</div>
@@ -22,7 +22,7 @@ foreach ($users as $user)
 }
 //return dump($routeHasFilter);
 @endphp
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">{{count($bots)}} devices</h2>
 	@if($bots && count($bots) > 0)
 	<div class="table-responsive table-hover">
@@ -51,14 +51,14 @@ foreach ($users as $user)
 					<td>{{ $bot->last_ip }}</td>
 					<td>{{ $bot->last_internal_ip }}</td>
 
-					<td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? null : 'Offline' }}</td>
-					<td class="text-{{ $bot->is_servicable  ? 'success' : 'primary' }}">
+					<td class="text-{{ $bot->is_active  ? 'success' : 'secondary' }}">{{ $bot->is_active  ? null : 'Offline' }}</td>
+					<td class="text-{{ $bot->is_servicable  ? 'success' : 'secondary' }}">
 						<checkbox-toggle-component checked="{{$bot->is_servicable ? true : false}}" title="Is serviceable" url="/bots/{{$bot->id}}" column_title="is_servicable"></checkbox-toggle-component>
 					</td>
-					<td class="text-{{ !$bot->user  ? 'primary' : null }}">
+					<td class="text-{{ !$bot->user  ? 'secondary' : null }}">
 					<select-component :options="{{$routeHasFilter}}" title="Is serviceable" url="/bots/{{$bot->id}}" column_title="user_id" current_value="{{$bot->user_id}}"></select-component>
 					</td>
-					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+					<td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 6  ? 'secondary' : 'muted'}}">{{ $bot->last_contact_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach
 			</tbody>

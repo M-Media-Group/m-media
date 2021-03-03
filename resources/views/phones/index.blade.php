@@ -1,11 +1,11 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>phones</h1>
 		<p>{{config('app.name')}} phones</p>
 	</div>
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">{{count($phones)}} phones</h2>
 	@if($phones && count($phones) > 0)
 	<div class="table-responsive table-hover">
@@ -27,15 +27,15 @@
 				<tr style="vertical-align: middle;cursor: pointer;" onclick="window.location='/phones/{{ $phone->id }}';">
 					<td>{{ $phone->e164 }}</td>
 					<td>{{ $phone->number_type }}</td>
-					<td class="text-{{ !$phone->defaultForUser  ? 'primary' : null }}">{!! $phone->defaultForUser ? '<a href="/users/'.$phone->defaultForUser->id.'">'.$phone->defaultForUser->name."</a>" : 'No owner' !!}</td>
+					<td class="text-{{ !$phone->defaultForUser  ? 'secondary' : null }}">{!! $phone->defaultForUser ? '<a href="/users/'.$phone->defaultForUser->id.'">'.$phone->defaultForUser->name."</a>" : 'No owner' !!}</td>
 									   @can('update phone addresses')
 
-					<td class="text-{{ !$phone->user  ? 'primary' : null }}">
+					<td class="text-{{ !$phone->user  ? 'secondary' : null }}">
 						<select-component :options="{{$users}}" title="Is serviceable" url="/phones/{{$phone->id}}" column_title="user_id" current_value="{{$phone->user_id}}" onclick="event.stopPropagation();"></select-component>
 					</td>
 					@endcan
 					<td>{{ $phone->logs_count }}</td>
-					<td class="text-{{ now()->diffInDays( $phone->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $phone->created_at->diffForHumans() }}</td>
+					<td class="text-{{ now()->diffInDays( $phone->created_at ) > 6  ? 'secondary' : 'muted'}}">{{ $phone->created_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach
 			</tbody>

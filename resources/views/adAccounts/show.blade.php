@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>{{$adAccount->name}}</h1>
         <h2>{{config('app.name')}} Ad account</h2>
     </div>
@@ -23,12 +23,12 @@
                 </tr>
                 <tr>
                     <th>Managed by {{ config('app.name') }}</th>
-                    <td class="text-{{ $adAccount->is_managed  ? 'muted' : 'primary' }}">{{ $adAccount->is_managed  ? 'Yes' : 'No' }} </td>
+                    <td class="text-{{ $adAccount->is_managed  ? 'muted' : 'secondary' }}">{{ $adAccount->is_managed  ? 'Yes' : 'No' }} </td>
                 </tr>
 
                 <tr>
                     <th>Owned by</th>
-                    <td class="text-{{ !$adAccount->user  ? 'primary' : null }}">{!! $adAccount->user ? '<a href="/users/'.$adAccount->user->id.'">'.$adAccount->user->name."</a>" : 'No owner' !!}</td>
+                    <td class="text-{{ !$adAccount->user  ? 'secondary' : null }}">{!! $adAccount->user ? '<a href="/users/'.$adAccount->user->id.'">'.$adAccount->user->name."</a>" : 'No owner' !!}</td>
                 </tr>
                 <tr>
                     <th>Created</th>
@@ -98,7 +98,7 @@
 
                     <td>{{ \Laravel\Cashier\Cashier::formatAmount((int) ($ad->cost * 100), $ad->currency) }}</td>
                     @if($ad->is_managed_by_mmedia)
-                        <td class="text-primary">Yes</td>
+                        <td class="text-secondary">Yes</td>
                     @elseif($adAccount->platform->name == "Facebook Ads")
                         @can('update ad', $ad)
                         <td>

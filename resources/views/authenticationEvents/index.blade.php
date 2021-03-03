@@ -1,11 +1,11 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Authentication event logs</h1>
 		<p>{{config('app.name')}} Authentication events</p>
 	</div>
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">{{count($authentication_events)}} authentication events</h2>
 	@if($authentication_events && count($authentication_events) > 0)
 	<div class="table-responsive table-hover">

@@ -5,7 +5,7 @@
 
 @section('above_container')
 
-    <div class="header-section u-bg-primary ">
+    <div class="header-section bg-secondary ">
         <h1 class="header-section-title mb-0">Frequently Asked Questions</h1>
         <p class="mb-0">+ all the answers.</p>
     </div>
@@ -31,7 +31,7 @@ $data = [
                 <p class='mb-0'>+33 4 86 06 08 59</p>
                 <p>contact@mmediagroup.fr</p>
                 <div class='flex' style='flex-wrap: wrap;'>
-                    <a class='button button-secondary' href='mailto:contact@mmediagroup.fr'>Email</a>
+                    <a class='button button-primary' href='mailto:contact@mmediagroup.fr'>Email</a>
                     <a class='button' rel='noopener' href=".config('blog.messenger_url').">Messenger</a>
                     <a class='button' href='tel:+33486060859'>Call</a>
                 </div>"

@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="business_title" class="col-md-12 col-form-label">Your business name</label>
-                    <div class="col-md-12">
+                    <label for="business_title" class="twelve columns col-form-label">Your business name</label>
+                    <div class="twelve columns">
                         <input
                             name="business_title"
                             v-model="business_title"
@@ -36,10 +36,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="business_description" class="col-md-12 col-form-label"
+                    <label for="business_description" class="twelve columns col-form-label"
                         >A little about your business</label
                     >
-                    <div class="col-md-12">
+                    <div class="twelve columns">
                         <textarea-autosize
                             id="business_description"
                             v-model="business_description"
@@ -54,9 +54,9 @@
                     </div>
                 </div>
                 <!-- <div class="form-group row">
-                    <label for="business_title" class="col-md-12 col-form-label">Your business size</label>
-                    <div class="col-md-12">
-                        <div class="text-center">{{business_size == 1 ? 'Just me' : business_size >= 99 ? '100 or more people' : business_size+" people"}}</div>
+                    <label for="business_title" class="twelve columns col-form-label">Your business size</label>
+                    <div class="twelve columns">
+                        <div class="u-center-text">{{business_size == 1 ? 'Just me' : business_size >= 99 ? '100 or more people' : business_size+" people"}}</div>
                         <input
                             name="business_title"
                             v-model="business_size"
@@ -80,8 +80,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label">Your first name</label>
-                    <div class="col-md-12">
+                    <label for="name" class="twelve columns col-form-label">Your first name</label>
+                    <div class="twelve columns">
                         <input
                             name="name"
                             v-model="name"
@@ -97,8 +97,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="surname" class="col-md-12 col-form-label">Your surname</label>
-                    <div class="col-md-12">
+                    <label for="surname" class="twelve columns col-form-label">Your surname</label>
+                    <div class="twelve columns">
                         <input
                             name="surname"
                             v-model="surname"
@@ -120,9 +120,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="file" class="col-md-12 col-form-label">Your email address</label>
+                    <label for="file" class="twelve columns col-form-label">Your email address</label>
 
-                    <div class="col-md-12">
+                    <div class="twelve columns">
                         <input
                             name="email"
                             v-model="email"
@@ -137,9 +137,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="message" class="col-md-12 col-form-label">Your message</label>
+                    <label for="message" class="twelve columns col-form-label">Your message</label>
 
-                    <div class="col-md-12">
+                    <div class="twelve columns">
                         <textarea-autosize
                             name="message"
                             v-model="message"
@@ -154,11 +154,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="phone" class="col-md-12 col-form-label"
+                    <label for="phone" class="twelve columns col-form-label"
                         >Your phone number <small>(optional)</small></label
                     >
 
-                    <div class="col-md-12">
+                    <div class="twelve columns">
                         <input
                             name="phone"
                             v-model="phone"
@@ -180,14 +180,14 @@
                 </div>
             </div>
 
-            <div class="form-group row mt-5 mb-0" key="tab_buttons">
-                <div class="col-md-6 order-md-12">
-                    <button type="submit" class="button button-primary u-full-width" v-if="current_tab == 2">
+            <div class="form-group row invert-columns" key="tab_buttons">
+                <div class="six columns order-md-12">
+                    <button type="submit" class="button button-secondary u-full-width" v-if="current_tab == 2">
                         Send message
                     </button>
-                    <button type="submit" class="button button-primary u-full-width" v-else>Next →</button>
+                    <button type="submit" class="button button-secondary u-full-width" v-else>Next →</button>
                 </div>
-                <div class="col-md-6 order-md-6" v-bind:style="{ visibility: current_tab == 0 ? 'hidden' : 'initial' }">
+                <div class="six columns order-md-6" v-bind:style="{ visibility: current_tab == 0 ? 'hidden' : 'initial' }">
                     <a class="button u-full-width" @click="current_tab -= 1"> Back </a>
                 </div>
             </div>
@@ -220,7 +220,7 @@
             </div>
             <br />
             <div class="form-group row mb-0">
-                <div class="col-md-12">
+                <div class="twelve columns">
                     <label class="mb-0">You can also contact us here</label>
                     <p>06230 Villefranche sur Mer, France</p>
 
@@ -228,7 +228,7 @@
                     <p>contact@mmediagroup.fr</p>
 
                     <div class="flex" style="flex-wrap: wrap">
-                        <a class="button button-secondary" href="mailto:contact@mmediagroup.fr">Email</a>
+                        <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Email</a>
                         <a class="button" href="tel:+33486060859">Call</a>
                     </div>
                 </div>

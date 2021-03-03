@@ -81,40 +81,35 @@ Route::group(['middleware' => ['auth', App\Http\Middleware\UpdateUserLastSeen::c
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('users', 'UserController');
+
+    Route::group(['middleware' => ['verified']], function () {
+        Route::get('my-bots', 'UserController@myBots');
+        Route::get('users/{id}/billing', 'UserController@invoices');
+        Route::get('users/{id}/billing/payment-methods/sepas/create', 'UserController@createSepaPaymentMethod');
+
+        Route::get('/my-account/billing', 'HomeController@billing');
+
+        Route::get('/domains/check-availability', 'HomeController@domainAvailability');
+
+        Route::get('invoices/{id}/pdf', 'InvoiceController@redirectToStripeInvoice');
+        Route::get('bots/{id}/connect', 'BotController@connect');
+        Route::get('bots/{id}/contact-user', 'BotController@contactUser');
+        Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');
+        Route::resource('custom-notifications', 'CustomNotificationController');
+        Route::resource('ad-accounts', 'AdAccountController');
+        Route::resource('roles', 'RoleController');
+        Route::resource('bots', 'BotController');
+        Route::resource('files', 'FileController');
+        Route::resource('emails', 'EmailController');
+        Route::resource('phones', 'PhoneController');
+        Route::resource('email-logs', 'EmailLogController');
+        Route::resource('phone-logs', 'PhoneLogController');
+        Route::resource('instagram-accounts', 'InstagramAccountController');
+        Route::resource('authentication-events', 'AuthenticationEventController');
+        Route::post('/ad-platforms/facebook/ads/{id}/update-tags', 'AdAccountController@updateFacebookAdTags');
+    });
+
 });
-
-Route::group(['middleware' => ['verified', App\Http\Middleware\UpdateUserLastSeen::class]], function () {
-    Route::get('my-bots', 'UserController@myBots');
-    Route::get('users/{id}/billing', 'UserController@invoices');
-    // Route::get('users/{user}/payment-methods/sepas/create', function (App\User $user) {
-    //     $intent = $user->createSetupIntent([
-    //         'payment_method_types' => ['sepa_debit'],
-    //     ]);
-    //     return view('createIban', compact('user', 'intent'));
-    // });
-
-    Route::get('/my-account/billing', 'HomeController@billing');
-
-    Route::get('/domains/check-availability', 'HomeController@domainAvailability');
-
-    Route::get('invoices/{id}/pdf', 'InvoiceController@redirectToStripeInvoice');
-    Route::get('bots/{id}/connect', 'BotController@connect');
-    Route::get('bots/{id}/contact-user', 'BotController@contactUser');
-    Route::post('/instagram-accounts/{instagramAccount}/instagram-posts', 'InstagramAccountController@storePost');
-    Route::resource('custom-notifications', 'CustomNotificationController');
-    Route::resource('ad-accounts', 'AdAccountController');
-    Route::resource('roles', 'RoleController');
-    Route::resource('bots', 'BotController');
-    Route::resource('files', 'FileController');
-    Route::resource('emails', 'EmailController');
-    Route::resource('phones', 'PhoneController');
-    Route::resource('email-logs', 'EmailLogController');
-    Route::resource('phone-logs', 'PhoneLogController');
-    Route::resource('instagram-accounts', 'InstagramAccountController');
-    Route::resource('authentication-events', 'AuthenticationEventController');
-    Route::post('/ad-platforms/facebook/ads/{id}/update-tags', 'AdAccountController@updateFacebookAdTags');
-});
-
 Route::get('/', 'HomeController@welcome');
 
 // Route::get('/components', 'HomeController@components');

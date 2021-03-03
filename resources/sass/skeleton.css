@@ -25,6 +25,47 @@
 - Media Queries
 */
 
+:root {
+    --white: #fff;
+    --black: #131313;
+    --dark: #333;
+    --light: #f3f3f3;
+    --gray: #999;
+
+    --primary: #eb4647;
+    --primary-darker: #d61819;
+    --primary-text-contrast: #f3f3f3;
+
+    --secondary: #246eb9;
+    --secondary-darker: #246eb9;
+    --secondary-text-contrast: #f3f3f3;
+
+    --filter-darker: brightness(85%);
+    --filter-lighter: brightness(115%);
+
+    --link: var(--dark);
+    --link-darker: var(--black);
+
+    --border-radius: 1rem;
+    --box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
+
+    /*Line length control for text*/
+    --max-text-width: 63rem;
+}
+
+@media print {
+    :root {
+        --white: #fff;
+        --black: #131313;
+        --dark: #000;
+        --light: #fff;
+        --box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+    @page {
+        margin: 0;
+    }
+}
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -35,7 +76,11 @@
 }
 
 .container > * {
-    padding: 0 20px;
+    padding: 0 2rem;
+}
+
+.container > a {
+    margin: 0 2rem;
 }
 
 .column,
@@ -51,14 +96,29 @@
 
 /* For devices larger than 550px */
 @media (min-width: 750px) {
-    .column,
-    .columns {
+    :not(.invert-columns) > .column,
+    :not(.invert-columns) > .columns {
         margin-left: 4%;
     }
 
     .column:first-child,
     .columns:first-child {
         margin-left: 0;
+    }
+
+    .invert-columns {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .invert-columns > .column,
+    .invert-columns > .columns {
+        margin-right: 4%;
+    }
+
+    .invert-columns > .column:first-child,
+    .invert-columns > .columns:first-child {
+        margin-right: 0;
     }
 
     .one.column,
@@ -215,10 +275,11 @@ html {
 body {
     font-size: 1.6em;
     /* currently ems cause chrome bug misinterpreting rems on body element */
-    line-height: 1.6;
+    line-height: 1.7; /* Fallback if % value doesnt work */
+    line-height: 170%;
     font-weight: 400;
-    /*    Leaving this out because normalize.css uses system fonts, which look better for current use case
-      font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*      Leaving this out because normalize.css uses system fonts, which look better for current use case
+            font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 */
     background-color: var(--light);
     color: var(--dark);
@@ -229,7 +290,6 @@ body {
     body {
         font-size: 1.9em;
         /* currently ems cause chrome bug misinterpreting rems on body element */
-        line-height: 1.75;
     }
 }
 @media print {
@@ -285,7 +345,7 @@ h5 {
 }
 
 h6 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 1.6;
     letter-spacing: 0;
 }
@@ -314,17 +374,32 @@ h6 {
     }
 
     h6 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 }
 
 p,
 ul,
-ol {
+ol,
+figcaption {
     margin-top: 0;
     max-width: var(--max-text-width);
-    /*    max-width: 75ch;
+    word-break: break-word;
+    /*      max-width: 75ch;
 */
+}
+
+figcaption {
+    color: var(--gray);
+    font-size: 80%;
+}
+
+figure {
+   margin: 0;
+}
+
+blockquote {
+    font-weight: 600;
 }
 
 .header-text {
@@ -345,8 +420,12 @@ a {
     color: inherit;
 }
 
-a:not(.button):hover {
-    opacity: 0.9;
+a:hover {
+    opacity: 0.7;
+}
+
+p > a {
+    color: inherit;
 }
 
 /* Buttons
@@ -357,21 +436,21 @@ input[type='submit'],
 input[type='reset'],
 input[type='button'] {
     display: inline-block;
-    padding: 3px 15px;
     color: var(--dark);
     text-align: center;
-    font-size: 80%;
-    font-weight: 600;
-    line-height: 3.7rem;
-    letter-spacing: 0.1rem;
-    text-decoration: none;
-    white-space: nowrap;
     background-color: transparent;
     border-radius: var(--border-radius);
     cursor: pointer;
     box-sizing: border-box;
-    border: 1px solid var(--dark);
+    border: 1px solid var(--gray);
     -webkit-appearance: none;
+    padding: 3px 15px;
+    padding: 0.2em 1em;
+    font-size: 80%;
+    font-weight: 600;
+    line-height: 3.7rem;
+    letter-spacing: .1rem;
+    text-decoration: none;
 }
 
 .button:hover,
@@ -387,6 +466,7 @@ input[type='button']:focus {
     color: var(--black);
     border-color: var(--black);
     outline: 0;
+    opacity: 1;
 }
 
 .button.button-primary,
@@ -394,7 +474,7 @@ button.button-primary,
 input[type='submit'].button-primary,
 input[type='reset'].button-primary,
 input[type='button'].button-primary {
-    color: var(--primary-text-contrast);
+    color: #fff;
     background-color: var(--primary);
     border-color: var(--primary);
 }
@@ -409,7 +489,7 @@ button.button-primary:focus,
 input[type='submit'].button-primary:focus,
 input[type='reset'].button-primary:focus,
 input[type='button'].button-primary:focus {
-    color: var(--primary-text-contrast);
+    color: #fff;
     background-color: var(--primary-darker);
     border-color: var(--primary-darker);
 }
@@ -419,12 +499,13 @@ button.button-secondary,
 input[type='submit'].button-secondary,
 input[type='reset'].button-secondary,
 input[type='button'].button-secondary {
-    color: var(--secondary-text-contrast);
+    color: #fff;
     background-color: var(--secondary);
     border-color: var(--secondary);
 }
 
 .button.button-secondary:hover,
+a.button.button-secondary:hover,
 button.button-secondary:hover,
 input[type='submit'].button-secondary:hover,
 input[type='reset'].button-secondary:hover,
@@ -434,14 +515,13 @@ button.button-secondary:focus,
 input[type='submit'].button-secondary:focus,
 input[type='reset'].button-secondary:focus,
 input[type='button'].button-secondary:focus {
-    color: var(--secondary-text-contrast);
+    color: #fff;
     background-color: var(--secondary-darker);
     border-color: var(--secondary-darker);
 }
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.form-control,
 input,
 optgroup,
 input[type='email'],
@@ -451,23 +531,22 @@ input[type='text'],
 input[type='tel'],
 input[type='url'],
 input[type='password'],
-input[type='file'],
 textarea,
 select {
     color: inherit; /* 1 */
-    height: 38px;
-    padding: 6px 10px;
+/*    height: 38px;
+*/
     /* The 6px vertically centers text on FF, ignored by Webkit */
     background-color: var(--white);
-    border: 1px solid #d1d1d1;
+    border: 1px solid var(--gray);
     border-radius: var(--border-radius);
     box-shadow: none;
     box-sizing: border-box;
-}
-
-select {
-    padding: 0 10px;
-    /* Webkit does not ignore 6px for select*/
+    padding: 3px 15px;
+    font-size: 80%;
+/*    font-weight: 600;
+*/    line-height: 3.7rem;
+    letter-spacing: .1rem;
 }
 
 /* Removes awkward default styles on some inputs for iOS */
@@ -478,7 +557,6 @@ input[type='text'],
 input[type='tel'],
 input[type='url'],
 input[type='password'],
-input[type='file'],
 textarea,
 select {
     -webkit-appearance: none;
@@ -492,7 +570,6 @@ textarea {
     padding-bottom: 6px;
 }
 
-.form-control:focus,
 input[type='email']:focus,
 input[type='number']:focus,
 input[type='search']:focus,
@@ -500,13 +577,10 @@ input[type='text']:focus,
 input[type='tel']:focus,
 input[type='url']:focus,
 input[type='password']:focus,
-input[type='file']:focus,
 textarea:focus,
 select:focus {
-    border: 1px solid var(--primary);
+    border: 1px solid var(--secondary);
     outline: 0;
-    background-color: var(--white);
-    color: inherit; /* 1 */
 }
 
 label,
@@ -559,15 +633,6 @@ ol ul {
 li {
 }
 
-.list-group-item-action {
-    color: var(--dark); /* 1 */
-}
-.list-group-item-action:hover,
-.list-group-item-action:focus {
-    background-color: var(--white);
-    color: inherit; /* 1 */
-}
-
 /* Code
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -579,7 +644,7 @@ pre {
 
 code,
 code.hljs {
-    font-size: 80%;
+    font-size: 90%;
     background: var(--white);
     color: var(--black);
     border-radius: var(--border-radius);
@@ -601,6 +666,12 @@ pre > code {
 
 /* Tables
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+table {
+    overflow-y: scroll;
+    max-width: 100%;
+    display: block;
+}
+
 th,
 td {
     padding: 12px 15px;
@@ -630,6 +701,7 @@ textarea,
 select,
 fieldset {
     margin-bottom: 1.5rem;
+    max-width: 100%;
 }
 
 pre,
@@ -640,7 +712,8 @@ table,
 p,
 ul,
 ol,
-form {
+form,
+figcaption {
     margin-bottom: 2.5rem;
 }
 
@@ -664,76 +737,6 @@ form {
     }
 }
 
-/* Alerts
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.alert {
-    width: 100%;
-}
-
-/* Modals
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-.modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: table;
-    transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.modal-container {
-    width: 90%;
-    margin: 0px auto;
-    padding: 20px 30px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
-}
-
-.modal-header h3 {
-    margin-top: 0;
-    color: var(--primary);
-}
-
-.modal-body {
-    margin: 20px 0;
-}
-
-.modal-footer .button {
-    float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
-.modal-enter {
-    opacity: 0;
-}
-
-.modal-leave-active {
-    opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
 /* Cards
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .card {
@@ -747,7 +750,22 @@ form {
     min-width: 250px;
     min-height: 50px;
     margin: 0 auto;
+    display: block;
 }
+
+.card :is(h1, h2, h3, h4, h5, h6), .card.small > * {
+    margin-top: 0;
+}
+
+.card.small-card, .card.small, .card.small > .card-body {
+    padding-top:0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+a.card {
+    text-decoration: none;
+}
+
 .card > .card-header {
     padding: 0 3rem;
 }
@@ -772,12 +790,7 @@ form {
     padding: 0 3rem;
 }
 
-.card-footer {
-    background: none;
-    border: none;
-}
-
-.card > :first-child {
+.card > :first-child:not(h1, h2, h3, h4, h5, h6) {
     padding-top: 3rem;
     padding-bottom: 1rem;
     border-top-left-radius: var(--border-radius);
@@ -791,9 +804,23 @@ form {
 }
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+ /* Same as <small> */
+:is(p, span, div, a).small:not(.card) {
+    font-size: 80%;
+}
+
 .u-full-width {
     width: 100%;
     box-sizing: border-box;
+}
+
+.u-fullscreen-width {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: 1000%;
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .u-max-full-width {
@@ -822,33 +849,53 @@ form {
     text-align: center;
 }
 
+.u-right-text {
+    text-align: right;
+}
+
+@media (max-width: 550px) {
+    .u-hide-on-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 750px) {
+    .u-right-text-on-desktop {
+        text-align: right;
+    }
+}
+
 /* Colors
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.u-bg-primary {
+.text-primary {
+    color: var(--primary);
+}
+
+.bg-primary {
     background-color: var(--primary);
     color: var(--primary-text-contrast);
 }
 
-.u-bg-primary a {
+.bg-primary a {
     color: var(--primary-text-contrast);
     color: inherit;
 }
 
-.u-bg-primary .button-primary {
+.bg-primary .button-primary {
     background-color: var(--primary-darker);
     border-color: var(--primary-darker);
 }
 
-.u-bg-secondary {
+.bg-secondary {
     background-color: var(--secondary);
     color: var(--secondary-text-contrast);
 }
 
-.u-bg-blur {
+.bg-blur {
     position: relative;
 }
 
-.u-bg-blur:before {
+.bg-blur:before {
   -webkit-backdrop-filter: blur(1.5rem); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
   backdrop-filter: blur(1.5rem); /* Supported in Chrome 76 */
 
@@ -861,6 +908,9 @@ form {
   right:0;
 }
 
+.bg-blur > * {
+    position: relative;
+}
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {
@@ -870,42 +920,10 @@ hr {
     border-top: 1px solid #e1e1e1;
 }
 
-img {
+video, img, iframe, picture {
     max-width: 100%;
     box-sizing: border-box;
-}
-
-#svgMapPopulationFrame {
-    height: 300px;
-}
-@media (min-width: 550px) {
-    #svgMapPopulationFrame {
-        height: 70vh;
-    }
-}
-
-.custom-range {
-    border: none;
-}
-
-.custom-range::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 2rem; /* Set a specific slider handle width */
-    height: 2rem; /* Slider handle height */
-    margin-top: -0.79rem;
-    line-height: 0;
-    border-radius: 100%;
-}
-
-/* Table
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.table td {
-    vertical-align: middle;
-}
-
-.table {
-    color: inherit;
+    display: block;
 }
 
 /* Clearing

@@ -3,7 +3,7 @@
 @section('title', $user->name )
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1> Hi 👋 {{ $user->name }}!</h1>
         <p>{{ $user->name }} {{ $user->surname }}</p>
     </div>

@@ -11,9 +11,9 @@
                 class="mb-0"
             >
                 <div class="form-group row">
-                    <label for="file" class="col-md-4 col-form-label text-md-right">Your first name</label>
+                    <label for="file" class="four columns col-form-label u-right-text-on-desktop">Your first name</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="name"
                             v-model="name"
@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="form-group row mb-5">
-                    <label for="file" class="col-md-4 col-form-label text-md-right">Your surname</label>
+                    <label for="file" class="four columns col-form-label u-right-text-on-desktop">Your surname</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="surname"
                             v-model="surname"
@@ -42,9 +42,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="file" class="col-md-4 col-form-label text-md-right">Your email address</label>
+                    <label for="file" class="four columns col-form-label u-right-text-on-desktop">Your email address</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="email"
                             v-model="email"
@@ -57,9 +57,9 @@
                     </div>
                 </div>
                 <div class="form-group row mb-5">
-                    <label for="title" class="col-md-4 col-form-label text-md-right">Your phone number</label>
+                    <label for="title" class="four columns col-form-label u-right-text-on-desktop">Your phone number</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input
                             name="phone"
                             v-model="phone"
@@ -72,9 +72,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="title" class="col-md-4 col-form-label text-md-right">Your message</label>
+                    <label for="title" class="four columns col-form-label u-right-text-on-desktop">Your message</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <textarea-autosize
                             name="message"
                             v-model="message"
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="eight columns offset-by-four">
                         <button type="submit" class="button button-primary">Send message</button>
                     </div>
                 </div>

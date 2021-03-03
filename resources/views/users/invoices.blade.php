@@ -3,7 +3,7 @@
 @section('title', 'Billing')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>Billing</h1>
         <p>{{$user->name}} {{$user->surname}}</p>
     </div>
@@ -42,7 +42,7 @@ Jump to:
 				<tbody>
 			@foreach ($subscriptions->data as $subscription)
 				<tr>
-					<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'primary' }}">{{ ucfirst($subscription->status) }}</td>
+					<td class="text-{{ $subscription->status == 'active'  ? 'success' : 'secondary' }}">{{ ucfirst($subscription->status) }}</td>
 					<td>{{ $subscription->id }}</td>
 
 					@if(isset($subscription->plan))
@@ -116,56 +116,60 @@ Jump to:
 
 <!-- Stripe Elements Placeholder -->
 <label class="mt-4 mb-0">Add a new card</label>
-<div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);padding: .375rem .75rem;">
+<div class="row">
+<div class="form-control nine columns" style="color: inherit;border: 1px solid var(--gray);border-radius: var(--border-radius);padding: .5rem .75rem;margin-bottom: 1rem;">
 	<div id="card-element"></div>
 </div>
-<div>
+<div class="three columns">
 <button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
     Add card
 </button>
-{{-- 	<a href="/users/{{$user->id}}/payment-methods/sepas/create" class="small text-muted ml-3">Add a SEPA bank account</a>
- --}}</div>
+{{-- 	<a href="/users/{{$user->id}}/billing/payment-methods/sepas/create" class="small text-muted ml-3">Add a SEPA bank account</a> --}}
+</div>
+</div>
 </div>
 <div class="row m-0 pt-5 pb-5 ">
     <h2 class="mt-5 mb-0" id="invoices">All invoices</h2>
 	@if(count($invoices) > 0)
-		<table class="table mb-0 table-responsive">
-				<thead>
-			     <tr>
-				   <th>Date</th>
-				   <th>Description</th>
-				   <th>Download</th>
-				 </tr>
-				</thead>
-				<tbody>
-			    @foreach ($invoices as $invoice)
-			        <tr>
-			            <td>
-			            	{{ $invoice->date()->toFormattedDateString() }}
-			            	@if ($invoice->amount_paid !== $invoice->amount_due && $invoice->attempt_count >= 1)
-						        <br/><span class="text-danger">Payment overdue</span>
-						    @endif
-			            </td>
-			            <td>
-{{-- 			            	@foreach ($invoice->subscriptions() as $subscription)
-			            		{{$subscription->description}}
-			            		@if(!$loop->last)
-						    		+
-						    	@endif
-			            	@endforeach --}}
+		<div class="table-responsive">
+			<table class="table mb-0">
+					<thead>
+				     <tr>
+					   <th>Date</th>
+					   <th>Description</th>
+					   <th>Download</th>
+					 </tr>
+					</thead>
+					<tbody>
+				    @foreach ($invoices as $invoice)
+				        <tr>
+				            <td>
+				            	{{ $invoice->date()->toFormattedDateString() }}
+				            	@if ($invoice->amount_paid !== $invoice->amount_due && $invoice->attempt_count >= 1)
+							        <br/><span class="text-danger">Payment overdue</span>
+							    @endif
+				            </td>
+				            <td>
+	{{-- 			            	@foreach ($invoice->subscriptions() as $subscription)
+				            		{{$subscription->description}}
+				            		@if(!$loop->last)
+							    		+
+							    	@endif
+				            	@endforeach --}}
 
-			            	@foreach($invoice->lines->data as $line_item)
-			            	{{$line_item->description}}
-				            	@if(!$loop->last)
-						    		+
-						    	@endif
-			            	@endforeach
-			            </td>
-			            <td><a href="/invoices/{{ $invoice->id }}/pdf">Download</a></td>
-			        </tr>
-			    @endforeach
-			</tbody>
-		</table>
+				            	@foreach($invoice->lines->data as $line_item)
+				            	{{$line_item->description}}
+					            	@if(!$loop->last)
+							    		+
+							    	@endif
+				            	@endforeach
+				            </td>
+				            <td><a href="/invoices/{{ $invoice->id }}/pdf">Download</a></td>
+				        </tr>
+				    @endforeach
+				</tbody>
+			</table>
+		</div>
 		@php
 		$amount_spent = 0;
         foreach ($invoices as $invoice) {
@@ -221,7 +225,7 @@ Jump to:
             lineHeight: '1.8',
             fontFamily: '"Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif',
             fontSmoothing: 'antialiased',
-            fontSize: '16px',
+            fontSize: '18px',
             '::placeholder': {
                 // color: '#aab7c4'
             }

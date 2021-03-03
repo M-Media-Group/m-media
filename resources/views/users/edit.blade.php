@@ -13,7 +13,7 @@
 @endsection
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Account settings</h1>
 		<p>{{$user->name}} {{$user->surname}}</p>
 	</div>

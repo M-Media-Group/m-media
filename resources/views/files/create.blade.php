@@ -4,12 +4,12 @@
 @section('meta_description', "This ".config('app.name')." tool will let people upload files." )
 
 @section('above_container')
-<div class="header-section u-bg-primary">
+<div class="header-section bg-secondary">
     <h1>{{ __('Upload a file') }}</h1>
     <p>Share files with {{config('app.name')}}</p>
 </div>
 <div>
-    <div class="action-section container">
+    <div class="action-section card">
     	@if (session('success'))
 			<div class="alert alert-success">
 			    {{session('success')}}

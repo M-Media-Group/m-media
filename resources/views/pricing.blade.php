@@ -3,12 +3,12 @@
 @section('meta_description', "Pay as you go model, fair and transparent pricing for all web development and marketing customers." )
 
 @section('above_container')
-    <div class="header-section u-bg-primary" style="background: url('images/backgrounds/1-scaled.svg'), var(--primary);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
+    <div class="header-section bg-secondary" style="background: url('images/backgrounds/1-scaled.svg'), var(--secondary);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
         <h1>Pricing</h1>
         <p>Products and services</p>
     </div>
 
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 container" data-aos="fade">
 
 	<div class="col-md-12 u-center" style="max-width: 700px;">
     <div class="alert alert-info text-muted alert-dismissible m-0" role="alert" >
@@ -59,7 +59,7 @@
 	<p class="text-muted">Pricing is based per unit and units cannot be divided. As an example, website maintenance is charged by the hour. Replacing a picture might take 30 minutes, but you'll still be billed the hour. That's why its a good idea to consolidate your requests; if you send us two or three pictures to change, it's the same price as changing one.</p>
 	</div>
 </div>
-<div class="row m-0 pt-5 pb-5 " style="background:var(--white);" data-aos="fade">
+<div class="row m-0 pt-5 pb-5 container" style="background:var(--white);" data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Products</h2>
 	@if($products && count($products->data) > 0)
@@ -76,7 +76,7 @@
 			@foreach (collect($products->data)->sortBy('product.name') as $plan)
 				@if($plan->product->active)
 				<tr>
-					<td>{{ $plan->product->name }}<br/><small>{{ $plan->nickname }}</small></td>
+					<td>{{ $plan->product->name }}<br/></td>
 					<td>{{ $plan->price / 100 }} {{ strtoupper($plan->currency) }}<br/><small>Per 1 unit</small></td>
 					<td><a href="/contact">{{ __('Contact us') }}</a></td>
 				</tr>
@@ -119,7 +119,7 @@
 	<p class="text-muted">Other factors may increase overall cost. For example, pricing above assumes support in only one language. Adding additional features is billed according to the Website Maintenance service.</p>
 	</div>
 </div>
-<div class="row m-0 pt-5 pb-5 " data-aos="fade">
+<div class="row m-0 pt-5 pb-5 container" data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0">Discounts</h2>
 	@if($coupons && count($coupons->data) > 0)
@@ -155,8 +155,7 @@
 	<p class="text-muted">Discounts are not cumulative. If you are eligible for multiple discounts, only the discount with the highest reduction applies.</p>
 	</div>
 </div>
-
-<div class="row m-0 pt-5 pb-5 " style="background:var(--white);" data-aos="fade">
+<div class="row m-0 pt-5 pb-5 container" style="background:var(--white);" data-aos="fade">
 	<div class="col-md-12 u-center" style="max-width: 700px;">
 	<h2 class="mt-5 mb-0" id="finance">Financing options</h2>
 	<div class="table-responsive">

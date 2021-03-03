@@ -3,18 +3,18 @@
 @section('title', 'Pay with SEPA Direct Debit')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>Pay with SEPA Direct Debit</h1>
     </div>
 
-<div class="action-section container row mt-5">
-    <div class="col-md-6 d-none">
+<div class="action-section card row mt-5">
+    <div class="six columns d-none">
       <label for="name">
         Full name
       </label>
       <input type="text" id="name" name="name" placeholder="Jenny Rosen" class="form-control" value="{{$user->name}} {{$user->surname}}" required>
     </div>
-    <div class="col-md-6 d-none">
+    <div class="six columns d-none">
       <label for="email">
         Email Address
       </label>
@@ -25,7 +25,7 @@
         <label for="card-element">
         IBAN
       </label>
-<div class="form-control mb-4" style="color: inherit;border: 1px solid #D1D1D1;border-radius: var(--border-radius);">
+<div class="form-control mb-4" style="color: inherit; border: 1px solid rgb(209, 209, 209); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; margin-bottom: 1rem;">
 	<div id="card-element"></div>
 </div>
 
@@ -37,8 +37,7 @@
 <div class="text-muted small">
 		<b>This bank account must be in the name of {{$user->name}} {{$user->surname}}. To add a bank account under another name, <a href="/contact">contact us</a>.</b>
 		<hr/>
-	By providing your IBAN you are authorizing {{config('app.name')}} and Stripe, our payment service provider, to send instructions to your bank to debit your account and your bank to debit your account in accordance with future payment instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited.
-
+    By providing your IBAN and confirming this payment, you authorise (A) {{config('app.name')}} and Stripe, our payment service provider, to send instructions to your bank to debit your account and (B) your bank to debit your account in accordance with those instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited.
 </div>
 </div>
 </div>
@@ -48,13 +47,13 @@
 @section('footer_scripts')
 <script>
 
-	var style = {
+  var style = {
         base: {
             // color: '#32325d',
             lineHeight: '1.8',
             fontFamily: '"Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif',
             fontSmoothing: 'antialiased',
-            fontSize: '16px',
+            fontSize: '18px',
             '::placeholder': {
                 // color: '#aab7c4'
             }

@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>{{$email->email}}</h1>
         <p>{{config('app.name')}} email</p>
     </div>
@@ -80,12 +80,12 @@ array_push($datasets, $data);
 	                </tr>
 	                <tr>
 	                    <th>Is public</th>
-	                    <td class="text-{{ $email->is_public  ? 'primary' : 'muted' }}">{{ $email->is_public  ? 'Yes' : 'No' }} </td>
+	                    <td class="text-{{ $email->is_public  ? 'secondary' : 'muted' }}">{{ $email->is_public  ? 'Yes' : 'No' }} </td>
 	                </tr>
 
 	                <tr>
 	                    <th>Owned by</th>
-	                    <td class="text-{{ !$email->user  ? 'primary' : null }}">{!! $email->user ? '<a href="/users/'.$email->user->id.'">'.$email->user->name."</a>" : 'No owner' !!}</td>
+	                    <td class="text-{{ !$email->user  ? 'secondary' : null }}">{!! $email->user ? '<a href="/users/'.$email->user->id.'">'.$email->user->name."</a>" : 'No owner' !!}</td>
 	                </tr>
 	                <tr>
 	                    <th>Created</th>

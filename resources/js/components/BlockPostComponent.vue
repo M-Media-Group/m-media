@@ -2,10 +2,10 @@
     <ul>
         <!-- <a class="action-section card mb-5 mt-5 round-all-round action-section-hover" :href="post.link" target="_BLANK" rel="noopener" v-for="post in posts">
           <div class="row no-gutters">
-            <div v-if="post._embedded['wp:featuredmedia']" class="col-md-12 p-5">
+            <div v-if="post._embedded['wp:featuredmedia']" class="twelve columns p-5">
               <img :src="post._embedded['wp:featuredmedia']['0'].source_url" class="card-img" style="max-height: 200px;object-fit: scale-down;" alt="">
             </div>
-            <div class="col-md-12">
+            <div class="twelve columns">
               <div class="card-body">
                 <h5 class="card-title" v-html="post.title.rendered"></h5>
                 <p class="card-text" v-html="post.excerpt.rendered"></p>

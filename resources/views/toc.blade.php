@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
+@section('above_container')
+<div class="header-section bg-secondary">
+  <h1>Terms and Conditions</h1>
+</div>
+@endsection
+
 @section('content')
-<h1>{{ config('app.name') }} Terms of Service</h1>
 <h2>1. Terms</h2>
 <p>By accessing the website at <a href="{{ config('app.url') }}">{{ config('app.url') }}</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
 <h2>2. Use License</h2>

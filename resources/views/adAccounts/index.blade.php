@@ -1,11 +1,11 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Ad accounts</h1>
 		<p>{{config('app.name')}} ad accounts</p>
 	</div>
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">{{count($accounts)}} accounts</h2>
 	@if($accounts && count($accounts) > 0)
 	<div class="table-responsive table-hover">
@@ -26,12 +26,12 @@
 					<td>{{ $account->platform->name }}</td>
 					@can('update account addresses')
 
-					<td class="text-{{ !$account->user  ? 'primary' : null }}">
+					<td class="text-{{ !$account->user  ? 'secondary' : null }}">
 						<select-component :options="{{$users}}" title="Is serviceable" url="/accounts/{{$account->id}}" column_title="user_id" current_value="{{$account->user_id}}" onclick="event.stopPropagation();"></select-component>
 					</td>
 					@endcan
 
-					<td class="text-{{ now()->diffInDays( $account->created_at ) > 6  ? 'primary' : 'muted'}}">{{ $account->created_at->diffForHumans() }}</td>
+					<td class="text-{{ now()->diffInDays( $account->created_at ) > 6  ? 'secondary' : 'muted'}}">{{ $account->created_at->diffForHumans() }}</td>
 				</tr>
 			@endforeach
 			</tbody>

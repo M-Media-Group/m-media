@@ -8,25 +8,25 @@
     <h1>{{ __('Instagram account analyzer') }}</h1>
 </div>
 <div>
-    <div class="action-section container">
+    <div class="action-section card">
         <div class="mt-5">
             <form method="GET" action="/instagram-account-analyzer" onsubmit="location.href='{{config('app.url')}}/tools/instagram-account-analyzer/' + document.getElementById('username').value; return false;">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="username" class="col-md-4 col-form-label text-md-right">Instagram {{ __('username') }}</label>
+                    <label for="username" class="four columns col-form-label u-right-text-on-desktop">Instagram {{ __('username') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="six columns">
                         <input id="username" type="text" autocomplete="off" minlength="1" maxlength="31" placeholder="@username" class="form-control" name="username" required autofocus>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12 text-muted">
+                    <div class="twelve columns text-muted">
                         When you type in a username and press analyze, we will start daily collection of data to build a historical profile of the account. If you do not want us to store historical data, <a href="/contact">{{ __('contact us') }}</a> first.
                     </div>
                 </div>
                 <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="eight columns offset-by-four">
                         <button type="submit" class="button button-primary">
                             {{ __('Analyze') }}
                         </button>

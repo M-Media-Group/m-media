@@ -23,12 +23,12 @@
                 </tr>
                 <tr>
                     <th>Is public</th>
-                    <td class="text-{{ $email->is_public  ? 'primary' : 'muted' }}">{{ $email->is_public  ? 'Yes' : 'No' }} </td>
+                    <td class="text-{{ $email->is_public  ? 'secondary' : 'muted' }}">{{ $email->is_public  ? 'Yes' : 'No' }} </td>
                 </tr>
 
                 <tr>
                     <th>Owned by</th>
-                    <td class="text-{{ !$email->user  ? 'primary' : null }}">{!! $email->user ? '<a href="/users/'.$email->user->id.'">'.$email->user->name."</a>" : 'No owner' !!}</td>
+                    <td class="text-{{ !$email->user  ? 'secondary' : null }}">{!! $email->user ? '<a href="/users/'.$email->user->id.'">'.$email->user->name."</a>" : 'No owner' !!}</td>
                 </tr>
                 <tr>
                     <th>Created</th>
@@ -61,7 +61,7 @@
             <form class="d-inline" method="POST" action="/emails/{{$email->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this email forever.');">
+                <button type="submit" class="button button-primary" onclick="return confirm('Please confirm you want to delete this email forever.');">
                     {{ __('Delete email') }}
                 </button>
             </form>

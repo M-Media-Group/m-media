@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>{{$phone->phone}}</h1>
         <h2>{{config('app.name')}} phone</h2>
     </div>
@@ -23,12 +23,12 @@
                 </tr>
                 <tr>
                     <th>Is public</th>
-                    <td class="text-{{ $phone->is_public  ? 'primary' : 'muted' }}">{{ $phone->is_public  ? 'Yes' : 'No' }} </td>
+                    <td class="text-{{ $phone->is_public  ? 'secondary' : 'muted' }}">{{ $phone->is_public  ? 'Yes' : 'No' }} </td>
                 </tr>
 
                 <tr>
                     <th>Owned by</th>
-                    <td class="text-{{ !$phone->user  ? 'primary' : null }}">{!! $phone->user ? '<a href="/users/'.$phone->user->id.'">'.$phone->user->name."</a>" : 'No owner' !!}</td>
+                    <td class="text-{{ !$phone->user  ? 'secondary' : null }}">{!! $phone->user ? '<a href="/users/'.$phone->user->id.'">'.$phone->user->name."</a>" : 'No owner' !!}</td>
                 </tr>
                 <tr>
                     <th>Created</th>
@@ -61,7 +61,7 @@
             <form class="d-inline" method="POST" action="/phones/{{$phone->id}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button button-secondary" onclick="return confirm('Please confirm you want to delete this phone forever.');">
+                <button type="submit" class="button button-primary" onclick="return confirm('Please confirm you want to delete this phone forever.');">
                     {{ __('Delete phone') }}
                 </button>
             </form>

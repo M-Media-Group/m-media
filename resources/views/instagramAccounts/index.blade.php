@@ -1,11 +1,11 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Instagram Accounts</h1>
 		<p>{{config('app.name')}} Instagram Accounts</p>
 	</div>
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">History</h2>
 
 @php
@@ -59,7 +59,7 @@ array_push($datasets, $data);
 					<td><a href="/instagram-accounts/{{ $account->id }}">{{ $account->id }}</a></td>
 					<td>{{ $account->username }}</td>
 					<td><a href="https://publish.buffer.com/profile/{{ $account->buffer_id }}" target="_BLANK" rel="noopener noreferrer">{{ $account->buffer_id }}</a></td>
-					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">
+					<td class="text-{{ $account->is_scrapeable  ? 'muted' : 'secondary' }}">
 						<checkbox-toggle-component checked="{{$account->is_scrapeable ? true : false}}" title="Is scrapeable" url="/instagram-accounts/{{$account->id}}" column_title="is_scrapeable"></checkbox-toggle-component>
 					</td>
 	                    <td>
@@ -69,17 +69,17 @@ array_push($datasets, $data);
 						<td>{{ number_format($account->latestScrape->followers_count) }}</td>
 						<td>{{ number_format($account->latestScrape->following_count) }}</td>
 						@if(!$account->latestScrape->is_private)
-	                        <td class="text-{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100, 1)}}%)</td>
+	                        <td class="text-{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5  ? 'muted' : 'secondary' }}">{{ ($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($account->latestScrape->avg_likes_count/$account->latestScrape->followers_count)*100, 1)}}%)</td>
 	                    @else
 	                        <td class="text-muted">Unknown, private account</td>
 	                    @endif
 	                    <td>{{ $account->latestScrape->created_at->diffForHumans() }}</td>
                     @endif
 
-			{{-- 		<td class="text-{{ $account->is_active  ? 'success' : 'primary' }}">{{ $account->is_active  ? null : 'Offline' }}</td>
-					<td class="text-{{ $account->is_servicable  ? 'success' : 'primary' }}">{{ $account->is_servicable  ? null : 'Do not service' }} </td>
-					<td class="text-{{ !$account->user  ? 'primary' : null }}">{!! $account->user ? '<a href="/users/'.$account->user->id.'">'.$account->user->name."</a>" : 'No owner' !!}</td>
-					<td class="text-{{ now()->diffInDays( $account->last_contact_at ) > 6  ? 'primary' : 'muted'}}">{{ $account->last_contact_at->diffForHumans() }}</td>
+			{{-- 		<td class="text-{{ $account->is_active  ? 'success' : 'secondary' }}">{{ $account->is_active  ? null : 'Offline' }}</td>
+					<td class="text-{{ $account->is_servicable  ? 'success' : 'secondary' }}">{{ $account->is_servicable  ? null : 'Do not service' }} </td>
+					<td class="text-{{ !$account->user  ? 'secondary' : null }}">{!! $account->user ? '<a href="/users/'.$account->user->id.'">'.$account->user->name."</a>" : 'No owner' !!}</td>
+					<td class="text-{{ now()->diffInDays( $account->last_contact_at ) > 6  ? 'secondary' : 'muted'}}">{{ $account->last_contact_at->diffForHumans() }}</td>
 					<td><a href="/Accounts/{{ $account->id }}">View</a></td> --}}
 				</tr>
 			@endforeach

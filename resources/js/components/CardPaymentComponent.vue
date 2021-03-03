@@ -10,7 +10,7 @@
             :options="stripeOptions"
             @change="complete = $event.complete"
         />
-        <button class="pay-with-stripe button button-secondary" @click="pay" :disabled="!complete">
+        <button class="pay-with-stripe button button-primary" @click="pay" :disabled="!complete">
             Pay with credit card
         </button>
     </div>

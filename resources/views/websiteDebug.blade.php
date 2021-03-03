@@ -5,7 +5,7 @@
 @section('meta_description', "This ".config('app.name')." tool will scan and quickly analyze your website to provide you with suggestions on improving your web strategy." )
 
 @section('above_container')
-    <div class="header-section u-bg-primary background-filter" style="background:linear-gradient(
+    <div class="header-section bg-secondary background-filter" style="background:linear-gradient(
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),url({{$image ?? $images[0]['src'] ?? null}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
@@ -98,7 +98,7 @@
                     {{-- <img aria-hidden="true" class="K7JcSb" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEXLAAD////KAADXSEjYTEzHAADJAADedXXOExPdcXHbZ2fqpqbfenrPISHYS0tAKQ2QAAAASElEQVQYlWNgwAKY4ADC52BhhgIWDrA8CyMcsIDUMDEjBJiRBLg4uVEFWNk40QXYqSnAAhXggToM4nQgk5cP4nSo58A0Nq8DAPmPAey2ObvQAAAAAElFTkSuQmCC" width="16" alt="Image" data-atf="3"> --}}
                     ↗️
                     <span class=" ">{{str_limit($website->url.($page->path ? str_replace("/", " › ", $page->path) : ""), $limit = 40, $end = ' ...')}}</span></div>
-                <div class="h3 text-primary" aria-level="3" role="heading">{{str_limit($title, $limit = 70, $end = ' ...')}}</div>
+                <div class="h3 text-secondary" aria-level="3" role="heading">{{str_limit($title, $limit = 70, $end = ' ...')}}</div>
             </a>
         </div>
         <div>
@@ -124,7 +124,7 @@
                 <tr>
                     <th>Scheme and domain</th>
                     <td>
-                        <a target="_BLANK" rel="noopener noreferrer" href="{{ $website->url }}"><span class="text-{{ isset($website->scheme) && $website->scheme == 'https'  ? 'muted' : 'primary' }}">{{ $website->scheme ?? "No scheme" }}</span><span class="text-muted">://</span>{{ $website->host }} ↗️</a><br/>
+                        <a target="_BLANK" rel="noopener noreferrer" href="{{ $website->url }}"><span class="text-{{ isset($website->scheme) && $website->scheme == 'https'  ? 'muted' : 'secondary' }}">{{ $website->scheme ?? "No scheme" }}</span><span class="text-muted">://</span>{{ $website->host }} ↗️</a><br/>
                         <small>Registered {{$website->latest_scrape->domain_created_at->diffForHumans()}}, expires {{$website->latest_scrape->domain_expires_at->diffForHumans()}}</small>
                     </td>
                 </tr>
@@ -136,7 +136,7 @@
                 <tr>
                     <th>Detected social media accounts</th>
                     <td>
-                            <span class="text-primary">No accounts detected</span>
+                            <span class="text-secondary">No accounts detected</span>
                     </td>
                 </tr>
                 @endif
@@ -152,14 +152,14 @@
                                 <span class="badge badge-muted badge-pill">Google Tag Manager</span>
                             @endif
                         @else
-                            <span class="text-primary">No analytics services detected</span>
+                            <span class="text-secondary">No analytics services detected</span>
                         @endif
                     </td>
                 </tr>
 
                 <tr>
                     <th>Locale</th>
-                    <td class="text-{{ $lang ? 'muted' : 'primary' }}">{{ $lang ?? 'No locale specified' }}</td>
+                    <td class="text-{{ $lang ? 'muted' : 'secondary' }}">{{ $lang ?? 'No locale specified' }}</td>
                 </tr>
 
                 <tr>
@@ -173,7 +173,7 @@
                 </tr>
                 <tr>
                     <th>Page load speed</th>
-                    <td class="text-{{ $execution_time < 3.7  ? 'muted' : 'primary' }}">{{round($execution_time, 3). " seconds"}}</td>
+                    <td class="text-{{ $execution_time < 3.7  ? 'muted' : 'secondary' }}">{{round($execution_time, 3). " seconds"}}</td>
                 </tr>
             </tbody>
         </table>
@@ -198,7 +198,7 @@
         <td>{{$keyword->topic}}</td>
         <td style="vertical-align: middle;" class="d-print-none">
             <div class="progress">
-              <div class="progress-bar u-bg-primary" role="progressbar" style="width: {{($keyword->score) / $detected_keywords[0]->score * 100 }}%" aria-valuenow="{{($keyword->score) / $detected_keywords[0]->score * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary" role="progressbar" style="width: {{($keyword->score) / $detected_keywords[0]->score * 100 }}%" aria-valuenow="{{($keyword->score) / $detected_keywords[0]->score * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </td>
         {{-- Show percentage on print page --}}
@@ -276,7 +276,7 @@
                 <td>{{$number['value']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($number['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($number['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-secondary" role="progressbar" style="position: absolute;top: {{($number['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($number['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>
@@ -309,7 +309,7 @@
                 <td>{{$email['value']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($email['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($email['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-secondary" role="progressbar" style="position: absolute;top: {{($email['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($email['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>
@@ -342,7 +342,7 @@
                 <td>{{$media['alt']}}</td>
                 <td>
                     <div class="progress" style="position: relative;width: 10px;height: 66px;margin: 0 auto;">
-                      <div class="progress-bar u-bg-primary" role="progressbar" style="position: absolute;top: {{($media['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($media['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="progress-bar bg-secondary" role="progressbar" style="position: absolute;top: {{($media['position'] - $body_position + 1) / $elements_count * 100 }}%;width: 100%;height: 100%;" aria-valuenow="{{($media['position'] - $body_position + 1) / $elements_count * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </td>
             </tr>

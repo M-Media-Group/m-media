@@ -82,17 +82,17 @@
     </div>
 
     <div class="header-section row m-0 text-white" style="background: var(--black);">
-        <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+        <div class="six columns order-md-12 mb-5 flex" data-aos="fade-left">
             <img src="/images/devices2.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
-        <div class="col-md-6 order-md-6" data-aos="fade-right">
+        <div class="six columns order-md-6" data-aos="fade-right">
             <h3 class="mt-0">Look great on phones and computers alike.</h3>
             <p>TV's, projectors, tablets, smartphones, laptops, and computers. Whatever device, your website looks great. Heck, you could even browse the site in a Tesla and it'll look great. Just make sure you're parked!</p><p>All our websites are responsive from the get-go, so you don't have to worry about how your site will look on your clients devices. It'll look great. Always.</p>
         </div>
     </div>
 
     <div class="header-section row m-0 text-white" style="background: var(--black);">
-        <div class="col-md-12">
+        <div class="twelve columns">
             <div class="u-limit-max-width u-center" data-aos="fade">
                 <img src="/images/seo.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
            </div>
@@ -104,10 +104,10 @@
     </div>
 
     <div class="header-section row m-0 text-white" style="background: var(--black);">
-        <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
+        <div class="six columns order-md-6 mb-5 flex" data-aos="fade-right">
             <img src="/images/webspeed.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
-        <div class="col-md-6 order-md-12" data-aos="fade-left">
+        <div class="six columns order-md-12" data-aos="fade-left">
             <h3 class="mt-0">Whoosh! So fast.</h3>
             <p>Nobody likes a slow website. For every additional second that it takes your website to load, you lose around 7% of your customers (source and more info on page speed importance). Page speed is also crucial to SEO and ranking well on search engines like Google.</p>
             <p class="d-none">Because our sites are built from scratch, we include just the right amount of code that is needed to get a given task done; no more, no less. If you've ever used WordPress before, you've surely experienced situations where plugins do way more than you need, and cause the website to slow down. Or they don't do enough, so you need multiple plugins to achieve whatever you need to do.</p>
@@ -116,26 +116,26 @@
     </div>
 
 <div class="header-section row m-0 text-white" style="background: var(--black);">
-    <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+    <div class="six columns order-md-12 mb-5 flex" data-aos="fade-left">
         <img src="/images/analytics.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-6" data-aos="fade-right">
+    <div class="six columns order-md-6" data-aos="fade-right">
         <h3 class="mt-0">Wow. Customers from where?!</h3>
         <p>See how many people saw your website, your best performing pages, bounce rate, session views, and many more metrics. </p><p>You'll have access to this data from day one, and we'll be happy to help you understand all the metrics you have access to.</p>
     </div>
 </div>
 
 <div class="header-section row m-0 text-white" style="background: var(--black);">
-    <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
+    <div class="six columns order-md-6 mb-5 flex" data-aos="fade-right">
         <img src="/images/webscale.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-12" data-aos="fade-left">
+    <div class="six columns order-md-12" data-aos="fade-left">
         <h3 class="mt-0">From 1 to 1 million, there's enough for everyone visiting.</h3>
         <p>From one user a day to millions, your website can scale across servers so seamlessly that you won't even notice it happen. If there's a temporary surge in people visiting your website, we'll automatically increase server size to allow each of them to have an incredibly fast experience. When the surge is over, we'll scale back the server size to help you save costs.</p>
     </div>
 </div>
   <div class="header-section row m-0 text-white" style="background: var(--black);">
-        <div class="col-md-12">
+        <div class="twelve columns">
             <div class="u-limit-max-width u-center" data-aos="fade">
                 <img src="/images/abtesting.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
            </div>
@@ -145,27 +145,27 @@
         </div>
     </div>
 <div class="header-section row m-0 text-white" style="background: var(--black);">
-    <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+    <div class="six columns order-md-12 mb-5 flex" data-aos="fade-left">
         <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-6" data-aos="fade-right">
+    <div class="six columns order-md-6" data-aos="fade-right">
         <h3 class="mt-0">Can I...<br/>Yes!</h3>
         <p>Whether it's using Facebook for logging in, or having new customers added automatically to your Mailchimp list, our websites can easily communicate with other websites and services to effortlessly share data and tasks.</p>
         <p>There's little need to change your existing business workflow. We believe websites should work for you instead of you having to work on them. Websites we build reflect that by integrating with your existing way of doing business.</p>
     </div>
 </div>
 <div class="header-section row m-0 text-white" style="background: var(--black);">
-    <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
+    <div class="six columns order-md-6 mb-5 flex" data-aos="fade-right">
         <img src="/images/emails.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
     </div>
-    <div class="col-md-6 order-md-12" data-aos="fade-left">
+    <div class="six columns order-md-12" data-aos="fade-left">
         <h3 class="mt-0">Oh. Hello.</h3>
         <p>You can have your own company email address ending with @your-domain.com (where your-domain is the name of your company). Oh, and since we're M Media - we automate this too. Your website will be able to send clients automatic email reminders, requests, or notifications.</p>
         <p>Thanks to our flexible communication with other services, your email address can easily be integrated with external mailing services like Mailchimp too.</p>
     </div>
 </div>
 <div class="header-section row m-0 text-white" style="background: var(--black);">
-    <div class="col-md-12">
+    <div class="twelve columns">
         <div class="u-limit-max-width u-center d-none" data-aos="fade">
               <img src="/images/stars.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="max-width: 200px;">
         </div>
@@ -175,13 +175,13 @@
         </blockquote>
     </div>
 </div>
- <div class="header-section u-bg-primary row m-0">
-        <div class="col-md-12 text-center">
+ <div class="header-section bg-secondary row m-0">
+        <div class="twelve columns u-center-text">
             <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
                 <h3 data-aos="fade">Websites starting at €999</h3>
                 <p data-aos="fade" data-aos-delay="300">Hosting from €15 a month</p>
-                <a class="button button-secondary" href="/contact">Let's talk :)</a>
-                <a class="button button-secondary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
+                <a class="button button-primary" href="/contact">Let's talk :)</a>
+                <a class="button button-primary text-white d-none" href="/case-studies/justbookr">Read a start-up case study</a>
             </div>
         </div>
     </div>

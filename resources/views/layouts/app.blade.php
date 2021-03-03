@@ -13,12 +13,12 @@
     <div id="app">
         @include('components.newnav')
         @yield('above_container')
-        <div class="container p-0">
-            <div class="row m-0 p-0 mt-5">
-                <main class="col-md-6 order-md-6">
+        <div class="container" style="margin-top:3rem;">
+            <div class="row">
+                <main class="nine columns">
                     @yield('content')
                 </main>
-                <div class="col-md-3 order-md-12">
+                <div class="three columns">
                     @section('sidebar')
                     @if( config('blog.instagram_username'))
                     {{ config('app.name') }} on <a href="{{config('blog.instagram_url')}}">Instagram</a>
@@ -33,9 +33,6 @@
                     <p>Already a client? <a href="/login">Log in</a>.</p>
                     @endif
                     @show
-                </div>
-                <div class="col-md-3 order-md-1">
-                    @yield('left_sidebar')
                 </div>
             </div>
         </div>

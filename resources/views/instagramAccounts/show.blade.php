@@ -6,7 +6,7 @@
 @section('meta_description', "This ".config('app.name')." tool will scan and quickly analyze your Instagram profile to provide you with suggestions on improving your Instagram strategy." )
 
 @section('above_container')
-    <div class="header-section u-bg-primary background-filter" style="background:linear-gradient(
+    <div class="header-section bg-secondary background-filter" style="background:linear-gradient(
       rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.3)
     ),url({{$scraped_data->profile_picture_url}}), #246EBA;background-position: center;background-repeat: no-repeat;background-size: cover;">
@@ -152,15 +152,15 @@
                 </tr>
                 <tr>
                     <th>Follower to following ratio health</th>
-                    <td class="text-{{ $scraped_data->followers_count/$scraped_data->following_count > 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count/$scraped_data->following_count > 3 ? 'Healthy' : 'Degraded' }} ({{round($scraped_data->followers_count/$scraped_data->following_count, 1)}} followers per following)</td>
+                    <td class="text-{{ $scraped_data->followers_count/$scraped_data->following_count > 3  ? 'muted' : 'secondary' }}">{{ $scraped_data->followers_count/$scraped_data->following_count > 3 ? 'Healthy' : 'Degraded' }} ({{round($scraped_data->followers_count/$scraped_data->following_count, 1)}} followers per following)</td>
                 </tr>
                 <tr>
                     <th>Engagement health</th>
-                    <td class="text-{{ ($scraped_data->avg_likes_count/$scraped_data->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scraped_data->avg_likes_count/$scraped_data->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scraped_data->avg_likes_count/$scraped_data->followers_count)*100, 1)}}%)</td>
+                    <td class="text-{{ ($scraped_data->avg_likes_count/$scraped_data->followers_count)*100 > 5  ? 'muted' : 'secondary' }}">{{ ($scraped_data->avg_likes_count/$scraped_data->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scraped_data->avg_likes_count/$scraped_data->followers_count)*100, 1)}}%)</td>
                 </tr>
                 <tr>
                     <th>Private</th>
-                    <td class="text-{{ $scraped_data->is_private  ? 'primary' : 'muted' }}">{{ $scraped_data->is_private  ? 'Yes' : 'No' }}</td>
+                    <td class="text-{{ $scraped_data->is_private  ? 'secondary' : 'muted' }}">{{ $scraped_data->is_private  ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
                     <th>Verified</th>
@@ -176,11 +176,11 @@
                 </tr>
                 <tr>
                     <th>Is being scraped</th>
-                    <td class="text-{{ $account->is_scrapeable  ? 'muted' : 'primary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
+                    <td class="text-{{ $account->is_scrapeable  ? 'muted' : 'secondary' }}">{{ $account->is_scrapeable  ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
                     <th>Qualifies for {{Config('app.name')}} services</th>
-                    <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'primary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
+                    <td class="text-{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3  ? 'muted' : 'secondary' }}">{{ $scraped_data->followers_count > 100 || $scraped_data->media_count >= 3 ? 'Yes' : 'No' }}</td>
                 </tr>
                 <tr>
                     <th>ID</th>
@@ -356,7 +356,7 @@ array_push($datasets, $data);
                             <td class="text-{{($scrape->followers_count) - ($next->followers_count) >=0 ? "" : "primary"}}">{{ sprintf("%+d",($scrape->followers_count) - ($next->followers_count)) }} <small class="text-muted">{{ number_format($scrape->followers_count) }}</small></td>
                             <td>{{ sprintf("%+d",($scrape->following_count) - ($next->following_count)) }} <small class="text-muted">{{ number_format($scrape->following_count) }}</small></td>
                             @if(!$scrape->is_private)
-                            <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'primary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
+                            <td class="text-{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5  ? 'muted' : 'secondary' }}">{{ ($scrape->avg_likes_count/$scrape->followers_count)*100 > 5 ? 'Healthy' : 'Degraded' }} ({{round(($scrape->avg_likes_count/$scrape->followers_count)*100, 1)}}%)</td>
                             @else
                             <td class="text-muted">Unknown, private account</td>
                             @endif

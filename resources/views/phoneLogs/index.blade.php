@@ -1,11 +1,11 @@
 @extends('layouts.clean')
 
 @section('above_container')
-	<div class="header-section u-bg-primary">
+	<div class="header-section bg-secondary">
 		<h1>Phone logs</h1>
 		<p>{{config('app.name')}} Phones</p>
 	</div>
-<div class="m-3">
+<div class="container">
 <h2 class="mt-5 mb-0">{{count($phone_logs)}} phones</h2>
 	@if($phone_logs && count($phone_logs) > 0)
 	<div class="table-responsive table-hover">

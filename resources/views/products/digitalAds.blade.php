@@ -76,14 +76,14 @@
   }
 }
 </script>
-    <div class="header-section u-bg-primary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/1-scaled2x.svg'), var(--primary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain, cover;">
+    <div class="header-section bg-secondary with-bg-dec" style="background:url('images/heartweb.svg'), url('images/backgrounds/1-scaled2x.svg'), var(--secondary);background-position: 67vw, bottom;background-repeat: no-repeat;background-size: contain, cover;">
         <h1 class="header-section-title mb-0">Digital Advertising</h1>
         <p class="mb-0" data-aos="fade">Reach people with Google and Facebook ads.</p>
-        <a class="button button-secondary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Contact us</a>
+        <a class="button button-primary mt-3 mb-5" href="/contact" data-aos="fade" data-aos-delay="300">Contact us</a>
         <a class="button white border-white text-white" href="https://blog.mmediagroup.fr/category/partnerships/" data-aos="fade" data-aos-delay="300">See case studies</a>
     </div>
     <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-12">
+        <div class="twelve columns">
             <div class="u-limit-max-width u-center">
               <img src="/images/logos.png" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5" style="width: 100%;max-height:70px;object-fit:cover;">
               <h3 class="mt-0 tect-center">Our customers trust us with over 15k EUR in ad budgets.</h3>
@@ -93,10 +93,10 @@
         </div>
     </div>
     <div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+        <div class="six columns order-md-12 mb-5 flex" data-aos="fade-left">
             <img src="/images/devices2.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
-        <div class="col-md-6 order-md-6" data-aos="fade-right">
+        <div class="six columns order-md-6" data-aos="fade-right">
             <h3 class="mt-0">Advertise, smart.</h3>
             <p>Facebook, Google, and Reddit ads are powerful marketing platforms that require precise application.</p>
             <p>The myriad of optimization and targeting options need to be well planned and executed.</p>
@@ -105,7 +105,7 @@
     </div>
 
     <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-12">
+        <div class="twelve columns">
             <div class="u-limit-max-width u-center d-none" data-aos="fade">
                 <img src="/images/seo.svg" alt="Multiple devices showing responsive websites" class="u-limit-max-width mb-5">
            </div>
@@ -115,29 +115,29 @@
     </div>
 
     <div class="header-section row m-0" style="background: var(--white);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6 order-md-6 mb-5 flex" data-aos="fade-right">
+        <div class="six columns order-md-6 mb-5 flex" data-aos="fade-right">
             <img src="/images/webspeed.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
-        <div class="col-md-6 order-md-12" data-aos="fade-left">
+        <div class="six columns order-md-12" data-aos="fade-left">
             <h3 class="mt-0">Optimise for ad-driven profit, not just revenue.</h3>
             <p>Our service optimises audience targeting options and makes ad-creatives suggestions as new data flows in. From day 1, your ads only get better and better by the week.</p>
         </div>
     </div>
     <div class="header-section row m-0" style="background: var(--light);background-position: bottom;background-repeat: no-repeat;background-size: cover;">
-        <div class="col-md-6 order-md-12 mb-5 flex" data-aos="fade-left">
+        <div class="six columns order-md-12 mb-5 flex" data-aos="fade-left">
             <img src="/images/loveweb.svg" alt="Multiple devices showing responsive websites" class="u-full-width mb-0">
         </div>
-        <div class="col-md-6 order-md-6" data-aos="fade-right">
+        <div class="six columns order-md-6" data-aos="fade-right">
             <h3 class="mt-0">Pay only for ads that work.</h3>
             <p>We charge only when your ad generates a useful engagement for your business, like a mailing-list signup or a purchase. If your ads don't sell, you don't pay.</p>
         </div>
     </div>
- <div class="header-section u-bg-primary row m-0">
-        <div class="col-md-12 text-center">
-            <div class="flex" style="flex-wrap: wrap; flex-direction: column;">
-                <h3 class="mt-0 u-center" data-aos="fade-up">Our campaigns have been seen over 10 million times.</h3>
-            <p class="u-center" data-aos="fade-up">Reaching highly specific audiences that drive engagement, our ads are attributed to some of the most consistent sales records for our customers.</p>
-                <a class="button button-secondary" href="/contact">Advertise with us</a>
+ <div class="header-section bg-secondary row m-0">
+        <div class="twelve columns">
+            <div class="flex u-center u-center-text" style="flex-wrap: wrap; flex-direction: column;">
+                <h3 class="mt-0" data-aos="fade-up">Our campaigns have been seen over 10 million times.</h3>
+            <p data-aos="fade-up">Reaching highly specific audiences that drive engagement, our ads are attributed to some of the most consistent sales records for our customers.</p>
+                <a class="button button-primary" href="/contact">Advertise with us</a>
             </div>
         </div>
     </div>

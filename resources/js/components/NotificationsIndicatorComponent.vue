@@ -2,7 +2,6 @@
     <span
         v-if="unreadMessages.length > 0"
         key="notifications"
-        class="text-primary"
         style="
             background: #246eba;
             border-radius: 50%;

@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>{{str_replace (["_", "-"], " ", $bot->alias)}}</h1>
         <p>Marketing Automation Bot</p>
     </div>
@@ -51,11 +51,11 @@
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td class="text-{{ $bot->is_active  ? 'success' : 'primary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
+                    <td class="text-{{ $bot->is_active  ? 'success' : 'secondary' }}">{{ $bot->is_active  ? 'Online' : 'Offline' }}</td>
                 </tr>
                 <tr>
                     <th>Serviceable</th>
-                    <td class="text-{{ $bot->is_servicable  ? 'muted' : 'primary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
+                    <td class="text-{{ $bot->is_servicable  ? 'muted' : 'secondary' }}">{{ $bot->is_servicable  ? 'Yes' : 'Not serviceable' }} </td>
                 </tr>
                 @if($bot->user)
                     <tr>
@@ -65,7 +65,7 @@
                 @endif
                 <tr>
                     <th>Last contact</th>
-                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 3  ? 'primary' : 'muted' }}">{{ $bot->last_contact_at->diffForHumans() }}</td>
+                    <td class="text-{{ now()->diffInDays( $bot->last_contact_at ) > 3  ? 'secondary' : 'muted' }}">{{ $bot->last_contact_at->diffForHumans() }}</td>
                 </tr>
             </tbody>
         </table>

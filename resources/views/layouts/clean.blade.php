@@ -17,17 +17,17 @@
         @include('components.newnav')
         @yield('above_container')
         @if(View::hasSection('content'))
-            <div class="container p-0">
-                <div class="row m-0 p-0 mt-5">
+            <div class="container u-limit-max-width" style="margin-top:3rem;">
+                <div class="row">
                     <transition name="fade">
-                    <div class="col-md-12 u-center u-text-center" style="max-width: 700px;">
+                    <div class="twelve columns u-center">
                         @yield('content')
                     </div>
                     </transition>
                 </div>
             </div>
         @endif
-        <div class="footer d-flex justify-content-around">
+        <div class="footer u-center-text">
             <small>
                 <a href="/about" class="text-white">About</a> |
                 <a href="/privacy-policy" class="text-white">Privacy policy</a> |

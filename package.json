@@ -5,7 +5,8 @@
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "production": "mix --production"
+        "production": "rm -r public/js && rm -r public/css && mix --production && npm run test",
+        "test": "php ./vendor/bin/phpunit"
     },
     "devDependencies": {
         "axios": "^0.21.1",

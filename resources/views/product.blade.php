@@ -8,7 +8,7 @@
 	@if (isset($subtext))
 		<p class="text-muted">{{$subtext}}</p>
 	@endif
-    <a class="button button-secondary" href="/contact">Contact us</a>
+    <a class="button button-primary" href="/contact">Contact us</a>
     @if (isset($actions))
     @foreach($actions as $action)
         <a class="button button" target="_BLANK" rel="noopener noreferrer" href="{{$action['url']}}">{{$action['text']}}</a>
@@ -56,7 +56,7 @@
 
 {{Illuminate\Mail\Markdown::parse($text)}}
 
-{{-- <div class="card-deck mb-3 text-center">
+{{-- <div class="card-deck mb-3 u-center-text">
 	@foreach($price as $price)
 	<div class="card mb-4 box-shadow">
 		<div class="card-header">

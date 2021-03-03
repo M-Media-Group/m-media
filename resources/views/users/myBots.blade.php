@@ -1,7 +1,7 @@
 @extends('layouts.clean')
 
 @section('above_container')
-    <div class="header-section u-bg-primary">
+    <div class="header-section bg-secondary">
         <h1>Your bots</h1>
         <p>{{$user->name}} {{$user->surname}}</p>
     </div>
@@ -13,7 +13,7 @@
 	    @foreach ($user->bots->where('service_title', 'Bulk Service') as $bot)
 			<a class="action-section card mb-5 mt-5 round-all-round action-section-hover" href="/bots/{{$bot->id}}">
 			  <div class="row no-gutters">
-			    <div class="col-md-4 p-5">
+			    <div class="four columns p-5">
 			      <img src="/images/pi-top.png" class="card-img" style="max-height: 200px;object-fit: scale-down;" alt="{{Config('app.name')}} Marketing Bot">
 			    </div>
 			    <div class="col-md-8">
@@ -32,7 +32,7 @@
 	    </div>
 	@endif
 	<hr>
-	<a class="action-section card mb-5 mt-5 round-all-round action-section-hover text-center" href="/automation-bot" data-aos="fade">
+	<a class="action-section card mb-5 mt-5 round-all-round action-section-hover u-center-text" href="/automation-bot" data-aos="fade">
 	      <img src="/images/box.png" class="card-img-top" style="max-height: 200px;object-fit: scale-down;" alt="{{Config('app.name')}} Marketing Bot">
 
 	      <div class="card-body">

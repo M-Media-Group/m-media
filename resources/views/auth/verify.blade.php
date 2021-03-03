@@ -2,7 +2,7 @@
 
 @section('above_container')
     <div style="padding-top:15rem;">
-        <div class="action-section container mt-5">
+        <div class="action-section card mt-5">
             <div>{{ __('Verify Your Email Address') }}</div>
 
             <div class="mt-5">

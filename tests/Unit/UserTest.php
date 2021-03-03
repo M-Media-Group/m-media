@@ -22,6 +22,14 @@ class UserTest extends TestCase
         $response->assertSeeText(config('app.name'));
     }
 
+    public function testSeeCreateSepaBillingPage()
+    {
+        $user = \App\User::firstOrFail();
+        $response = $this->actingAs($user)->get('/users/' . $user->id . '/billing/payment-methods/sepas/create');
+        $response->assertStatus(200);
+        $response->assertSeeText(config('app.name'));
+    }
+
     public function testNotSeeSingleUserTest()
     {
         $user = \App\User::firstOrFail();

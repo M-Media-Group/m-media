@@ -165,7 +165,7 @@ class UserController extends Controller
         return view('users.invoices', compact('user', 'invoices', 'subscriptions', 'pmethod', 'discounts', 'intent', 'sepa_sources'));
     }
 
-    public function createSepaPaymentMethod($user) {
+    public function createSepaPaymentMethod(User $user) {
             $intent = $user->createSetupIntent([
                 'payment_method_types' => ['sepa_debit'],
             ]);

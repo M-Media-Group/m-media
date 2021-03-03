@@ -21,6 +21,8 @@ Route::get('/web-development/entrepreneurs', 'HomeController@entrepreneur');
 
 Route::get('/instagram', 'HomeController@instagram');
 
+Route::get('/internships', 'InternshipController@create');
+
 Route::get('/sitemap', 'HomeController@sitemap');
 
 Route::get('/frequently-asked-questions', 'HomeController@faq');

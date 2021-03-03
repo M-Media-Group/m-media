@@ -11,6 +11,8 @@
 |
  */
 
+Route::post('/internships', 'InternshipController@store');
+
 Route::post('/contact', 'HomeController@sendContactRequest');
 
 //Route::get('categories', 'CategoryController@index');

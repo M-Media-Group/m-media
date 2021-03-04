@@ -274,7 +274,7 @@ array_push($datasets, $data);
                 <p data-aos="fade" data-aos-delay="400" class="small">Data updated every hour</p>
                 <a class="button button-primary" href="https://github.com/sponsors/M-Media-Group?o=esb" rel="noopener" data-aos="fade">Donate to the project</a>
                 <a class="button button-secondary" href="https://blog.mmediagroup.fr/post/m-media-launches-covid-19-api/" rel="noopener" data-aos="fade">Read about the API</a>
-                <p data-aos="fade" data-aos-delay="400" class="small mt-3">This API has now been called over <a href="https://blog.mmediagroup.fr/post/m-media-coronavirus-api-passes-1-million-requests/" rel="noopener" data-aos="fade">1.5m times</a></p>
+                <p data-aos="fade" data-aos-delay="400" class="small mt-3">This API has now been called over <a href="https://blog.mmediagroup.fr/post/m-media-coronavirus-api-reaches-2-million-requests/" rel="noopener" data-aos="fade">2m times</a></p>
             </div>
         </div>
     </div>

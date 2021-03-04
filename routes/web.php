@@ -19,7 +19,7 @@
 
 Route::get('/web-development/entrepreneurs', 'HomeController@entrepreneur');
 
-Route::get('/instagram', 'HomeController@instagram');
+// Route::get('/instagram', 'HomeController@instagram');
 
 Route::get('/internships', 'InternshipController@create');
 

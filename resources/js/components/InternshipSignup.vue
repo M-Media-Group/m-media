@@ -49,8 +49,8 @@
                 <div style="height: 250px; margin: 0 auto; display: flex; margin-top:3rem;">
                     <img src="/images/internship/internship_questions.svg" style="height: 100%; margin: 0 auto;" alt="Person looking at computer screen" />
                 </div>
-                <h2>You’ll be given a 3 question test now.</h2>
-                <p>You have 1 minute per question to answer. If you navigate away or close the browser, you will automatically fail the tests. Do not panic, these tests only check to see if you think logically.</p>
+                <h2>You’ll be given a 3 question quiz now.</h2>
+                <p>You have 1 minute per question to answer. If you navigate away or close the browser, you will automatically fail the tests. Do not panic; stop and think before you answer and go on.</p>
             </div>
 
             <!-- Questions -->
@@ -166,6 +166,7 @@ export default {
     },
     mounted() {
         this.startTimer();
+        document.addEventListener('visibilitychange', this.handleNavigationAwayFromTab, false);
     },
     methods: {
         updateFile: function() {
@@ -215,16 +216,24 @@ export default {
             if(this.time_left > 0) {
                 this.time_left--
             } else {
-                if(this.current_tab === 6) {
-                    clearInterval(this.timer);
-                } else if (this.current_tab > 2) {
-                    this.current_tab++;
-                    this.time_left = 60;
-                }
+               this.switchTab();
             }
             if(this.time_left < 10) {
                 this.time_left = '0' + this.time_left;
             }
+        },
+        switchTab: function() {
+            if(this.current_tab === 6) {
+                clearInterval(this.timer);
+            } else if (this.current_tab > 2) {
+                this.current_tab++;
+                this.time_left = 60;
+            }
+        },
+        handleNavigationAwayFromTab () {
+          if (document.visibilityState === 'hidden') {
+            this.switchTab();
+          }
         }
     },
 };

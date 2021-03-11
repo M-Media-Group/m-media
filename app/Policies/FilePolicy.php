@@ -63,6 +63,9 @@ class FilePolicy
      */
     public function update(User $user, File $file)
     {
+        if ($file->is_locked) {
+            return false;
+        }
         if ($file->user_id && request()->input('user_id') && $file->user_id !== request()->input('user_id')) {
             return false;
         }
@@ -95,6 +98,10 @@ class FilePolicy
      */
     public function delete(User $user, File $file)
     {
+        if ($file->is_locked) {
+            return false;
+        }
+
         if ($file->user_id) {
             return $user->id == $file->user_id;
         }

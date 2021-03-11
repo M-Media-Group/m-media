@@ -21,7 +21,7 @@ Route::get('/web-development/entrepreneurs', 'HomeController@entrepreneur');
 
 // Route::get('/instagram', 'HomeController@instagram');
 
-Route::get('/internships', 'InternshipController@create');
+Route::get('/internships/apply', 'InternshipController@createApplication');
 
 Route::get('/sitemap', 'HomeController@sitemap');
 
@@ -62,6 +62,10 @@ Route::get('/privacy-policy', 'HomeController@privacy');
 Route::get('/terms-and-conditions', 'HomeController@toc');
 
 Route::get('/about', 'HomeController@about');
+
+Route::get('/internship-certificates/{internshipCertificate}', 'InternshipCertificateController@show');
+
+Route::get('/internship-certificates/{internshipCertificate}/congrats', 'InternshipCertificateController@showCongrats');
 
 Route::post(
     'stripe/webhook',
@@ -108,6 +112,7 @@ Route::group(['middleware' => ['auth', App\Http\Middleware\UpdateUserLastSeen::c
         Route::resource('phone-logs', 'PhoneLogController');
         Route::resource('instagram-accounts', 'InstagramAccountController');
         Route::resource('authentication-events', 'AuthenticationEventController');
+        Route::resource('internships', 'InternshipController');
         Route::post('/ad-platforms/facebook/ads/{id}/update-tags', 'AdAccountController@updateFacebookAdTags');
     });
 

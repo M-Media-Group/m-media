@@ -181,7 +181,7 @@ export default {
 
             //data.append('_method', 'put'); // add this
             axios
-                .post('/api/internships', data) // change this to post )
+                .post('/api/internships/apply', data) // change this to post )
                 .then((res) => {
                     this.success = true;
                     this.error = false;

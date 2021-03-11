@@ -53,7 +53,7 @@
             </a>
             @endif
         @else
-            <a class="button button-primary" href="/contact">
+            <a class="button button-secondary" href="/contact">
                 {{ __('Get help') }}
             </a>
         @endif

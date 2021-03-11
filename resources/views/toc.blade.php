@@ -37,4 +37,10 @@
 <p>{{ config('app.name') }} may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
 <h2>8. Governing Law</h2>
 <p>These terms and conditions are governed by and construed in accordance with the laws of {{ config('blog.country_name') }} and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>
+<h2>9. Client Terms</h2>
+<p>These terms and conditions apply to all paying Clients.</p>
+<ol type="a">
+   <li>{{ config('app.name') }} provides services and products in a timely manner as communicated to the Client. All work created for the customer belongs to the customer upon payment for said work.</li>
+   <li>All payments are non-refundable and considered earned upon receipt. All work may cease if any payments are not received or payments are delayed for a duration longer than 30 days after the payment due date. If {{ config('app.name') }} determines it necessary to pursue collections on any late payments/overdue receivables, the Client will be liable for all costs associated with the collections efforts including, but not limited to, all legal costs.</li>
+</ol>
 @endsection

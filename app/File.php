@@ -23,6 +23,7 @@ class File extends Model
         'size',
         'user_id',
         'is_public',
+        'is_locked',
     ];
     // protected $appends = ['location'];
 

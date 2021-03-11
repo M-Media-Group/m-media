@@ -10,13 +10,13 @@ class InternshipTest extends TestCase
 {
     public function testSeeInternshipPage()
     {
-        $response = $this->get('/internships');
+        $response = $this->get('/internships/apply');
         $response->assertStatus(200);
     }
 
     public function testFailSubmitInternshipPage()
     {
-        $response = $this->post('/api/internships', []);
+        $response = $this->post('/api/internships/apply', []);
         $response->assertStatus(302);
     }
 
@@ -32,7 +32,7 @@ class InternshipTest extends TestCase
             'question_3' => 'test',
             'file' => $file,
         );
-        $response = $this->post('/api/internships', $data);
+        $response = $this->post('/api/internships/apply', $data);
         $response->assertStatus(200);
     }
 

@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $this->authorize('show', $user);
         $user->load('websites')
-            ->loadCount('files', 'emails', 'instagramAccounts', 'bots', 'phones', 'websites', 'adAccounts');
+            ->loadCount('files', 'emails', 'instagramAccounts', 'bots', 'phones', 'websites', 'adAccounts', 'internships');
 
         return view('users.show', ['user' => $user]);
     }

@@ -11,7 +11,7 @@
 |
  */
 
-Route::post('/internships', 'InternshipController@store');
+Route::post('/internships/apply', 'InternshipController@apply');
 
 Route::post('/contact', 'HomeController@sendContactRequest');
 
@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('users/{user}/notifications', 'UserController@notifications');
 
     Route::post('/ad-platforms/facebook/ads/{id}/update-tags', 'AdAccountController@updateFacebookAdTags');
+
+    Route::apiResource('internship-certificates', 'InternshipCertificateController');
+
 });
 
 Route::group(['middleware' => ['client']], function () {

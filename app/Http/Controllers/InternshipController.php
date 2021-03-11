@@ -5,11 +5,33 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFile;
 use Illuminate\Http\Request;
 use App\Jobs\UploadFile;
+use App\Internship;
 
 class InternshipController extends Controller
 {
-    public function create(Request $request)
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
+        $user = $request->input('user');
+
+        $this->authorize('index', Internship::class);
+
+        $internships = Internship::with('certificate')
+            ->when($user, function ($query, $user) {
+                return $query->where('user_id', $user);
+            })->get();
+
+        return view('internships.index', compact('internships'));
+    }
+
+    public function createApplication(Request $request)
+    {
+        $this->authorize('createApplication', Internship::class);
         return view('internship');
     }
 
@@ -20,7 +42,7 @@ class InternshipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFile $request)
+    public function apply(StoreFile $request)
     {
     	$request->validate([
             'interest' => 'required|max:25',
@@ -44,6 +66,29 @@ class InternshipController extends Controller
                 'message' => "Interest: " . $request->input('interest') . "\n\nQ1: " . $request->input('question_1') . "\nQ2: " . $request->input('question_2') . "\nQ3: " . $request->input('question_3'),
             ]
         ));
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, Internship $internship)
+    {
+        $this->authorize('show', $internship);
+        $internship->load('certificate.file');
+        return view('internships.show', compact('internship'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 }

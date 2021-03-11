@@ -119,6 +119,12 @@
 	@endcomponent
 @endif
 
+@if($user->internships_count > 0)
+@component('components.customSmallCard', ['image' => '/images/internship/intern.svg', 'title' => $user->internships_count.' ' .str_plural("internship", $user->internships_count), 'id' => 'internships', 'link' => '/internships?user='.$user->id])
+	    See your internships at {{config('app.name')}}.
+	@endcomponent
+@endif
+
 <h2 class="mt-5 mb-0" id="subscriptions">More rescources</h2>
 @component('components.customSmallCard', ['image' => '/images/icons/euro.svg', 'title' => 'Billing and payments', 'id' => 'payment', 'link' => '/users/'.$user->id."/billing" ])
 	@endcomponent

@@ -44,10 +44,10 @@ class InternshipCertificateController extends Controller
         $request->validate([
             'uuid' => 'string|unique:internship_certificates,uuid',
             'internship_id' => 'required|unique:internship_certificates,internship_id|exists:internships,id',
-            'file_id' => 'unique:internship_certificates,file_id|exists:files,id',
-            'personal_message_title' => 'string',
-            'personal_message_body' => 'string',
-            'congratulations_page_is_public' => 'nullable|boolean',
+            'file_id' => 'required|unique:internship_certificates,file_id|exists:files,id',
+            'personal_message_title' => 'nullable|string',
+            'personal_message_body' => 'nullable|string',
+            'congratulations_page_is_public' => 'boolean',
         ]);
         $result = InternshipCertificate::create($request->input());
         return $result;

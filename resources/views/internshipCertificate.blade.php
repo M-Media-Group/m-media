@@ -1,4 +1,7 @@
 @extends('layouts.clean')
+@section('title', "Congratulations ".$internshipCertificate->internship->user->name."!")
+@section('meta_description', "It's been tough. It's been rough. But damn ".$internshipCertificate->internship->user->name.", you've made some really cool stuff.")
+@section('meta_image', config('app.url').'/images/internship/team_love.svg')
 
 @section('above_container')
 <div class="header-section" onclick="initBurst();" style="position: relative; height:70vh;background: var(--white);">
@@ -56,7 +59,9 @@
   <p class="u-center">You've earned it. Share on your LinkedIn profile, print and hang on your wall, or just bookmark it. It's yours forever now!</p>
   <div class="u-limit-max-width u-center">
     <a class="button button-primary" href="/internship-certificates/{{$internshipCertificate->uuid}}" target="_BLANK">Open the certificate</a>
-    <a class="button" href="https://linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Internship%20Certificate%20of%20Completion&organizationId=28392415&issueYear={{ $internshipCertificate->created_at->format('Y') }}&issueMonth={{ $internshipCertificate->created_at->format('m') }}&certId={{$internshipCertificate->uuid}}&certUrl={{config('app.url') . '/internship-certificates/' . $internshipCertificate->uuid}}" target="_BLANK">Add to LinkedIn</a>
+    @if (Auth::user()->can('show', $internshipCertificate->internship))
+      <a class="button" href="https://linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Internship%20Certificate%20of%20Completion&organizationId=28392415&issueYear={{ $internshipCertificate->created_at->format('Y') }}&issueMonth={{ $internshipCertificate->created_at->format('m') }}&certId={{$internshipCertificate->uuid}}&certUrl={{config('app.url') . '/internship-certificates/' . $internshipCertificate->uuid}}" target="_BLANK">Add to LinkedIn</a>
+    @endif
   </div>
 </div>
 
@@ -65,7 +70,7 @@
   <p class="u-center">{{$internshipCertificate->personal_message_body}}</p>
   <p class="u-center">
     <img src="/images/internship/white_signature.svg" style="height: 100%; margin-top:3rem;" alt="Shop" />
-    Michal W. Founder of M Media
+    Michał W. Founder of M Media
   </p>
 </div>
 @endsection

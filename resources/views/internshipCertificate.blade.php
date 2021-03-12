@@ -59,7 +59,7 @@
   <p class="u-center">You've earned it. Share on your LinkedIn profile, print and hang on your wall, or just bookmark it. It's yours forever now!</p>
   <div class="u-limit-max-width u-center">
     <a class="button button-primary" href="/internship-certificates/{{$internshipCertificate->uuid}}" target="_BLANK">Open the certificate</a>
-    @if (Auth::user()->can('show', $internshipCertificate->internship))
+    @if (Auth::user() && Auth::user()->can('show', $internshipCertificate->internship))
       <a class="button" href="https://linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Internship%20Certificate%20of%20Completion&organizationId=28392415&issueYear={{ $internshipCertificate->created_at->format('Y') }}&issueMonth={{ $internshipCertificate->created_at->format('m') }}&certId={{$internshipCertificate->uuid}}&certUrl={{config('app.url') . '/internship-certificates/' . $internshipCertificate->uuid}}" target="_BLANK">Add to LinkedIn</a>
     @endif
   </div>

@@ -83,7 +83,7 @@
             </picture>
         </div>
     </div>
-    <div class="header-section row looking-up-background u-center-text" style="background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:108rem;">
+    <div class="header-section row looking-up-background u-center-text" style="background-position: center bottom;background-repeat: no-repeat;background-size: cover;min-height:130rem;">
         <div class="twelve columns">
             <h2 class="u-center" data-aos="fade">Be there when they look for you</h2>
             <p data-aos="fade" class="u-center" data-aos-delay="300">People are looking for something all the time. Ocassionally, they'll even look for something that you're well versed in. Be there when that happens.</p>

@@ -70,7 +70,7 @@
                     {{ __('Delete file') }}
                 </button>
             </form>
-        @endif
+            @endcan
     </div>
     </div>
     <div class="row m-0 pt-5 pb-5 d-none">

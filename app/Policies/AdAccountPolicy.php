@@ -60,6 +60,9 @@ class AdAccountPolicy
      */
     public function update(User $user, AdAccount $AdAccount)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage AdAccounts');
     }
 
@@ -85,6 +88,9 @@ class AdAccountPolicy
      */
     public function delete(User $user, AdAccount $AdAccount)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage AdAccounts');
     }
 

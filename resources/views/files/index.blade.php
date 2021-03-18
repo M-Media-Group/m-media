@@ -4,7 +4,9 @@
 	<div class="header-section bg-secondary">
 		<h1>Files</h1>
 		<p class="mb-0">{{config('app.name')}} Files</p>
-		<a class="button button-primary mt-3 mb-5" href="/files/create">Upload a new file</a>
+		@can('create', App\File::class)
+			<a class="button button-primary mt-3 mb-5" href="/files/create">Upload a new file</a>
+		@endcan
 	</div>
 <div class="container">
 <h2 class="mt-5 mb-0">{!! $files->total() !!} files</h2>

@@ -64,6 +64,9 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->id === $model->id;
     }
 
@@ -77,6 +80,9 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->id === $model->id;
     }
 
@@ -90,6 +96,9 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->id === $model->id;
     }
 

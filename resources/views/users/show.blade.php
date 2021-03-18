@@ -12,8 +12,14 @@
 @section('content')
 
 <div style="margin-top:-10rem;" class="pb-5">
+	@if($user->is_locked)
+	    <div class="alert alert-info text-muted">
+	         This account is now locked, preventing you from adding, editing, or deleting resources.
+	    </div>
+    @endif
+
     @if(!$user->email_verified_at)
-	    <div class="alert alert-danger text-muted">
+	    <div class="alert alert-info text-muted">
 	         Please verify your email address for full access to your account.
 	         @if(Auth::id() == $user->id)
 	         	If you did not receive the email, <a href="/email/resend">click here to request another</a>.
@@ -22,7 +28,7 @@
     @endif
 
     @if(!$user->primaryPhone)
-	    <div class="alert alert-danger text-muted">
+	    <div class="alert alert-info text-muted">
 	         Please <a href="/contact">contact us</a> to add your phone number and get full access to your {{config('app.name')}} services.
 	    </div>
     @endif
@@ -128,8 +134,10 @@
 <h2 class="mt-5 mb-0" id="subscriptions">More rescources</h2>
 @component('components.customSmallCard', ['image' => '/images/icons/euro.svg', 'title' => 'Billing and payments', 'id' => 'payment', 'link' => '/users/'.$user->id."/billing" ])
 	@endcomponent
-@component('components.customSmallCard', ['image' => '/images/icons/settings-solid.svg', 'title' => 'Account settings', 'id' => 'settings', 'link' => '/users/'.$user->id.'/edit' ])
+@can('update', $user)
+	@component('components.customSmallCard', ['image' => '/images/icons/settings-solid.svg', 'title' => 'Account settings', 'id' => 'settings', 'link' => '/users/'.$user->id.'/edit' ])
 	@endcomponent
+@endcan
 @component('components.customSmallCard', ['image' => '/images/icons/key-security.svg', 'title' => 'Login history', 'id' => 'settings', 'link' => '/authentication-events?user='.$user->id ])
 	@endcomponent
 

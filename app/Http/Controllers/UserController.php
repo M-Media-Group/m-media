@@ -166,6 +166,7 @@ class UserController extends Controller
     }
 
     public function createSepaPaymentMethod(User $user) {
+            $this->authorize('update', $user);
             $intent = $user->createSetupIntent([
                 'payment_method_types' => ['sepa_debit'],
             ]);

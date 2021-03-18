@@ -63,6 +63,9 @@ class EmailPolicy
      */
     public function update(User $user, Email $email)
     {
+        if($user->is_locked) {
+            return false;
+        }
         if ($user->email == $email->email) {
             return true;
         }
@@ -95,6 +98,9 @@ class EmailPolicy
      */
     public function delete(User $user, Email $email)
     {
+        if($user->is_locked) {
+            return false;
+        }
         if ($email->user_id) {
             return $user->id == $email->user_id;
         }

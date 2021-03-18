@@ -56,6 +56,9 @@ class AuthenticationEventPolicy
      */
     public function update(User $user, AuthenticationEvent $authentication_event)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage authentication_events');
     }
 
@@ -81,6 +84,9 @@ class AuthenticationEventPolicy
      */
     public function delete(User $user, AuthenticationEvent $authentication_event)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage authentication_events');
     }
 

@@ -85,6 +85,9 @@ class BotPolicy
      */
     public function connectToBot(User $user, Bot $bot)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('connect to bots');
     }
 
@@ -98,6 +101,9 @@ class BotPolicy
      */
     public function delete(User $user, Bot $bot)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage bots');
     }
 

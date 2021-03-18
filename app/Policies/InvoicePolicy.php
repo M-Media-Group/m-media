@@ -67,6 +67,9 @@ class InvoicePolicy
      */
     public function update(User $user, Invoice $invoice)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $invoice->customer === $user->stripe_id;
     }
 
@@ -80,6 +83,9 @@ class InvoicePolicy
      */
     public function delete(User $user, Invoice $invoice)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $invoice->customer === $user->stripe_id;
     }
 

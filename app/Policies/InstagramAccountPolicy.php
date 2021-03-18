@@ -60,6 +60,9 @@ class InstagramAccountPolicy
      */
     public function update(User $user, InstagramAccount $instagram_account)
     {
+        if($user->is_locked) {
+            return false;
+        }
         if ($instagram_account->user_id) {
             return $user->id == $instagram_account->user_id;
         }
@@ -89,6 +92,9 @@ class InstagramAccountPolicy
      */
     public function delete(User $user, InstagramAccount $instagram_account)
     {
+        if($user->is_locked) {
+            return false;
+        }
         if ($instagram_account->user_id) {
             return $user->id == $instagram_account->user_id;
         }

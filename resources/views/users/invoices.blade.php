@@ -115,18 +115,20 @@ Jump to:
  --}}
 
 <!-- Stripe Elements Placeholder -->
-<label class="mt-4 mb-0">Add a new card</label>
-<div class="row">
-<div class="form-control nine columns" style="color: inherit;border: 1px solid var(--gray);border-radius: var(--border-radius);padding: .5rem .75rem;margin-bottom: 1rem;">
-	<div id="card-element"></div>
-</div>
-<div class="three columns">
-<button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
-    Add card
-</button>
-{{-- 	<a href="/users/{{$user->id}}/billing/payment-methods/sepas/create" class="small text-muted ml-3">Add a SEPA bank account</a> --}}
-</div>
-</div>
+@can('update', $user)
+	<label class="mt-4 mb-0">Add a new card</label>
+	<div class="row">
+		<div class="form-control nine columns" style="color: inherit;border: 1px solid var(--gray);border-radius: var(--border-radius);padding: .5rem .75rem;margin-bottom: 1rem;">
+			<div id="card-element"></div>
+		</div>
+		<div class="three columns">
+		<button id="card-button" data-secret="{{ $intent->client_secret }}" class="button button-primary">
+		    Add card
+		</button>
+		{{-- 	<a href="/users/{{$user->id}}/billing/payment-methods/sepas/create" class="small text-muted ml-3">Add a SEPA bank account</a> --}}
+		</div>
+	</div>
+@endcan
 </div>
 <div class="row m-0 pt-5 pb-5 ">
     <h2 class="mt-5 mb-0" id="invoices">All invoices</h2>

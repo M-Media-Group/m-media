@@ -63,6 +63,9 @@ class PhonePolicy
      */
     public function update(User $user, Phone $phone)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage phones');
     }
 
@@ -88,6 +91,9 @@ class PhonePolicy
      */
     public function delete(User $user, Phone $phone)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $user->can('manage phones');
     }
 

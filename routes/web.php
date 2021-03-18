@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth', App\Http\Middleware\UpdateUserLastSeen::c
     Route::group(['middleware' => ['verified']], function () {
         Route::get('my-bots', 'UserController@myBots');
         Route::get('users/{id}/billing', 'UserController@invoices');
-        Route::get('users/{id}/billing/payment-methods/sepas/create', 'UserController@createSepaPaymentMethod');
+        Route::get('users/{user}/billing/payment-methods/sepas/create', 'UserController@createSepaPaymentMethod');
 
         Route::get('/my-account/billing', 'HomeController@billing');
 

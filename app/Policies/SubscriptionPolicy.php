@@ -69,6 +69,9 @@ class SubscriptionPolicy
      */
     public function update(User $user, Subscription $subscription)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $subscription->customer === $user->stripe_id;
     }
 
@@ -82,6 +85,9 @@ class SubscriptionPolicy
      */
     public function delete(User $user, Subscription $subscription)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $subscription->customer === $user->stripe_id;
     }
 
@@ -95,6 +101,9 @@ class SubscriptionPolicy
      */
     public function restore(User $user, Subscription $subscription)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return $subscription->customer === $user->stripe_id;
     }
 

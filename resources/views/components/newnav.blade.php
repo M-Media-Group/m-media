@@ -44,9 +44,11 @@
                     </a> --}}
                     <hr class="mb-0 mt-0">
                     {{-- <div class="ml-4 mt-5 small text-muted">Admin</div> --}}
+                    @can('create', App\File::class)
                     <a href="/files/create">
                             {{ __('Share files') }}
                     </a>
+                    @endcan
                     <a href="/domains/check-availability">
                             {{ __('Register domains') }}
                     </a>

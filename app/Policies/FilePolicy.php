@@ -63,6 +63,9 @@ class FilePolicy
      */
     public function update(User $user, File $file)
     {
+        if($user->is_locked) {
+            return false;
+        }
         if ($file->is_locked) {
             return false;
         }
@@ -85,6 +88,9 @@ class FilePolicy
      */
     public function create(User $user)
     {
+        if($user->is_locked) {
+            return false;
+        }
         return true;
     }
 
@@ -98,6 +104,10 @@ class FilePolicy
      */
     public function delete(User $user, File $file)
     {
+        if($user->is_locked) {
+            return false;
+        }
+
         if ($file->is_locked) {
             return false;
         }

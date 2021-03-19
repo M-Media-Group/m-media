@@ -14,7 +14,7 @@
 <div style="margin-top:-10rem;" class="pb-5">
 	@if($user->is_locked)
 	    <div class="alert alert-info text-muted">
-	         This account is now locked, preventing you from adding, editing, or deleting resources.
+	         This <a href="https://blog.mmediagroup.fr/post/about-locked-accounts/" target="_BLANK">account is locked</a>, preventing you from adding, editing, or deleting resources.
 	    </div>
     @endif
 
@@ -62,7 +62,7 @@
 	</div>
 	@endif
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 	@component('components.customContactCard', ['image' => '/images/icons/website.svg', 'title' => 'No websites', 'id' => 'websites', 'buttons' => [['type' => 'primary', 'link' => '/domains/check-availability', 'text' => __('Register a new domain')]]])
 	    You have no websites on {{config('app.name')}} associated with you or your business.
 	@endcomponent
@@ -73,7 +73,7 @@
 @component('components.customSmallCard', ['image' => '/images/icons/files-empty.svg', 'title' => $user->files_count." ".str_plural("file", $user->files_count), 'id' => 'files', 'link' => '/files?user='.$user->id])
 	    Easily share and manage files related to your business on {{config('app.name')}}.
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 	@component('components.customContactCard', ['image' => '/images/icons/files-empty.svg', 'title' => 'No files', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/files/create', 'text' => 'Upload your first file']]])
 	    You have no files on {{config('app.name')}} associated with you and your business.
 	@endcomponent
@@ -83,7 +83,7 @@
 @component('components.customSmallCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => $user->ad_accounts_count." ".str_plural("ad account", $user->ad_accounts_count), 'id' => 'files', 'link' => '/ad-accounts?user='.$user->id])
 	    Easily see data related to your ad accounts linked to your {{config('app.name')}} account.
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 	@component('components.customContactCard', ['image' => '/images/icons/google-ad-outline.svg', 'title' => 'No ad accounts', 'id' => 'files', 'buttons' => [['type' => 'primary', 'link' => '/contact', 'text' => 'Link an advertising platform'], ['type' => '', 'link' => '/digital-ads', 'text' => 'Learn more']]])
 	    You have no ad accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
@@ -93,7 +93,7 @@
 @component('components.customSmallCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => $user->emails_count.' email ' .str_plural("account", $user->emails_count), 'id' => 'emails', 'link' => '/emails?user='.$user->id, ])
 	    Manage email accounts associated with you and your business on {{config('app.name')}}.
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 @component('components.customContactCard', ['image' => '/images/icons/email-multiple-outline.svg', 'title' => 'No email accounts', 'id' => 'emails', 'image' => '/images/emails.svg'])
     You have no email accounts on {{config('app.name')}} associated with you.
 @endcomponent
@@ -103,7 +103,7 @@
 @component('components.customSmallCard', ['image' => '/images/icons/phone.svg', 'title' => $user->phones_count.' phone ' .str_plural("number", $user->phones_count), 'id' => 'phones', 'link' => '/phones?user='.$user->id])
 	    Manage phone numbers associated with you and your business on {{config('app.name')}}.
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 @component('components.customContactCard', ['image' => '/images/icons/phone.svg', 'title' => 'No phone accounts', 'id' => 'phones'])
     You have no phone numbers on {{config('app.name')}} associated with you.
 @endcomponent
@@ -113,7 +113,7 @@
 @component('components.customSmallCard', ['image' => '/images/icons/instagram.svg', 'title' => $user->instagram_accounts_count.' Instagram ' .str_plural("account", $user->instagram_accounts_count), 'id' => 'instagram', 'link' => '/instagram-accounts?user='.$user->id])
 	    Manage Instagram accounts on {{config('app.name')}} associated with you and your business.
 	@endcomponent
-@else
+@elseif (!$user->is_locked)
 @component('components.customContactCard', ['title' => 'No Instagram accounts', 'id' => 'instagram', 'image' => '/images/icons/instagram.svg'])
     You have no Instagram accounts on {{config('app.name')}} associated with you and your business.
 @endcomponent

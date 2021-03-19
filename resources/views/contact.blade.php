@@ -48,17 +48,23 @@
            @else
                 <address>
                     contact@mmediagroup.fr<br>
+                    @if(!Auth::user()->is_locked)
                     +33 4 86 06 08 59
                   <div class="small text-muted">
                         {{config('app.name')}}<br>
                         06230 Villefranche sur Mer, France
                   </div>
+                    @else
+                    <small>Your account is locked, so email is the preferred contact option for you.</small>
+                    @endif
                 </address>
             <div class="flex" style="flex-wrap: wrap; margin-top: 1rem;">
 	            <a class="button button-primary" href="mailto:contact@mmediagroup.fr">Email</a>
-	            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}" style="color: #006AFF;border-color: #006AFF; ">Messenger</a>
-	            <a class="button" href="tel:+33486060859">Call</a>
-                <a class="button" href="https://wa.me/+33486060859" style="color: #25D366; border-color: #25D366;">WhatsApp</a>
+                @if(!Auth::user()->is_locked)
+    	            <a class="button " rel="noopener" href="{{config('blog.messenger_url')}}" style="color: #006AFF;border-color: #006AFF; ">Messenger</a>
+    	            <a class="button" href="tel:+33486060859">Call</a>
+                    <a class="button" href="https://wa.me/+33486060859" style="color: #25D366; border-color: #25D366;">WhatsApp</a>
+                @endif
 	        </div>
             @endguest
         </div>

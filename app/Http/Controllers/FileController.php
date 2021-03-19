@@ -112,8 +112,6 @@ class FileController extends Controller
      */
     public function storeFromEmail(Request $request)
     {
-        // NO need for authorize as thats handled by the request StoreFile
-        //$this->authorize('create', File::class);
 
         $request->validate([
             'email' => 'required|email|exists:users,email',

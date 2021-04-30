@@ -32,6 +32,7 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "league/flysystem-cached-adapter": "~1.0",
         "pgrimaud/instagram-user-feed": "^6.0",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "~4.0",
         "spatie/dns": "^1.4",
         "spatie/geocoder": "^3.7",

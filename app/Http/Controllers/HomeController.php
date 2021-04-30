@@ -117,8 +117,10 @@ class HomeController extends Controller
         $response_2 = json_decode($request->getBody(), true);
         $request = $client->get('https://covid-api.mmediagroup.fr/v1/history?status=deaths');
         $response_3 = json_decode($request->getBody(), true);
+        $request = $client->get('https://covid-api.mmediagroup.fr/v1/vaccines');
+        $response_4 = json_decode($request->getBody(), true);
         //return $response;
-        return view('covid', ['cases' => $response, 'history' => $response_2, 'deaths' => $response_3]);
+        return view('covid', ['cases' => $response, 'history' => $response_2, 'deaths' => $response_3, 'vaccines' => $response_4]);
     }
 
     public function sendContactRequest(Request $request)

@@ -258,6 +258,14 @@ array_push($datasets, $data);
         </div>
     </div>
 
+    <div class="header-section row m-0" style="background:var(--white);">
+        <div class="twelve columns" data-aos="fade">
+            <h3 class="mt-0" data-aos="fade">To date, the world has vaccinated <span class="text-secondary">{{number_format($vaccines['Global']['All']['people_vaccinated'])}}</span> people.</h3>
+            <p style="max-width: 550px;" data-aos="fade">That's the amount of people that have received all jabs required to be immune. In total, the vaccine has been administered {{number_format($vaccines['Global']['All']['administered'])}} times.</p>
+            <p style="max-width: 550px;" data-aos="fade">There's {{number_format($vaccines['Global']['All']['people_partially_vaccinated'])}} still waiting for their second shot.</p>
+        </div>
+    </div>
+
     <div class="header-section row m-0 bg-primary">
         <div class="twelve columns">
             <h3 class="mt-0" data-aos="fade">Wash your hands.</h3>

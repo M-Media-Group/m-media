@@ -62,7 +62,7 @@ class InternshipController extends Controller
                 'send_database' => 1,
                 'title' => 'Internship request for '.strtolower($request->input('interest')),
                 'action_text' => 'Open the CV',
-                'action' => $data->url,
+                'action' => '/files/'.$data->id,
                 'message' => "Interest: " . $request->input('interest') . "\n\nQ1: " . $request->input('question_1') . "\nQ2: " . $request->input('question_2') . "\nQ3: " . $request->input('question_3'),
             ]
         ));

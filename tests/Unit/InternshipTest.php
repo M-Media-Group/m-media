@@ -33,7 +33,7 @@ class InternshipTest extends TestCase
             'file' => $file,
         );
         $response = $this->post('/api/internships/apply', $data);
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
 
 }

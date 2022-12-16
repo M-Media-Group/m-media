@@ -121,5 +121,5 @@ Route::get('/', 'HomeController@welcome');
 
 // Route::get('/components', 'HomeController@components');
 
-Route::get('/covid-19', 'HomeController@covid');
+// Route::get('/covid-19', 'HomeController@covid');
 Route::get('/2020/thank-you-developers', 'HomeController@thanksDevelopers');

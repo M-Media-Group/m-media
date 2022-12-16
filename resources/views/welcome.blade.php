@@ -47,12 +47,6 @@
     }
     </script>
 <div class="home">
-    <div class="alert alert-info text-muted alert-dismissible" role="alert" style="position: fixed; bottom: 0;z-index: 99;">
-         Looking for our Coronavirus live data tracker? It's <a href="/covid-19">right here</a>.
-           <a class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true" style="font-size: 3rem;">&times;</span>
-          </a>
-    </div>
     <div class="header-section bg-secondary primary-header-background" style="background-position: right, bottom;background-repeat: no-repeat;background-size: cover;min-height:73rem;">
         <h1 class="aos-init aos-animate">Lets tell your story, <br/>together.</h1>
         <p data-aos="fade">Digital marketing can be tricky, so it’s best to leave it to those that know what they are doing. Focus on telling your story, and we'll get the listeners.</p>
